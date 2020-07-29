@@ -1,0 +1,179 @@
+---
+title: "Gene Curration Experimental Design"
+date: '`r Sys.Date()`'
+output: 
+    bookdown::html_document2:
+        toc: true
+        toc_float: true
+        df_print: paged
+        code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+```
+
+# Objective
+- Generate list of medically relevant genes for manual curation.
+- Split gene list so that all genes are curated by at least two people. 
+- Generate formatted spreadsheets for use in manual curation. 
+
+# Generating Gene List
+Loading gene list table
+```{r}
+gene_list_df <- here("data","GRCh38_v4.1_r253_overlap.tsv") %>% 
+    read_tsv()
+```
+
+```{r}
+glimpse(gene_list_df)
+```
+```{r}
+curation_list_df <- gene_list_df %>% 
+    filter(chromosome %in% paste0("chr", 1:22),
+           percent_covered_r253_with_flanking_and_segdups == 1,
+           percent_covered_v4.1_no_flanking_or_segdups < 0.9 | 
+               bp_not_covered_v4.1_no_flanking_or_segdups > 10000
+           )
+```
+
+```{r}
+nrow(curation_list_df)
+```
+
+
+- one question is what to do with very large genes.  We could set an additional criteria like (column 1 = 1) AND (column 2 is <90% OR (column 2 is <97% AND column 3 >10kb)).  It would be nice to see how the numbers change if it's easy
+
+```{r}
+curation_list_df <- gene_list_df %>% 
+    filter(chromosome %in% paste0("chr", 1:22),
+           percent_covered_r253_with_flanking_and_segdups == 1,
+           percent_covered_v4.1_no_flanking_or_segdups < 0.9 | 
+               (percent_covered_v4.1_no_flanking_or_segdups < 0.97 &
+               bp_not_covered_v4.1_no_flanking_or_segdups > 10000)
+           )
+
+nrow(curation_list_df)
+```
+- maybe also try (column 1 = 1) AND (column 2 is <90% OR (column 2 is <95% AND column 3 >10kb)).
+
+```{r}
+curation_list_df <- gene_list_df %>% 
+    filter(chromosome %in% paste0("chr", 1:22),
+           percent_covered_r253_with_flanking_and_segdups == 1,
+           percent_covered_v4.1_no_flanking_or_segdups < 0.9 | 
+               (percent_covered_v4.1_no_flanking_or_segdups < 0.95 &
+               bp_not_covered_v4.1_no_flanking_or_segdups > 10000)
+           )
+
+nrow(curation_list_df)
+```
+
+# Gene-Curator Assignments
+Curators
+```{r}
+# Gene Curators
+curators <- c(
+    "JWagner",
+    "JZook",
+    "NOlson",
+    "FSedlazeck",
+    "JChin",
+    "Chai",
+    "KMiga",
+    "SLincoln",
+    "HLi"
+    )
+
+# Curator combinations to ensure all genes curated by two people and ensuring
+# even overlap in gene assignments between curators
+curators_df <- data_frame(curator_1 = rep(curators, length(curators)), 
+           curator_2 = rep(curators, each = length(curators))) %>% 
+    filter(curator_1 != curator_2) %>% 
+    mutate(curator_comb = 1:n())
+
+n_combs <- nrow(curators_df)
+n_genes <- nrow(curation_list_df)
+
+comb_assignments <- rep(1:n_combs, ceiling(n_genes/n_combs))[1:n_genes]
+
+curator_assignments <- curation_list_df %>% 
+    add_column(curator_comb = comb_assignments) %>% 
+    left_join(curators_df)
+```
+Checking overlap and gene number assignments
+```{r}
+curator_assignments %>% 
+    group_by(curator_1, curator_2) %>% 
+    summarise(shared_genes = n()) %>% 
+    group_by(shared_genes) %>% 
+    summarise(count = n())
+```
+
+
+
+# Gene Curation Spreadsheets
+Preparing data frame for use in making spreadsheets for recording curation results.
+```{r}
+curator_df <- curator_assignments %>% 
+    mutate(igv_pos = str_c(chromosome,":", 
+                           start_minus_20kb, "-", end_plus_20kb)) %>% 
+   select(gene_name, igv_pos, curator_1, curator_2) %>%  
+    gather("CN", "Curator", -gene_name, -igv_pos) %>% 
+    select(-CN) %>% 
+    add_column(large_dup = "",
+               high_homozygosity = "",
+               high_var_density = "",
+               unclear_evidence = "",
+               misassembly = "",
+               notes = "")
+```
+
+Table sanity checks
+```{r}
+## All genes assigned to two curators
+curator_df %>% 
+    group_by(gene_name, igv_pos) %>% 
+    summarise(count = n()) %>% 
+    filter(count != 2)
+```
+
+```{r}
+## Relatively Even Gene Assignment Split
+curator_df %>% 
+    group_by(Curator) %>% 
+    summarise(count = n())
+```
+
+Next Step - split table by curator and generate googlesheet for each curator.
+
+```{r}
+### Copied from https://github.com/nate-d-olson/giab-hg002-ccs/blob/master/analysis.Rmd
+### Manual curation spreadsheets
+## Already generate files
+# tmp_tsv <- tempfile(fileext = ".tsv")
+# deepvar_random_df %>%
+#     add_column(PacBio = "", GIAB = "", Notes = "") %>%
+#     write_tsv(path = tmp_tsv)
+# 
+# gs_upload(file = tmp_tsv, sheet_title = "hg002-ccs-deepvar-curate-JZ")
+# gs_upload(file = tmp_tsv, sheet_title = "hg002-ccs-deepvar-curate-JM")
+# gs_upload(file = tmp_tsv, sheet_title = "hg002-ccs-deepvar-curate-NDO")
+```
+
+# Session Information
+## System Information
+```{r}
+sessioninfo::platform_info()
+```
+
+
+## Package Versions
+```{r}
+sessioninfo::package_info() %>% 
+    filter(attached = TRUE) %>% 
+    select(package, loadedversion, date, source) %>%
+    knitr::kable(booktabs = TRUE, row.names = FALSE)
+```
