@@ -16,14 +16,16 @@
 ## Stratifications 
 V2.0 stratifications: https://github.com/genome-in-a-bottle/genome-stratifications 
 
-[TODO - JW provide information for the Segdups, Repeats, and Gaps + Odd Regions stratifications]
 - Segdups: https://dl.dnanex.us/F/D/X7V2b94pJGxjG5JZbPk074yjVQY2V1y199Z5G5j0/hg38.segdups.bed.gz  
-- Repeats: https://dl.dnanex.us/F/D/5G8Y7xf5kPX3P1gJv91B4GqvQj471JF9P1pVp9f5/hg38.repeats.bed.gz  
-- Gaps + Odd Regions: https://dl.dnanex.us/F/D/Vgxq5G630XjYGVY86pBZ5F5Z57Xg47kPkJYq82x7/hg38.oddRegions.bed.gz  
+  This is generated using https://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/genomicSuperDups.txt.gz  
+- Repeats: https://dl.dnanex.us/F/D/5G8Y7xf5kPX3P1gJv91B4GqvQj471JF9P1pVp9f5/hg38.repeats.bed.gz
+  This is generated with https://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/simpleRepeat.txt.gz and https://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/windowmaskerSdust.txt.gz  
+- Gaps + Odd Regions: https://dl.dnanex.us/F/D/Vgxq5G630XjYGVY86pBZ5F5Z57Xg47kPkJYq82x7/hg38.oddRegions.bed.gz
+  This file contains gaps in GRCh38, PARs, and VDJ regions
 - Assembly CNV: GRCh38_HG002_GIABv4.1_CNV_gt2assemblycontigs_ONTCanu_ONTFlye_CCSCanu.bed.gz  
 - CCS and ONT CNV: GRCh38_HG002_GIABv4.1_CNV_CCSandONT_elliptical_outlier.bed.gz  
 - mrcanavar CNVs: GRCh38_HG002_GIABv4.1_CNV_mrcanavarIllumina_CCShighcov_ONThighcov_intersection.bed.gz  
-- SegDups: GRCh38_gt5segdups_gt10kb_gt99percidentity.bed.gz  
+- High Copy SegDups: GRCh38_gt5segdups_gt10kb_gt99percidentity.bed.gz  
 - TandemRepeats >10kb: GRCh38_AllTandemRepeats_gt10000bp_slop5.bed.gz  
 - Expanded V0.6 SVs: GRCh38_HG002_expanded_150__Tier1plusTier2_v0.6.1.bed.gz  
 - Inversions: GRCh38_HG002_GIABv4.1_inversions_slop25percent.bed.gz  
