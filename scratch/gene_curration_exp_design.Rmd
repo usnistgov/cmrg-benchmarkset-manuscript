@@ -34,42 +34,95 @@ glimpse(gene_list_df)
 curation_list_df <- gene_list_df %>% 
     filter(chromosome %in% paste0("chr", 1:22),
            percent_covered_r253_with_flanking_and_segdups == 1,
-           percent_covered_v4.1_no_flanking_or_segdups < 0.9 | 
+           percent_covered_v4.1_no_flanking_or_segdups < 0.9)
+nrow(curation_list_df)
+```
+
+
+```{r}
+big_genes_list_df <- gene_list_df %>% 
+    filter(chromosome %in% paste0("chr", 1:22),
+           percent_covered_r253_with_flanking_and_segdups == 1,
+           percent_covered_v4.1_no_flanking_or_segdups > 0.9,
                bp_not_covered_v4.1_no_flanking_or_segdups > 10000
            )
 ```
+Additional genes with greater than 10 kb uncovered with > 90% V4.1 coverage
+```{r}
+nrow(big_genes_list_df)
+```
 
 ```{r}
-nrow(curation_list_df)
+ggplot(big_genes_list_df) + geom_point(aes(x = percent_covered_v4.1_no_flanking_or_segdups,
+                              y = bp_not_covered_v4.1_no_flanking_or_segdups), alpha = 0.5) + 
+    scale_y_log10() + 
+    theme_bw() + 
+    labs(x = "% V4.1 Covered", y = "Uncovered Bases")
 ```
 
 
 - one question is what to do with very large genes.  We could set an additional criteria like (column 1 = 1) AND (column 2 is <90% OR (column 2 is <97% AND column 3 >10kb)).  It would be nice to see how the numbers change if it's easy
 
 ```{r}
-curation_list_df <- gene_list_df %>% 
-    filter(chromosome %in% paste0("chr", 1:22),
-           percent_covered_r253_with_flanking_and_segdups == 1,
-           percent_covered_v4.1_no_flanking_or_segdups < 0.9 | 
-               (percent_covered_v4.1_no_flanking_or_segdups < 0.97 &
-               bp_not_covered_v4.1_no_flanking_or_segdups > 10000)
-           )
-
-nrow(curation_list_df)
+# curation_list_df <- gene_list_df %>% 
+#     filter(chromosome %in% paste0("chr", 1:22),
+#            percent_covered_r253_with_flanking_and_segdups == 1,
+#            percent_covered_v4.1_no_flanking_or_segdups < 0.9 | 
+#                (percent_covered_v4.1_no_flanking_or_segdups < 0.97 &
+#                bp_not_covered_v4.1_no_flanking_or_segdups > 10000)
+#            )
+# 
+# nrow(curation_list_df)
 ```
 - maybe also try (column 1 = 1) AND (column 2 is <90% OR (column 2 is <95% AND column 3 >10kb)).
 
 ```{r}
-curation_list_df <- gene_list_df %>% 
-    filter(chromosome %in% paste0("chr", 1:22),
-           percent_covered_r253_with_flanking_and_segdups == 1,
-           percent_covered_v4.1_no_flanking_or_segdups < 0.9 | 
-               (percent_covered_v4.1_no_flanking_or_segdups < 0.95 &
-               bp_not_covered_v4.1_no_flanking_or_segdups > 10000)
-           )
-
-nrow(curation_list_df)
+# curation_list_df <- gene_list_df %>% 
+#     filter(chromosome %in% paste0("chr", 1:22),
+#            percent_covered_r253_with_flanking_and_segdups == 1,
+#            percent_covered_v4.1_no_flanking_or_segdups < 0.9 | 
+#                (percent_covered_v4.1_no_flanking_or_segdups < 0.95 &
+#                bp_not_covered_v4.1_no_flanking_or_segdups > 10000)
+#            )
+# 
+# nrow(curation_list_df)
 ```
+
+```{r}
+# large_gene_list <- gene_list_df %>% 
+#     filter(chromosome %in% paste0("chr", 1:22),
+#            percent_covered_r253_with_flanking_and_segdups == 1,
+#            percent_covered_v4.1_no_flanking_or_segdups < 0.9 | 
+#                (percent_covered_v4.1_no_flanking_or_segdups < 0.95 &
+#                bp_not_covered_v4.1_no_flanking_or_segdups > 10000)
+#            ) %>% 
+#     filter(bp_not_covered_v4.1_no_flanking_or_segdups > 10000, percent_covered_v4.1_no_flanking_or_segdups > 0.9) 
+```
+```{r}
+# nrow(large_gene_list)
+```
+send to Steve and others
+- genes with more than 95% coverage by V4.1 by more than, 10kb not covered, and fully covered by assembly
+```{r}
+# large_gene_list
+```
+
+
+```{r}
+gene_list_df %>% 
+    ggplot() + geom_point(aes(x = percent_covered_v4.1, y = percent_covered_v4.1_no_flanking_or_segdups, color = bp_not_covered_v4.1_no_flanking_or_segdups > 10000
+                              ), alpha = 0.25) + 
+    theme_bw()
+```
+```{r}
+gene_list_df %>% 
+    ggplot() + geom_point(aes(x = bp_not_covered_v4.1_no_flanking_or_segdups, y = percent_covered_v4.1_no_flanking_or_segdups,
+                              color = percent_covered_r253_with_flanking_and_segdups == 1), alpha = 0.25) + 
+    theme_bw() + 
+    scale_x_log10() + 
+    theme(legend.position = "bottom")
+```
+
 
 # Gene-Curator Assignments
 Curators
@@ -82,14 +135,14 @@ curators <- c(
     "FSedlazeck",
     "JChin",
     "Chai",
-    "KMiga",
-    "SLincoln",
-    "HLi"
+    #"KMiga",
+    "SLincoln" #,
+    #"HLi"
     )
 
 # Curator combinations to ensure all genes curated by two people and ensuring
 # even overlap in gene assignments between curators
-curators_df <- data_frame(curator_1 = rep(curators, length(curators)), 
+curators_df <- tibble(curator_1 = rep(curators, length(curators)), 
            curator_2 = rep(curators, each = length(curators))) %>% 
     filter(curator_1 != curator_2) %>% 
     mutate(curator_comb = 1:n())
@@ -163,6 +216,42 @@ Next Step - split table by curator and generate googlesheet for each curator.
 # gs_upload(file = tmp_tsv, sheet_title = "hg002-ccs-deepvar-curate-NDO")
 ```
 
+# IGV Snapshots
+```{r}
+## BED files for input to bedToIgv
+curation_list_df %>% 
+    select(chromosome, start_minus_20kb, end_plus_20kb, gene_name) %>% 
+    write_tsv(path = here("data","curation_gene_list.bed"), 
+              col_names = FALSE)
+    
+```
+
+Using bedtools to generate batch script.  
+
+1. Creating conda environment with bedtools
+```
+conda create -n bedtools bedtools
+```
+
+2. Generating batch script using bedtools
+```
+conda activate bedtools
+bedToIgv \
+    -path data/manual_curation/snapshots \
+    -sess  data/manual_curation/medically-relevant-genes_HG002-GRCh38-v4.1.xml \
+    -name \
+    -img eps \
+    -i data/curation_gene_list.bed \
+    > data/curation_gene_list.batch
+```
+
+3. Generating snapshots
+Modified igv for a larger heapsize (editing bash script to run igv in the conda package), increased the visible region size and a few other IGV perferences.
+
+```
+conda activate igv
+igv -b data/curation_gene_list.batch
+```
 # Session Information
 ## System Information
 ```{r}
