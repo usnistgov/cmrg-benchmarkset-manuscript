@@ -10,3 +10,5 @@ Mandelker_Medically_Relevant_and_COSMIC_unique_gene_symbols.tsv -- combined reso
 
 HG002r253ab-align2-GRCh38.dip.bed -- dipcall output downloaded from https://drive.google.com/file/d/1lPXuZVrmwFnXd3CUlq1jHAvzeai8UYw0/view?usp=sharing
 
+
+Collected Guideline Genes.xlsx -- list of genes with clinical relevance, used in clinical testing. Downloaded from https://docs.google.com/spreadsheets/d/1NYBbtgzB5zqpIwbGpftc--BA_gbFNj5ixhf7VZGb6hc/edit?usp=sharing on 8/13/20. Additional relevant material in https://drive.google.com/drive/folders/1gUjMx24CkZCbt4vC46W3nQY_3DcjP4X9. 
