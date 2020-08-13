@@ -238,15 +238,19 @@ conda create -n bedtools bedtools
 conda activate bedtools
 bedToIgv \
     -path data/manual_curation/snapshots \
-    -sess  data/manual_curation/medically-relevant-genes_HG002-GRCh38-v4.1.xml \
     -name \
-    -img eps \
+    -img png \
     -i data/curation_gene_list.bed \
     > data/curation_gene_list.batch
 ```
 
 3. Generating snapshots
 Modified igv for a larger heapsize (editing bash script to run igv in the conda package), increased the visible region size and a few other IGV perferences.
+
+__Note__: Issues running IGV batch script.  
+1. IGV froze when running batch script if the IGV session is loaded by the batch script.  
+2. The IGV images get progressively larger with each position, resulting in a lot of white space in the final image.  
+3. Image quality: png and jpg are very low quality, unable to export as eps, svg images are strangely cropped.  
 
 ```
 conda activate igv

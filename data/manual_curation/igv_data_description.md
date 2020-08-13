@@ -1,4 +1,5 @@
 # IGV Session Data Description
+Description of data tracks in `medially-relevant-genes_HG002-GRCh38-v4.1.xml` IGV session file. The `local_session.xml` file has the same set of tracks but references local versions of the input data files.
 
 ## Benchmark Set  
 - V4.1 benchmark: NIST_v4.1_SmallVariantDraftBenchmark_12182019  
