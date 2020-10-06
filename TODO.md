@@ -1,5 +1,5 @@
 # Project Action Items 
-<!-- Alteratively use gitlab issues -->
+<!-- Alternatively use gitlab issues -->
 ## Project structure
 -[] add documentation for resource/ input data locations
 -[] remove unnecessary data files
