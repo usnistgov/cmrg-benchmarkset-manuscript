@@ -1,0 +1,17 @@
+Version	Type	Subset	Recall	Precision	Frac_NA	TP	FN	FP
+v4.2	INDEL	*	0.977	0.992	0.542	2244	52	18
+v4.2	INDEL	All Tandem Repeats and Homopolymers	0.979	0.992	0.623	1348	29	11
+v4.2	INDEL	Not In All Difficult Regions	0.998	1	0.281	623	1	0
+v4.2	INDEL	Segmental Duplications	0.879	0.869	0.811	51	7	8
+v4.2	SNP	*	0.91	0.9995	0.223	14322	1411	7
+v4.2	SNP	All Tandem Repeats and Homopolymers	0.933	1	0.58	904	65	0
+v4.2	SNP	Not In All Difficult Regions	0.982	1	0.153	9684	181	0
+v4.2	SNP	Segmental Duplications	0.462	0.994	0.531	313	365	2
+Draft	INDEL	*	0.757	0.929	0.145	3742	1198	312
+Draft	INDEL	All Tandem Repeats and Homopolymers	0.702	0.92	0.186	2578	1096	251
+Draft	INDEL	Not In All Difficult Regions	0.961	0.955	0.017	784	32	38
+Draft	INDEL	Segmental Duplications	0.471	0.822	0.143	208	234	49
+Draft	SNP	*	0.766	0.994	0.016	18210	5556	107
+Draft	SNP	All Tandem Repeats and Homopolymers	0.401	0.963	0.063	2082	3116	76
+Draft	SNP	Not In All Difficult Regions	0.973	0.999	0.002	11432	323	8
+Draft	SNP	Segmental Duplications	0.28	0.964	0.004	650	1671	24

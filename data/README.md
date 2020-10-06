@@ -12,3 +12,5 @@ HG002r253ab-align2-GRCh38.dip.bed -- dipcall output downloaded from https://driv
 
 
 Collected Guideline Genes.xlsx -- list of genes with clinical relevance, used in clinical testing. Downloaded from https://docs.google.com/spreadsheets/d/1NYBbtgzB5zqpIwbGpftc--BA_gbFNj5ixhf7VZGb6hc/edit?usp=sharing on 8/13/20. Additional relevant material in https://drive.google.com/drive/folders/1gUjMx24CkZCbt4vC46W3nQY_3DcjP4X9. 
+
+benchmark_comparison_mrg.tsv - GATK Ill benchmarking results for draft MRG and V4.2 benchmark set, initial analysis for J. Wagner 2020 ASHG presentation.
