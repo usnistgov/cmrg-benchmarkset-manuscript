@@ -73,3 +73,12 @@ write_tsv(hifiasm_v11_and_v421_overlap_df_grch38[hifiasm_v11_and_v421_overlap_df
 
 write_tsv(hifiasm_v11_and_v421_overlap_df_grch38[hifiasm_v11_and_v421_overlap_df_grch38$gene %in% in_GRCh38_not_in_GRCh37,], "GRCh38_overlap_genes_in_38_not_in_37.tsv")
 write_tsv(hifiasm_v11_and_v421_overlap_df_grch37[hifiasm_v11_and_v421_overlap_df_grch37$gene %in% in_GRCh38_not_in_GRCh37,], "GRCh37_overlap_genes_in_38_not_in_37.tsv")
+
+
+Lincoln_MRG_symbols <- read_tsv("Steve_Lincoln_Compiled_Medical_Gene_List.tsv", col_types = "c")
+
+in_GRCh37_not_in_GRCh38_Lincoln <- Lincoln_MRG_symbols[Lincoln_MRG_symbols$Gene %in% in_GRCh37_not_in_GRCh38,]$Gene
+# character(0)
+
+in_GRCh38_not_in_GRCh37_Lincoln <- Lincoln_MRG_symbols[Lincoln_MRG_symbols$Gene %in% in_GRCh38_not_in_GRCh37,]$Gene
+# "LRPAP1"
