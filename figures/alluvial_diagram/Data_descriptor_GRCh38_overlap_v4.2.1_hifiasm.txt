@@ -1,0 +1,11 @@
+## Data Descriptor file for GRCh38_overlap_v4.2.1_hifiasm.tsv
+
+chrom - Chromosome in GRCh38 from ensembl human genes 100 
+start - Gene start in GRCh38 from ensembl human genes 100  
+end - Gene end in GRCh38 from ensembl human genes 100 
+gene - Gene name - HGNC symbol
+bp_overlap_v4.2.1 - base pairs of region denoted by chrom, start, end in HG002 GRCh38 v4.2.1
+percent_overlap_v4.2.1 - percent of region denoted by chrom, start, end in HG002 GRCh38 v4.2.1
+bp_flanking_plus_segdups_overlap_hifiasm - base pairs of region denoted by chrom, start, end + flanking sequence + any overlapping segdups in HG002 GRCh38 v4.2.1
+percent_flanking_plus_segdups_overlap_hifiasm - percent of region denoted by chrom, start, end + flanking sequence + any overlapping segdups in HG002 GRCh38 v4.2.1
+flanking_breaks_in_dip_bed - number of breaks in dipcall confident regions that occur in gene body + flanking sequence + any overlapping segdups
