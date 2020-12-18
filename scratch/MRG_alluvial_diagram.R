@@ -1,19 +1,29 @@
 library(ggalluvial)
 library(sessioninfo)
+library(tidyverse)
+library(here)
 
+here()
 # Load overlap for HG002 GRCh38 hifiasm v0.11 and 
 #v4.2.1 of medically relevant gene coordinates
-hifiasm_v11_and_v4.2.1_overlap_df_grch38 <- 
-	read_tsv("GRCh38_overlap_v4.2.1_hifiasm.tsv", col_types = "cddcddddd")
+hifiasm_v11_and_v4.2.1_overlap_df_grch38 <- read_tsv(
+    here("data","overlap_analysis", "GRCh38", "GRCh38_overlap_v4.2.1_hifiasm.tsv"),
+    col_types = "cddcddddd"
+)
 
-mandelker_list <- read_tsv("analysis/Mandelker_Medically_Relevant_Genes.tsv", 
-			 col_types = "c")
+mandelker_list <- read_tsv(
+    here("data", "mrg_lists","Mandelker_Medically_Relevant_Genes.tsv"),
+    col_types = "c")
 
-cosmic_list <- read_tsv("COSMIC_Gene_Census.tsv", col_types = "c")
+cosmic_list <- read_tsv(here("data", "mrg_lists", "COSMIC_Gene_Census.tsv"),
+                        col_types = "c")
 
-lincoln_list <- read_tsv("Steve_Lincoln_Compiled_Medical_Gene_List.tsv", 
-			 col_types = "c")
+lincoln_list <- read_tsv(
+    here("data", "mrg_lists", "Steve_Lincoln_Compiled_Medical_Gene_List.tsv"),
+    col_types = "c")
 
+
+    
 # Add columns for different levels of overlap 
 hifiasm_v11_and_v421_overlap_df_grch38_mutated <- 
 	hifiasm_v11_and_v4.2.1_overlap_df_grch38 %>% 
