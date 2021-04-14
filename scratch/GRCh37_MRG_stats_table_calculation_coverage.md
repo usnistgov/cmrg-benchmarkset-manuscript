@@ -1,0 +1,207 @@
+# GRCh37
+
+# bp_HG002_v4.2.1 and fraction_HG002_v4.2.1
+```
+python find_overlap_per_gene.py --input_benchmark HG002_GRCh37_1_22_v4.2.1_benchmark_noinconsistent.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_HG002_GRCh37_1_22_v4.2.1_benchmark_noinconsisten.bed
+
+```
+
+# bp_hifiasm_dip.bed and fraction_hifiasm_dip.bed
+```
+bedtools slop -i GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed -g human.b37.genome -b 20000 > GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp.bed
+
+python find_flanking_and_segdups_coverage_GRCh37.py --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates.bed
+
+python find_overlap_per_gene.py --input_benchmark HG002v11-align2-GRCh37.dip.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates_w_names.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates_w_names_overlap_with_HG002v11_align2_GRCh37_dip.bed
+```
+
+# bp_in_segmental_duplications_stratification and fraction_in_segmental_duplications_stratification
+# genome-stratifications-v2.0/GRCh37/SegmentalDuplications
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_segdups.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_segdups.bed
+```
+
+# bp_in_low_mappability_and_segmental_duplications_stratification and fraction_in_low_mappability_and_segmental_duplications_stratification
+# genome-stratifications-v2.0/GRCh37/union
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_alllowmapandsegdupregions.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_lowmapandsegdups.bed
+```
+
+# bp_in_AllRepeats_gt_10kb and fraction_in_AllRepeats_gt_10kb
+# genome-stratifications-v2.0/GRCh37/LowComplexity/
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_AllTandemRepeats_gt10000bp_slop5.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_AllTandemRepeats_gt10000bp_slop5.bed
+```
+
+# bp_in_reference_gaps_stratification and fraction_in_reference_gaps_stratification
+# genome-stratifications-v2.0/GRCh37/OtherDifficult
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_gaps_slop15kb.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_gaps_slop15kb.bed
+```
+
+# bp_in_Tier1andTier2_SV_0.6_slop150_stratification and fraction_in_Tier1andTier2_SV_0.6_slop150_stratification
+# genome-stratifications-v2.0/GRCh37/GenomeSpecific
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_HG002_expanded_150_Tier1plusTier2_v0.6.1.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_HG002_expanded_150__Tier1plusTier2_v0.6.bed
+```
+
+# bp_in_ccs_ont_elliptical_outlier_cnv_stratification and fraction_in_ccs_ont_elliptical_outlier_cnv_stratification
+# genome-stratifications-v2.0/GRCh37/GenomeSpecific
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_HG002_GIABv4.1_CNV_CCSandONT_elliptical_outlier.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_CNV_CCSandONT_elliptical_outlier.bed
+```
+
+# bp_in_assembly_cnv_stratification and fraction_in_assembly_cnv_stratification
+# genome-stratifications-v2.0/GRCh37/GenomeSpecific
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_HG002_GIABv4.1_CNV_gt2assemblycontigs_ONTCanu_ONTFlye_CCSCanu.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_CNV_gt2assemblycontigs_ONTCanu_ONTFlye_CCSCanu.bed
+```
+
+# bp_in_illumina_ccs_ont_cnv_stratification and fraction_in_illumina_ccs_ont_cnv_stratification
+# genome-stratifications-v2.0/GRCh37/GenomeSpecific
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_HG002_GIABv4.1_CNV_mrcanavarIllumina_CCShighcov_ONThighcov_intersection.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_CNV_mrcanavarIllumina_CCShighcov_ONThighcov_intersection.bed
+```
+
+# bp_in_vdj_stratification and fraction_in_vdj_stratification
+# genome-stratifications-v2.0/GRCh37/OtherDifficult
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_VDJ.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_VDJ.bed
+```
+
+# bp_in_inversions_stratification and fraction_in_inversions_stratification
+# genome-stratifications-v2.0/GRCh37/GenomeSpecific
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_HG002_GIABv4.1_inversions_slop25percent.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_inversions_slop25percent.bed
+```
+
+# bp_in_segmental_duplications_gt5_percent_identity_gte_990_stratification and fraction_in_segmental_duplications_gt5_percent_identity_gte_990_stratification
+# genome-stratifications-v2.0/GRCh37/SegmentalDuplications
+```
+python find_overlap_per_gene.py --input_benchmark GRCh37_gt5segdups_gt10kb_gt99percidentity.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_gt5segdups_gt10kb_gt99percidentity.bed
+```
+
+# bp_HG002_v4.2.1 and fraction_HG002_v4.2.1
+```
+python find_overlap_per_gene.py --input_benchmark HG002_GRCh37_1_22_v4.2.1_benchmark_noinconsistent.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_HG002_GRCh37_1_22_v4.2.1_benchmark_noinconsisten.bed
+```
+
+# bp_hifiasm_dip.bed and fraction_hifiasm_dip.bed
+```
+python find_overlap_per_gene.py --input_benchmark HG002v11-align2-GRCh37.dip.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_HG002v11_align2_GRCh37_dip.bed
+```
+
+# bp_MRG_benchmark_bed and fraction_MRG_benchmark_bed
+```
+python find_overlap_per_gene.py --input_benchmark HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03.bed
+```
+
+# num_v4.2.1_small_variants_in_gene
+```
+bedtools intersect -a HG002_GRCh37_1_22_v4.2.1_benchmark.vcf.gz -b HG002_GRCh37_1_22_v4.2.1_benchmark_noinconsistent.bed -header > HG002_GRCh37_1_22_v4.2.1_benchmark_intersect_benchmark.vcf
+
+python find_variants_per_gene.py --input_benchmark HG002_GRCh37_1_22_v4.2.1_benchmark_intersect_benchmark.vcf --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_HG002_GRCh37_1_22_v4.2.1_benchmark_intersect_benchmark.bed
+```
+
+# num_MRG_small_variant_v0.2_variants_in_gene
+```
+bedtools intersect -a HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03.vcf -b HG002_medical_gene_benchmark_v0.02/GRCh37/HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03.bed -header > HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03_intersect_benchmark.vcf
+
+python find_variants_per_gene.py --input_benchmark HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03_intersect_benchmark.vcf --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03_intersect_benchmark.bed
+```
+
+# num_MRG_SV_v0.1_in_gene
+```
+bedtools intersect -a HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03.vcf -b HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03.bed -header > HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03_intersect_HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03.bed
+
+python find_variants_per_gene.py --input_benchmark HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03_intersect_benchmark.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03_intersect_benchmark.bed
+```
+
+# num_breaks_in_dip.bed
+```
+python find_overlap_per_gene.py --input_benchmark HG002v11-align2-GRCh37.dip_check_for_breaks.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates_w_names.bed --output  GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates_check_for_breaks_in_dip.bed
+```
+
+# num_v0.6_SVs_in_gene
+```
+bedtools intersect -a HG002_SVs_Tier1_v0.6.vcf.gz -b HG002_SVs_Tier1_v0.6.bed -header > HG002_SVs_Tier1_v0.6_in_HG002_SVs_Tier1_v0.6_benchmark_regions.vcf
+
+python subset_SV_vcf_to_gt49bp.py --input HG002_SVs_Tier1_v0.6_in_HG002_SVs_Tier1_v0.6_benchmark_regions.vcf --output HG002_SVs_Tier1_v0.6_in_HG002_SVs_Tier1_v0.6_benchmark_regions_gt50bp.vcf
+
+python find_variants_per_gene.py --input_benchmark HG002_SVs_Tier1_v0.6_in_HG002_SVs_Tier1_v0.6_benchmark_regions_gt50bp.vcf --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_HG002_SVs_Tier1_v0.6_in_HG002_SVs_Tier1_v0.6_benchmark_regions_gt50bp.bed
+```
+
+# num_MRG_SV_v0.1_in_gene
+```
+python subset_SV_vcf_to_gt49bp.py --input HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03_intersect_benchmark.vcf --output HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03_intersect_benchmark_gt50bp.vcf
+
+python find_variants_per_gene.py --input_benchmark HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03_intersect_benchmark_gt50bp.vcf --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03_intersect_benchmark_gt50bp.bed
+```
+
+# bp_exon_covered_v4.2.1 and fraction_exon_covered_v4.2.1
+```
+python find_bp_and_fraction_covered_per_exon.py --input_benchmark HG002_GRCh37_1_22_v4.2.1_benchmark_noinconsistent.bed --input_file_list exon_file_list.txt --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_exon_coverage_by_HG002_v4.2.1_output.txt
+```
+
+# bp_exon_covered_MRG_benchmark and fraction_exon_covered_MRG_benchmark
+```
+python find_bp_and_fraction_covered_per_exon.py --input_benchmark v0.02.03/HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03.bed --input_file_list exon_file_list.txt --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_exon_coverage_by_HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03.txt
+```
+
+# num_v4.2.1_variants_in_exons
+```
+python find_variants_covered_per_exon.py --input_benchmark HG002_GRCh37_1_22_v4.2.1_benchmark_intersect_benchmark.vcf --input_file_list exon_file_list.txt --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_exon_coverage_by_HG002_GRCh37_1_22_v4.2.1_benchmark_intersect_benchmark.txt
+```
+
+# num_MRG_small_variant_v0.2_variants_in_exons
+```
+python find_variants_covered_per_exon.py --input_benchmark HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03_intersect_benchmark.vcf --input_file_list exon_file_list.txt --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.02.03_intersect_benchmark.bed
+```
+
+# num_SV_v0.6_in_exons
+```
+python find_variants_covered_per_exon.py --input_benchmark HG002_SVs_Tier1_v0.6_in_HG002_SVs_Tier1_v0.6_benchmark_regions_gt50bp.vcf --input_file_list exon_file_list.txt --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_exon_coverage_by_HG002_SVs_Tier1_v0.6_in_HG002_SVs_Tier1_v0.6_benchmark_regions_gt50bp.txt
+```
+
+# num_MRG_SV_v0.1_benchmark_variants_in_exons
+```
+python find_variants_covered_per_exon.py --input_benchmark HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03_intersect_benchmark_gt50bp.vcf --input_file_list exon_file_list.txt --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_exons_overlap_HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.01.03_intersect_benchmark_gt50bp.txt
+```
+
+
+# bp_MRG_small_variant_v0.03 and fraction_MRG_small_variant_v0.03
+```
+python find_overlap_per_gene.py --input_benchmark HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.03.00.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_v0.03.bed
+```
+
+# num_MRG_small_variant_v0.03_variants_in_gene
+```
+python find_variants_per_gene.py --input_benchmark HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.03.00_in_benchmark.vcf --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_HG002_GRCh37_v0.03_benchmark_intersect_benchmark.bed
+```
+
+# bp_exon_covered_MRG_benchmark and fraction_exon_covered_MRG_benchmark
+```
+python find_bp_and_fraction_covered_per_exon.py --input_benchmark HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.03.00.bed --input_file_list exon_file_list.txt --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_exon_coverage_by_HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.03.txt
+```
+
+# num_MRG_small_variant_v0.3_variants_in_exons
+```
+python find_variants_covered_per_exon.py --input_benchmark HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.03.00_in_benchmark.vcf --input_file_list exon_file_list.txt --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_exons_overlap_HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v0.03_intersect_benchmark.bed
+```
+
+# num_MRG_SV_v0.02_SVs_in_gene
+```
+python find_variants_per_gene.py --input_benchmark HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.02.00_in_benchmark.vcf --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.02_intersect_benchmark.bed
+```
+
+# num_MRG_SV_v0.02_variants_in_exons
+```
+python convert_vcf_to_bed.py --input HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.02.00_in_benchmark.vcf --output HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.02.00_intersect_benchmark.bed
+
+python find_variants_covered_per_exon.py --input_benchmark HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.02.00_intersect_benchmark.bed --input_file_list exon_file_list.txt --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_exons_overlap_HG002_GRCh37_difficult_medical_gene_SV_benchmark_v0.02_intersect_benchmark.txt
+```
+
+# num breaks in dip.bed
+```
+python find_overlap_per_gene.py --input_benchmark HG002v11-align2-GRCh37.dip_check_for_breaks.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates_w_names.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates_w_names_overlap_with_HG002v11_align2_GRCh37_dip_check_for_breaks.bed
+```

@@ -1,0 +1,56 @@
+gene	Symbol for Gene from HGNC
+bp_HG002_v4.2.1	Result in base pairs of bedtools intersect with v4.2.1  and 20kbp slop
+fraction_HG002_v4.2.1	Result in (base pairs/(End plus 20kbp - Start minus 20kbp)) of bedtools intersect with v4.2.1 draft and 20kbp slop
+bp_hifiasm_dip.bed	Result in base pairs of bedtools intersect with HG002 hifiasm dip.bed and 20kbp slop
+fraction_hifiasm_dip.bed	Result in (base pairs/(End plus 20kbp - Start minus 20kbp)) of bedtools intersect with HG002 hifiasm dip.bed and 20kbp slop
+chrom	Chromosome name
+start	Start of gene in Ensemble
+end	End of gene in Ensemble
+start_coordinates_plus_segdups_plus_flanking	Start of gene in Ensemble with 20,000 bp of slop using bedtools slop
+end_coordinates_plus_segdups_plus_flanking	End of gene in Ensemble with 20,000 bp of slop using bedtools slop
+bp_MRG_benchmark_bed	Result in base pairs of bedtools intersect with dip.bed
+fraction_MRG_benchmark_bed	Result in (base pairs/(End - Start)) of bedtools intersect with dip.bed
+bp_in_AllRepeats_gt_10kb	Result in base pairs of bedtools intersect with AllRepeats gt 10kb stratification file
+fraction_in_AllRepeats_gt_10kb	Result in (base pairs/(End - Start)) of bedtools intersect with AllRepeats gt 10kb stratification file
+bp_in_reference_gaps_stratification	Result in base pairs of bedtools intersect with Reference Assembly Gaps stratification file
+fraction_in_reference_gaps_stratification	Result in (base pairs/(End - Start)) of bedtools intersect with Reference Assembly Gaps stratification file
+bp_in_Tier1andTier2_SV_0.6_slop150_stratification	Result in base pairs of bedtools intersect with GIAB SV v.6 Tier1 and Tier2 calls expanded by 150%
+fraction_in_Tier1andTier2_SV_0.6_slop150_stratification	Result in (base pairs/(End - Start)) of bedtools intersect with GIAB SV v.6 Tier1 and Tier2 calls expanded by 150%
+bp_in_illumina_ccs_ont_cnv_stratification	Result in base pairs of bedtools intersect with Illumina, ONT, and CCS CNV stratification file
+fraction_in_illumina_ccs_ont_cnv_stratification	Result in (base pairs/(End - Start)) of bedtools intersect with Illumina, ONT, and CCS CNV stratification file
+bp_in_ccs_ont_elliptical_outlier_cnv_stratification	Result in base pairs of bedtools intersect with ONT and CCS CNV elliptical outlier stratification file
+fraction_in_ccs_ont_elliptical_outlier_cnv_stratification	Result in (base pairs/(End - Start)) of bedtools intersect with ONT and CCS CNV elliptical outlier stratification file
+bp_in_assembly_cnv_stratification	Result in base pairs of bedtools intersect with Assembly CNV stratification file and Start minus 20kbp to End plus 20kbp
+fraction_in_assembly_cnv_stratification	Result in (base pairs/(End - Start)) of bedtools intersect with Assembly CNV stratification file
+bp_in_vdj_stratification	Result in base pairs of bedtools intersect with VDJ stratification file
+fraction_in_vdj_stratification	Result in (base pairs/(End - Start)) of bedtools intersect with VDJ stratification file
+bp_in_inversions_stratification	Result in base pairs of bedtools intersect with Inversions stratification file
+fraction_in_inversions_stratification	Result in (base pairs/(End - Start)) of bedtools intersect with Inversions stratification file
+bp_in_segmental_duplications_gt5_percent_identity_gte_990_stratification	Result in base pairs of bedtools intersect with Segmental Duplications with count greater than 5 and percent identity greater than 99% stratification file
+fraction_in_segmental_duplications_gt5_percent_identity_gte_990_stratification	Result in (base pairs/(End - Start)) of bedtools intersect with Segmental Duplications with count greater than 5 and percent identity greater than 99% stratification file
+bp_in_segmental_duplications_stratification	Result in base pairs of bedtools intersect with Segmental Duplications stratification file
+fraction_in_segmental_duplications_stratification	Result in (base pairs/(End - Start)) of bedtools intersect with Segmental Duplications  stratification file
+bp_in_low_mappability_and_segmental_duplications_stratification	Result in base pairs of bedtools intersect with Low Mappability and Segmental Duplications stratification file
+fraction_in_low_mappability_and_segmental_duplications_stratification	Result in (base pairs/(End - Start)) of bedtools intersect with Low Mappability and  Segmental Duplications stratification file
+num_v0.6_SVs_in_gene	GIAB Benchmark v0.6 SVs >49bp in v0.6 SV benchmark bed in gene
+num_MRG_SV_v0.1_in_gene	MRG SV v0.1 benchmark SVs  >49bp in SV benchmark bed in gene
+num_MRG_small_variant_v0.2_variants_in_gene	MRG small variant v0.2 benchmark variants in small variant benchmark bed in gene
+num_v4.2.1_small_variants_in_gene	v4.2.1 benchmark variants in small variant benchmark bed in gene
+bp_exon_covered_v4.2.1	Result in base pairs of bedtools intersect with v4.2.1 benchmark bed in exons
+fraction_exon_covered_v4.2.1	Result in (base pairs/(End - Start)) of bedtools intersect with v4.2.1 benchmark bed in exons
+bp_exon_covered_MRG_benchmark	Result in base pairs of bedtools intersect with MRG small variant v0.2 benchmark bed in exons
+fraction_exon_covered_MRG_benchmark	Result in (base pairs/(End - Start))  of bedtools intersect with MRG small variant v0.2 benchmark bed in exons
+mandelker	yes/no indicating whether the gene is in mandelker
+cosmic	yes/no indicating whether the gene is in cosmic
+high_priority	yes/no indicating whether the gene is in high priority
+num_v4.2.1_variants_in_exons	v4.2.1 benchmark variants in small variant benchmark bed in gene overlapping any exons
+num_MRG_SV_v0.1_benchmark_variants_in_exons	MRG SV v0.1 benchmark SVs >49bp in SV benchmark bed in gene overlapping any exons
+num_MRG_small_variant_v0.2_variants_in_exons	MRG small variant v0.2 benchmark variants in small variant benchmark bed in gene overlapping any exons
+num_MRG_small_variant_v0.03_variants_in_gene	MRG small variant v0.3 benchmark variants in small variant benchmark bed in gene
+bp_MRG_small_variant_v0.03	Result in base pairs of bedtools intersect with MRG small variant v0.3 benchmark bed
+fraction_MRG_small_variant_v0.03	Result in(base pairs/(End - Start))  of bedtools intersect with MRG small variant v0.3 benchmark bed
+num_MRG_SV_v0.02_SVs_in_gene	MRG SV v0.2 benchmark SVs >49bp in SV benchmark bed in gene
+bp_exon_covered_MRG_small_variant_v0.03_benchmark	Result in base pairs of bedtools intersect with MRG small variant v0.3 benchmark bed in exons Start minus 20kbp to End plus 20kbp
+fraction_exon_covered_MRG_small_variant_v0.03_benchmark	Result in (base pairs/(End - Start)) of bedtools intersect with MRG small variant v0.3 benchmark bed in exons 
+num_MRG_small_variant_v0.03_variants_in_exons	MRG small variant v0.3 benchmark variants in small variant benchmark bed in gene overlapping any exons
+num_MRG_SV_v0.02_variants_in_exons	MRG SV v0.2 benchmark SVs >49bp in SV benchmark bed in gene overlapping any exons
