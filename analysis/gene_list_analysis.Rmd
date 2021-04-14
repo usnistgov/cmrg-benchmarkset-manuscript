@@ -1,0 +1,470 @@
+---
+title: "Med Gene List and Benchmark Gene Characterization"
+date: '`r Sys.Date()`'
+output: 
+    bookdown::html_document2:
+        toc: true
+        toc_float: true
+        df_print: paged
+        code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(ggridges)
+```
+
+# Objective
+Generate figures for medically relevant genes benchmark manuscript with gene list characteristics.
+
+Key points to address
+- How well is the gene list covered by V4.
+- What makes the genes by covered by V4 hard? showing different stratification overlaps
+- Of the genes not covered by V4 how well are they covered by hifi asm?
+- How well are the genes not covered by V4 covered by MRG?
+- What is still not covered and why?
+
+Gene Coverage/ overlap for
+- V4.2.1 
+- hifi asm dup
+- putative SVs
+- segmental duplications
+- tandem repeats
+- HG002 genes duplicated relative to GRCh38
+- 50 bp V4 excluded regions
+- CNVs
+- seq tech coverage
+
+# Approach
+- Generate exploratory density/ histogram plots
+- Create overview / summary figs
+
+# Loading and tidying data
+```{r}
+## Note currently in scratch ...
+mrg_stats_tbl <- read_tsv(here("scratch","MRG_stats_table.tsv"))
+```
+
+## Gene source info table
+```{r}
+mrg_info_tbl <- mrg_stats_tbl %>% 
+    select(gene, mandelker, cosmic, high_priority,
+           chrom, start, end, 
+           start_coordinates_plus_segdups_plus_flanking,
+           end_coordinates_plus_segdups_plus_flanking) %>% 
+    rename(start_flanking = start_coordinates_plus_segdups_plus_flanking,
+           end_flanking = end_coordinates_plus_segdups_plus_flanking)
+
+```
+
+```{r}
+DT::datatable(mrg_info_tbl)
+```
+
+
+Seven Genes with duplicate entries. Using gene coordinates to differentiate.
+```{r}
+mrg_info_tbl %>% 
+    group_by(gene) %>% 
+    mutate(count = n()) %>% 
+    filter(count != 1)
+```
+
+
+## Benchmark and Assembly Coverage
+```{r}
+wide_mrg_bench_asm_df <- mrg_stats_tbl %>% 
+    mutate(coords = str_c(chrom, ":",start,"-",end)) %>% 
+    select(gene, coords, contains("V4"), contains("MRG"), 
+           -starts_with("bp_"), -contains("CNV"), fraction_dip.bed) %>% 
+    rename(v4_gene_cov = fraction_HG002_v4.2.1,
+           v4_exon_cov = fraction_exon_covered_v4.2.1,
+           v4_gene_vars = num_v4.2.1_variants_in_benchmark_in_gene,
+           v4_exon_vars = num_v4.2.1_variants_in_benchmark_in_gene_in_exons,
+           mrg_gene_cov = fraction_MRG_benchmark_bed,
+           mrg_exon_cov = fraction_exon_covered_MRG_benchmark,
+           mrg_gene_vars = num_MRG_variants_in_benchmark_in_gene,
+           mrg_exon_vars = num_MRG_variants_in_benchmark_in_gene_in_exons,
+           mrg_gene_svs = num_MRG_SVs_gt_49bp_in_SV_benchmark_bed_in_gene,
+           mrg_exon_svs = num_MRG_SVs_gt_49bp_in_SV_benchmark_bed_in_gene_in_exons,
+           hifi_gene_cov = fraction_dip.bed)
+
+mrg_bench_asm_df <- wide_mrg_bench_asm_df %>% 
+    pivot_longer(cols = -c("gene", "coords"), 
+                 names_to = c("benchmark", "region","metric"), 
+                 names_sep = "_", values_to = "value") %>% 
+    pivot_wider(id_cols = c(gene, coords, benchmark, region),
+                names_from = metric, values_from = value)
+```
+
+```{r}
+DT::datatable(mrg_bench_asm_df)
+```
+
+## Stratification Coverage
+```{r}
+mrg_strat_df <- mrg_stats_tbl %>% 
+    mutate(coords = str_c(chrom, ":",start,"-",end)) %>%  
+    select(gene, coords, contains("fraction"), -contains("V4"), -contains("MRG"), 
+           -fraction_dip.bed, 
+           fraction_overlap_w_intersect_Illumina_CCS_ONT_CNV_v4.2.1, 
+           fraction_overlap_w_union_CCS_and_ONT_outlier_CNV_v4.2.1) %>% 
+    rename(refn = fraction_gene_overlap_w_refn,
+           giabSV = fraction_overlap_w_GIAB_expanded_by_150_Tier1andTier2_SV_0.6,
+           repeatsGt10kb = fraction_gene_overlap_w_AllRepeats_gt_10kb,
+           asmCNV = fraction_overlap_w_Assembly_CNV,
+           vdj = fraction_overlap_w_vdj,
+           inversion = fraction_overlap_inversions,
+           segdupHiCntHiPct = fraction_overlap_w_segdups_w_count_gt_5_and_percent_identity_gte_990,
+           segdup = fraction_segdups,
+           lowmapAndSegDup = fraction_lowmapandsegdups,
+           intersectCNV = fraction_overlap_w_intersect_Illumina_CCS_ONT_CNV_v4.2.1,
+           outlierCNV = fraction_overlap_w_union_CCS_and_ONT_outlier_CNV_v4.2.1) %>% 
+    pivot_longer(cols = -c("gene", "coords"), 
+                 names_to = "strat", values_to = "value")
+
+```
+```{r}
+DT::datatable(mrg_strat_df)
+```
+```{r}
+mrg_strat_df$strat %>% unique()
+```
+
+# Exploratory Analysis
+## Med Genes List UpSet
+
+```{r}
+library(ggupset)
+gene_list_df <- mrg_info_tbl %>% 
+    select(-start_flanking, -end_flanking) %>% 
+    pivot_longer(cols = c("mandelker","cosmic","high_priority"),
+                 names_to = "gene_list") %>% 
+    filter(value == "yes")
+
+gene_list_df %>% 
+    group_by(chrom, start, end, gene) %>%
+    summarise(list_set = list(gene_list)) %>% 
+    # distinct(title, year, length, .keep_all=TRUE) %>%
+    ggplot(aes(x = list_set)) +
+    geom_bar() +
+    geom_text(stat='count', aes(label=after_stat(count)), vjust=-0.25) +
+    scale_x_upset() + 
+    scale_y_log10() + 
+    theme_bw() +
+    labs(x = "Gene List", y = "Number of Genes")
+```
+
+
+
+Overall gene + flanking region coverage. 
+Most genes not included in the medically relevant genes benchmark. 
+Excluding genes with no coverage from medically relevant gene histogram.
+
+## Medically Relevant Genes V4 Coverage
+Most medically relevant genes are covered by V4 benchmark set. 
+A number of genes with less than 90% coverage including >40 genes with no coverage.
+?? Is this the gene body + flank or gene body?
+```{r}
+mrg_bench_asm_df %>% 
+    ## Excluding mito and sex chromosomes
+    filter(str_detect(coords, "[MTXY]",negate = TRUE), 
+           region == "gene", 
+           benchmark == "v4") %>% 
+    ggplot() +
+    geom_histogram(aes(x = cov), 
+                   fill = "grey80", color = "grey20", size = 0.25, bins = 50) +
+    theme_bw() + 
+    labs(x = "Gene Coverage", y = "Number of Genes")
+```
+Inset of coverage for genes with less than 90% coverage
+```{r}
+mrg_bench_asm_df %>% 
+    ## Excluding mito and sex chromosomes
+    filter(str_detect(coords, "[MTXY]",negate = TRUE), 
+           region == "gene", 
+           benchmark == "v4", cov < 0.9) %>% 
+    ggplot() +
+    geom_histogram(aes(x = cov), 
+                   fill = "grey80", color = "grey20", size = 0.25, bins = 50) +
+    theme_bw() + 
+    labs(x = "Gene Coverage", y = "Number of Genes")
+```
+
+### Why the uncovered genes are not covered
+```{r}
+v4_strat_plt_df <- mrg_bench_asm_df %>% 
+    ## Excluding mito and sex chromosomes
+    filter(str_detect(coords, "[MTXY]",negate = TRUE), 
+           region == "gene", 
+           benchmark == "v4") %>%
+    mutate(v4_cov_cat = case_when(cov > 0.9 ~ "gt90",
+                                  cov > 0.75 ~ "gt75",
+                                  cov > 0.5 ~ "gt50",
+                                  cov > 0.25 ~"gt25",
+                                  TRUE ~ "gt0")) %>% 
+    left_join(mrg_strat_df)
+```
+
+TODO - revise strat list to address redundancy and cleanup 
+
+Fig cap: Histogram of stratification overlap for genes with high and low V4 coverage.
+Decrease in V4 coverage correlated with increasing stratificaiton coverage.
+```{r}
+## getting strat with most coverage by gene, randomly select strat when ties. 
+high_low_v4 <- v4_strat_plt_df %>% 
+    group_by(gene, coords, benchmark, region, cov,v4_cov_cat) %>% 
+    top_n(n = 1, wt = value) %>% 
+    sample_n(size = 1) %>% 
+    mutate(strat = if_else(value == 0, "NA", strat))
+
+high_low_v4 %>% 
+    top_n(n = 1, wt = value) %>% 
+    filter(v4_cov_cat != "high" | value != 0) %>% 
+    ggplot() + 
+    geom_histogram(aes(x = value, fill = strat), 
+                   bins = 10, color = "grey40", size = 0.25) + 
+    facet_grid(v4_cov_cat ~ ., scales = "free_y") + 
+    theme_bw() + 
+    theme(legend.position = "bottom")
+```
+
+3,557 genes with with > 90% v4 coverage are not overlapped by any stratification.  
+170 genes with low v4 coverage are not overlapped by any stratification. 
+Q - What are these genes? What makes them hard?
+
+```{r}
+high_low_v4 %>% 
+    mutate(value = round(value, 1)) %>% 
+    ungroup() %>% 
+    count(v4_cov_cat, value) %>% 
+    spread(v4_cov_cat, n, fill =  0)
+```
+
+
+## HiFi ASM Coverage
+Most of the medically relevant genes are fully covered by the hifi asm assembly.
+```{r}
+mrg_bench_asm_df %>% 
+    ## Excluding mito and sex chromosomes
+    filter(str_detect(coords, "[MTXY]",negate = TRUE), 
+           region == "gene", 
+           benchmark == "hifi") %>% 
+    ggplot() +
+    geom_histogram(aes(x = cov), 
+                   fill = "grey80", color = "grey20", size = 0.25, bins = 50) +
+    theme_bw() + 
+    labs(x = "Gene Coverage", y = "Number of Genes")
+```
+
+```{r}
+mrg_bench_asm_df %>% 
+    ## Excluding mito and sex chromosomes
+    filter(str_detect(coords, "[MTXY]",negate = TRUE), 
+           region == "gene", 
+           benchmark == "hifi", cov < 1) %>% 
+    ggplot() +
+    geom_histogram(aes(x = cov), 
+                   fill = "grey80", color = "grey20", size = 0.25, bins = 50) +
+    theme_bw() + 
+    labs(x = "Gene Coverage", y = "Number of Genes")
+```
+
+
+## Med Benchmark Overlap info
+
+
+
+
+
+
+
+
+## Extra
+
+```{r}
+mrg_bench_asm_df %>% 
+    filter(str_detect(coords, "[MTXY]",negate = TRUE)) %>% 
+    filter(region == "gene") %>% 
+    select(-vars, -svs) %>% 
+    pivot_wider(names_from = benchmark, values_from = cov) %>%
+    mutate(dbl_and = v4 < 1 | hifi < 1) %>% 
+    filter(v4 < 1 | hifi < 1) %>%
+    ggplot() +
+    geom_hex(aes(x = v4, y = hifi)) +
+    theme_bw()
+```
+
+```{r}
+mrg_bench_asm_df %>% 
+    filter(str_detect(coords, "[MTXY]",negate = TRUE)) %>% 
+    filter(region == "gene", benchmark != "mrg") %>%  
+    ggplot() + 
+    geom_point(aes(x = benchmark, y = cov*100 + 1), alpha = 0.25) + 
+    scale_y_log10()  + 
+    theme_bw() + 
+    labs(y = "Gene Coverage %") + 
+    annotation_logticks(sides = "lr") 
+```
+
+Expect only genes in the medically relevant benchmark to have dip cov of 1 and v4 cov < 0.9. 
+Table of genes not meeting these expectations.
+Need to get definitions for different column values
+
+Partially covered genes - potentially due to overlap with flanking regions from a different gene included in the medically relevant benchmark.
+```{r}
+mrg_bench_asm_df %>% 
+    filter(region == "gene") %>% 
+    select(-vars, -svs) %>% 
+    pivot_wider(names_from = benchmark, values_from = cov) %>% 
+    filter(mrg > 0, dip < 1)
+```
+
+Gene Categories - will need to update after getting column values definitions.
+```{r}
+mrg_gene_cats <- mrg_bench_asm_df %>% 
+    filter(str_detect(coords, "[MTXY]",negate = TRUE)) %>% 
+    filter(region == "gene") %>% 
+    select(-vars, -svs) %>% 
+    pivot_wider(names_from = benchmark, values_from = cov) %>% 
+    mutate(gene_cat = case_when(mrg > 0 ~ "in_mrg",
+                                v4 > 0.9 ~ "highV4",
+                                v4 < 0.9 & hifi < 1 ~ "lowDip_lowV4",
+                                mrg == 0 & hifi == 1 ~ "Excluded?",
+                                TRUE ~ "???")
+           )
+```
+
+```{r}
+mrg_gene_cats %>%
+    count(gene_cat)
+```
+
+```{r}
+mrg_gene_cats %>%
+    filter(gene_cat == "Excluded?")
+```
+
+
+### Stratification analysis of gene coverage
+```{r}
+strat_plt_df <- mrg_strat_df %>% 
+    right_join(mrg_gene_cats)
+```
+Genes in the excluded? gene cat are primarily excluded due to overlap with assembly based CNV set. 
+```{r}
+strat_plt_df %>% 
+    filter(strat %in% c("repeatsGt10kb", "asmCNV", 
+                        "giabSV", "lowmapAndSegDup"),
+           value != 0) %>% 
+    ggplot() + 
+         geom_density_ridges(aes(x = value, y = gene_cat),
+                             stat = "binline", bins = 50, 
+                             scale = 0.95, draw_baseline = FALSE) +
+    facet_wrap(~strat, scales = "free") +
+        theme_bw() + 
+    labs(x = "Gene Coverage", y = "Gene Category")
+```
+
+#### CNV strats
+```{r}
+strat_plt_df %>% 
+    filter(str_detect(strat, "CNV")) %>%
+    ggplot() + 
+         geom_density_ridges(aes(x = value, y = gene_cat),
+                             stat = "binline", bins = 50, 
+                             scale = 0.95, draw_baseline = FALSE) +
+    facet_wrap(~strat, scales = "free", ncol = 1) +
+        theme_bw() + 
+    labs(x = "Gene Coverage", y = "Gene Category")
+```
+```{r}
+strat_plt_df %>% 
+    filter(str_detect(strat, "CNV"), value != 0) %>%
+    ggplot() + 
+         geom_density_ridges(aes(x = value, y = gene_cat),
+                             stat = "binline", bins = 50, 
+                             scale = 0.95, draw_baseline = FALSE) +
+    facet_wrap(~strat, scales = "free") +
+        theme_bw() + 
+    labs(x = "Gene Coverage", y = "Gene Category")
+```
+
+### Segmental Duplications and Large Repeats
+```{r}
+strat_plt_df %>% 
+    filter(str_detect(strat, ".eg.up") | 
+           strat == "repeatsGt10kb") %>% # Case insensitive segdup
+    ggplot() + 
+         geom_density_ridges(aes(x = value, y = gene_cat),
+                             stat = "binline", bins = 50, 
+                             scale = 0.95, draw_baseline = FALSE) +
+    facet_wrap(~strat, scales = "free") +
+        theme_bw() + 
+    labs(x = "Gene Coverage", y = "Gene Category")
+```
+
+
+```{r}
+strat_plt_df %>% 
+    filter(str_detect(strat, ".eg.up") | 
+           strat == "repeatsGt10kb",
+           value != 0) %>%
+    ggplot() + 
+         geom_density_ridges(aes(x = value, y = gene_cat),
+                             stat = "binline", bins = 50, 
+                             scale = 0.95, draw_baseline = FALSE) +
+    facet_wrap(~strat) +
+        theme_bw() + 
+    labs(x = "Gene Coverage", y = "Gene Category")
+```
+```{r}
+strat_plt_df$strat %>% unique()
+```
+
+### Other Strats
+```{r}
+other_strats <- c("refn","vdj", "inversion")
+strat_plt_df %>% 
+    filter(strat %in% other_strats) %>%
+    ggplot() + 
+    geom_histogram(aes(x = value, fill = gene_cat), bins = 50) + 
+    facet_grid(gene_cat~strat, scales = "free_y") +
+        theme_bw() + 
+    labs(x = "Gene Coverage", y = "Gene Category")
+```
+```{r}
+other_strats <- c("refn","vdj", "inversion")
+strat_plt_df %>% 
+    filter(strat %in% other_strats, value > 0) %>%
+    ggplot() + 
+    geom_histogram(aes(x = value, fill = gene_cat), bins = 50) + 
+    facet_grid(gene_cat~strat, scales = "free_y") +
+        theme_bw() + 
+    labs(x = "Gene Coverage", y = "Gene Category")
+```
+
+### Excluded Genes
+High coverage for segdups and CNV??
+```{r}
+strat_plt_df %>%
+    filter(gene_cat == "Excluded?") %>% 
+    pivot_wider(names_from = strat, values_from = value)
+```
+
+# Session Information
+## System Information
+```{r}
+sessioninfo::platform_info()
+```
+
+
+## Package Versions
+```{r}
+sessioninfo::package_info() %>% 
+    filter(attached = TRUE) %>% 
+    select(package, loadedversion, date, source) %>%
+    knitr::kable(booktabs = TRUE, row.names = FALSE)
+```

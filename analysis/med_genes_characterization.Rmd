@@ -1,0 +1,196 @@
+---
+title: "Medically Relevant Genes Characterizations"
+date: '`r Sys.Date()`'
+output: 
+    bookdown::html_document2:
+        toc: true
+        toc_float: true
+        df_print: paged
+        code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+```
+
+# Loading and Tidying Data
+```{r}
+# Load overlap for HG002 GRCh38 hifiasm v0.11 and 
+#v4.2.1 of medically relevant gene coordinates
+hifiasm_v11_and_v4.2.1_overlap_df_grch38 <- read_tsv(
+    here("data","overlap_analysis", "GRCh38", "GRCh38_overlap_v4.2.1_hifiasm.tsv"),
+    col_types = "cddcddddd"
+)
+
+GRCh38_medical_benchmark_genes <- read_tsv(
+    here("data","mrg_benchmarkset", "HG002", "GRCh38", 
+         "intermediate_files", "HG002_GRCh38_MRG_no_MHC.bed"),
+    col_types = "cddc", col_names = c("chr", "start", "end", "gene")
+)
+
+
+mandelker_list <- read_tsv(
+    here("data", "mrg_lists","Mandelker_Medically_Relevant_Genes.tsv"),
+    col_types = "c")
+
+cosmic_list <- read_tsv(here("data", "mrg_lists", "COSMIC_Gene_Census.tsv"),
+                        col_types = "c")
+
+lincoln_list <- read_tsv(
+    here("data", "mrg_lists", "Steve_Lincoln_Compiled_Medical_Gene_List.tsv"),
+    col_types = "c")
+
+somatic_cancer <- setdiff(cosmic_list$Gene, union(mandelker_list$Gene, 
+                                                  lincoln_list$Gene))
+
+
+whole_exome_seq <- setdiff(mandelker_list$Gene, union(cosmic_list$Gene, 
+                                                  lincoln_list$Gene))
+    
+clingen_mod_def_strong <- read_tsv(
+    here("data", "mrg_lists", "ClinGen_moderate_definitive_strong.tsv"), 
+    col_types = "c")
+
+acmg_sf_2 <- read_tsv(here("data", 
+                           "mrg_lists","ACMG_SF_2.0.tsv"), col_types = "c")
+
+CPIC <- read_tsv(here("data", 
+                      "mrg_lists","CPIC.tsv"), col_types = "c")
+
+ACOG <- read_tsv(here("data", 
+                      "mrg_lists","ACOG.tsv"), col_types = "c")
+
+Counsyl <- read_tsv(here("data", 
+                         "mrg_lists","Counsyl.tsv"), col_types = "c")
+
+NCCN_ESMO <- read_tsv(here("data", 
+                           "mrg_lists","NCCN_ESMO.tsv"), col_types = "c")
+
+Assorted_HTD <- read_tsv(here("data", 
+                              "mrg_lists","Assorted_HTD.tsv"), col_types = "c")
+
+# Add columns for different levels of overlap 
+med_gene_list_anno_df <- 
+	hifiasm_v11_and_v4.2.1_overlap_df_grch38 %>% 
+	mutate(overlap_v4 = ifelse(percent_overlap_v4.2.1 < .9, 
+							   "v4_lt_90",
+							   "v4_gte_90")) %>%
+	mutate(asm_resolved = ifelse(percent_flanking_plus_segdups_overlap_hifiasm == 1 
+								 & flanking_breaks_in_dip_bed == 0, 
+								 "asm_pass",
+								 "asm_fail")) %>%
+    ## TODO - modify for in V4, in med genes, no in a benchmark
+	mutate(benchmark_membership = case_when(
+	    gene %in% GRCh38_medical_benchmark_genes$gene ~ "in_mrg",
+	    overlap_v4 == "v4_gte_90" ~ "in_v4",
+	    TRUE ~ "Not benchmarked")) %>%
+    mutate(wes = if_else(gene %in% whole_exome_seq, "in WES", "not in WES")) %>% 
+    mutate(test_modality = 
+               case_when(gene %in% somatic_cancer ~ "Somatic_Cancer",
+                         gene %in% clingen_mod_def_strong$Gene ~ "ClinGen",
+                         gene %in% acmg_sf_2$Gene ~ "ACMG_SF_2",
+                         gene %in% CPIC$Gene ~ "CPIC",
+                         gene %in% ACOG$Gene ~ "ACOG",
+                         gene %in% Counsyl$Gene ~ "Counsyl",
+                         gene %in% NCCN_ESMO$Gene ~ "NCCN_ESMO",
+                         gene %in% Assorted_HTD$Gene ~ "Assorted_HTD",
+                         gene %in% whole_exome_seq ~ "WES",
+                         TRUE ~ "None known"))
+
+## Selecting columns for alluvial diagram
+alluvial_df <- med_gene_list_anno_df %>% 
+    select(gene,chrom, start, end, overlap_v4, asm_resolved, 
+       benchmark_membership, wes, test_modality) 
+```
+
+## Benchmarking Medically Relevant Genes
+__Questions__  
+- 20 genes in mrg that are also in v4  
+- 270 genes not benchmarked with fully dip assembled
+
+```{r}
+med_gene_list_anno_df %>%
+    count(overlap_v4, asm_resolved, benchmark_membership) %>%
+    pivot_wider(names_from = benchmark_membership,
+                values_from = n,
+                values_fill = 0)
+```
+
+```{r}
+med_gene_list_anno_df %>% 
+    filter(overlap_v4 == "v4_lt_90", 
+           asm_resolved == "asm_fail",
+           benchmark_membership == "in_mrg") %>% 
+    select(gene, chrom, start, end)
+```
+```{r}
+med_gene_list_anno_df %>% 
+    filter(overlap_v4 == "v4_gte_90", 
+           asm_resolved == "asm_pass",
+           benchmark_membership == "in_mrg")
+```
+
+## Exploratory Figures
+```{r}
+alluvial_df %>% 
+    ggplot() + 
+    geom_bar(aes(x = benchmark_membership, fill = test_modality), 
+             position = "fill") + 
+    facet_grid(overlap_v4~asm_resolved) + 
+    theme_bw()
+```
+
+
+```{r}
+alluvial_df %>% 
+    pivot_longer(cols = -c(gene, test_modality), 
+                 names_to = "cat", values_to = "cat_value") %>% 
+    ggplot() + 
+    geom_bar(aes(x = cat_value, fill = test_modality)) + 
+    facet_wrap(~cat, scales = "free") + 
+    theme_bw()
+```
+
+```{r}
+bench_counts <- med_gene_list_anno_df %>%  
+    count(benchmark_membership) %>% 
+    mutate(benchmark_membership = factor(
+        benchmark_membership,
+        levels = c("in_v4", "in_mrg", "Not benchmarked")
+    )) 
+
+med_gene_list_anno_df %>%
+    mutate(benchmark_membership = factor(
+        benchmark_membership,
+        levels = c("in_v4", "in_mrg", "Not benchmarked")
+    )) %>%
+    ggplot() +
+    geom_bar(aes(x = benchmark_membership, fill = test_modality),
+             position = "dodge") +
+    geom_text(data = bench_counts, 
+              aes(x = benchmark_membership, y = 0.75, label = n)) + 
+    theme_bw() +
+    scale_fill_brewer(type = "qual", palette = 3) +
+    scale_y_log10() + 
+    theme(legend.position = "bottom")
+```
+
+
+
+
+# Session Information
+## System Information
+```{r}
+sessioninfo::platform_info()
+```
+
+
+## Package Versions
+```{r}
+sessioninfo::package_info() %>% 
+    filter(attached = TRUE) %>% 
+    select(package, loadedversion, date, source) %>%
+    knitr::kable(booktabs = TRUE, row.names = FALSE)
+```
