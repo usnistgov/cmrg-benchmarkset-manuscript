@@ -207,3 +207,19 @@ python find_variants_covered_per_exon.py --input_benchmark HG002_GRCh37_difficul
 ```
 python find_overlap_per_gene.py --input_benchmark HG002v11-align2-GRCh37.dip_check_for_breaks.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates_w_names.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates_w_names_overlap_with_HG002v11_align2_GRCh37_dip_check_for_breaks.bed
 ```
+
+# bp_in_HG002_GIABv4.1_CNVsandSVs_stratification and fraction_in_HG002_GIABv4.1_CNVsandSVs_stratification
+# genome-stratifications-v2.0/GRCh37/OtherDifficult
+```
+python find_overlap_per_gene.py --input_benchmark /Users/jmw7/genome-stratifications-v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_GIABv4.1_CNVsandSVs.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_HG002_GIABv4.1_CNVsandSVs.bed
+```
+
+
+# bp_in_HG002_GIABv4.1_complexandSVs_alldifficultregions_stratification and fraction_in_HG002_GIABv4.1_complexandSVs_alldifficultregions_stratification
+# genome-stratifications-v2.0/GRCh37/GenomeSpecific
+```
+python find_overlap_per_gene.py --input_benchmark /Users/jmw7/genome-stratifications-v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed
+
+bedtools coverage -a GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed -b /Users/jmw7/genome-stratifications-v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_GIABv4.1_CNVsandSVs.bed.gz  > GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed
+
+```
