@@ -5,6 +5,9 @@
 - Use subfolders for multifile datasets when appropriate and it facilitates documentation
 -->
 
+`combined curation responses from benchmarking with sm variant v0.02.03.xlxs`: table downloaded from google sheets on 4/19/21 https://docs.google.com/spreadsheets/d/1Pn7WP78JfWKCO2Df31n_4gzDOwtP69flgDyyjeBS6JE/edit?usp=sharing 
+
+
 MRG_alluvial_diagram.R - Alluvial diagram figure code
 
 Steve_Lincoln_Compiled_Medical_Gene_List.tsv - # https://docs.google.com/spreadsheets/d/1PLfRdIQIRm186frFYNbseCEOzIi5RW-l/edit#gid=61579885 accessed 2020-12-16

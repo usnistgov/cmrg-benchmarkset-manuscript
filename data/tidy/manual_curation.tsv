@@ -1,0 +1,1705 @@
+callset	ref	var_type	chrwithprefix	GRCh37_POS	GRCh38_POS	fp_or_fn	truth_gt	query_gt	ref_base	alt_base	benchmark_correct	query_correct
+Common	GRCh37	NA	chr1	956227	1020847	FP_FN	2|2:FN:am:.:i1_5:INDEL:homalt	2/1:FP:am:100:i1_5:INDEL:hetalt	C	CGGG,CGGGG	no	yes
+Common	GRCh38	NA	chr1	956227	1020847	FP_FN	2|2:FN:lm:.:i1_5:INDEL:homalt	1/1:FP:lm:100:i1_5:INDEL:homalt	C	CGGG,CGGGG	no	yes
+Roche	GRCh37	INDEL	chr1	970549	1035169	FP	.:.:.:.:.:NOCALL:nocall	"1/1:100:FP:.:d1_5:INDEL:homalt
+"	TG	T	unsure	unsure
+DNAnexus	GRCh37	INDEL	chr1	985111	1049731	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CG	no	yes
+Common	GRCh37	NA	chr1	985111	1049731	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CG	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr1	985111	1049731	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CG	no	yes
+Common	GRCh38	NA	chr1	985111	1049731	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CG	no	yes
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr1	6264596	6204536	FN	2|1:FN:am:d1_5,i1_5:INDEL:hetalt:.	".:.:.:.:NOCALL:nocall:7
+"	CA	C,CAA	yes	no
+NCBI	GRCh37	INDEL	chr1	6496542	6436482	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:30:i1_5:INDEL:het	C	CTTAT	no	yes
+Common	GRCh37	NA	chr1	6496542	6436482	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CTTAT	no	yes
+Common	GRCh38	NA	chr1	6496542	6436482	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CTTAT	no	yes
+ITER	GRCh38	INDEL	chr1	24211758	23885268	FP	.:.:.:.:.:NOCALL:nocall	1/1:4.6:FP:lm:i1_5:INDEL:homalt	T	TA	yes	no
+PacBio_gatk4	GRCh38	INDEL	chr1	24217235	23890745	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:371.74:d1_5:INDEL:het	CA	C	yes	no
+Common	GRCh37	NA	chr1	24221131	23894641	FP_FN	2|1:TP:gm:i1_5:100:INDEL:hetalt	2/1:TP:gm:i1_5:100:INDEL:hetalt	T	TAA,TAAA,TAAAAA	yes	no
+NYGC	GRCh37	SNP	chr1	24260170	23933680	FN	0|1:FN:.:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	C	T	yes	no
+Common	GRCh37	NA	chr1	24260216	23933726	FN	0|1:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+NYGC	GRCh37	SNP	chr1	24261733	23935243	FN	1|1:FN:.:tv:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	G	C	yes	no
+Common	GRCh37	NA	chr1	24265303	23938813	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	AAAG	A	yes	no
+ITER	GRCh37	INDEL	chr1	24267023	23940533	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CT	yes	no
+Common	GRCh37	NA	chr1	24267023	23940533	FN	0|1:TP:gm:7.4682:i1_5:INDEL:het	0/1:TP:gm:7.4682:i1_5:INDEL:het	C	CT	yes	no
+Common	GRCh37	NA	chr1	24268933	23942443	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr1	24270431	23943941	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AC	yes	no
+Roche	GRCh37	INDEL	chr1	24273497	23947007	FP	.:.:.:.:.:NOCALL:nocall	"0/1:11.4065:FP:.:d1_5:INDEL:het
+"	TC	T	yes	no
+Common	GRCh37	NA	chr1	24273881	23947391	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AT	yes	no
+Common	GRCh37	NA	chr1	24274293	23947803	FN	1|1:FN:.:i6_15:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	T	TTTATTATTA	yes	no
+Common	GRCh37	NA	chr1	24275148	23948658	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CA	C	yes	no
+Common	GRCh37	NA	chr1	24275433	23948943	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	A	G	yes	no
+Common	GRCh37	NA	chr1	24276212	23949722	FN	1|0:TP:gm:ti:SNP:het:33.0111	0/1:TP:gm:ti:SNP:het:33.0111	C	T	yes	no
+Common	GRCh37	NA	chr1	24277102	23950612	FN	1|1:TP:gm:d1_5:INDEL:homalt:100	1/1:TP:gm:d1_5:INDEL:homalt:100	ACAAT	A	yes	no
+Common	GRCh37	NA	chr1	24278073	23951583	FN	1|0:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+PacBio_gatk4	GRCh37	INDEL	chr1	24278281	23951791	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CAG	C	yes	no
+Common	GRCh37	NA	chr1	24278281	23951791	FN	1|0:TP:gm:d1_5:INDEL:het:25.6872	0/1:TP:gm:d1_5:INDEL:het:25.6872	CAG	C	yes	no
+Common	GRCh37	NA	chr1	24278418	23951928	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	G	yes	no
+Common	GRCh37	NA	chr1	24278627	23952137	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+PacBio_gatk4	GRCh37	SNP	chr1	24279579	23953089	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr1	24279818	23953328	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr1	24280449	23953959	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+Common	GRCh37	NA	chr1	24280720	23954230	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr1	24281021	23954531	FN	1|0:TP:gm:ti:SNP:het:18.3721	0/1:TP:gm:ti:SNP:het:18.3721	G	A	yes	no
+Common	GRCh37	NA	chr1	24282010	23955520	FN	1|1:TP:gm:d1_5:INDEL:homalt:100	1/1:TP:gm:d1_5:INDEL:homalt:100	CAA	C	yes	no
+Common	GRCh37	NA	chr1	24282662	23956172	FN	1|0:FN:lm:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	A	yes	no
+Common	GRCh37	NA	chr1	24282699	23956209	FN	1|1:TP:gm:i1_5:INDEL:homalt:100	1/1:TP:gm:i1_5:INDEL:homalt:100	C	CT	yes	no
+Common	GRCh37	NA	chr1	24282719	23956229	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh37	NA	chr1	24283058	23956568	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TG	T	yes	no
+Common	GRCh37	NA	chr1	24284171	23957681	FN	1|2:FN:am:d1_5,i1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:6.1206	AT	A,ATTT	yes	no
+Common	GRCh37	NA	chr1	24284706	23958216	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+NYGC	GRCh37	INDEL	chr1	24285317	23958827	FP_FN	0|1:FN:am:.:d1_5:INDEL:het	"1/1:FP:am:35.71:d1_5:INDEL:homalt
+"	GAATT	G	yes	no
+Common	GRCh37	NA	chr1	24285521	23959031	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	G	yes	no
+Common	GRCh37	NA	chr1	25690758	25364267	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	C	T	yes	NA
+Common	GRCh38	NA	chr1	25690758	25364267	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	C	T	yes	NA
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr1	25693801	25367310	FN	0|1:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	G	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr1	25732524	25406033	FN	1|1:FN:.:ti:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	A	G	yes	no
+Common	GRCh38	NA	chr1	25732547	25406056	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr1	25732548	25406057	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr1	25732670	25406179	FN	1|1:TP:gm:d1_5:INDEL:homalt:100	1/1:TP:gm:d1_5:INDEL:homalt:100	TC	T	yes	no
+Common	GRCh38	NA	chr1	25732670	25406179	FN	1|1:TP:gm:100:d1_5:INDEL:homalt	1/1:TP:gm:100:d1_5:INDEL:homalt	TC	T	yes	no
+Common	GRCh37	NA	chr1	25732751	25406260	FN	1|1:FN:lm:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh37	NA	chr1	25732793	25406302	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	T	A	yes	no
+Common	GRCh38	NA	chr1	25732793	25406302	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	T	A	yes	no
+Common	GRCh37	NA	chr1	25732794	25406303	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	A	T	yes	no
+Common	GRCh38	NA	chr1	25732794	25406303	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	A	T	yes	no
+Common	GRCh37	NA	chr1	25733120	25406629	FN	1|1:TP:gm:d1_5:INDEL:homalt:27.9599	1/1:TP:gm:d1_5:INDEL:homalt:27.9599	GGT	G	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr1	25734280	25407789	FN	1|1:FN:.:ti:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	C	T	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr1	25734449	25407958	FN	1|1:FN:.:ti:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	T	C	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr1	25734554	25408063	FN	1|1:FN:.:tv:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	C	G	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr1	25734783	25408292	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	AAG	A	yes	no
+Common	GRCh37	NA	chr1	25734783	25408292	FN	1|1:TP:gm:d1_5:INDEL:homalt:100	1/1:TP:gm:d1_5:INDEL:homalt:100	AAG	A	yes	no
+Common	GRCh38	NA	chr1	25734783	25408292	FN	1|1:TP:gm:100:d1_5:INDEL:homalt	1/1:TP:gm:100:d1_5:INDEL:homalt	AAG	A	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr1	25735973	25409482	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+DNAnexus	GRCh38	SNP	chr1	25736021	25409530	FN	1|1:FN:.:ti:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	T	C	yes	no
+ITER	GRCh38	INDEL	chr1	100320319	99854763	FP_FN	2|0:FN:lm:.:i6_15:INDEL:het	0/1:FP:lm:5.9:i6_15:INDEL:het	C	CAAAAAA,CAAAAAAAAA	yes	no
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr1	101340786	100875230	FN	2|1:FN:am:d1_5,i1_5:INDEL:hetalt:.	".:.:.:.:NOCALL:nocall:11
+"	GAC	G,GACACAC	yes	no
+PacBio_gatk4	GRCh37	INDEL	chr1	113626621	113083999	FN	1|2:FN:lm:i1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	T	TAATAA,*	yes	no
+Common	GRCh37	NA	chr1	113641866	113099244	FP_FN	2|2:FN:am:.:i6_15:INDEL:homalt	2/1:FP:am:100:i6_15:INDEL:hetalt	C	CTTTTTTTTT,CTTTTTTTTTT	no	yes
+Common	GRCh38	NA	chr1	113641866	113099244	FP_FN	2|2:FN:am:.:i6_15:INDEL:homalt	2/1:FP:am:100:i6_15:INDEL:hetalt	C	CTTTTTTTTT,CTTTTTTTTTT	no	yes
+DNAnexus	GRCh38	SNP	chr1	116223306	115680685	FN	1|0:FN:.:tv:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	T	G	yes	no
+PacBio_gatk4	GRCh37	SNP	chr1	155251250	155281459	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:981.31:ti:SNP:het	T	C	yes	no
+DNAnexus	GRCh37	SNP	chr1	161528344	161558554	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:0:tv:SNP:het	G	T	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr1	161535232	161565442	FP_FN	1|1:FN:am:.:ti:SNP:homalt	"0/1:FP:am:31:ti:SNP:het
+"	A	G	yes	no
+Common	GRCh37	NA	chr1	161542346	161572556	FP_FN	1|1:TP:gm:39.9993:ti:SNP:homalt	1/1:TP:gm:39.9993:ti:SNP:homalt	C	T	yes	NA
+NYGC	GRCh37	SNP	chr1	161542914	161573124	FP_FN	1|1:FN:am:.:ti:SNP:homalt	"0/1:FP:am:1331.77:ti:SNP:het
+"	T	C	yes	no
+Common	GRCh37	NA	chr1	161548716	161578926	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:36.989:ti:SNP:het	G	A	yes	NA
+ITER	GRCh37	INDEL	chr1	161548865	161579075	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:252.01:d1_5:INDEL:het	AG	A	unsure	unsure
+Common	GRCh37	NA	chr1	161549035	161579245	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	GAAAGT	G	unsure	unsure
+Roche	GRCh37	SNP	chr1	161551245	161581455	FP_FN	1|1:FN:am:.:ti:SNP:homalt	"0/1:FP:am:100:ti:SNP:het
+"	C	T	yes	no
+Common	GRCh37	NA	chr1	161557559	161587769	FN	1|1:TP:gm:i16_plus:INDEL:homalt:100	1/1:TP:gm:i16_plus:INDEL:homalt:100	C	CAAAATAAAATAAAATAAAATAAAAT	yes	NA
+Common	GRCh37	NA	chr1	161557565	161587775	FN	1|1:FN:lm:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	NA
+Common	GRCh37	NA	chr1	161564106	161594316	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	G	A	yes	NA
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr1	161584799	161615009	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:42.88:tv:SNP:het	A	T	yes	no
+NYGC	GRCh37	SNP	chr1	161584799	161615009	FP_FN	1|1:FN:am:.:tv:SNP:homalt	"0/1:FP:am:2047.77:tv:SNP:het
+"	A	T	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr1	161611859	161642069	FP_FN	1|1:FN:am:.:tv:SNP:homalt	"0/1:FP:am:22:tv:SNP:het
+"	C	G	yes	no
+Common	GRCh37	NA	chr1	161612410	161642620	FP_FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh37	NA	chr1	161612476	161642686	FP_FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	G	A	yes	no
+NYGC	GRCh37	INDEL	chr1	161624153	161654363	FN	1|1:FN:.:d1_5:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	TG	T	yes	no
+Common	GRCh37	NA	chr1	161624153	161654363	FN	1|1:FN:lm:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	TG	T	yes	no
+PacBio_gatk4	GRCh37	SNP	chr1	161625832	161656042	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:1101.53:tv:SNP:het	A	C	yes	no
+PacBio_gatk4	GRCh37	SNP	chr1	161625877	161656087	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:1094.53:tv:SNP:het	G	C	yes	no
+DNAnexus	GRCh37	SNP	chr1	161626422	161656632	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:0:ti:SNP:het	C	T	yes	no
+PacBio_gatk4	GRCh37	SNP	chr1	161626481	161656691	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:970.77:ti:SNP:het	C	T	yes	no
+Roche	GRCh37	SNP	chr1	161626994	161657204	FP_FN	1|1:FN:am:.:ti:SNP:homalt	"0/1:FP:am:100:ti:SNP:het
+"	C	T	yes	no
+Common	GRCh37	NA	chr1	161630756	161660966	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:tv:SNP:het	T	G	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr1	161631164	161661374	FN	1|1:FN:lm:ti:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	G	A	yes	no
+Common	GRCh37	NA	chr1	161632912	161663122	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:35.2289:tv:SNP:het	T	A	yes	no
+Roche	GRCh37	SNP	chr1	161633049	161663259	FP	.:.:.:.:.:NOCALL:nocall	"0/1:13.5726:FP:.:ti:SNP:het
+"	C	T	yes	no
+Roche	GRCh37	SNP	chr1	161633176	161663386	FP_FN	1|1:FN:am:.:tv:SNP:homalt	"0/1:FP:am:100:tv:SNP:het
+"	C	G	yes	no
+ITER	GRCh37	SNP	chr1	161633176	161663386	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:272.7:tv:SNP:het	C	G	yes	no
+Common	GRCh37	NA	chr1	161633176	161663386	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:100:tv:SNP:het	C	G	yes	no
+Common	GRCh38	NA	chr1	161633176	161663386	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:100:tv:SNP:het	C	G	yes	no
+NYGC	GRCh37	SNP	chr1	161634945	161665155	FN	1|1:FN:.:ti:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	T	C	yes	no
+Common	GRCh37	NA	chr1	186279267	186310135	FP_FN	2|1:FN:am:i1_5:.:INDEL:hetalt	3/1:FP:am:i1_5:100:INDEL:hetalt	T	TG,TGGG,TGG,TTG	unsure	NA
+Common	GRCh38	NA	chr1	186279267	186310135	FP_FN	3|1:FN:am:i1_5:.:INDEL:hetalt	2/1:FP:am:i1_5:100:INDEL:hetalt	T	TG,TGG,TGGG,TTG	unsure	NA
+ITER	GRCh38	SNP	chr1	198618500	198649371	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:10.8:ti:SNP:homalt	A	G	yes	no
+Common	GRCh37	NA	chr1	198665296	198696167	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	A	AAT	no	yes
+Common	GRCh38	NA	chr1	198665296	198696167	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	A	AAT	no	yes
+PacBio_gatk4	GRCh37	INDEL	chr1	198692241	198723112	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:1320.73:i1_5:INDEL:het	C	CAT	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr2	1027214	1031528	FP_FN	2|0:FN:lm:.:i16_plus:INDEL:het	0/1:FP:lm:30.68:i16_plus:INDEL:het	A	ATATATATATATATATATATATTTTTTT,ATATATATATATATATATATATATTTTTTT	yes	no
+DNAnexus	GRCh37	SNP	chr2	1095340	1099654	FP	.:.:.:.:.:NOCALL:nocall	0/1:0:FP:.:tv:SNP:het	A	C	yes	no
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr2	1119392	1123706	FP_FN	2|1:FN:am:ti,tv:.:SNP:hetalt	"1/1:FP:am:ti:27:SNP:homalt
+"	T	C,A	yes	no
+Roche	GRCh37	INDEL	chr2	1119982	1124296	FN	1|0:FN:lm:i1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	C	CTT	yes	no
+DNAnexus	GRCh37	SNP	chr2	1146995	1151309	FP	.:.:.:.:.:NOCALL:nocall	0/1:0:FP:.:ti:SNP:het	C	T	no	yes
+Common	GRCh37	NA	chr2	1148810	1153124	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	yes
+Common	GRCh38	NA	chr2	1148810	1153124	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	yes
+NCBI	GRCh38	SNP	chr2	1176103	1180417	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:30:ti:SNP:homalt	A	G	yes	no
+ITER	GRCh38	SNP	chr2	1231175	1227405	FP_FN	0|1:FN:am:.:tv:SNP:het	1/1:FP:am:415.11:tv:SNP:homalt	G	C	yes	no
+ITER	GRCh38	SNP	chr2	1231651	1227881	FP_FN	0|1:FN:am:.:tv:SNP:het	1/1:FP:am:415.14:tv:SNP:homalt	A	T	yes	no
+Common	GRCh37	NA	chr2	1270523	1266751	FP_FN	2|1:TP:gm:i6_15:100:INDEL:hetalt	2/1:TP:gm:i6_15:100:INDEL:hetalt	C	CTTTTTTT,CTTTTTTTTT	unsure	no
+PacBio_gatk4	GRCh38	INDEL	chr2	1270523	1266751	FP_FN	1|2:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:1855.73:INDEL:homalt	C	CTTTTTTTTT,CTTTTTTT	unsure	no
+Common	GRCh38	NA	chr2	1270523	1266751	FP_FN	2|1:TP:gm:100:i6_15:INDEL:hetalt	2/1:TP:gm:100:i6_15:INDEL:hetalt	C	CTTTTTTT,CTTTTTTTTT,CTTTTT	unsure	no
+PacBio_gatk4	GRCh37	INDEL	chr2	1289559	1285787	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:1295.25:d1_5:INDEL:het	GT	G	yes	no
+Common	GRCh37	NA	chr2	1293758	1289986	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TA	T	no	yes
+Roche	GRCh38	INDEL	chr2	1293758	1289986	FN	1|0:FN:.:d1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	TA	T	no	yes
+Common	GRCh38	NA	chr2	1293758	1289986	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TA	T	no	yes
+Common	GRCh37	NA	chr2	1302610	1298838	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	AGCT	A	no	yes
+Common	GRCh38	NA	chr2	1302610	1298838	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	AGCT	A	no	yes
+Common	GRCh37	NA	chr2	1316600	1312828	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GT	G	no	yes
+Common	GRCh38	NA	chr2	1316600	1312828	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GT	G	no	yes
+PacBio_gatk4	GRCh38	SNP	chr2	1321663	1317891	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+ITER	GRCh38	SNP	chr2	1406059	1402287	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr2	1421229	1417457	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	G	A	yes	no
+Common	GRCh38	NA	chr2	1421229	1417457	FN	1|1:TP:gm:39.9993:ti:SNP:homalt	1/1:TP:gm:39.9993:ti:SNP:homalt	G	A	yes	no
+ITER	GRCh38	SNP	chr2	1462877	1459105	FP	.:.:.:.:.:NOCALL:nocall	0/1:8.9:FP:lm:tv:SNP:het	T	A	yes	no
+ITER	GRCh38	SNP	chr2	1463595	1459823	FN	0|1:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+ITER	GRCh37	SNP	chr2	1661839	1658067	FP_FN	0|1:FN:am:.:ti:SNP:het	1/1:FP:am:436.02:ti:SNP:homalt	T	C	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr2	1699214	1695442	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:43.44:tv:SNP:het	G	C	yes	no
+Common	GRCh37	NA	chr2	1725586	1721814	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	A	AAAAT	no	yes
+Common	GRCh38	NA	chr2	1725586	1721814	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	A	AAAAT	no	yes
+NYGC	GRCh38	INDEL	chr2	1737520	1733748	FP_FN	2|2:FN:lm:.:i1_5:INDEL:homalt	"1/1:FP:lm:350.77:i1_5:INDEL:homalt
+"	C	CAA,CAAA	no	yes
+Common	GRCh38	NA	chr2	1737520	1733748	FP_FN	2|2:FN:am:.:i1_5:INDEL:homalt	2/1:FP:am:100:i1_5:INDEL:hetalt	C	CAA,CAAA	no	yes
+DNAnexus	GRCh38	INDEL	chr2	44101649	43874510	FP	.:.:.:.:.:NOCALL:nocall	"0/1:0:FP:lm:i1_5:INDEL:het
+"	G	GC	yes	no
+Common	GRCh37	NA	chr2	89012638	88713120	FN	2|1:FN:am:d1_5,i1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:100	AT	A,ATTTTTT	no	yes
+PacBio_gatk4	GRCh38	INDEL	chr2	89012638	88713120	FP	.:.:.:.:.:NOCALL:nocall	0/1:484.73:FP:am:i1_5:INDEL:het	A	ATTTTT	no	yes
+Common	GRCh38	NA	chr2	89012638	88713120	FN	2|1:FN:am:d1_5,i1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:100	AT	A,ATTTTTT	no	yes
+Common	GRCh38	NA	chr2	89012638	88713120	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:i1_5:INDEL:het	A	ATTTTT	no	yes
+DNAnexus	GRCh38	SNP	chr2	107017023	106400567	FN	1|0:FN:.:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	G	A	yes	no
+Common	GRCh37	NA	chr2	107033093	106416637	FN	1|0:TP:gm:d1_5:INDEL:het:100	0/1:TP:gm:d1_5:INDEL:het:100	AT	A	yes	no
+NYGC	GRCh38	INDEL	chr2	107033093	106416637	FN	1|0:FN:.:d1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	AT	A	yes	no
+Common	GRCh38	NA	chr2	107033093	106416637	FN	1|0:TP:gm:100:d1_5:INDEL:het	0/1:TP:gm:100:d1_5:INDEL:het	AT	A	yes	no
+NCBI	GRCh37	SNP	chr2	107038409	106421953	FP	.:.:.:.:.:NOCALL:nocall	1/1:30:FP:.:ti:SNP:homalt	G	A	yes	no
+Roche	GRCh37	INDEL	chr2	107054782	106438326	FN	1|1:FN:.:d1_5:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	TA	T	yes	no
+Common	GRCh37	NA	chr2	107055889	106439433	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:16.8001:ti:SNP:het	T	C	no	yes
+Common	GRCh38	NA	chr2	107055889	106439433	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:33.9806:ti:SNP:het	T	C	no	yes
+NCBI	GRCh37	SNP	chr2	107066758	106450302	FP_FN	1|0:FN:am:.:tv:SNP:het	1/1:FP:am:30:tv:SNP:homalt	A	C	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr2	107070107	106453651	FN	1|0:FN:.:tv:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	C	G	yes	no
+NCBI	GRCh38	SNP	chr2	107072006	106455550	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:30:ti:SNP:homalt	G	A	yes	no
+NCBI	GRCh38	SNP	chr2	107074926	106458470	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:30:ti:SNP:homalt	T	C	yes	no
+Common	GRCh37	NA	chr2	202063262	201198539	FN	1|0:TP:gm:i1_5:INDEL:het:100	0/1:TP:gm:i1_5:INDEL:het:100	C	CTT	yes	no
+Common	GRCh37	NA	chr2	242698184	241758769	FP_FN	2|2:FN:am:.:i6_15:INDEL:homalt	2/1:FP:am:100:i1_5,i6_15:INDEL:hetalt	A	ATGTG,ATGTGTG	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr2	242698184	241758769	FP_FN	2|2:FN:am:.:i6_15:INDEL:homalt	2/1:FP:am:164.58:i1_5,i6_15:INDEL:hetalt	A	ATGTG,ATGTGTG	no	yes
+Common	GRCh38	NA	chr2	242698184	241758769	FP_FN	2|2:FN:am:.:i6_15:INDEL:homalt	2/1:FP:am:100:i1_5,i6_15:INDEL:hetalt	A	ATGTG,ATGTGTG	no	yes
+DNAnexus	GRCh37	INDEL	chr3	246787	205104	FP_FN	0|1:FN:am:.:i1_5:INDEL:het	1/1:FP:am:0:i1_5:INDEL:homalt	C	CTTTCT	yes	no
+DNAnexus	GRCh37	INDEL	chr3	256641	214958	FP	.:.:.:.:.:NOCALL:nocall	0/1:0:FP:lm:i1_5:INDEL:het	A	ACACA	yes	no
+ITER	GRCh37	INDEL	chr3	294044	252361	FN	1|2:FN:am:d1_5,i1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:952.64	GAT	G,GATATAT	no	yes
+Common	GRCh37	NA	chr3	294044	252361	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:i1_5:INDEL:het	G	GATAT	no	yes
+Common	GRCh37	NA	chr3	294044	252361	FN	1|2:FN:am:d1_5,i1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:100	GAT	G,GATATAT	no	yes
+Roche	GRCh38	INDEL	chr3	294044	252361	FP	.:.:.:.:.:NOCALL:nocall	"0/1:100:FP:am:i1_5:INDEL:het
+"	G	GATAT	no	yes
+Common	GRCh38	NA	chr3	294044	252361	FN	1|2:FN:am:d1_5,i1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:100	GAT	G,GATATAT	no	yes
+Common	GRCh38	NA	chr3	294044	252361	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:i1_5:INDEL:het	G	GATAT	no	yes
+NCBI	GRCh38	INDEL	chr3	330026	288343	FN	1|0:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CAT	yes	no
+Common	GRCh37	NA	chr3	356012	314329	FP_FN	2|3:FN:am:.:i1_5,i6_15:INDEL:hetalt	1/2:FP:am:100:i1_5,i6_15:INDEL:hetalt	G	GTATATATATA,GTA,GTATATATA	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr3	356012	314329	FN	1|2:FN:.:i1_5,i6_15:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	G	GTA,GTATATATA	no	yes
+Roche	GRCh38	INDEL	chr3	356012	314329	FP_FN	1|3:FN:am:i1_5,i6_15:.:INDEL:hetalt	"2/1:FP:am:i1_5,i6_15:100:INDEL:hetalt
+"	G	GTA,GTATATATATA,GTATATATA	no	yes
+Common	GRCh38	NA	chr3	356012	314329	FP_FN	1|3:FN:am:i1_5,i6_15:.:INDEL:hetalt	2/1:FP:am:i1_5,i6_15:100:INDEL:hetalt	G	GTA,GTATATATATA,GTATATATA	no	yes
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr3	16682966	16641459	FP	.:.:.:.:.:NOCALL:nocall	"0/1:9:FP:am:d6_15:INDEL:het
+"	CAGAGAGAG	C	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr3	16682976	16641469	FP	.:.:.:.:.:NOCALL:nocall	"0/1:22:FP:lm:tv:SNP:het
+"	G	C	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr3	49431103	49393670	FN	1|0:FN:lm:d6_15:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CTCTCTCTGTG	C	yes	no
+DNAnexus	GRCh37	INDEL	chr3	49438474	49401041	FP_FN	2|1:FN:am:d1_5,i6_15:.:INDEL:hetalt	0/1:FP:am:d1_5:0:INDEL:het	CAAAA	C,CAAAAAAAAAAAAAAAAAAA	unsure	no
+Common	GRCh37	NA	chr3	49438474	49401041	FP_FN	2|1:FN:am:d1_5,i6_15:.:INDEL:hetalt	0/1:FP:am:d1_5:26.5781:INDEL:het	CAAAA	C,CAAAAAAAAAAAAAAAAAAA	unsure	no
+Common	GRCh38	NA	chr3	49438474	49401041	FP_FN	2|1:FN:am:d1_5,i6_15:.:INDEL:hetalt	0/1:FP:am:d1_5:26.5781:INDEL:het	CAAAA	C,CAAAAAAAAAAAAAAAAAAA	unsure	no
+Common	GRCh37	NA	chr3	49438991	49401558	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	CA	C	no	yes
+Common	GRCh38	NA	chr3	49438991	49401558	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	CA	C	no	yes
+PacBio_gatk4	GRCh38	INDEL	chr3	128342885	128624042	FP	.:.:.:.:.:NOCALL:nocall	0/1:437.73:FP:.:i1_5:INDEL:het	G	GC	yes	no
+ITER	GRCh38	INDEL	chr3	128346613	128627770	FP_FN	0|2:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:4.7:i1_5:INDEL:het	C	CA,CAAA	yes	no
+DNAnexus	GRCh38	SNP	chr3	128346772	128627929	FP	.:.:.:.:.:NOCALL:nocall	"0/1:0:FP:.:tv:SNP:het
+"	C	G	yes	no
+Common	GRCh37	NA	chr3	133144101	133425257	FN	0|1:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TG	T	no	yes
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr3	133144101	133425257	FN	0|1:FN:lm:d1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	TG	T	no	yes
+Common	GRCh38	NA	chr3	133144101	133425257	FN	0|1:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TG	T	no	yes
+Common	GRCh37	NA	chr3	133144403	133425559	FN	0|1:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CA	C	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr3	133144403	133425559	FN	0|1:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CA	C	no	yes
+Common	GRCh38	NA	chr3	133144403	133425559	FN	0|1:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CA	C	no	yes
+NYGC	GRCh37	INDEL	chr3	133165414	133446570	FN	1|1:FN:lm:d6_15:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	TTATATATATATA	T	no	yes
+Common	GRCh37	NA	chr3	133165414	133446570	FN	1|1:FN:lm:d6_15:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	TTATATATATATA	T	no	yes
+Common	GRCh37	NA	chr3	133165428	133446584	FN	1|1:FN:lm:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	T	no	yes
+Common	GRCh37	NA	chr3	135981796	136262954	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	GT	G	no	yes
+Common	GRCh38	NA	chr3	135981796	136262954	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	GT	G	no	yes
+Common	GRCh37	NA	chr3	135986938	136268096	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:i1_5:INDEL:het	A	ATATG	no	yes
+Common	GRCh37	NA	chr3	135986940	136268098	FN	0|1:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	ATG	no	yes
+PacBio_gatk4	GRCh37	INDEL	chr3	136009513	136290671	FN	1|2:FN:.:i6_15:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	G	GTTTTTTTTTT,GTTTTTTTTTTT	yes	no
+ITER	GRCh37	INDEL	chr3	136009513	136290671	FP_FN	1|2:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:277.01:INDEL:homalt	G	GTTTTTTTTTT,GTTTTTTTTTTT	yes	no
+PacBio_gatk4	GRCh38	INDEL	chr3	136009513	136290671	FN	1|2:FN:.:i6_15:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	G	GTTTTTTTTTT,GTTTTTTTTTTT	yes	no
+DNAnexus	GRCh37	INDEL	chr3	136053953	136335111	FN	1|0:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GCCC	unsure	no
+NCBI	GRCh38	INDEL	chr3	196049844	196322973	FP_FN	1|0:FN:am:.:d1_5:INDEL:het	1/1:FP:am:30:d1_5:INDEL:homalt	CAA	C	yes	no
+Common	GRCh37	NA	chr4	362947	369158	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	TAC	T	no	yes
+Common	GRCh38	NA	chr4	362947	369158	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	TAC	T	no	yes
+Common	GRCh37	NA	chr4	363524	369735	FN	0|1:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GAT	no	yes
+Common	GRCh37	NA	chr4	363552	369763	FN	1|0:TP:gm:25.2288:d1_5:INDEL:het	0/1:TP:gm:25.2288:d1_5:INDEL:het	TA	T	no	yes
+Common	GRCh37	NA	chr4	363554	369765	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	T	TATA	no	yes
+Common	GRCh37	NA	chr4	363555	369766	FN	0|1:FN:lm:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	A	no	yes
+Common	GRCh37	NA	chr4	363556	369767	FP	.:.:.:.:.:NOCALL:nocall	0/1:27.6956:FP:lm:tv:SNP:het	T	A	no	yes
+Common	GRCh37	NA	chr4	363557	369768	FN	0|1:FN:lm:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	A	no	yes
+Common	GRCh37	NA	chr4	363558	369769	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:tv:SNP:het	T	A	no	yes
+Common	GRCh37	NA	chr4	653174	659385	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CA	no	yes
+Common	GRCh38	NA	chr4	653174	659385	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CA	no	yes
+Common	GRCh37	NA	chr4	843622	849834	FP_FN	2|2:FN:lm:.:i1_5:INDEL:homalt	1/1:FP:lm:100:i1_5:INDEL:homalt	A	AC,ACC	unsure	unsure
+Common	GRCh37	NA	chr4	1014641	1020853	FN	1|1:TP:gm:d16_plus:INDEL:homalt:100	1/1:TP:gm:d16_plus:INDEL:homalt:100	CGGGGTGGGGACCCAGGCAGGGGATGGGGT	C	yes	no
+NYGC	GRCh37	INDEL	chr4	1077733	1083945	FP_FN	2|1:FN:am:i1_5:.:INDEL:hetalt	"1/1:FP:am:i1_5:520.73:INDEL:homalt
+"	A	AT,ATTT	yes	no
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr4	1096776	1102988	FP_FN	1|2:FN:am:d1_5:.:INDEL:hetalt	"1/1:FP:am:d1_5:13:INDEL:homalt
+"	CAA	C,CA	yes	no
+Common	GRCh37	NA	chr4	3465177	3463450	FP_FN	1|2:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	CGG	C,CGGG	no	yes
+Common	GRCh38	NA	chr4	3465177	3463450	FP_FN	1|2:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	CGG	C,CGGG	no	yes
+Common	GRCh37	NA	chr4	3492134	3490407	FN	1|0:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AC	yes	no
+DNAnexus	GRCh37	SNP	chr4	70459695	69593977	FP	.:.:.:.:.:NOCALL:nocall	0/1:0:FP:lm:tv:SNP:het	G	T	yes	no
+NYGC	GRCh37	INDEL	chr4	187566520	186645366	FN	0|1:FN:.:d6_15:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	CATATATATATAT	C	no	unsure
+Common	GRCh37	NA	chr4	187566520	186645366	FP	.:.:.:.:.:NOCALL:nocall	0/2:100:FP:lm:d6_15:INDEL:het	CATATATATAT	CATATAT,C	no	NA
+Common	GRCh37	NA	chr4	187566520	186645366	FN	0|1:FN:lm:d6_15:INDEL:het:.	.:.:.:.:NOCALL:nocall:100	CATATATATATAT	C	no	NA
+Common	GRCh37	NA	chr4	187566538	186645384	FN	1|0:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TATATA	T	no	NA
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr4	187567880	186646726	FP_FN	2|1:FN:am:d1_5:.:INDEL:hetalt	"1/1:FP:am:d1_5:18:INDEL:homalt
+"	GAA	G,GA	yes	no
+Common	GRCh37	NA	chr4	187603680	186682526	FP_FN	1|2:TP:gm:d6_15,i6_15:100:INDEL:hetalt	0/1:TP:gm:d6_15:100:INDEL:het	CAAAAAAA	C,CAAAAAAAAAAAAAAAAAAAAA	yes	no
+NYGC	GRCh38	INDEL	chr4	187603680	186682526	FP_FN	1|2:FN:am:d6_15,i6_15:.:INDEL:hetalt	"1/1:FP:am:d6_15:1087.73:INDEL:homalt
+"	CAAAAAAA	C,CAAAAAAAAAAAAAAAAAAAAA	yes	no
+Common	GRCh38	NA	chr4	187603680	186682526	FP_FN	1|2:TP:gm:100:d6_15,i6_15:INDEL:hetalt	0/1:TP:gm:100:d6_15:INDEL:het	CAAAAAAA	C,CAAAAAAAAAAAAAAAAAAAAA	yes	no
+Common	GRCh37	NA	chr4	187609807	186688653	FN	2|1:FN:lm:i1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	GC	GCC,*	no	yes
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr4	187616914	186695760	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	"0/1:FP:am:18:i1_5:INDEL:het
+"	A	AAC	yes	no
+Common	GRCh37	NA	chr4	187626260	186705106	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AT	no	yes
+Common	GRCh38	NA	chr4	187626260	186705106	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AT	no	yes
+PacBio_gatk4	GRCh38	INDEL	chr5	1411855	1411740	FN	0|1:FN:.:d16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GCACATACCATGCAACATACACACTCAGACA	G	yes	no
+ITER	GRCh38	SNP	chr5	1415629	1415514	FN	0|1:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+ITER	GRCh38	SNP	chr5	1428011	1427896	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+ITER	GRCh38	SNP	chr5	68720419	69424592	FP_FN	0|1:FN:am:.:tv:SNP:het	1/1:FP:am:205.58:tv:SNP:homalt	T	G	yes	no
+Common	GRCh37	NA	chr5	68739836	69444009	FP_FN	2|1:FN:am:i16_plus,i6_15:.:INDEL:hetalt	4/1:FP:am:i6_15:100:INDEL:hetalt	T	TAAAAAAAAAAAAA,TAAAAAAAAAAAAAAAAAAAAAAAAAA,TAAAAAAAAAAAAAAAAAAA,TAAAAAAAAAAAAAA	unsure	unsure
+Common	GRCh38	NA	chr5	68739836	69444009	FP_FN	3|1:FN:am:i16_plus,i6_15:.:INDEL:hetalt	2/1:FP:am:i6_15:100:INDEL:hetalt	T	TAAAAAAAAAAAAA,TAAAAAAAAAAAAAA,TAAAAAAAAAAAAAAAAAAAAAAAAAA,TAAAAAAAAAAAAAAAAAAA,TAAAAAAAAA	unsure	unsure
+Common	GRCh37	NA	chr5	70223435	70927608	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CA	C	unsure	unsure
+Common	GRCh38	NA	chr5	70223435	70927608	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CA	C	unsure	unsure
+Common	GRCh37	NA	chr5	70224871	70929044	FN	0|1:TP:gm:ti:SNP:het:21.1978	0/1:TP:gm:ti:SNP:het:21.1978	C	T	yes	no
+Common	GRCh38	NA	chr5	70224871	70929044	FN	0|1:TP:gm:22.1479:ti:SNP:het	0/1:TP:gm:22.1479:ti:SNP:het	C	T	yes	no
+Roche	GRCh37	SNP	chr5	70226900	70931073	FP	.:.:.:.:.:NOCALL:nocall	"0/1:23.6692:FP:.:tv:SNP:het
+"	A	C	yes	no
+Common	GRCh37	NA	chr5	70230397	70934570	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh38	NA	chr5	70230397	70934570	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh37	NA	chr5	70231978	70936151	FN	1|1:TP:gm:i6_15:INDEL:homalt:100	1/1:TP:gm:i6_15:INDEL:homalt:100	C	CTTTTTT	yes	NA
+Roche	GRCh38	SNP	chr5	70232669	70936842	FP_FN	1|1:FN:am:.:tv:SNP:homalt	"0/1:FP:am:39.9993:tv:SNP:het
+"	C	G	yes	no
+Common	GRCh37	NA	chr5	70234029	70938202	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh38	NA	chr5	70234029	70938202	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh37	NA	chr5	70238373	70942546	FN	1|1:TP:gm:ti:SNP:homalt:21.0316	1/1:TP:gm:ti:SNP:homalt:21.0316	A	G	yes	no
+Common	GRCh38	NA	chr5	70238373	70942546	FN	1|1:TP:gm:30.97:ti:SNP:homalt	1/1:TP:gm:30.97:ti:SNP:homalt	A	G	yes	no
+Common	GRCh37	NA	chr5	70241398	70945571	FN	1|1:TP:gm:d1_5:INDEL:homalt:33.0103	1/1:TP:gm:d1_5:INDEL:homalt:33.0103	CTG	C	yes	no
+Common	GRCh38	NA	chr5	70241398	70945571	FN	1|1:TP:gm:15.3466:d1_5:INDEL:homalt	1/1:TP:gm:15.3466:d1_5:INDEL:homalt	CTG	C	yes	no
+Common	GRCh37	NA	chr5	70242435	70946608	FN	1|1:TP:gm:ti:SNP:homalt:39.9993	1/1:TP:gm:ti:SNP:homalt:39.9993	T	C	yes	no
+Common	GRCh38	NA	chr5	70242435	70946608	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+Common	GRCh37	NA	chr5	70242978	70947151	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh38	NA	chr5	70242978	70947151	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr5	70249102	70953275	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	G	C	yes	no
+Common	GRCh37	NA	chr5	94800628	95464924	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CT	no	yes
+Common	GRCh38	NA	chr5	94800628	95464924	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CT	no	yes
+Roche	GRCh37	INDEL	chr5	94886172	95550468	FP	.:.:.:.:.:NOCALL:nocall	"0/1:100:FP:.:d1_5:INDEL:het
+"	TA	T	no	yes
+Common	GRCh37	NA	chr5	94886172	95550468	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	TA	T	no	yes
+Common	GRCh38	NA	chr5	94886172	95550468	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	TA	T	no	yes
+Common	GRCh37	NA	chr5	96464369	97128665	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	C	CA	no	yes
+Roche	GRCh38	INDEL	chr5	96464369	97128665	FP	.:.:.:.:.:NOCALL:nocall	"0/1:100:FP:.:i1_5:INDEL:het
+"	C	CA	no	yes
+NYGC	GRCh38	INDEL	chr5	96464369	97128665	FP	.:.:.:.:.:NOCALL:nocall	"0/1:420.73:FP:.:i1_5:INDEL:het
+"	C	CA	no	yes
+Common	GRCh38	NA	chr5	96464369	97128665	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	C	CA	no	yes
+Common	GRCh37	NA	chr5	133953625	134617935	FN	1|0:FN:.:d16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	ATTTCACCATGATCATTTT	A	no	yes
+PacBio_gatk4	GRCh38	INDEL	chr5	133953625	134617935	FN	1|0:FN:.:d16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	ATTTCACCATGATCATTTT	A	no	yes
+Common	GRCh38	NA	chr5	133953625	134617935	FN	1|0:FN:.:d16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	ATTTCACCATGATCATTTT	A	no	yes
+Common	GRCh37	NA	chr5	133960315	134624625	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	GT	G	no	yes
+NCBI	GRCh38	INDEL	chr5	133960315	134624625	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	GT	G	no	yes
+Common	GRCh38	NA	chr5	133960315	134624625	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	GT	G	no	yes
+PacBio_gatk4	GRCh37	INDEL	chr5	133963491	134627801	FP	.:.:.:.:.:NOCALL:nocall	0/1:1894.73:FP:lm:d1_5:INDEL:het	AAAAT	A	no	yes
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr5	133963491	134627801	FP	.:.:.:.:.:NOCALL:nocall	0/1:156.08:FP:lm:d1_5:INDEL:het	AAAAT	A	no	yes
+Common	GRCh37	NA	chr5	133963491	134627801	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	AAAAT	A	no	yes
+Common	GRCh37	NA	chr5	133963491	134627801	FN	1|1:FN:am:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	A	AAAAT	no	yes
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr5	133963491	134627801	FP	.:.:.:.:.:NOCALL:nocall	"0/1:8:FP:lm:d1_5:INDEL:het
+"	AAAAT	A	no	yes
+Common	GRCh38	NA	chr5	133963491	134627801	FN	1|1:FN:am:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	A	AAAAT	no	yes
+Common	GRCh38	NA	chr5	133963491	134627801	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	AAAAT	A	no	yes
+Common	GRCh37	NA	chr5	133963495	134627805	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:i1_5:INDEL:het	T	TAAAT	no	yes
+DNAnexus	GRCh38	INDEL	chr5	133963495	134627805	FP	.:.:.:.:.:NOCALL:nocall	"0/1:0:FP:am:i1_5:INDEL:het
+"	T	TAAAT	no	yes
+Common	GRCh38	NA	chr5	133963495	134627805	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:i1_5:INDEL:het	T	TAAAT	no	yes
+Common	GRCh37	NA	chr5	133964018	134628328	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	T	TA	no	yes
+Common	GRCh38	NA	chr5	133964018	134628328	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	T	TA	no	yes
+DNAnexus	GRCh38	SNP	chr5	137215347	137879658	FP	.:.:.:.:.:NOCALL:nocall	"0/1:0:FP:.:tv:SNP:het
+"	G	T	yes	no
+DNAnexus	GRCh37	SNP	chr5	137215363	137879674	FP	.:.:.:.:.:NOCALL:nocall	0/1:0:FP:.:tv:SNP:het	G	T	yes	no
+ITER	GRCh37	INDEL	chr5	140322842	140943257	FP_FN	0|2:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:105.64:i1_5:INDEL:het	C	CA,CAA	yes	no
+Common	GRCh37	NA	chr5	180039768	180612768	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GC	G	no	yes
+Common	GRCh38	NA	chr5	180039768	180612768	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GC	G	no	yes
+Common	GRCh37	NA	chr5	180040094	180613094	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	AG	A	no	yes
+NYGC	GRCh38	INDEL	chr5	180040094	180613094	FN	1|0:FN:.:d1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	AG	A	no	yes
+Common	GRCh38	NA	chr5	180040094	180613094	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	AG	A	no	yes
+Common	GRCh37	NA	chr5	180040165	180613165	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GC	G	no	yes
+Common	GRCh38	NA	chr5	180040165	180613165	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GC	G	no	yes
+PacBio_gatk4	GRCh37	INDEL	chr6	108219460	107898256	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:719.73:d1_5:INDEL:het	CA	C	yes	no
+PacBio_gatk4	GRCh38	SNP	chr6	108236438	107915234	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:1229.77:tv:SNP:het	G	T	yes	no
+PacBio_gatk4	GRCh37	INDEL	chr6	108243115	107921911	FP	.:.:.:.:.:NOCALL:nocall	1/1:2262.73:FP:am:i1_5:INDEL:homalt	T	TGGG	yes	no
+PacBio_gatk4	GRCh37	INDEL	chr6	150077489	149756353	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:579.73:i1_5:INDEL:het	C	CT	yes	no
+Common	GRCh37	NA	chr6	150079321	149758185	FP	.:.:.:.:.:NOCALL:nocall	1/1:9.1656:FP:am:i1_5:INDEL:homalt	A	ATT	unsure	NA
+Common	GRCh37	NA	chr6	150089753	149768617	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GT	no	yes
+Common	GRCh38	NA	chr6	150089753	149768617	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GT	no	yes
+Common	GRCh37	NA	chr6	150101478	149780342	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	G	GA	no	yes
+Common	GRCh38	NA	chr6	150101478	149780342	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	G	GA	no	yes
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr6	150106569	149785433	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:49.49:ti:SNP:het	C	T	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr6	150114298	149793162	FP	.:.:.:.:.:NOCALL:nocall	0/1:216.25:FP:lm:d1_5:INDEL:het	CAA	C	no	yes
+Common	GRCh37	NA	chr6	150114298	149793162	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	CAA	C	no	yes
+Common	GRCh37	NA	chr6	150114298	149793162	FN	1|1:FN:am:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CA	C	no	yes
+NCBI	GRCh38	INDEL	chr6	150114298	149793162	FN	1|1:FN:am:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CA	C	no	yes
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr6	150114298	149793162	FP	.:.:.:.:.:NOCALL:nocall	"1/1:17:FP:lm:d1_5:INDEL:homalt
+"	CAA	C	no	yes
+ITER	GRCh38	INDEL	chr6	150114298	149793162	FN	1|1:FN:am:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CA	C	no	yes
+Common	GRCh38	NA	chr6	150114298	149793162	FN	1|1:FN:am:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CA	C	no	yes
+Common	GRCh38	NA	chr6	150114298	149793162	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	CAA	C	no	yes
+Common	GRCh37	NA	chr6	150114299	149793163	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:d1_5:INDEL:het	AA	A	no	yes
+Common	GRCh38	NA	chr6	150114299	149793163	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:d1_5:INDEL:het	AA	A	no	yes
+BCM-HGSC_xAtlas	GRCh37	SNP	chr6	150123755	149802619	FP_FN	1|1:FN:am:.:tv:SNP:homalt	"0/1:FP:am:26:tv:SNP:het
+"	G	T	yes	no
+DNAnexus	GRCh37	INDEL	chr6	168877164	168476484	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GTGTA	yes	no
+Common	GRCh37	NA	chr6	168912491	168511811	FP_FN	2|3:FN:am:.:i1_5:INDEL:hetalt	3/1:FP:am:100:i1_5:INDEL:hetalt	G	GTTT,GTTTT,GTTTTT	unsure	unsure
+NCBI	GRCh37	INDEL	chr6	168923759	168523079	FP_FN	2|1:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:30:INDEL:homalt	A	ATTCTTTTTTTTTT,ATTCTTTTTTTTTTT	unsure	unsure
+Common	GRCh37	NA	chr6	168923759	168523079	FP_FN	2|1:FN:am:i6_15:INDEL:hetalt:.	1/1:FP:am:i6_15:INDEL:homalt:100	A	ATTCTTTTTTTTTT,ATTCTTTTTTTTTTT,ATTCTTTTTTTTTTTT,ATTTTTTTTTTTTT	unsure	unsure
+Common	GRCh38	NA	chr6	168923759	168523079	FP_FN	2|1:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:100:INDEL:homalt	A	ATTCTTTTTTTTTT,ATTCTTTTTTTTTTT,ATTCTTTTTTTTTTTT	unsure	unsure
+ITER	GRCh38	INDEL	chr6	168989756	168589076	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CA	C	unsure	unsure
+NCBI	GRCh37	SNP	chr6	168991229	168590549	FP_FN	0|1:FN:am:.:tv:SNP:het	1/1:FP:am:30:tv:SNP:homalt	G	T	yes	no
+NCBI	GRCh38	INDEL	chr6	168991270	168590590	FP_FN	0|1:FN:am:.:i1_5:INDEL:het	1/1:FP:am:30:i1_5:INDEL:homalt	C	CT	yes	no
+ITER	GRCh37	INDEL	chr6	169627264	169227169	FP	.:.:.:.:.:NOCALL:nocall	0/1:8.2:FP:lm:d1_5:INDEL:het	GA	G	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr6	169644259	169244164	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GT	G	yes	no
+Common	GRCh37	NA	chr7	5323663	5284032	FN	0|1:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AC	no	NA
+Common	GRCh37	NA	chr7	5323670	5284039	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	CCCCCA	C	no	NA
+Common	GRCh37	NA	chr7	5323671	5284040	FN	1|0:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CCCCA	C	no	NA
+Common	GRCh37	NA	chr7	5329683	5290052	FP_FN	1|0:FN:lm:i1_5:INDEL:het:.	0/2:FP:lm:i1_5:INDEL:het:100	A	ATTTT,ATTT,AT	no	yes
+Common	GRCh38	NA	chr7	5329683	5290052	FP_FN	2|0:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:100:i1_5:INDEL:het	A	ATTT,ATTTT	no	yes
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr7	44839997	44800398	FP	.:.:.:.:.:NOCALL:nocall	"1/1:11:FP:lm:i1_5:INDEL:homalt
+"	C	CT	yes	no
+Common	GRCh37	NA	chr7	56116488	56048795	FP_FN	1|2:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:100:INDEL:homalt	C	CT,CTT	no	yes
+Common	GRCh38	NA	chr7	56116488	56048795	FP_FN	1|2:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:100:INDEL:homalt	C	CT,CTT	no	yes
+Common	GRCh37	NA	chr7	73730218	74315888	FN	0|1:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TA	T	no	yes
+Common	GRCh38	NA	chr7	73730218	74315888	FN	0|1:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TA	T	no	yes
+NYGC	GRCh37	SNP	chr7	73730219	74315889	FP	.:.:.:.:.:NOCALL:nocall	"0/1:610.77:FP:lm:tv:SNP:het
+"	A	T	no	yes
+Common	GRCh37	NA	chr7	73730219	74315889	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:tv:SNP:het	A	T	no	yes
+Common	GRCh38	NA	chr7	73730219	74315889	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:tv:SNP:het	A	T	no	yes
+DNAnexus	GRCh37	INDEL	chr7	73739148	74324818	FP_FN	2|1:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:0:INDEL:het	GA	G,GAA	no	yes
+Common	GRCh37	NA	chr7	73739148	74324818	FP_FN	2|1:FN:am:d1_5,i1_5:INDEL:hetalt:.	0/1:FP:am:d1_5:INDEL:het:100	GA	G,GAA	no	yes
+Common	GRCh38	NA	chr7	73739148	74324818	FP_FN	2|1:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	GA	G,GAA	no	yes
+DNAnexus	GRCh37	INDEL	chr7	73746790	74332460	FP_FN	0|1:FN:am:.:i1_5:INDEL:het	1/1:FP:am:0:i1_5:INDEL:homalt	C	CTTTTT	unsure	no
+Common	GRCh37	NA	chr7	73763784	74349454	FN	0|1:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	ATG	A	no	yes
+Common	GRCh37	NA	chr7	73763800	74349470	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:ti:SNP:het	G	A	no	yes
+Common	GRCh37	NA	chr7	73813872	74399542	FN	2|1:TP:gm:d1_5,i1_5:INDEL:hetalt:100	0/1:TP:gm:d1_5:INDEL:het:100	TG	T,TGG	unsure	unsure
+Common	GRCh38	NA	chr7	73813872	74399542	FN	2|1:TP:gm:100:d1_5,i1_5:INDEL:hetalt	0/1:TP:gm:100:d1_5:INDEL:het	TG	T,TGG	unsure	unsure
+NYGC	GRCh37	INDEL	chr7	73817544	74403214	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	"0/1:FP:am:255.73:d1_5:INDEL:het
+"	CA	C	no	yes
+Common	GRCh37	NA	chr7	73817544	74403214	FP_FN	1|1:FN:am:d1_5:INDEL:homalt:.	0/1:FP:am:d1_5:INDEL:het:100	CA	C	no	yes
+PacBio_gatk4	GRCh38	INDEL	chr7	73817544	74403214	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:181.9:d1_5:INDEL:het	CA	C	no	yes
+Common	GRCh38	NA	chr7	73817544	74403214	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	CA	C	no	yes
+Common	GRCh38	NA	chr7	74153238	74738896	FN	1|1:FN:lm:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CAA	C	yes	no
+Common	GRCh38	NA	chr7	74158003	74743664	FN	1|1:TP:gm:21.2:ti:SNP:homalt	1/1:TP:gm:21.2:ti:SNP:homalt	A	G	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr7	74158033	74743694	FP_FN	1|1:FN:am:.:tv:SNP:homalt	"0/1:FP:am:26:tv:SNP:het
+"	G	T	yes	no
+Common	GRCh38	NA	chr7	74158222	74743883	FN	1|1:TP:gm:100:i1_5:INDEL:homalt	1/1:TP:gm:100:i1_5:INDEL:homalt	C	CA	yes	no
+PacBio_gatk4	GRCh38	SNP	chr7	74160447	74746108	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	T	A	yes	no
+Roche	GRCh37	SNP	chr7	74160637	74746298	FP	.:.:.:.:.:NOCALL:nocall	"0/1:12.2484:FP:.:ti:SNP:het
+"	T	C	yes	no
+Common	GRCh38	NA	chr7	74161075	74746737	FN	1|1:TP:gm:33.0111:tv:SNP:homalt	1/1:TP:gm:33.0111:tv:SNP:homalt	G	C	yes	no
+Common	GRCh37	NA	chr7	74164614	74750277	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	C	CA	unsure	unsure
+Common	GRCh38	NA	chr7	74164614	74750277	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	C	CA	unsure	unsure
+Common	GRCh38	NA	chr7	74165390	74751058	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	G	C	yes	no
+NCBI	GRCh37	SNP	chr7	74166734	74752402	FP	.:.:.:.:.:NOCALL:nocall	1/1:30:FP:.:tv:SNP:homalt	G	T	yes	no
+Common	GRCh38	NA	chr7	74168251	74753919	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr7	74169405	74755073	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr7	74170795	74756463	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr7	74171245	74756913	FN	1|1:TP:gm:100:i1_5:INDEL:homalt	1/1:TP:gm:100:i1_5:INDEL:homalt	A	AC	yes	no
+Common	GRCh38	NA	chr7	74171269	74756936	FN	1|1:TP:gm:36.989:ti:SNP:homalt	1/1:TP:gm:36.989:ti:SNP:homalt	T	C	yes	no
+Common	GRCh38	NA	chr7	74171577	74757244	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	C	G	yes	no
+Common	GRCh38	NA	chr7	74172075	74757742	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+DNAnexus	GRCh37	SNP	chr7	74174155	74759825	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:0:tv:SNP:het	T	G	yes	no
+Common	GRCh37	NA	chr7	74191062	74776716	FN	1|1:TP:gm:i16_plus:INDEL:homalt:11.2079	1/1:TP:gm:i16_plus:INDEL:homalt:11.2079	G	GTCCCCTCCCCTCTCCTCCTGTCCCCTCCCT	yes	no
+Common	GRCh38	NA	chr7	74191062	74776716	FN	1|1:FN:.:i16_plus:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	G	GTCCCCTCCCCTCTCCTCCTGTCCCCTCCCT	yes	no
+Common	GRCh38	NA	chr7	74194727	74780381	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	C	T	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr7	74196825	74782482	FP_FN	1|1:FN:am:.:ti:SNP:homalt	"0/1:FP:am:19:ti:SNP:het
+"	A	G	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr7	74200517	74786173	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:34.98:tv:SNP:het	T	A	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr7	74216543	74802202	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+NCBI	GRCh37	INDEL	chr7	74218917	74804576	FP	.:.:.:.:.:NOCALL:nocall	1/1:30:FP:.:i1_5:INDEL:homalt	G	GT	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr7	74219570	74805229	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh38	NA	chr7	74219570	74805229	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+NCBI	GRCh38	SNP	chr7	74219610	74805269	FP	.:.:.:.:.:NOCALL:nocall	1/1:30:FP:.:ti:SNP:homalt	C	T	yes	no
+Common	GRCh37	NA	chr7	74221622	74807284	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	AT	A	unsure	unsure
+Common	GRCh37	NA	chr7	74222191	74807853	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	T	A	yes	no
+Common	GRCh37	NA	chr7	74222518	74808180	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	T	G	yes	no
+Common	GRCh38	NA	chr7	74222518	74808180	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	T	G	yes	no
+Common	GRCh37	NA	chr7	74223039	74808701	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	T	C	yes	no
+Common	GRCh38	NA	chr7	74223039	74808701	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+Common	GRCh37	NA	chr7	74223201	74808864	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Roche	GRCh38	SNP	chr7	74223201	74808864	FP_FN	1|1:FN:am:.:ti:SNP:homalt	"0/1:FP:am:100:ti:SNP:het
+"	A	G	yes	no
+Common	GRCh37	NA	chr7	74223742	74809405	FN	1|1:TP:gm:ti:SNP:homalt:33.0106	1/1:TP:gm:ti:SNP:homalt:33.0106	T	C	yes	no
+Common	GRCh37	NA	chr7	74224315	75136174	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	T	TTTA	yes	no
+Common	GRCh37	NA	chr7	74224414	75136072	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	G	A	yes	no
+Common	GRCh37	NA	chr7	74225133	75135353	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh37	NA	chr7	74225341	75135145	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	GA	G	yes	no
+Common	GRCh37	NA	chr7	74225578	75134909	FN	1|1:TP:gm:ti:SNP:homalt:33.0111	1/1:TP:gm:ti:SNP:homalt:33.0111	A	G	yes	no
+Common	GRCh37	NA	chr7	74225635	75134852	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	G	A	yes	no
+Common	GRCh37	NA	chr7	74225642	75134845	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	T	C	yes	no
+Common	GRCh37	NA	chr7	74226110	75134377	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	C	T	yes	no
+Common	GRCh37	NA	chr7	74226465	75134020	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	T	G	yes	no
+Common	GRCh37	NA	chr7	74226811	75133674	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	G	C	yes	no
+Common	GRCh37	NA	chr7	74227093	75133391	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	G	A	yes	no
+Common	GRCh37	NA	chr7	74227160	75133324	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	A	T	yes	no
+Common	GRCh37	NA	chr7	74227651	75132833	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	C	T	yes	no
+Common	GRCh37	NA	chr7	74227674	75132810	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	G	A	yes	no
+Common	GRCh37	NA	chr7	74227976	75132507	FN	1|1:TP:gm:tv:SNP:homalt:9.309	1/1:TP:gm:tv:SNP:homalt:9.309	C	G	yes	no
+PacBio_gatk4	GRCh37	SNP	chr7	74228889	75131592	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh37	NA	chr7	74228889	75131592	FN	1|1:TP:gm:ti:SNP:homalt:39.9993	1/1:TP:gm:ti:SNP:homalt:39.9993	T	C	yes	no
+Common	GRCh37	NA	chr7	74229359	75131122	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh37	NA	chr7	74229381	75131100	FN	1|1:TP:gm:tv:SNP:homalt:39.9993	1/1:TP:gm:tv:SNP:homalt:39.9993	C	G	yes	no
+Common	GRCh37	NA	chr7	74229910	75130571	FN	1|1:TP:gm:d1_5:INDEL:homalt:33.9793	1/1:TP:gm:d1_5:INDEL:homalt:33.9793	CG	C	yes	no
+Common	GRCh37	NA	chr7	74230052	75130430	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	G	A	yes	no
+Common	GRCh37	NA	chr7	74230332	75130150	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	GGAAA	G	yes	no
+NCBI	GRCh37	SNP	chr7	74235923	75124546	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:.:tv:SNP:het	T	A	yes	no
+NCBI	GRCh37	SNP	chr7	74236723	75123747	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:30:ti:SNP:het	C	T	yes	no
+Common	GRCh37	NA	chr7	74243785	74828676	FN	1|1:TP:gm:100:i1_5:INDEL:homalt	1/1:TP:gm:100:i1_5:INDEL:homalt	G	GAA	unsure	unsure
+Common	GRCh38	NA	chr7	74243785	74828676	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	G	GAA	unsure	unsure
+NCBI	GRCh38	SNP	chr7	74245071	74829950	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:.:ti:SNP:het	G	A	yes	no
+NCBI	GRCh38	INDEL	chr7	74246394	74831273	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:.:i1_5:INDEL:het	T	TTATC	yes	no
+NCBI	GRCh38	INDEL	chr7	74246528	74831407	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:.:d1_5:INDEL:het	CCTAT	C	yes	no
+Common	GRCh38	NA	chr7	74248332	74833209	FN	1|0:TP:gm:12.4579:ti:SNP:het	0/1:TP:gm:12.4579:ti:SNP:het	C	T	yes	no
+Common	GRCh38	NA	chr7	74248344	74833221	FN	1|2:FN:lm:d6_15,i6_15:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	TTGTGTG	T,TTGTGTGTGTGTG	yes	NA
+Common	GRCh37	NA	chr7	74250873	74835749	FN	1|1:TP:gm:ti:SNP:homalt:39.9993	1/1:TP:gm:ti:SNP:homalt:39.9993	A	G	yes	no
+Common	GRCh37	NA	chr7	74251271	74836149	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	C	T	yes	no
+Common	GRCh37	NA	chr7	74251884	74836762	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	C	T	yes	no
+Common	GRCh37	NA	chr7	74252878	74837756	FN	1|1:TP:gm:100:i1_5:INDEL:homalt	1/1:TP:gm:100:i1_5:INDEL:homalt	C	CT	yes	no
+Common	GRCh38	NA	chr7	74254137	74839017	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh37	NA	chr7	74258915	75101550	FN	0|1:FN:lm:.:tv:SNP:het	.:.:.:0:.:NOCALL:nocall	C	A	yes	no
+Common	GRCh37	NA	chr7	74258943	75101522	FN	0|1:TP:gm:ti:SNP:het:5.7125	0/1:TP:gm:ti:SNP:het:5.7125	A	G	yes	no
+Common	GRCh37	NA	chr7	74259701	75100764	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh37	NA	chr7	74264022	75096440	FN	1|1:TP:gm:i1_5:INDEL:homalt:29.2095	1/1:TP:gm:i1_5:INDEL:homalt:29.2095	C	CA	unsure	unsure
+Common	GRCh38	NA	chr7	74508418	74851505	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh38	NA	chr7	74508470	74851453	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Roche	GRCh38	INDEL	chr7	74508598	74851334	FN	1|1:FN:.:i6_15:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	T	TGGCGGCGTC	yes	no
+Common	GRCh38	NA	chr7	74508598	74851334	FN	1|1:FN:.:i6_15:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	T	TGGCGGCGTC	yes	no
+Common	GRCh38	NA	chr7	74508842	74851090	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh38	NA	chr7	74509323	74850609	FN	1|1:TP:gm:17.7907:ti:SNP:homalt	1/1:TP:gm:17.7907:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr7	74509425	74850507	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+NCBI	GRCh38	SNP	chr7	74510955	74848977	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh38	NA	chr7	74512055	74847877	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	C	yes	no
+Common	GRCh38	NA	chr7	74512509	74847423	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr7	74512537	74847395	FN	1|1:TP:gm:31.5498:ti:SNP:homalt	1/1:TP:gm:31.5498:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr7	74512545	74847387	FN	1|1:TP:gm:27.6974:tv:SNP:homalt	1/1:TP:gm:27.6974:tv:SNP:homalt	G	T	yes	no
+Common	GRCh38	NA	chr7	74513445	74846487	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh38	NA	chr7	74515649	74844282	FN	1|1:TP:gm:12.6773:tv:SNP:homalt	1/1:TP:gm:12.6773:tv:SNP:homalt	T	A	yes	no
+Common	GRCh38	NA	chr7	74516251	74843681	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr7	74517191	74842741	FN	0|1:TP:gm:8.4968:ti:SNP:het	0/1:TP:gm:8.4968:ti:SNP:het	A	G	yes	no
+Common	GRCh38	NA	chr7	74517313	74842619	FN	0|1:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh38	NA	chr7	74517341	74842591	FN	0|1:TP:gm:14.5541:tv:SNP:het	0/1:TP:gm:14.5541:tv:SNP:het	C	A	yes	no
+Common	GRCh38	NA	chr7	74517495	74842437	FN	0|1:TP:gm:24.0936:ti:SNP:het	0/1:TP:gm:24.0936:ti:SNP:het	T	C	yes	no
+Common	GRCh38	NA	chr7	74520628	74839304	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+Roche	GRCh38	INDEL	chr7	74533902	74827830	FN	1|1:FN:.:i1_5:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	C	CT	unsure	unsure
+Roche	GRCh38	INDEL	chr7	74535943	74825802	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	"0/1:FP:am:100:d1_5:INDEL:het
+"	CT	C	unsure	unsure
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr7	74536856	74824891	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	C	CAA	unsure	unsure
+Common	GRCh38	NA	chr7	74536987	74824760	FN	1|1:TP:gm:29.5872:ti:SNP:homalt	1/1:TP:gm:29.5872:ti:SNP:homalt	C	T	yes	no
+NCBI	GRCh38	INDEL	chr7	74543337	74818421	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:.:i1_5:INDEL:het	A	AT	yes	no
+Common	GRCh38	NA	chr7	74545963	74815797	FN	1|1:FN:lm:d6_15:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	GGAAAGAAAGAAA	G	no	NA
+NYGC	GRCh38	SNP	chr7	74546243	74815517	FP_FN	1|1:FN:am:.:ti:SNP:homalt	"0/1:FP:am:51.77:ti:SNP:het
+"	G	A	yes	no
+Common	GRCh38	NA	chr7	74546384	74815375	FN	1|1:TP:gm:100:d1_5:INDEL:homalt	1/1:TP:gm:100:d1_5:INDEL:homalt	CG	C	unsure	unsure
+Common	GRCh38	NA	chr7	74546393	74815366	FN	1|1:TP:gm:36.989:ti:SNP:homalt	1/1:TP:gm:36.989:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr7	74546913	74814846	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	C	G	yes	no
+Common	GRCh38	NA	chr7	74548400	74813359	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+Common	GRCh38	NA	chr7	74548618	74813141	FN	1|1:FN:lm:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh38	NA	chr7	74548641	74813118	FN	1|1:TP:gm:21.6804:ti:SNP:homalt	1/1:TP:gm:21.6804:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr7	74549132	74812627	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	A	T	yes	no
+Common	GRCh38	NA	chr7	74549199	74812560	FN	1|1:TP:gm:39.9993:ti:SNP:homalt	1/1:TP:gm:39.9993:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr7	74549483	74812278	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	G	C	yes	no
+Common	GRCh38	NA	chr7	74550662	74811101	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr7	74550719	74811044	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr7	74550955	74810807	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	GA	G	yes	no
+Common	GRCh38	NA	chr7	74551163	74810599	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr7	74551981	74809781	FN	1|1:FN:.:i1_5:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	T	TTTA	yes	no
+Common	GRCh38	NA	chr7	74551981	74809781	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	T	TTTA	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr7	74552124	74809641	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	C	CA	yes	no
+Common	GRCh38	NA	chr7	74552124	74809641	FN	1|1:TP:gm:36.9903:i1_5:INDEL:homalt	1/1:TP:gm:36.9903:i1_5:INDEL:homalt	C	CA	yes	no
+Common	GRCh37	NA	chr7	100346214	100748591	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GT	no	yes
+Roche	GRCh38	INDEL	chr7	100346214	100748591	FN	0|1:FN:.:i1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	G	GT	no	yes
+Common	GRCh38	NA	chr7	100346214	100748591	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GT	no	yes
+Common	GRCh37	NA	chr7	100346422	100748799	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CG	C	no	yes
+Common	GRCh38	NA	chr7	100346422	100748799	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CG	C	no	yes
+Common	GRCh37	NA	chr7	100347275	100749652	FN	2|1:FN:lm:c1_5,d1_5:INDEL:hetalt:.	0/1:TP:gm:d1_5:INDEL:het:36.9897	ATAT	AAT,*	no	yes
+Common	GRCh37	NA	chr7	100347276	100749653	FP	.:.:.:.:.:NOCALL:nocall	0/1:36.989:FP:lm:tv:SNP:het	T	A	no	yes
+DNAnexus	GRCh38	SNP	chr7	100350046	100752423	FP	.:.:.:.:.:NOCALL:nocall	"0/1:0:FP:.:ti:SNP:het
+"	T	C	yes	no
+PacBio_gatk4	GRCh38	INDEL	chr7	100379274	100781652	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:91:i1_5:INDEL:het	C	CT	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr7	100385487	100787865	FP	.:.:.:.:.:NOCALL:nocall	0/1:50:FP:.:d1_5:INDEL:het	TCTCA	T	no	yes
+Common	GRCh37	NA	chr7	100385487	100787865	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	TCTCA	T	no	yes
+PacBio_gatk4	GRCh38	INDEL	chr7	100385487	100787865	FP	.:.:.:.:.:NOCALL:nocall	0/1:565.73:FP:.:d1_5:INDEL:het	TCTCA	T	no	yes
+Common	GRCh38	NA	chr7	100385487	100787865	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	TCTCA	T	no	yes
+DNAnexus	GRCh37	INDEL	chr7	140504206	140804406	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:0:i1_5:INDEL:het	T	TG	no	yes
+Common	GRCh37	NA	chr7	140504206	140804406	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	T	TG	no	yes
+Common	GRCh37	NA	chr7	140577093	140877293	FP_FN	2|1:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	TGGG	T,TGGGG	no	yes
+Common	GRCh38	NA	chr7	140577093	140877293	FP_FN	2|1:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	TGGG	T,TGGGG	no	yes
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr7	140584229	140884429	FP_FN	2|0:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:36.48:i1_5:INDEL:het	A	ATGTG,ATG	yes	no
+ITER	GRCh37	INDEL	chr7	151851937	152154852	FP	.:.:.:.:.:NOCALL:nocall	1/1:5.8:FP:.:d1_5:INDEL:homalt	CA	C	yes	no
+Common	GRCh38	NA	chr7	151876744	152179659	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	TG	T	unsure	unsure
+NYGC	GRCh38	SNP	chr7	151933375	152236290	FP_FN	1|1:FN:am:.:ti:SNP:homalt	"0/1:FP:am:1347.77:ti:SNP:het
+"	A	G	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr7	151934679	152237594	FP	.:.:.:.:.:NOCALL:nocall	"0/1:4:FP:.:tv:SNP:het
+"	T	A	yes	no
+NYGC	GRCh38	INDEL	chr7	151935394	152238309	FP	.:.:.:.:.:NOCALL:nocall	"0/1:449.73:FP:.:i1_5:INDEL:het
+"	A	AT	yes	no
+ITER	GRCh38	SNP	chr7	151935409	152238324	FP	.:.:.:.:.:NOCALL:nocall	0/1:70.6:FP:.:tv:SNP:het	A	C	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr7	151935706	152238621	FP	.:.:.:.:.:NOCALL:nocall	0/1:45.6:FP:.:d1_5:INDEL:het	AAAAG	A	no	yes
+Common	GRCh37	NA	chr7	151935706	152238621	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	AAAAG	A	no	yes
+Common	GRCh38	NA	chr7	151935706	152238621	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	AAAAG	A	no	yes
+BCM-HGSC_xAtlas	GRCh37	SNP	chr7	151937118	152240033	FP	.:.:.:.:.:NOCALL:nocall	"0/1:34:FP:.:ti:SNP:het
+"	A	G	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr7	151941798	152244713	FP	.:.:.:.:.:NOCALL:nocall	"0/1:26:FP:.:ti:SNP:het
+"	G	A	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr7	151942061	152244976	FP	.:.:.:.:.:NOCALL:nocall	0/1:40.51:FP:.:tv:SNP:het	G	C	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr7	151942108	152245023	FP	.:.:.:.:.:NOCALL:nocall	0/1:37.43:FP:.:ti:SNP:het	C	T	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr7	151944516	152247431	FP	.:.:.:.:.:NOCALL:nocall	0/1:38.36:FP:.:ti:SNP:het	T	C	yes	no
+Common	GRCh38	NA	chr7	151944702	152247617	FP_FN	1|1:TP:gm:27.2143:ti:SNP:homalt	1/1:TP:gm:27.2143:ti:SNP:homalt	A	G	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr7	151958097	152261012	FP	.:.:.:.:.:NOCALL:nocall	0/1:34.14:FP:.:d1_5:INDEL:het	AG	A	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr7	151958111	152261026	FP	.:.:.:.:.:NOCALL:nocall	0/1:35.72:FP:.:tv:SNP:het	C	A	yes	no
+NCBI	GRCh37	INDEL	chr7	151966367	152269282	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:.:d1_5:INDEL:het	AATAC	A	yes	no
+NCBI	GRCh37	SNP	chr7	151969425	152272340	FP	.:.:.:.:.:NOCALL:nocall	1/1:30:FP:.:ti:SNP:homalt	C	T	yes	no
+NCBI	GRCh38	SNP	chr7	151973305	152276220	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:.:ti:SNP:het	T	C	yes	no
+NCBI	GRCh37	SNP	chr7	151975328	152278243	FP	.:.:.:.:.:NOCALL:nocall	1/1:30:FP:.:ti:SNP:homalt	C	T	yes	no
+NCBI	GRCh37	INDEL	chr7	151975361	152278276	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:.:i1_5:INDEL:het	T	TTAAA	yes	no
+Common	GRCh37	NA	chr7	151975927	152278842	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	A	G	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr7	151977071	152279986	FP	.:.:.:.:.:NOCALL:nocall	"0/1:21:FP:.:ti:SNP:het
+"	T	C	yes	no
+PacBio_gatk4	GRCh37	INDEL	chr7	151995982	152298897	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TTATA	T	no	yes
+Common	GRCh37	NA	chr7	151995982	152298897	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TTATA	T	no	yes
+Common	GRCh38	NA	chr7	151995982	152298897	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TTATA	T	no	yes
+Common	GRCh37	NA	chr7	151996404	152299319	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	A	AAAAT	no	yes
+Common	GRCh38	NA	chr7	151996404	152299319	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	A	AAAAT	no	yes
+Common	GRCh37	NA	chr7	152057158	152360073	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	TG	T	unsure	unsure
+Common	GRCh38	NA	chr7	152057158	152360073	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	TG	T	unsure	unsure
+Common	GRCh37	NA	chr7	152062019	152364934	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	GAC	G	no	yes
+ITER	GRCh38	INDEL	chr7	152062019	152364934	FP	.:.:.:.:.:NOCALL:nocall	0/1:420.06:FP:lm:d1_5:INDEL:het	GAC	G	no	yes
+Common	GRCh38	NA	chr7	152062019	152364934	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	GAC	G	no	yes
+Common	GRCh37	NA	chr7	152062021	152364936	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:i1_5:INDEL:het	C	CAC	no	yes
+Common	GRCh38	NA	chr7	152062021	152364936	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:i1_5:INDEL:het	C	CAC	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr7	152077189	152380104	FP	.:.:.:.:.:NOCALL:nocall	0/1:33.19:FP:.:ti:SNP:het	T	C	yes	no
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr7	152080270	152383185	FP	.:.:.:.:.:NOCALL:nocall	"0/1:18:FP:.:i1_5:INDEL:het
+"	C	CT	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr7	152081801	152384716	FP	.:.:.:.:.:NOCALL:nocall	"0/1:27:FP:.:ti:SNP:het
+"	A	G	yes	no
+Common	GRCh37	NA	chr7	152084554	152387469	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AT	unsure	unsure
+Common	GRCh38	NA	chr7	152084554	152387469	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AT	unsure	unsure
+BCM-HGSC_xAtlas	GRCh38	SNP	chr7	152085658	152388573	FP	.:.:.:.:.:NOCALL:nocall	"0/1:13:FP:.:ti:SNP:het
+"	C	T	yes	no
+ITER	GRCh38	SNP	chr7	152098240	152401155	FP	.:.:.:.:.:NOCALL:nocall	0/1:17.7:FP:.:tv:SNP:het	G	T	yes	no
+ITER	GRCh38	SNP	chr7	152098433	152401348	FP	.:.:.:.:.:NOCALL:nocall	0/1:4.2:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr7	152098917	152401832	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	C	T	yes	no
+Common	GRCh38	NA	chr7	152099017	152401932	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	G	A	yes	no
+NYGC	GRCh37	INDEL	chr7	152099202	152402117	FP	.:.:.:.:.:NOCALL:nocall	"0/1:3484.73:FP:.:d1_5:INDEL:het
+"	AC	A	yes	no
+Common	GRCh38	NA	chr7	152099520	152402435	FP	.:.:.:.:.:NOCALL:nocall	0/1:31.5498:FP:.:tv:SNP:het	C	A	yes	no
+Roche	GRCh38	SNP	chr7	152099575	152402490	FP	.:.:.:.:.:NOCALL:nocall	"0/1:22.6817:FP:.:ti:SNP:het
+"	C	T	yes	no
+Common	GRCh38	NA	chr7	152099575	152402490	FP	.:.:.:.:.:NOCALL:nocall	0/1:22.6817:FP:.:ti:SNP:het	C	T	yes	no
+Common	GRCh38	NA	chr7	152099620	152402535	FP	.:.:.:.:.:NOCALL:nocall	0/1:16.0615:FP:.:tv:SNP:het	T	G	yes	no
+Common	GRCh38	NA	chr7	152099906	152402821	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:tv:SNP:het	T	A	yes	no
+Common	GRCh38	NA	chr7	152099917	152402832	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr7	152099924	152402839	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	T	C	yes	no
+Common	GRCh38	NA	chr7	152099989	152402904	FP	.:.:.:.:.:NOCALL:nocall	0/1:32.2186:FP:.:tv:SNP:het	T	A	yes	no
+Common	GRCh38	NA	chr7	152100053	152402968	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	GACAT	G	yes	no
+Common	GRCh38	NA	chr7	152100191	152403106	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	T	C	yes	no
+ITER	GRCh38	SNP	chr7	152100192	152403107	FP	.:.:.:.:.:NOCALL:nocall	0/1:7.6:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr7	152100192	152403107	FP	.:.:.:.:.:NOCALL:nocall	0/1:5.5037:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr7	152100213	152403128	FP	.:.:.:.:.:NOCALL:nocall	0/1:22.5197:FP:.:ti:SNP:het	G	A	yes	no
+NYGC	GRCh37	INDEL	chr7	152100220	152403135	FP	.:.:.:.:.:NOCALL:nocall	"0/1:1093.73:FP:.:d1_5:INDEL:het
+"	AC	A	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr7	152100223	152403138	FP	.:.:.:.:.:NOCALL:nocall	1/1:59.17:FP:.:d1_5:INDEL:homalt	TA	T	yes	no
+Common	GRCh38	NA	chr7	152100223	152403138	FP	.:.:.:.:.:NOCALL:nocall	0/1:29.5865:FP:.:d1_5:INDEL:het	TA	T	yes	no
+PacBio_gatk4	GRCh38	SNP	chr7	152100255	152403170	FP	.:.:.:.:.:NOCALL:nocall	0/1:3233.77:FP:.:ti:SNP:het	C	T	yes	no
+Common	GRCh38	NA	chr7	152100255	152403170	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	C	T	yes	no
+Common	GRCh38	NA	chr7	152100309	152403224	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr7	152100313	152403228	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	G	A	yes	no
+Common	GRCh38	NA	chr7	152100316	152403231	FP	.:.:.:.:.:NOCALL:nocall	0/1:30.97:FP:.:ti:SNP:het	A	G	yes	no
+PacBio_gatk4	GRCh38	SNP	chr7	152100326	152403241	FP	.:.:.:.:.:NOCALL:nocall	0/1:1440.77:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr7	152100326	152403241	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr7	152100370	152403285	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:tv:SNP:het	C	G	yes	no
+Common	GRCh38	NA	chr7	152100421	152403336	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	C	T	yes	no
+Common	GRCh38	NA	chr7	152100455	152403370	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr7	152100460	152403375	FP	.:.:.:.:.:NOCALL:nocall	0/1:28.2391:FP:.:i1_5:INDEL:het	G	GCC,GCCAT	yes	no
+Common	GRCh38	NA	chr7	152100465	152403380	FP	.:.:.:.:.:NOCALL:nocall	0/1:28.2391:FP:.:d1_5:INDEL:het	GCA	G	yes	no
+Common	GRCh38	NA	chr7	152100486	152403401	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	C	T	yes	no
+Common	GRCh38	NA	chr7	152100545	152403460	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	T	C	yes	no
+Common	GRCh38	NA	chr7	152100575	152403490	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	C	A	yes	no
+Common	GRCh38	NA	chr7	152100591	152403506	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	T	A	yes	no
+Common	GRCh38	NA	chr7	152100594	152403509	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	C	G	yes	no
+Common	GRCh38	NA	chr7	152100760	152403675	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	T	C	yes	no
+Common	GRCh38	NA	chr7	152100772	152403687	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	C	T	yes	no
+Common	GRCh38	NA	chr7	152100790	152403705	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	C	T	yes	no
+Common	GRCh37	NA	chr7	152100800	152403715	FP	.:.:.:.:.:NOCALL:nocall	0/2:100:FP:.:d1_5:INDEL:het	TAC	TACAC,T	yes	no
+NCBI	GRCh38	INDEL	chr7	152100800	152403715	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:.:d1_5:INDEL:het	TAC	T	yes	no
+Common	GRCh37	NA	chr7	152100802	152403717	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	C	CAC	yes	no
+Common	GRCh38	NA	chr7	152100895	152403810	FP	.:.:.:.:.:NOCALL:nocall	0/1:14.789:FP:.:d6_15:INDEL:het	CGTGGAAGGATGG	CATGG,C	yes	no
+NYGC	GRCh38	INDEL	chr7	152100905	152403820	FP	.:.:.:.:.:NOCALL:nocall	"0/1:4883.73:FP:.:d1_5:INDEL:het
+"	TGGAA	T	yes	no
+Common	GRCh38	NA	chr7	152100905	152403820	FP	.:.:.:.:.:NOCALL:nocall	0/1:14.789:FP:.:d1_5:INDEL:het	TGGAA	T	yes	no
+Common	GRCh38	NA	chr7	152101023	152403938	FP	.:.:.:.:.:NOCALL:nocall	0/1:17.9762:FP:.:tv:SNP:het	G	C	yes	no
+Common	GRCh38	NA	chr7	152101138	152404053	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	A	G	yes	no
+Roche	GRCh38	SNP	chr7	152101178	152404093	FP	.:.:.:.:.:NOCALL:nocall	"0/1:100:FP:.:tv:SNP:het
+"	A	C	yes	no
+Common	GRCh38	NA	chr7	152101178	152404093	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:tv:SNP:het	A	C	yes	no
+Common	GRCh38	NA	chr7	152101246	152404161	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	T	C	yes	no
+NYGC	GRCh38	SNP	chr7	152101347	152404262	FP	.:.:.:.:.:NOCALL:nocall	"0/1:196.77:FP:.:ti:SNP:het
+"	T	C	yes	no
+NYGC	GRCh38	SNP	chr7	152101382	152404297	FP	.:.:.:.:.:NOCALL:nocall	"0/1:3374.77:FP:.:ti:SNP:het
+"	T	C	yes	no
+NYGC	GRCh37	SNP	chr7	152101713	152404628	FP	.:.:.:.:.:NOCALL:nocall	"0/1:1017.77:FP:.:tv:SNP:het
+"	T	A	yes	no
+Common	GRCh38	NA	chr7	152101716	152404631	FP	.:.:.:.:.:NOCALL:nocall	0/1:8.9675:FP:.:i6_15:INDEL:het	C	CAAAAAAAAAA,CAAAAAAAAAAA,CAAAAAAAAAAAA	yes	no
+Common	GRCh38	NA	chr7	152103004	152405919	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	G	A	yes	no
+Common	GRCh38	NA	chr7	152103016	152405931	FP	.:.:.:.:.:NOCALL:nocall	0/1:32.2195:FP:.:ti:SNP:het	T	C	yes	no
+Common	GRCh38	NA	chr7	152103073	152405988	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	CAG	C	yes	no
+Common	GRCh38	NA	chr7	152103149	152406064	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	G	A	yes	no
+Common	GRCh38	NA	chr7	152103183	152406098	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	T	A	yes	no
+Common	GRCh38	NA	chr7	152103233	152406148	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	G	T	yes	no
+Common	GRCh38	NA	chr7	152103265	152406180	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	G	A	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr7	152103290	152406205	FP	.:.:.:.:.:NOCALL:nocall	0/1:45.15:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr7	152103290	152406205	FP	.:.:.:.:.:NOCALL:nocall	0/1:18.775:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr7	152103409	152406324	FP	.:.:.:.:.:NOCALL:nocall	0/1:39.9993:FP:.:ti:SNP:het	T	C	yes	no
+Common	GRCh38	NA	chr7	152103464	152406379	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:tv:SNP:het	C	G	yes	no
+Common	GRCh38	NA	chr7	152103712	152406627	FP	.:.:.:.:.:NOCALL:nocall	0/1:35.2289:FP:.:ti:SNP:het	C	T	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr7	152103818	152406733	FP	.:.:.:.:.:NOCALL:nocall	"0/1:10:FP:.:ti:SNP:het
+"	C	T	yes	no
+Common	GRCh38	NA	chr7	152103843	152406758	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	C	T	yes	no
+NYGC	GRCh37	SNP	chr7	152105742	152408657	FP	.:.:.:.:.:NOCALL:nocall	"0/1:7039.77:FP:.:ti:SNP:het
+"	C	T	yes	no
+NYGC	GRCh37	INDEL	chr7	152106491	152409406	FP	.:.:.:.:.:NOCALL:nocall	"0/1:5999.73:FP:.:d1_5:INDEL:het
+"	GAAGA	G	yes	no
+PacBio_gatk4	GRCh38	INDEL	chr7	152107279	152410194	FP	.:.:.:.:.:NOCALL:nocall	0/1:936.73:FP:.:d1_5:INDEL:het	GA	G	yes	no
+NYGC	GRCh37	SNP	chr7	152107413	152410328	FP	.:.:.:.:.:NOCALL:nocall	"0/1:443.77:FP:.:ti:SNP:het
+"	C	T	yes	no
+PacBio_gatk4	GRCh38	SNP	chr7	152107976	152410891	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:1462.77:tv:SNP:het	C	G	yes	no
+PacBio_gatk4	GRCh38	SNP	chr7	152108726	152411641	FP	.:.:.:.:.:NOCALL:nocall	0/1:735.77:FP:.:tv:SNP:het	T	G	yes	no
+Common	GRCh38	NA	chr7	152108894	152411809	FP	.:.:.:.:.:NOCALL:nocall	0/1:36.9903:FP:.:ti:SNP:het	G	A	yes	no
+Roche	GRCh38	SNP	chr7	152109355	152412270	FP	.:.:.:.:.:NOCALL:nocall	"0/1:8.4389:FP:.:ti:SNP:het
+"	A	G	yes	no
+Roche	GRCh38	SNP	chr7	152109494	152412409	FP	.:.:.:.:.:NOCALL:nocall	"1/1:27.448:FP:.:tv:SNP:homalt
+"	A	T	yes	no
+PacBio_gatk4	GRCh38	INDEL	chr7	152110606	152413521	FP	.:.:.:.:.:NOCALL:nocall	0/1:1365.73:FP:.:i1_5:INDEL:het	C	CTGTAA	yes	no
+ITER	GRCh38	INDEL	chr7	152111935	152414850	FP	.:.:.:.:.:NOCALL:nocall	0/1:6.2:FP:.:i1_5:INDEL:het	C	CT	yes	no
+PacBio_gatk4	GRCh38	SNP	chr7	152112594	152415509	FP	.:.:.:.:.:NOCALL:nocall	0/1:103.77:FP:.:ti:SNP:het	G	A	yes	no
+PacBio_gatk4	GRCh38	SNP	chr7	152112661	152415576	FP	.:.:.:.:.:NOCALL:nocall	0/1:100.77:FP:.:ti:SNP:het	T	C	yes	no
+Common	GRCh37	NA	chr7	152114133	152417048	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	yes	no
+Common	GRCh38	NA	chr7	152114133	152417048	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	yes	no
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr8	1897184	1949018	FN	1|2:FN:am:d1_5,i1_5:INDEL:hetalt:.	".:.:.:.:NOCALL:nocall:17
+"	ATG	A,ATGTGTG	yes	no
+Roche	GRCh37	INDEL	chr8	42132303	42274785	FP	.:.:.:.:.:NOCALL:nocall	"0/1:100:FP:lm:i1_5:INDEL:het
+"	C	CGGGG	yes	no
+NCBI	GRCh37	INDEL	chr8	42132304	42274786	FP_FN	2|2:FN:lm:.:i1_5:INDEL:homalt	1/1:FP:lm:30:i1_5:INDEL:homalt	G	GC,GCC	unsure	unsure
+Common	GRCh37	NA	chr8	42145908	42288390	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	CA	C	no	yes
+Common	GRCh38	NA	chr8	42145908	42288390	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	CA	C	no	yes
+Common	GRCh37	NA	chr8	82577124	81664889	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GA	no	yes
+Common	GRCh38	NA	chr8	82577124	81664889	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GA	no	yes
+Common	GRCh37	NA	chr8	95180325	94168097	FP_FN	2|1:FN:am:d16_plus,i1_5:INDEL:hetalt:.	0/1:FP:am:d16_plus:INDEL:het:100	AATATATATATATATATATATATATATAT	A,AATATATATATATATATATATATATATATAT	no	yes
+Common	GRCh38	NA	chr8	95180325	94168097	FP_FN	2|1:FN:am:d16_plus,i1_5:.:INDEL:hetalt	0/1:FP:am:d16_plus:100:INDEL:het	AATATATATATATATATATATATATATAT	A,AATATATATATATATATATATATATATATAT	no	yes
+Common	GRCh37	NA	chr8	144296792	143214917	FN	0|1:FN:.:d6_15:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GGCTTTGGGAGCA	G	no	yes
+Common	GRCh38	NA	chr8	144296792	143214917	FN	0|1:FN:.:d6_15:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GGCTTTGGGAGCA	G	no	yes
+Common	GRCh37	NA	chr8	144297980	143216105	FP_FN	2|1:FN:am:i1_5:.:INDEL:hetalt	0/1:FP:am:i1_5:100:INDEL:het	C	CG,CGG	unsure	unsure
+Common	GRCh38	NA	chr8	144297980	143216105	FP_FN	2|1:FN:am:i1_5:.:INDEL:hetalt	0/1:FP:am:i1_5:100:INDEL:het	C	CG,CGG	unsure	unsure
+Common	GRCh37	NA	chr9	34641690	34641693	FP_FN	0|2:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:100:i1_5:INDEL:het	C	CT,CTT	no	yes
+Common	GRCh38	NA	chr9	34641690	34641693	FP_FN	0|2:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:100:i1_5:INDEL:het	C	CT,CTT	no	yes
+Common	GRCh37	NA	chr9	34650279	34650282	FP_FN	2|1:TP:gm:i6_15:100:INDEL:hetalt	1/2:TP:gm:i6_15:100:INDEL:hetalt	C	CAAAAAAAAAAA,CAAAAAAAAA,CAAAAA,CAAAAAAAA,CAAAAAAAAAA	yes	no
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr9	71680456	69065540	FP_FN	1|2:FN:am:i1_5:.:INDEL:hetalt	"1/1:FP:am:i1_5:15:INDEL:homalt
+"	C	CAA,CAAA	yes	no
+DNAnexus	GRCh38	SNP	chr9	71796581	69181665	FP	.:.:.:.:.:NOCALL:nocall	"0/1:0:FP:.:tv:SNP:het
+"	A	T	yes	no
+Common	GRCh37	NA	chr9	71811843	69196927	FP	.:.:.:.:.:NOCALL:nocall	1/1:100:FP:lm:d6_15:INDEL:homalt	ATGTGTG	A	no	NA
+Common	GRCh38	NA	chr9	71811843	69196927	FP	.:.:.:.:.:NOCALL:nocall	1/1:39.9993:FP:lm:d6_15:INDEL:homalt	ATGTGTG	A	no	NA
+DNAnexus	GRCh38	INDEL	chr9	71811856	69196940	FP_FN	2|3:FN:am:i16_plus,i6_15:.:INDEL:hetalt	"1/0:FP:lm:ti:0:SNP:het
+"	T	C,TACACACACAC,TACACACACACACACAC	no	unsure
+Common	GRCh37	NA	chr9	71811862	69196946	FP	.:.:.:.:.:NOCALL:nocall	1/2:100:FP:lm:i16_plus,i6_15:INDEL:hetalt	T	TACACACACACACACAC,TACACACACAC	no	NA
+Common	GRCh38	NA	chr9	71811862	69196946	FP	.:.:.:.:.:NOCALL:nocall	2/1:100:FP:lm:i16_plus,i6_15:INDEL:hetalt	T	TACACACACAC,TACACACACACACACAC	no	NA
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr9	71813075	69198159	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	"0/1:FP:am:13:i1_5:INDEL:het
+"	T	TTG	yes	no
+NYGC	GRCh37	INDEL	chr9	71825214	69210298	FN	0|1:FN:lm:i1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	C	CAAA	unsure	unsure
+Common	GRCh37	NA	chr9	71825215	69210299	FP_FN	2|1:FN:am:i1_5,tv:.:INDEL:hetalt	0/1:FP:am:tv:100:SNP:het	C	A,CCCCA,CAAA,CCCA,CA	unsure	unsure
+ITER	GRCh37	SNP	chr9	71827618	69212702	FP	.:.:.:.:.:NOCALL:nocall	1/1:500:FP:lm:ti:SNP:homalt	T	C	yes	no
+Roche	GRCh38	INDEL	chr9	71888091	69273175	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	"0/1:FP:am:100:d1_5:INDEL:het
+"	TA	T	no	yes
+NYGC	GRCh38	INDEL	chr9	71888091	69273175	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	"0/1:FP:am:264.73:d1_5:INDEL:het
+"	TA	T	no	yes
+Common	GRCh38	NA	chr9	71888091	69273175	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	TA	T	no	yes
+ITER	GRCh37	SNP	chr9	113537146	110774866	FP	.:.:.:.:.:NOCALL:nocall	1/1:1364.08:FP:am:ti:SNP:homalt	T	C	yes	no
+Common	GRCh37	NA	chr9	113554171	110791891	FN	0|1:TP:gm:tv:SNP:het:100	0/1:TP:gm:tv:SNP:het:100	G	T	yes	no
+Common	GRCh38	NA	chr9	113554171	110791891	FN	0|1:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	G	T	yes	no
+Common	GRCh37	NA	chr9	113554891	110792611	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	T	C	yes	no
+Common	GRCh38	NA	chr9	113554891	110792611	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	T	C	yes	no
+Common	GRCh37	NA	chr9	113555009	110792729	FN	0|1:TP:gm:tv:SNP:het:100	0/1:TP:gm:tv:SNP:het:100	C	G	yes	no
+Common	GRCh38	NA	chr9	113555009	110792729	FN	0|1:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	C	G	yes	no
+Common	GRCh37	NA	chr9	113555243	110792963	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	A	G	yes	no
+Common	GRCh38	NA	chr9	113555243	110792963	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	A	G	yes	no
+Common	GRCh37	NA	chr9	113555750	110793470	FN	0|1:TP:gm:tv:SNP:het:26.2004	0/1:TP:gm:tv:SNP:het:26.2004	G	C	yes	no
+Common	GRCh38	NA	chr9	113555750	110793470	FN	0|1:TP:gm:18.2256:tv:SNP:het	0/1:TP:gm:18.2256:tv:SNP:het	G	C	yes	no
+DNAnexus	GRCh37	SNP	chr9	113556856	110794576	FP	.:.:.:.:.:NOCALL:nocall	0/1:0:FP:.:tv:SNP:het	C	G	yes	no
+Common	GRCh37	NA	chr9	136141986	133266572	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	CT	C	no	yes
+DNAnexus	GRCh38	INDEL	chr9	136141986	133266572	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	"0/1:FP:am:0:d1_5:INDEL:het
+"	CTT	C	no	yes
+Common	GRCh38	NA	chr9	136141986	133266572	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	CTT	C	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr9	136141987	133266573	FP	.:.:.:.:.:NOCALL:nocall	0/1:258.52:FP:lm:d1_5:INDEL:het	TT	T	no	yes
+Common	GRCh38	NA	chr9	136141987	133266573	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	TT	T	no	yes
+Common	GRCh37	NA	chr9	140001445	137106993	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TGGG	T	no	yes
+Common	GRCh38	NA	chr9	140001445	137106993	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TGGG	T	no	yes
+ITER	GRCh37	SNP	chr10	14972313	14930314	FP	.:.:.:.:.:NOCALL:nocall	0/1:65.6:FP:.:tv:SNP:het	G	T	yes	no
+Common	GRCh37	NA	chr10	18098887	17809898	FN	0|1:TP:gm:ti:SNP:het:36.989	0/1:TP:gm:ti:SNP:het:36.989	G	A	yes	no
+Common	GRCh37	NA	chr10	18098959	17809970	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh37	NA	chr10	18099054	17810065	FN	0|1:TP:gm:d1_5:INDEL:het:100	0/1:TP:gm:d1_5:INDEL:het:100	TAGAA	T	yes	no
+Common	GRCh37	NA	chr10	18099134	17810145	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	A	T	yes	no
+Common	GRCh37	NA	chr10	18100106	17811117	FN	1|0:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	T	C	yes	no
+Common	GRCh37	NA	chr10	18100507	17811518	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AC	yes	no
+Common	GRCh37	NA	chr10	18100742	17811753	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+Common	GRCh37	NA	chr10	18100772	17811783	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	C	yes	no
+Common	GRCh37	NA	chr10	18101502	17812513	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18101556	17812567	FP_FN	2|1:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:18.6785:INDEL:homalt	C	CT,CTTT,CTT	yes	no
+Common	GRCh37	NA	chr10	18101972	17812986	FN	1|1:TP:gm:tv:SNP:homalt:27.2143	1/1:TP:gm:tv:SNP:homalt:27.2143	G	T	yes	no
+Common	GRCh37	NA	chr10	18103401	17814417	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh37	NA	chr10	18103448	17814464	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	C	yes	no
+Common	GRCh37	NA	chr10	18103451	17814467	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr10	18104047	17815062	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18104047	17815062	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18104550	17815565	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+Roche	GRCh37	SNP	chr10	18104982	17815998	FN	1|0:FN:.:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	G	A	yes	no
+Common	GRCh37	NA	chr10	18104982	17815998	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr10	18105009	17816025	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18105922	17816938	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	A	yes	no
+Common	GRCh37	NA	chr10	18106177	17817193	FP_FN	0|1:FN:am:.:ti:SNP:het	1/1:FP:am:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh37	NA	chr10	18106434	17817451	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18106677	17817694	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	A	yes	no
+Common	GRCh37	NA	chr10	18107247	17818264	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18107305	17818322	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	G	A	yes	no
+Common	GRCh37	NA	chr10	18107797	17818814	FN	1|1:FN:lm:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:10.2299	C	A	yes	no
+Common	GRCh37	NA	chr10	18108051	17819068	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18108824	17819853	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	C	yes	no
+Common	GRCh37	NA	chr10	18108994	17820023	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	G	yes	no
+Common	GRCh37	NA	chr10	18110009	17821038	FN	1|0:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18110034	17821063	FN	1|0:FN:lm:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+Common	GRCh37	NA	chr10	18110695	17821725	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+Common	GRCh37	NA	chr10	18110991	17822021	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr10	18111318	17822348	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18112225	17823255	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18112620	17823650	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	G	A	yes	no
+Common	GRCh37	NA	chr10	18112912	17823942	FP_FN	0|1:FN:am:.:ti:SNP:het	1/1:FP:am:39.9993:ti:SNP:homalt	C	T	yes	no
+Common	GRCh37	NA	chr10	18112997	17824027	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	C	yes	no
+Common	GRCh37	NA	chr10	18114325	17825355	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	A	G	yes	no
+Common	GRCh37	NA	chr10	18115167	17826197	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CT	yes	no
+ITER	GRCh37	SNP	chr10	18115458	17826489	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	A	yes	no
+Common	GRCh37	NA	chr10	18115458	17826489	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	A	yes	no
+Common	GRCh37	NA	chr10	18115500	17826531	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TGAA	T	yes	no
+DNAnexus	GRCh37	SNP	chr10	18116450	17827497	FP_FN	0|1:FN:am:.:ti:SNP:het	1/1:FP:am:0:ti:SNP:homalt	G	A	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr10	18116450	17827497	FP_FN	0|1:FN:am:.:ti:SNP:het	1/1:FP:am:49.73:ti:SNP:homalt	G	A	yes	no
+PacBio_gatk4	GRCh37	SNP	chr10	18117124	17828171	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr10	18117124	17828171	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr10	18117813	17828860	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Roche	GRCh37	SNP	chr10	18118052	17829099	FP_FN	0|1:FN:am:.:ti:SNP:het	"1/1:FP:am:100:ti:SNP:homalt
+"	C	T	yes	no
+NYGC	GRCh37	SNP	chr10	18118052	17829099	FP_FN	0|1:FN:am:.:ti:SNP:het	"1/1:FP:am:650.77:ti:SNP:homalt
+"	C	T	yes	no
+Common	GRCh37	NA	chr10	18118226	17829273	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh37	NA	chr10	18119566	17830613	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18119837	17830884	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CTA	yes	no
+Common	GRCh37	NA	chr10	18120006	17831055	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	AT	A	yes	no
+Common	GRCh37	NA	chr10	18120368	17831416	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+Common	GRCh37	NA	chr10	18120660	17831708	FP_FN	0|1:FN:am:.:tv:SNP:het	1/1:FP:am:100:tv:SNP:homalt	A	T	yes	no
+Common	GRCh37	NA	chr10	18121552	17832600	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	G	yes	no
+Common	GRCh37	NA	chr10	18122004	17833052	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	A	yes	no
+Common	GRCh37	NA	chr10	18122472	17833520	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CA	C	yes	no
+Common	GRCh37	NA	chr10	18122716	17833763	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18122770	17833817	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+Common	GRCh37	NA	chr10	18122796	17833843	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr10	18122797	17833844	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	G	yes	no
+Common	GRCh37	NA	chr10	18122811	17833858	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+DNAnexus	GRCh37	SNP	chr10	18123283	17834330	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	G	C	yes	no
+Common	GRCh37	NA	chr10	18124504	17835551	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	G	yes	no
+Common	GRCh37	NA	chr10	18124963	17836010	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	C	yes	no
+Common	GRCh37	NA	chr10	18125244	17836291	FN	1|0:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18125536	17836583	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh37	NA	chr10	18125539	17836586	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18125814	17836861	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+Common	GRCh37	NA	chr10	18126054	17837101	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	T	G	yes	no
+Common	GRCh37	NA	chr10	18126060	17837107	FN	1|1:TP:gm:ti:SNP:homalt:39.9993	1/1:TP:gm:ti:SNP:homalt:39.9993	G	A	yes	no
+NYGC	GRCh37	SNP	chr10	18126943	17837990	FN	1|0:FN:.:tv:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	A	T	yes	no
+Common	GRCh37	NA	chr10	18126943	17837990	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+Roche	GRCh37	SNP	chr10	18127378	17838425	FP_FN	0|1:FN:am:.:ti:SNP:het	"1/1:FP:am:100:ti:SNP:homalt
+"	G	A	yes	no
+Common	GRCh37	NA	chr10	18127509	17838556	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TA	yes	no
+Common	GRCh37	NA	chr10	18128194	17839242	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	G	yes	no
+Common	GRCh37	NA	chr10	18128255	17839303	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	A	yes	no
+Common	GRCh37	NA	chr10	18128432	17839480	FN	1|0:FN:.:i16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CTTTAAAGAATTTGTGAAAATTCT	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr10	18128994	17840065	FP_FN	1|2:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:90.03:INDEL:homalt	C	CA,CAA	yes	no
+Common	GRCh38	NA	chr10	18128994	17840065	FP_FN	1|2:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:100:INDEL:homalt	C	CA,CAA	yes	no
+Common	GRCh37	NA	chr10	18129224	17840295	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TA	T	yes	no
+Common	GRCh37	NA	chr10	18129792	17840863	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18129993	17841064	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr10	18130385	17841456	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh37	NA	chr10	18131250	17842321	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18132162	17843233	FN	1|0:FN:lm:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+Common	GRCh37	NA	chr10	18132367	17843438	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+ITER	GRCh37	SNP	chr10	18132839	17843910	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+Common	GRCh37	NA	chr10	18132839	17843910	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+Common	GRCh37	NA	chr10	18133191	17844262	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	A	yes	no
+Common	GRCh37	NA	chr10	18133857	17844928	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr10	18134015	17845086	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18134696	17845767	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+Common	GRCh37	NA	chr10	18135121	17846192	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	C	yes	no
+Common	GRCh37	NA	chr10	18135271	17846342	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	AT	A	yes	no
+Common	GRCh37	NA	chr10	18135638	17846709	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18135641	17846712	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18135646	17846717	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18135686	17846757	FP_FN	0|1:FN:am:.:tv:SNP:het	1/1:FP:am:100:tv:SNP:homalt	T	G	yes	no
+Common	GRCh37	NA	chr10	18136095	17847166	FP_FN	0|1:FN:am:.:ti:SNP:het	1/1:FP:am:24.2022:ti:SNP:homalt	T	C	yes	no
+Common	GRCh37	NA	chr10	18136396	17847467	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh37	NA	chr10	18136527	17847598	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	A	C	yes	no
+Common	GRCh37	NA	chr10	18136535	17847606	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	A	T	yes	no
+Common	GRCh37	NA	chr10	18136719	17847790	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	G	T	yes	no
+Common	GRCh37	NA	chr10	18136750	17847821	FN	1|1:TP:gm:i1_5:INDEL:homalt:33.0106	1/1:TP:gm:i1_5:INDEL:homalt:33.0106	A	ACT	yes	no
+Common	GRCh37	NA	chr10	18137627	17848698	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18137777	17848848	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh37	NA	chr10	18138232	17849303	FN	1|1:FN:lm:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	T	TA	yes	no
+Common	GRCh37	NA	chr10	18138386	17849457	FN	1|1:TP:gm:ti:SNP:homalt:17.2101	1/1:TP:gm:ti:SNP:homalt:17.2101	G	A	yes	no
+Roche	GRCh37	SNP	chr10	18138487	17849558	FN	1|1:FN:.:ti:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	G	A	yes	no
+Common	GRCh37	NA	chr10	18138487	17849558	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr10	18138488	17849559	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	A	AC	yes	no
+Common	GRCh37	NA	chr10	18138630	17849701	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+PacBio_gatk4	GRCh37	SNP	chr10	18138639	17849710	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18138639	17849710	FN	1|1:FN:lm:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18138656	17849727	FN	1|1:FN:lm:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18138665	17849736	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	G	C	yes	no
+Common	GRCh37	NA	chr10	18138747	17849818	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh37	NA	chr10	18139118	17850189	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	T	C	yes	no
+NYGC	GRCh37	INDEL	chr10	18139185	17850256	FN	1|2:FN:.:i1_5,i6_15:INDEL:hetalt:.	".:.:.:.:NOCALL:nocall:0
+"	G	GTTTTT,GTTTTTTTT	yes	no
+Common	GRCh37	NA	chr10	18139185	17850256	FN	1|2:FN:.:i1_5,i6_15:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	G	GTTTTT,GTTTTTTTT	yes	no
+Roche	GRCh37	SNP	chr10	18139994	17851065	FN	1|0:FN:.:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	A	G	yes	no
+Common	GRCh37	NA	chr10	18139994	17851065	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18140129	17851200	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18140309	17851380	FN	1|0:FN:lm:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+Common	GRCh37	NA	chr10	18140608	17851679	FN	1|1:TP:gm:tv:SNP:homalt:100	1/1:TP:gm:tv:SNP:homalt:100	T	G	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr10	18141334	17852405	FN	0|1:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	G	yes	no
+Common	GRCh37	NA	chr10	18142617	17853688	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	G	A	yes	no
+Roche	GRCh37	SNP	chr10	18142881	17853952	FN	1|1:FN:.:tv:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	T	G	yes	no
+Common	GRCh37	NA	chr10	18142881	17853952	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	T	G	yes	no
+NYGC	GRCh37	SNP	chr10	18143118	17854189	FN	0|1:FN:.:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	C	T	yes	no
+Common	GRCh37	NA	chr10	18144393	17855464	FN	1|1:TP:gm:ti:SNP:homalt:33.0111	1/1:TP:gm:ti:SNP:homalt:33.0111	A	G	yes	no
+Common	GRCh37	NA	chr10	18145062	17856133	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+Common	GRCh37	NA	chr10	18145150	17856221	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr10	18146951	17858022	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr10	18147863	17858934	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	C	T	yes	no
+Common	GRCh37	NA	chr10	18148125	17859196	FN	1|0:TP:gm:ti:SNP:het:14.4408	0/1:TP:gm:ti:SNP:het:14.4408	T	C	yes	no
+Common	GRCh37	NA	chr10	18148637	17859708	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	G	A	yes	no
+Common	GRCh37	NA	chr10	18148710	17859781	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	G	A	yes	no
+Common	GRCh37	NA	chr10	18148721	17859792	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	T	C	yes	no
+PacBio_gatk4	GRCh37	SNP	chr10	18149076	17860147	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr10	18149496	17860567	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	G	yes	no
+Common	GRCh37	NA	chr10	18150606	17861677	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	C	T	yes	no
+Common	GRCh37	NA	chr10	18151151	17862222	FN	0|1:TP:gm:d1_5:INDEL:het:100	0/1:TP:gm:d1_5:INDEL:het:100	TA	T	yes	no
+Common	GRCh37	NA	chr10	18151782	17862853	FN	1|1:TP:gm:ti:SNP:homalt:100	1/1:TP:gm:ti:SNP:homalt:100	A	G	yes	no
+Common	GRCh37	NA	chr10	18152027	17863098	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	C	T	yes	no
+Common	GRCh37	NA	chr10	18152615	17863686	FN	1|1:TP:gm:ti:SNP:homalt:30.97	1/1:TP:gm:ti:SNP:homalt:30.97	C	T	yes	no
+Common	GRCh37	NA	chr10	18153426	17864497	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+NYGC	GRCh37	SNP	chr10	18154100	17865171	FP_FN	0|1:FN:am:.:ti:SNP:het	"1/1:FP:am:196.78:ti:SNP:homalt
+"	G	A	yes	no
+Common	GRCh37	NA	chr10	18154143	17865214	FN	1|0:TP:gm:ti:SNP:het:18.9052	0/1:TP:gm:ti:SNP:het:18.9052	A	G	yes	no
+Common	GRCh37	NA	chr10	18155267	17866338	FN	1|0:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr10	18155291	17866362	FN	1|0:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh37	NA	chr10	18155407	17866478	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	G	yes	no
+Common	GRCh37	NA	chr10	18156293	17867364	FN	0|1:TP:gm:i1_5:INDEL:het:32.2185	0/1:TP:gm:i1_5:INDEL:het:32.2185	C	CCTT	yes	no
+Roche	GRCh37	INDEL	chr10	26993012	26704083	FP_FN	1|2:FN:am:i16_plus:.:INDEL:hetalt	"0/1:FP:am:i16_plus:100:INDEL:het
+"	C	CAAAAAAAAAAAAAAAA,CAAAAAAAAAAAAAAAAAAAAAAAA	yes	no
+NCBI	GRCh38	INDEL	chr10	27029070	26740141	FP_FN	1|0:FN:am:.:i1_5:INDEL:het	1/1:FP:am:30:i1_5:INDEL:homalt	C	CA	yes	no
+PacBio_gatk4	GRCh37	INDEL	chr10	89459408	87699651	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	ACCAT	A	no	yes
+Common	GRCh37	NA	chr10	89459408	87699651	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	ACCAT	A	no	yes
+Common	GRCh38	NA	chr10	89459408	87699651	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	ACCAT	A	no	yes
+DNAnexus	GRCh38	INDEL	chr10	89459569	87699812	FN	1|0:FN:.:i1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	T	TA	yes	no
+Common	GRCh37	NA	chr10	89494420	87734663	FP_FN	1|1:FN:am:.:d6_15:INDEL:homalt	0/1:FP:am:100:d6_15:INDEL:het	GTATATA	G	no	NA
+Common	GRCh38	NA	chr10	89494420	87734663	FP_FN	1|1:FN:am:.:d6_15:INDEL:homalt	0/1:FP:am:100:d6_15:INDEL:het	GTATATA	G	no	NA
+Common	GRCh37	NA	chr10	89494426	87734669	FP	.:.:.:.:.:NOCALL:nocall	0/2:100:FP:lm:i1_5:INDEL:het	A	ATATATA,ATATA	no	NA
+Common	GRCh37	NA	chr10	89636676	87876919	FP_FN	1|1:FN:am:i1_5:INDEL:homalt:.	0/1:FP:am:i1_5:INDEL:het:100	C	CT	no	NA
+Common	GRCh38	NA	chr10	89636676	87876919	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CT	no	NA
+Common	GRCh37	NA	chr10	103145375	101385618	FP_FN	2|1:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:100:INDEL:homalt	C	CTTTTTTTTT,CTTTTTTTTTT	unsure	unsure
+Common	GRCh37	NA	chr10	103147285	101387528	FP_FN	2|1:TP:gm:d1_5,i6_15:100:INDEL:hetalt	0/1:TP:gm:d1_5:100:INDEL:het	CTT	C,CTTTTTTTTTTTTTTT	yes	NA
+Common	GRCh38	NA	chr10	103147285	101387528	FP_FN	2|1:TP:gm:100:d1_5,i6_15:INDEL:hetalt	0/1:TP:gm:100:d1_5:INDEL:het	CTT	C,CTTTTTTTTTTTTTTT	yes	NA
+Common	GRCh37	NA	chr10	103163782	101404025	FN	1|0:TP:gm:d1_5:INDEL:het:26.1979	0/1:TP:gm:d1_5:INDEL:het:26.1979	TA	T	yes	no
+Common	GRCh37	NA	chr10	103185383	101425626	FP_FN	0|1:FN:am:.:d1_5:INDEL:het	1/1:FP:am:100:d1_5:INDEL:homalt	CT	C	no	yes
+Common	GRCh38	NA	chr10	103185383	101425626	FP_FN	0|1:FN:am:.:d1_5:INDEL:het	1/1:FP:am:100:d1_5:INDEL:homalt	CT	C	no	yes
+Common	GRCh37	NA	chr10	103189261	101429504	FP_FN	2|1:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:100:INDEL:homalt	T	TC,TCC	no	yes
+PacBio_gatk4	GRCh37	INDEL	chr10	103207679	101447922	FP	.:.:.:.:.:NOCALL:nocall	0/1:317.73:FP:.:i1_5:INDEL:het	C	CA	yes	no
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr10	103235679	101475922	FP	.:.:.:.:.:NOCALL:nocall	"1/1:12:FP:am:i6_15:INDEL:homalt
+"	C	CATATATATATAT	yes	no
+Common	GRCh37	NA	chr10	103242150	101482393	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CT	unsure	unsure
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr10	103242150	101482393	FN	0|1:FN:.:i1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	C	CT	unsure	unsure
+Common	GRCh38	NA	chr10	103242150	101482393	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CT	unsure	unsure
+Roche	GRCh37	SNP	chr10	103292542	101532785	FP	.:.:.:.:.:NOCALL:nocall	"0/1:100:FP:am:ti:SNP:het
+"	T	C	yes	no
+DNAnexus	GRCh37	SNP	chr10	135176883	133363379	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:0:ti:SNP:homalt	A	G	yes	no
+Common	GRCh37	NA	chr10	135235879	133422375	FN	0|1:FN:lm:d16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TTGGCAGTTGCTGTGCCCTGAGAACAGGCAGAACTGTGTGA	T	no	yes
+Common	GRCh38	NA	chr10	135235879	133422375	FN	0|1:FN:lm:d16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TTGGCAGTTGCTGTGCCCTGAGAACAGGCAGAACTGTGTGA	T	no	yes
+Common	GRCh37	NA	chr10	135235890	133422386	FP_FN	1|2:FN:am:ti:.:SNP:hetalt	1/1:FP:am:ti:100:SNP:homalt	T	C,*	no	yes
+Common	GRCh38	NA	chr10	135235890	133422386	FP_FN	1|2:FN:am:ti:.:SNP:hetalt	1/1:FP:am:ti:100:SNP:homalt	T	C,*	no	yes
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr10	135237474	133423970	FP_FN	1|1:FN:am:.:i6_15:INDEL:homalt	0/1:FP:am:45.15:i6_15:INDEL:het	A	AGGAGCGCCGCGGTG	yes	no
+Common	GRCh38	INDEL	chr10	135237474	133423970	FP_FN	1|1:FN:am:.:i6_15:INDEL:homalt	"0/1:FP:am:0:i6_15:INDEL:het
+"	A	AGGAGCGCCGCGGTG	yes	no
+Common	GRCh38	NA	chr10	135237474	133423970	FP_FN	1|1:TP:gm:100:i6_15:INDEL:homalt	1/1:TP:gm:100:i6_15:INDEL:homalt	A	AGGAGCGCCGCGGTG	yes	no
+NCBI	GRCh37	SNP	chr10	135238582	133425078	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:30:ti:SNP:het	C	T	yes	no
+DNAnexus	GRCh37	INDEL	chr10	135239819	133426315	FP	.:.:.:.:.:NOCALL:nocall	1/1:0:FP:.:d6_15:INDEL:homalt	ATAAAAC	A	yes	no
+Common	GRCh37	NA	chr10	135239933	133426429	FP_FN	1|1:TP:gm:100:i1_5:INDEL:homalt	1/1:TP:gm:100:i1_5:INDEL:homalt	C	CAAA,CA,CAA	yes	no
+Common	GRCh37	NA	chr10	135246475	133432971	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	C	T	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr10	135246697	133433193	FN	2|1:FN:.:i1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	A	ACC,ACCC	unsure	unsure
+Common	GRCh37	NA	chr10	135246697	133433193	FN	2|1:TP:gm:i1_5:INDEL:hetalt:6.9986	2/1:TP:gm:i1_5:INDEL:hetalt:6.9986	A	ACC,ACCC	unsure	unsure
+NYGC	GRCh37	INDEL	chr10	135317822	133504318	FP	.:.:.:.:.:NOCALL:nocall	"0/1:55.73:FP:.:d1_5:INDEL:het
+"	GTTGT	G	yes	no
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr11	654160	654160	FN	0|1:FN:lm:d1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	ACC	A	yes	no
+Common	GRCh37	NA	chr11	670931	670931	FP_FN	1|2:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:100:INDEL:homalt	G	GTTTTTT,GTTTTTTTT	unsure	unsure
+NCBI	GRCh38	INDEL	chr11	670931	670931	FP_FN	1|2:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:30:INDEL:homalt	G	GTTTTTT,GTTTTTTTT	unsure	unsure
+Common	GRCh38	NA	chr11	670931	670931	FP_FN	1|2:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:100:INDEL:homalt	G	GTTTTTT,GTTTTTTTT,GTTTTTTTTT	unsure	unsure
+ITER	GRCh38	INDEL	chr11	674430	674430	FP	.:.:.:.:.:NOCALL:nocall	0/1:9.7:FP:lm:i1_5:INDEL:het	A	AG	yes	no
+NYGC	GRCh37	INDEL	chr11	686129	686129	FP_FN	2|1:FN:am:tv:.:SNP:hetalt	"0/1:FP:am:tv:246.77:SNP:het
+"	A	T,*	yes	no
+Common	GRCh37	NA	chr11	686129	686129	FP_FN	2|1:FN:am:.:tv:SNP:hetalt	0/1:FP:am:100:tv:SNP:het	A	T,*	yes	no
+Common	GRCh38	NA	chr11	2017439	1996209	FN	1|0:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	C	G	yes	NA
+Common	GRCh38	NA	chr11	46404340	46382790	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	GC	G	unsure	NA
+Common	GRCh37	NA	chr11	62386647	62619175	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	GA	G	no	yes
+Common	GRCh38	NA	chr11	62386647	62619175	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	GA	G	no	yes
+NYGC	GRCh38	INDEL	chr11	68822996	69055528	FN	1|1:FN:.:i16_plus:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	T	TGTCAGCTCTCCTCCCTCTCCACCATGCAAACTGAGGCCAGTGTGCC	yes	no
+Common	GRCh37	NA	chr11	68842591	69075123	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	G	GC	no	yes
+Common	GRCh38	NA	chr11	68842591	69075123	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	G	GC	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr11	68885468	69118000	FP	.:.:.:.:.:NOCALL:nocall	2/1:281.23:FP:.:i16_plus,i6_15:INDEL:hetalt	C	CATTTATTT,CATTTATTTATTTATTT	no	yes
+Common	GRCh38	NA	chr11	68885468	69118000	FP	.:.:.:.:.:NOCALL:nocall	2/1:100:FP:.:i16_plus,i6_15:INDEL:hetalt	C	CATTTATTT,CATTTATTTATTTATTT	no	yes
+Common	GRCh38	NA	chr11	68885506	69118038	FN	1|1:FN:.:i6_15:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	T	TTTATTTATTTATTTA	no	yes
+Common	GRCh38	NA	chr11	68894728	69127260	FN	0|1:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TG	unsure	unsure
+Common	GRCh37	NA	chr12	6910468	6801302	FN	1|1:FN:lm:.:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	N	A	yes	no
+Common	GRCh37	NA	chr12	6910704	6801538	FN	1|1:FN:lm:.:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	N	G	yes	no
+Common	GRCh37	NA	chr12	6914181	6805015	FP_FN	1|2:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	CA	C,CAA	no	yes
+Common	GRCh38	NA	chr12	6914181	6805015	FP_FN	1|2:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	CA	C,CAA	no	yes
+NCBI	GRCh38	SNP	chr12	6915963	6806797	FN	1|0:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Roche	GRCh37	INDEL	chr12	7355777	7203181	FN	0|1:FN:lm:i16_plus:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	A	AAACTAAACTAAACTAAACTAAACTAAACTACAG	no	yes
+NYGC	GRCh37	INDEL	chr12	7355777	7203181	FP	.:.:.:.:.:NOCALL:nocall	"0/1:685.73:FP:lm:d1_5:INDEL:het
+"	ATGC	A	no	unsure
+Common	GRCh37	NA	chr12	7355777	7203181	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	ATGCACTGCACTG	AACTGCACTG,A	no	NA
+Common	GRCh37	NA	chr12	7355777	7203181	FN	0|1:FN:lm:i16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AAACTAAACTAAACTAAACTAAACTAAACTACAG	no	NA
+Common	GRCh38	NA	chr12	7355777	7203181	FN	0|1:FN:lm:i16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AAACTAAACTAAACTAAACTAAACTAAACTACAG	no	NA
+Common	GRCh38	NA	chr12	7355777	7203181	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	ATGCACTGCACTG	AACTGCACTG,A	no	NA
+Common	GRCh37	NA	chr12	7355781	7203185	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d6_15:INDEL:het	ACTGCACTGC	A	no	NA
+Common	GRCh38	NA	chr12	7355781	7203185	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d6_15:INDEL:het	ACTGCACTGC	A	no	NA
+PacBio_gatk4	GRCh37	SNP	chr12	7355794	7203198	FP	.:.:.:.:.:NOCALL:nocall	0/1:840.77:FP:lm:ti:SNP:het	G	A	no	unsure
+Common	GRCh37	NA	chr12	7355794	7203198	FP	.:.:.:.:.:NOCALL:nocall	0/1:8.1761:FP:lm:ti:SNP:het	G	A	no	NA
+Common	GRCh38	NA	chr12	7355794	7203198	FP	.:.:.:.:.:NOCALL:nocall	0/1:9.8606:FP:lm:ti:SNP:het	G	A	no	NA
+Common	GRCh37	NA	chr12	7355795	7203199	FP	.:.:.:.:.:NOCALL:nocall	0/1:8.1761:FP:lm:tv:SNP:het	C	A	no	NA
+Common	GRCh38	NA	chr12	7355795	7203199	FP	.:.:.:.:.:NOCALL:nocall	0/1:9.8606:FP:lm:tv:SNP:het	C	A	no	NA
+Common	GRCh37	NA	chr12	7355799	7203203	FP	.:.:.:.:.:NOCALL:nocall	0/1:8.1761:FP:lm:ti:SNP:het	G	A	no	NA
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr12	7355799	7203203	FP	.:.:.:.:.:NOCALL:nocall	0/1:44.88:FP:lm:ti:SNP:het	G	A	no	yes
+NYGC	GRCh38	SNP	chr12	7355799	7203203	FP	.:.:.:.:.:NOCALL:nocall	"0/1:897.77:FP:lm:ti:SNP:het
+"	G	A	no	yes
+Common	GRCh38	NA	chr12	7355799	7203203	FP	.:.:.:.:.:NOCALL:nocall	0/1:9.8606:FP:lm:ti:SNP:het	G	A	no	NA
+NYGC	GRCh37	SNP	chr12	7355804	7203208	FP	.:.:.:.:.:NOCALL:nocall	"0/1:652.77:FP:lm:ti:SNP:het
+"	G	A	no	yes
+NYGC	GRCh38	SNP	chr12	7355804	7203208	FP	.:.:.:.:.:NOCALL:nocall	"0/1:817.77:FP:lm:ti:SNP:het
+"	G	A	no	yes
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr12	7355805	7203209	FP	.:.:.:.:.:NOCALL:nocall	0/1:47.48:FP:lm:tv:SNP:het	C	A	unsure	unsure
+NYGC	GRCh38	SNP	chr12	7355805	7203209	FP	.:.:.:.:.:NOCALL:nocall	"0/1:817.77:FP:lm:tv:SNP:het
+"	C	A	no	yes
+Common	GRCh38	NA	chr12	7355809	7203213	FP	.:.:.:.:.:NOCALL:nocall	0/1:11.9504:FP:.:ti:SNP:het	G	A	no	NA
+Roche	GRCh37	SNP	chr12	7355810	7203214	FP	.:.:.:.:.:NOCALL:nocall	"0/1:17.0292:FP:.:tv:SNP:het
+"	C	A	no	yes
+Common	GRCh37	NA	chr12	7355810	7203214	FP	.:.:.:.:.:NOCALL:nocall	0/1:17.0292:FP:.:tv:SNP:het	C	A	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr12	7355810	7203214	FP	.:.:.:.:.:NOCALL:nocall	0/1:48.48:FP:.:tv:SNP:het	C	A	no	yes
+Common	GRCh38	NA	chr12	7355810	7203214	FP	.:.:.:.:.:NOCALL:nocall	0/1:18.11:FP:.:tv:SNP:het	C	A	no	NA
+Common	GRCh37	NA	chr12	7355814	7203218	FP	.:.:.:.:.:NOCALL:nocall	0/1:17.0292:FP:.:ti:SNP:het	G	A	no	NA
+Common	GRCh38	NA	chr12	7355814	7203218	FP	.:.:.:.:.:NOCALL:nocall	0/1:18.11:FP:.:ti:SNP:het	G	A	no	NA
+Common	GRCh37	NA	chr12	7355815	7203219	FP	.:.:.:.:.:NOCALL:nocall	0/1:17.0292:FP:.:tv:SNP:het	C	A	no	NA
+Common	GRCh38	NA	chr12	7355815	7203219	FP	.:.:.:.:.:NOCALL:nocall	0/1:18.11:FP:.:tv:SNP:het	C	A	no	NA
+Common	GRCh37	NA	chr12	7355820	7203224	FP	.:.:.:.:.:NOCALL:nocall	0/1:35.2289:FP:.:d1_5:INDEL:het	CATT	C	no	NA
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr12	7355820	7203224	FP	.:.:.:.:.:NOCALL:nocall	0/1:47.81:FP:.:d1_5:INDEL:het	CATT	C	no	yes
+Common	GRCh38	NA	chr12	7355820	7203224	FP	.:.:.:.:.:NOCALL:nocall	0/1:33.0101:FP:.:d1_5:INDEL:het	CATT	C	no	NA
+Common	GRCh37	NA	chr12	7355825	7203229	FP	.:.:.:.:.:NOCALL:nocall	0/1:10.8955:FP:.:tv:SNP:het	C	G	no	NA
+Roche	GRCh38	SNP	chr12	7355825	7203229	FP	.:.:.:.:.:NOCALL:nocall	"0/1:10.7192:FP:.:tv:SNP:het
+"	C	G	no	yes
+Common	GRCh38	NA	chr12	7355825	7203229	FP	.:.:.:.:.:NOCALL:nocall	0/1:10.7192:FP:.:tv:SNP:het	C	G	no	NA
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr12	7362204	7209608	FP_FN	2|2:FN:am:.:i16_plus:INDEL:homalt	"0/1:FP:lm:19:tv:SNP:het
+"	G	T,GCTGAGTCGGTGGAGTAATGTGCAGAGTTTGAT	yes	no
+Common	GRCh37	NA	chr12	7813633	7661037	FP_FN	2|2:FN:am:.:i1_5:INDEL:homalt	2/1:FP:am:100:i1_5:INDEL:hetalt	C	CA,CAA	no	yes
+Common	GRCh38	NA	chr12	7813633	7661037	FP_FN	2|2:FN:am:.:i1_5:INDEL:homalt	2/1:FP:am:100:i1_5:INDEL:hetalt	C	CA,CAA	no	yes
+Roche	GRCh37	INDEL	chr12	7817496	7664900	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	"0/1:FP:am:100:i1_5:INDEL:het
+"	T	TA	no	yes
+Common	GRCh37	NA	chr12	7817496	7664900	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	T	TA	no	yes
+Common	GRCh38	NA	chr12	7817496	7664900	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	T	TA	no	yes
+DNAnexus	GRCh38	INDEL	chr12	7844390	7691794	FN	1|0:FN:lm:d1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	TGAG	T	yes	no
+DNAnexus	GRCh38	INDEL	chr12	50506690	50112907	FP	.:.:.:.:.:NOCALL:nocall	"1/1:0:FP:lm:i6_15:INDEL:homalt
+"	C	CGTTATGTTATGTTAT	yes	no
+Common	GRCh37	NA	chr12	50507086	50113303	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	AT	A	no	yes
+Common	GRCh38	NA	chr12	50507086	50113303	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	AT	A	no	yes
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr12	50508002	50114219	FP_FN	2|0:FN:lm:.:i1_5:INDEL:het	"0/1:FP:lm:9:i1_5:INDEL:het
+"	G	GA,GAA	no	yes
+Common	GRCh37	NA	chr12	50508002	50114219	FP_FN	2|0:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:100:i1_5:INDEL:het	G	GA,GAA	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr12	50508002	50114219	FP_FN	2|0:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:50:i1_5:INDEL:het	G	GA,GAA	no	yes
+Common	GRCh38	NA	chr12	50508002	50114219	FP_FN	2|0:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:100:i1_5:INDEL:het	G	GA,GAA	no	yes
+Common	GRCh37	NA	chr12	57119721	56725937	FN	1|0:FN:am:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GC	unsure	unsure
+PacBio_gatk4	GRCh38	INDEL	chr12	63994391	63600611	FP_FN	2|1:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:159.73:INDEL:het	CTT	C,CTTT	yes	no
+PacBio_gatk4	GRCh37	INDEL	chr12	121913919	121476116	FP	.:.:.:.:.:NOCALL:nocall	0/1:730.73:FP:lm:d1_5:INDEL:het	GAAAC	G	yes	no
+Common	GRCh37	NA	chr12	121929596	121491793	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	yes
+Common	GRCh38	NA	chr12	121929596	121491793	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	yes
+Common	GRCh37	NA	chr12	121943088	121505285	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CA	no	yes
+Common	GRCh38	NA	chr12	121943088	121505285	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CA	no	yes
+Common	GRCh37	NA	chr12	122011031	121573126	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	A	AT	no	yes
+Common	GRCh38	NA	chr12	122011031	121573126	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	A	AT	no	yes
+Common	GRCh37	NA	chr12	122011190	121573285	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	CT	C	no	yes
+Common	GRCh38	NA	chr12	122011190	121573285	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	CT	C	no	yes
+Common	GRCh37	NA	chr12	122011492	121573587	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	CT	C	no	yes
+Common	GRCh38	NA	chr12	122011492	121573587	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	CT	C	no	yes
+DNAnexus	GRCh37	INDEL	chr12	133356429	132779843	FN	0|1:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	ACC	yes	no
+ITER	GRCh37	SNP	chr12	133356441	132779855	FP	.:.:.:.:.:NOCALL:nocall	0/1:198.02:FP:lm:ti:SNP:het	A	G	yes	no
+DNAnexus	GRCh38	INDEL	chr12	133359831	132783245	FP	.:.:.:.:.:NOCALL:nocall	"0/1:0:FP:lm:i6_15:INDEL:het
+"	A	ACAACCCTGCGAT	yes	no
+Roche	GRCh37	INDEL	chr13	113768645	113114331	FP_FN	1|0:FN:am:.:d1_5:INDEL:het	"1/1:FP:am:39.9993:d1_5:INDEL:homalt
+"	TG	T	no	no
+Common	GRCh37	NA	chr15	41694204	41402006	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	AT	A	no	yes
+Common	GRCh38	NA	chr15	41694204	41402006	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	AT	A	no	yes
+Common	GRCh37	NA	chr15	43834499	43542301	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	CGG	C	no	yes
+Common	GRCh37	NA	chr15	43834499	43542301	FN	1|1:FN:am:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CG	C	no	yes
+Common	GRCh38	NA	chr15	43834499	43542301	FN	1|1:FN:am:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CG	C	no	yes
+Common	GRCh38	NA	chr15	43834499	43542301	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	CGG	C	no	yes
+Common	GRCh37	NA	chr15	43834500	43542302	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:d1_5:INDEL:het	GG	G	no	yes
+NYGC	GRCh38	INDEL	chr15	43834500	43542302	FP	.:.:.:.:.:NOCALL:nocall	"0/1:1007.73:FP:am:d1_5:INDEL:het
+"	GG	G	no	yes
+Common	GRCh38	NA	chr15	43834500	43542302	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:am:d1_5:INDEL:het	GG	G	no	yes
+Common	GRCh37	NA	chr15	43834845	43542647	FP_FN	2|2:FN:am:.:i1_5:INDEL:homalt	1/2:FP:am:100:i1_5:INDEL:hetalt	A	AGTGT,AGT	no	yes
+Common	GRCh38	NA	chr15	43834845	43542647	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	2/1:FP:am:100:i1_5:INDEL:hetalt	A	AGT,AGTGT	no	yes
+Common	GRCh37	NA	chr15	43846830	43554632	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	CAG	C	no	yes
+NYGC	GRCh38	INDEL	chr15	43846830	43554632	FP	.:.:.:.:.:NOCALL:nocall	"0/1:465.73:FP:lm:d1_5:INDEL:het
+"	CAG	C	no	yes
+Common	GRCh38	NA	chr15	43846830	43554632	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	CAG	C	no	yes
+Common	GRCh37	NA	chr15	43846832	43554634	FP_FN	1|1:TP:gm:10.6316:tv:SNP:homalt	1/1:TP:gm:10.6316:tv:SNP:homalt	G	C	no	yes
+Common	GRCh38	NA	chr15	43846832	43554634	FP_FN	1|1:TP:gm:15.2376:tv:SNP:homalt	1/1:TP:gm:15.2376:tv:SNP:homalt	G	C	no	yes
+Common	GRCh37	NA	chr15	43848738	43556540	FP_FN	2|2:FN:am:.:i1_5:INDEL:homalt	2/1:FP:am:100:i1_5:INDEL:hetalt	C	CA,CAA	no	yes
+Common	GRCh38	NA	chr15	43848738	43556540	FP_FN	2|2:FN:am:.:i1_5:INDEL:homalt	2/1:FP:am:100:i1_5:INDEL:hetalt	C	CA,CAA	no	yes
+ITER	GRCh37	INDEL	chr15	43853230	43561032	FP	.:.:.:.:.:NOCALL:nocall	1/1:17.7:FP:am:i1_5:INDEL:homalt	A	AT	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr15	43853437	43561239	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	GA	G	yes	no
+NYGC	GRCh38	SNP	chr15	43854326	43562128	FN	1|1:FN:.:ti:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	G	A	yes	no
+NYGC	GRCh38	SNP	chr15	43854665	43562467	FN	1|1:FN:.:tv:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	A	C	yes	no
+Common	GRCh37	NA	chr15	43870945	43578747	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GC	G	no	yes
+Common	GRCh38	NA	chr15	43870945	43578747	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GC	G	no	yes
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr15	43871060	43578862	FP	.:.:.:.:.:NOCALL:nocall	0/1:26.13:FP:.:tv:SNP:het	A	C	yes	no
+Common	GRCh37	NA	chr15	43871581	43579383	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	TACACACACAC	TACACACACACAC,T	unsure	unsure
+NYGC	GRCh37	SNP	chr15	43872719	43580521	FP_FN	1|1:FN:am:.:tv:SNP:homalt	"0/1:FP:am:1200.77:tv:SNP:het
+"	G	C	yes	no
+DNAnexus	GRCh38	SNP	chr15	43872719	43580521	FP_FN	1|1:FN:am:.:tv:SNP:homalt	"0/1:FP:am:0:tv:SNP:het
+"	G	C	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr15	43872719	43580521	FP_FN	1|1:FN:am:.:tv:SNP:homalt	"0/1:FP:am:23:tv:SNP:het
+"	G	C	yes	no
+Common	GRCh37	NA	chr15	50788677	50496480	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	TA	T	no	yes
+ITER	GRCh38	INDEL	chr15	50788677	50496480	FP	.:.:.:.:.:NOCALL:nocall	0/1:213.06:FP:lm:d1_5:INDEL:het	TA	T	no	yes
+Common	GRCh38	NA	chr15	50788677	50496480	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	TA	T	no	yes
+Common	GRCh37	NA	chr16	345063	295063	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	yes
+Common	GRCh38	NA	chr16	345063	295063	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	yes
+Common	GRCh37	NA	chr16	376371	326371	FN	1|0:FN:lm:d6_15:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	AAATATAT	A	no	yes
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr16	376372	326372	FP	.:.:.:.:.:NOCALL:nocall	"0/1:7:FP:lm:d6_15:INDEL:het
+"	AATATAT	A	no	yes
+Common	GRCh37	NA	chr16	376372	326372	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d6_15:INDEL:het	AATATAT	A	no	yes
+Common	GRCh37	NA	chr16	961620	911620	FN	0|1:TP:gm:i1_5:INDEL:het:18.9709	0/1:TP:gm:i1_5:INDEL:het:18.9709	T	TG	unsure	NA
+Common	GRCh38	NA	chr16	961620	911620	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TG	unsure	NA
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr16	1002103	952103	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr16	1402968	1352967	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	A	AT	no	yes
+Common	GRCh38	NA	chr16	1402968	1352967	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	A	AT	no	yes
+Common	GRCh37	NA	chr16	1451528	1401527	FN	0|1:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GC	no	yes
+DNAnexus	GRCh37	SNP	chr16	1522370	1472369	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+DNAnexus	GRCh38	SNP	chr16	1522573	1472572	FN	0|1:FN:.:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	C	T	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr16	1523475	1473474	FN	0|1:FN:lm:tv:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	A	C	yes	no
+PacBio_gatk4	GRCh37	SNP	chr16	2153727	2103726	FP	.:.:.:.:.:NOCALL:nocall	0/1:79.77:FP:.:ti:SNP:het	C	T	no	yes
+Common	GRCh37	NA	chr16	2153727	2103726	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	C	T	no	yes
+Common	GRCh38	NA	chr16	2153727	2103726	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	C	T	no	yes
+PacBio_gatk4	GRCh37	SNP	chr16	2596838	2546837	FP	.:.:.:.:.:NOCALL:nocall	0/1:141.77:FP:.:tv:SNP:het	G	C	yes	no
+PacBio_gatk4	GRCh37	SNP	chr16	2599989	2549988	FP	.:.:.:.:.:NOCALL:nocall	0/1:222.77:FP:.:ti:SNP:het	A	G	yes	no
+Common	GRCh37	NA	chr16	2607730	2557729	FP	.:.:.:.:.:NOCALL:nocall	0/1:23.2841:FP:.:ti:SNP:het	C	T	yes	no
+Common	GRCh38	NA	chr16	2607730	2557729	FP	.:.:.:.:.:NOCALL:nocall	0/1:24.0936:FP:.:ti:SNP:het	C	T	yes	no
+Common	GRCh37	NA	chr16	2608001	2558000	FP	.:.:.:.:.:NOCALL:nocall	0/1:23.2841:FP:.:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr16	2608001	2558000	FP	.:.:.:.:.:NOCALL:nocall	0/1:8.7205:FP:.:ti:SNP:het	G	A	yes	no
+PacBio_gatk4	GRCh37	SNP	chr16	2608539	2558538	FP	.:.:.:.:.:NOCALL:nocall	0/1:359.77:FP:.:ti:SNP:het	C	T	yes	no
+PacBio_gatk4	GRCh37	SNP	chr16	2615153	2565152	FP_FN	0|1:FN:am:.:ti:SNP:het	1/1:FP:am:195.9:ti:SNP:homalt	C	T	yes	no
+Common	GRCh37	NA	chr16	2619546	2569545	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh38	NA	chr16	2619546	2569545	FN	1|0:TP:gm:12.5093:ti:SNP:het	0/1:TP:gm:12.5093:ti:SNP:het	G	A	yes	no
+Common	GRCh37	NA	chr16	2621938	2571937	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	unsure	unsure
+PacBio_gatk4	GRCh38	INDEL	chr16	2621938	2571937	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	unsure	unsure
+Common	GRCh38	NA	chr16	2621938	2571937	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	unsure	NA
+NCBI	GRCh38	SNP	chr16	2626041	2576040	FP	.:.:.:.:.:NOCALL:nocall	1/1:30:FP:.:ti:SNP:homalt	A	G	yes	no
+ITER	GRCh37	INDEL	chr16	2633041	2583040	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	AT	A	unsure	unsure
+Common	GRCh37	NA	chr16	2649743	2599742	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	CGTCCTGTGTCTCCAT	C	yes	no
+NCBI	GRCh37	SNP	chr16	18823834	18812512	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+NCBI	GRCh37	SNP	chr16	18824819	18813497	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+NCBI	GRCh37	SNP	chr16	18830101	18818779	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+NCBI	GRCh37	SNP	chr16	18830351	18819029	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	C	G	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr16	18887986	18876664	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:49.54:i1_5:INDEL:het	G	GT	yes	no
+Common	GRCh37	NA	chr16	18892043	18880721	FP_FN	2|3:FN:am:.:i1_5:INDEL:hetalt	2/1:FP:am:100:i1_5:INDEL:hetalt	A	AGG,AGGG,AGGGG	no	NA
+Common	GRCh38	NA	chr16	18892043	18880721	FP_FN	2|3:FN:am:i1_5:.:INDEL:hetalt	2/1:FP:am:i1_5:100:INDEL:hetalt	A	AGG,AGGG,AGGGG	no	NA
+NCBI	GRCh37	INDEL	chr16	18898838	18887516	FN	1|2:FN:.:i16_plus,i6_15:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	C	CTTTGTTTTTT,CTTTGTTTTTTTTTTTT	yes	no
+ITER	GRCh38	INDEL	chr16	18899800	18888478	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CT	C	yes	no
+NCBI	GRCh37	INDEL	chr16	18927391	18916069	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CAA	yes	no
+Common	GRCh37	NA	chr16	18927391	18916069	FN	0|1:TP:gm:i1_5:INDEL:het:100	0/1:TP:gm:i1_5:INDEL:het:100	C	CAA	yes	no
+NCBI	GRCh37	INDEL	chr16	28871189	28859868	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AC	no	yes
+Common	GRCh37	NA	chr16	28871189	28859868	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AC	no	yes
+NCBI	GRCh38	INDEL	chr16	28871189	28859868	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AC	no	yes
+Common	GRCh38	NA	chr16	28871189	28859868	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AC	no	yes
+Common	GRCh37	NA	chr16	30763046	30751725	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CT	no	yes
+Common	GRCh38	NA	chr16	30763046	30751725	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CT	no	yes
+Common	GRCh37	NA	chr16	70868768	70834865	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CAT	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr16	70868768	70834865	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:50:i1_5:INDEL:het	C	CAT	no	yes
+Roche	GRCh38	INDEL	chr16	70868768	70834865	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	"0/1:FP:am:100:i1_5:INDEL:het
+"	C	CAT	no	yes
+Common	GRCh38	NA	chr16	70868768	70834865	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CAT	no	yes
+Common	GRCh37	NA	chr16	70876949	70843046	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CT	no	yes
+Common	GRCh38	NA	chr16	70876949	70843046	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CT	no	yes
+Common	GRCh38	NA	chr16	70889710	70855807	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	A	G	yes	no
+Common	GRCh37	NA	chr16	70910086	70876183	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	A	AT	no	yes
+Roche	GRCh38	INDEL	chr16	70910086	70876183	FP	.:.:.:.:.:NOCALL:nocall	"0/1:100:FP:.:i1_5:INDEL:het
+"	A	AT	no	yes
+Common	GRCh38	NA	chr16	70910086	70876183	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	A	AT	no	yes
+Common	GRCh37	NA	chr16	70927078	70893175	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	C	T	no	yes
+Common	GRCh38	NA	chr16	70927078	70893175	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:ti:SNP:het	C	T	no	yes
+Common	GRCh37	NA	chr16	70934620	70900717	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	G	GTTCA	no	yes
+Common	GRCh38	NA	chr16	70934620	70900717	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	G	GTTCA	no	yes
+Common	GRCh37	NA	chr16	70934817	70900914	FP	.:.:.:.:.:NOCALL:nocall	0/2:100:FP:.:i1_5:INDEL:het	CTG	C,CTGTG	unsure	unsure
+Roche	GRCh38	INDEL	chr16	70934817	70900914	FP	.:.:.:.:.:NOCALL:nocall	"0/1:100:FP:.:i1_5:INDEL:het
+"	C	CTG	unsure	unsure
+Common	GRCh38	NA	chr16	70934817	70900914	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	CTG	CTGTG,C	unsure	unsure
+Common	GRCh37	NA	chr16	70936697	70902794	FP_FN	1|1:FN:am:.:d6_15:INDEL:homalt	0/1:FP:am:100:d6_15:INDEL:het	AATATATATATATAT	A	no	NA
+Common	GRCh38	NA	chr16	70936697	70902794	FP_FN	1|1:FN:am:.:d6_15:INDEL:homalt	0/1:FP:am:100:d6_15:INDEL:het	AATATATATATATAT	A	no	NA
+Common	GRCh37	NA	chr16	70936712	70902809	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d6_15:INDEL:het	ATATATATATATAT	A	no	NA
+Common	GRCh38	NA	chr16	70936712	70902809	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d6_15:INDEL:het	ATATATATATATAT	A	no	NA
+Common	GRCh37	NA	chr16	70961480	70927577	FN	1|2:FN:lm:c1_5,d1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	CA	C,*	no	NA
+Common	GRCh38	NA	chr16	70961480	70927577	FN	1|2:FN:lm:c1_5,d1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	CA	C,*	no	NA
+BCM-HGSC_xAtlas	GRCh37	SNP	chr16	70972122	70938219	FP	.:.:.:.:.:NOCALL:nocall	"0/1:18:FP:lm:tv:SNP:het
+"	G	T	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	INDEL	chr16	70990161	70956258	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:42.63:d1_5:INDEL:het	CA	C	yes	no
+Common	GRCh37	NA	chr16	70990161	70956258	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	CA	C	no	yes
+Common	GRCh38	NA	chr16	70990161	70956258	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	CA	C	no	yes
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr16	71014437	70980534	FP	.:.:.:.:.:NOCALL:nocall	"0/1:8:FP:.:i6_15:INDEL:het
+"	T	TATATAAATATAA	yes	no
+Common	GRCh37	NA	chr16	71026137	70992234	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	TA	T	no	yes
+Common	GRCh38	NA	chr16	71026137	70992234	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	TA	T	no	yes
+Common	GRCh37	NA	chr16	71028169	70994266	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	CATGG	C	no	yes
+Common	GRCh38	NA	chr16	71028169	70994266	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	CATGG	C	no	yes
+Common	GRCh38	NA	chr16	71053374	71019471	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	A	G	yes	NA
+Common	GRCh38	NA	chr16	71053406	71019503	FP	./.:.:.:.:.:.:.	./.:.:.:.:.:.:.	A	G	yes	NA
+NCBI	GRCh38	SNP	chr16	71065282	71031379	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:30:ti:SNP:homalt	C	T	yes	no
+NCBI	GRCh38	SNP	chr16	71082513	71048610	FN	1|1:FN:.:ti:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr16	71088146	71054243	FP_FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	C	A	yes	no
+NYGC	GRCh38	SNP	chr16	71088146	71054243	FP_FN	1|1:FN:am:.:tv:SNP:homalt	"0/1:FP:am:1283.77:tv:SNP:het
+"	C	A	yes	no
+Common	GRCh38	NA	chr16	71088146	71054243	FP_FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	C	A	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr16	71092261	71058358	FN	0|1:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	C	yes	no
+NCBI	GRCh37	SNP	chr16	71123067	71089164	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+NYGC	GRCh38	INDEL	chr16	71137145	71103242	FN	1|1:FN:.:d1_5:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	AT	A	yes	no
+NCBI	GRCh38	SNP	chr16	71165560	71131657	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh37	NA	chr16	71176373	71142470	FN	1|0:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AT	yes	no
+ITER	GRCh38	INDEL	chr16	71176373	71142470	FP_FN	1|0:FN:am:.:i1_5:INDEL:het	1/1:FP:am:6.9:i1_5:INDEL:homalt	A	AT	yes	no
+Roche	GRCh37	SNP	chr16	81120047	81086442	FN	0|1:FN:lm:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	A	G	yes	no
+Roche	GRCh38	SNP	chr16	81120047	81086442	FN	0|1:FN:lm:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	A	G	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr16	81128975	81095370	FP_FN	1|1:FN:am:.:ti:SNP:homalt	"0/1:FP:am:28:ti:SNP:het
+"	C	T	yes	no
+NCBI	GRCh38	SNP	chr16	88504212	88437804	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:lm:tv:SNP:het	G	C	yes	no
+Common	GRCh37	NA	chr16	89247382	89180974	FP_FN	1|2:FN:am:i16_plus,i6_15:INDEL:hetalt:.	2/2:FP:am:i6_15:INDEL:homalt:100	C	CTTTTTTTTTTTTTTTTTTT,CTTTTTTTTTTTTTTT,CTTTTTTTTTTTTTTTT,CTTTTTTTTTTTTTTTTTT	unsure	NA
+Common	GRCh38	NA	chr16	89247382	89180974	FP_FN	2|1:FN:am:i16_plus,i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:100:INDEL:homalt	C	CTTTTTTTTTTTTTTT,CTTTTTTTTTTTTTTTTTTT,CTTTTTTTTTTTTTTTTTT,CTTTTTTTTTTTTTTTT	unsure	NA
+Common	GRCh37	NA	chr16	89440745	89374337	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	T	TA	no	yes
+PacBio_gatk4	GRCh38	SNP	chr16	89488779	89422371	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:2022.77:tv:SNP:het	A	T	yes	no
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr17	925360	1022120	FN	0|1:FN:.:i6_15:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	A	AAAAAAAAAAAC	yes	no
+Common	GRCh37	NA	chr17	928023	1024783	FP_FN	2|1:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	CAAA	C,CAAAA	no	yes
+Common	GRCh38	NA	chr17	928023	1024783	FP_FN	2|1:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	CAAA	C,CAAAA	no	yes
+Roche	GRCh38	SNP	chr17	931456	1028216	FN	1|1:FN:lm:tv:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	T	G	yes	no
+ITER	GRCh38	INDEL	chr17	932342	1029102	FN	1|1:FN:.:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CA	C	yes	no
+Common	GRCh37	NA	chr17	935625	1032385	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TC	T	no	NA
+Common	GRCh38	NA	chr17	935625	1032385	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TC	T	no	NA
+DNAnexus	GRCh38	SNP	chr17	935886	1032646	FP	.:.:.:.:.:NOCALL:nocall	"0/1:0:FP:lm:ti:SNP:het
+"	T	C	yes	no
+Common	GRCh37	NA	chr17	936138	1032898	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TG	T	no	NA
+Common	GRCh38	NA	chr17	936138	1032898	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TG	T	no	NA
+Common	GRCh37	NA	chr17	936236	1032996	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	AG	A	no	NA
+Common	GRCh38	NA	chr17	936236	1032996	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	AG	A	no	NA
+Common	GRCh37	NA	chr17	936344	1033104	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TG	no	NA
+Common	GRCh38	NA	chr17	936344	1033104	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TG	no	NA
+Common	GRCh37	NA	chr17	936724	1033484	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TC	T	no	NA
+Common	GRCh38	NA	chr17	936724	1033484	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TC	T	no	NA
+Common	GRCh37	NA	chr17	936910	1033670	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TCA	no	NA
+Common	GRCh38	NA	chr17	936910	1033670	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TCA	no	NA
+Common	GRCh37	NA	chr17	936951	1033711	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	A	no	NA
+Common	GRCh38	NA	chr17	936951	1033711	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	A	no	NA
+Common	GRCh37	NA	chr17	938145	1034905	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CG	C	no	NA
+Common	GRCh38	NA	chr17	938145	1034905	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CG	C	no	NA
+Common	GRCh37	NA	chr17	938320	1035080	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TG	no	NA
+Common	GRCh38	NA	chr17	938320	1035080	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TG	no	NA
+Common	GRCh37	NA	chr17	938450	1035210	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TC	no	NA
+ITER	GRCh38	INDEL	chr17	938450	1035210	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TC	no	yes
+Common	GRCh38	NA	chr17	938450	1035210	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	T	TC	no	NA
+ITER	GRCh38	SNP	chr17	997760	1094520	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+DNAnexus	GRCh37	SNP	chr17	998926	1095686	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+ITER	GRCh38	SNP	chr17	1003580	1100340	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:11.1:ti:SNP:homalt	A	G	yes	no
+Common	GRCh37	NA	chr17	1063576	1160282	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	CCA	C	no	yes
+Common	GRCh37	NA	chr17	1063576	1160282	FN	1|0:FN:lm:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	A	no	yes
+Common	GRCh37	NA	chr17	1063577	1160283	FN	1|0:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CA	C	no	yes
+NCBI	GRCh37	INDEL	chr17	1081858	1178564	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:lm:i1_5:INDEL:het	C	CA	yes	no
+ITER	GRCh37	INDEL	chr17	1082298	1179004	FP	.:.:.:.:.:NOCALL:nocall	0/1:7.1:FP:.:d1_5:INDEL:het	GT	G	yes	no
+Common	GRCh37	NA	chr17	1098591	1195297	FN	1|1:FN:lm:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	ACTGT	A	no	NA
+Common	GRCh38	NA	chr17	1098591	1195297	FN	1|1:FN:lm:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	ACTGT	A	no	NA
+ITER	GRCh37	INDEL	chr17	1098598	1195304	FP_FN	3|3:FN:lm:.:i16_plus:INDEL:homalt	2/1:FP:lm:12.8:i1_5:INDEL:hetalt	C	CA,CAA,CCGTTGCAAAAAAAAAA	no	no
+ITER	GRCh37	SNP	chr17	2207674	2304380	FP	.:.:.:.:.:NOCALL:nocall	0/1:813.6:FP:lm:tv:SNP:het	T	A	yes	no
+PacBio_gatk4	GRCh38	INDEL	chr17	3596421	3693127	FN	1|2:FN:.:i1_5:INDEL:hetalt:.	.:.:.:.:NOCALL:nocall:0	C	CA,CAA	yes	no
+Common	GRCh37	NA	chr17	17922461	18019147	FP	.:.:.:.:.:NOCALL:nocall	2/1:100:FP:.:i1_5,i6_15:INDEL:hetalt	C	CCA,CCACACA	no	yes
+Common	GRCh38	NA	chr17	17922461	18019147	FP	.:.:.:.:.:NOCALL:nocall	2/1:100:FP:.:i1_5,i6_15:INDEL:hetalt	C	CCA,CCACACA	no	yes
+Common	GRCh37	NA	chr17	17922500	18019186	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	C	CACACA	no	yes
+Common	GRCh38	NA	chr17	17922500	18019186	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	C	CACACA	no	yes
+Common	GRCh37	NA	chr17	30322874	31995855	FP	.:.:.:.:.:NOCALL:nocall	0/1:22.0103:FP:.:i1_5:INDEL:het	C	CT	no	yes
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr17	30322874	31995855	FP	.:.:.:.:.:NOCALL:nocall	0/1:43.38:FP:.:i1_5:INDEL:het	C	CT	no	yes
+Common	GRCh38	NA	chr17	30322874	31995855	FP	.:.:.:.:.:NOCALL:nocall	0/1:20.9193:FP:.:i1_5:INDEL:het	C	CT	no	yes
+NCBI	GRCh37	INDEL	chr17	30323005	31995986	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AT	no	yes
+Common	GRCh37	NA	chr17	30323005	31995986	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AT	no	yes
+Common	GRCh38	NA	chr17	30323005	31995986	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AT	no	yes
+DNAnexus	GRCh37	INDEL	chr17	47042500	48965138	FP	.:.:.:.:.:NOCALL:nocall	2/1:0:FP:lm:i1_5:INDEL:hetalt	C	CA,CAA	yes	no
+DNAnexus	GRCh38	SNP	chr17	47045321	48967959	FN	1|0:FN:.:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	T	C	yes	no
+Common	GRCh37	NA	chr17	76124879	78128798	FP_FN	2|1:TP:gm:d1_5,i1_5:100:INDEL:hetalt	0/1:TP:gm:d1_5:100:INDEL:het	CGG	C,CGGGG	no	yes
+Common	GRCh37	NA	chr17	78281162	80307362	FP_FN	2|0:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:100:i1_5:INDEL:het	G	GT,GTT	no	yes
+NCBI	GRCh38	INDEL	chr17	78361423	80387623	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:lm:i1_5:INDEL:het	C	CCG	yes	no
+Common	GRCh37	NA	chr17	78367669	80393869	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CT	C	no	yes
+Common	GRCh38	NA	chr17	78367669	80393869	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CT	C	no	yes
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr17	78370532	80396732	FP	.:.:.:.:.:NOCALL:nocall	"0/1:6:FP:lm:d1_5:INDEL:het
+"	CCA	C	yes	no
+Common	GRCh37	NA	chr17	78370544	80396744	FN	1|0:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	unsure	unsure
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr18	663766	663766	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	A	C	yes	no
+Common	GRCh37	NA	chr18	667992	667992	FP_FN	2|1:FN:am:i6_15:INDEL:hetalt:.	0/1:FP:am:i6_15:INDEL:het:100	A	ATTTTTTTTTTTTT,ATTTTTTTTTTTTTT	no	unsure
+NCBI	GRCh38	INDEL	chr18	667992	667992	FP_FN	2|1:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:30:INDEL:homalt	A	ATTTTTTTTTTTTT,ATTTTTTTTTTTTTT	no	unsure
+CMH_DRAGEN_3.6.3	GRCh38	INDEL	chr18	667992	667992	FP_FN	2|1:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:91.39:INDEL:homalt	A	ATTTTTTTTTTTTT,ATTTTTTTTTTTTTT	no	unsure
+Common	GRCh38	NA	chr18	74983202	77271246	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:36.9896:i1_5:INDEL:het	A	AC	unsure	unsure
+Common	GRCh37	NA	chr18	77503526	79743526	FP_FN	2|1:TP:gm:i1_5:100:INDEL:hetalt	2/1:TP:gm:i1_5:100:INDEL:hetalt	C	CA,CAA	yes	no
+Common	GRCh38	NA	chr19	1185516	1185517	FP_FN	1|0:FN:am:.:i1_5:INDEL:het	1/1:FP:am:100:i1_5:INDEL:homalt	C	CA	no	yes
+Common	GRCh37	NA	chr19	1190729	1190730	FP_FN	1|2:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:100:INDEL:homalt	C	CA,CAA	no	yes
+ITER	GRCh38	INDEL	chr19	1190729	1190730	FP_FN	1|2:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:431.06:INDEL:homalt	C	CA,CAA	no	yes
+Common	GRCh38	NA	chr19	1190729	1190730	FP_FN	1|2:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:100:INDEL:homalt	C	CA,CAA	no	yes
+Roche	GRCh37	INDEL	chr19	1193449	1193450	FP_FN	2|1:FN:am:d1_5,i1_5:.:INDEL:hetalt	"0/1:FP:am:d1_5:100:INDEL:het
+"	CA	C,CAAA	no	yes
+Common	GRCh37	NA	chr19	1193449	1193450	FP_FN	2|1:FN:am:d1_5,i1_5:INDEL:hetalt:.	0/1:FP:am:d1_5:INDEL:het:100	CA	C,CAAA	no	yes
+Common	GRCh38	NA	chr19	1193449	1193450	FP_FN	2|1:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	CA	C,CAAA	no	yes
+Common	GRCh38	NA	chr19	1193450	1193451	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:i1_5:INDEL:het	A	AA	no	yes
+ITER	GRCh37	SNP	chr19	1226901	1226902	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:718.93:tv:SNP:het	G	T	yes	no
+Common	GRCh37	NA	chr19	2445250	2445252	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GC	unsure	NA
+Common	GRCh38	NA	chr19	2445250	2445252	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GC	unsure	NA
+Common	GRCh37	NA	chr19	3588638	3588640	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	NA
+Common	GRCh38	NA	chr19	3588638	3588640	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	NA
+Roche	GRCh37	INDEL	chr19	3600824	3600826	FN	1|0:FN:.:i1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	G	GT	no	yes
+Common	GRCh37	NA	chr19	3600824	3600826	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GT	no	NA
+Common	GRCh38	NA	chr19	3600824	3600826	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GT	no	NA
+Common	GRCh37	NA	chr19	6035860	6035849	FP	.:.:.:.:.:NOCALL:nocall	0/1:40:FP:lm:i1_5:INDEL:het	G	GT	no	yes
+Common	GRCh37	NA	chr19	6166291	6166280	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d16_plus:INDEL:het	TTGTGTGTGTGTGTGTGTGTG	T	no	yes
+Common	GRCh38	NA	chr19	6166291	6166280	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d16_plus:INDEL:het	TTGTGTGTGTGTGTGTGTGTG	T	no	yes
+Roche	GRCh37	INDEL	chr19	6166307	6166296	FP	.:.:.:.:.:NOCALL:nocall	"0/1:100:FP:lm:d1_5:INDEL:het
+"	GTGTG	G	no	yes
+Common	GRCh37	NA	chr19	6166307	6166296	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	GTGTG	G	no	yes
+Common	GRCh38	NA	chr19	6166307	6166296	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	GTGTG	G	no	yes
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr19	6166335	6166324	FN	1|1:FN:lm:d6_15:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	GTGTGTGT	G	no	no
+Common	GRCh37	NA	chr19	6166335	6166324	FN	1|1:FN:lm:d6_15:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	GTGTGTGT	G	no	yes
+Common	GRCh38	NA	chr19	6166335	6166324	FN	1|1:FN:lm:d6_15:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	GTGTGTGT	G	no	yes
+NYGC	GRCh37	INDEL	chr19	6173948	6173937	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	"0/1:FP:am:115.73:d1_5:INDEL:het
+"	AT	A	no	yes
+Common	GRCh37	NA	chr19	6173948	6173937	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	AT	A	no	yes
+DNAnexus	GRCh38	INDEL	chr19	6173948	6173937	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	"0/1:FP:am:0:d1_5:INDEL:het
+"	AT	A	no	yes
+Common	GRCh38	NA	chr19	6173948	6173937	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	AT	A	no	yes
+Common	GRCh38	NA	chr19	6181824	6181813	FP_FN	3|3:FN:lm:.:i1_5:INDEL:homalt	2/1:FP:lm:100:i1_5:INDEL:hetalt	G	GCC,GCCCC,GCCCCC	unsure	unsure
+Common	GRCh37	NA	chr19	6689333	6689322	FN	1|0:FN:lm:d6_15:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TACCTAC	T	yes	no
+Common	GRCh37	NA	chr19	6689346	6689335	FP_FN	1|1:FN:am:.:tv:SNP:homalt	0/1:FP:am:30.0008:tv:SNP:het	C	A	yes	no
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr19	6691066	6691055	FP_FN	2|1:FN:am:i1_5:.:INDEL:hetalt	"1/1:FP:am:i1_5:7:INDEL:homalt
+"	C	CTT,CTTTTT	yes	no
+PacBio_gatk4	GRCh37	INDEL	chr19	6697061	6697050	FP	.:.:.:.:.:NOCALL:nocall	0/1:517.73:FP:lm:i1_5:INDEL:het	A	AAAT	yes	no
+Roche	GRCh37	INDEL	chr19	6698000	6697989	FP_FN	1|2:FN:am:d6_15:.:INDEL:hetalt	"0/1:FP:am:d6_15:100:INDEL:het
+"	TTTATTATTATTATTA	T,TTTA	yes	no
+Common	GRCh37	NA	chr19	6704908	6704897	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	NA
+Common	GRCh38	NA	chr19	6704908	6704897	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	NA
+DNAnexus	GRCh38	INDEL	chr19	10489509	10378833	FP	.:.:.:.:.:NOCALL:nocall	"0/1:0:FP:lm:d6_15:INDEL:het
+"	ATATCTTATCTTATCT	A	yes	no
+Common	GRCh37	NA	chr19	15795566	15684756	FP_FN	1|1:FN:am:.:d6_15:INDEL:homalt	0/1:FP:am:100:d6_15:INDEL:het	TTGTGTGTG	T	no	NA
+Common	GRCh38	NA	chr19	15795566	15684756	FP_FN	1|1:FN:am:.:d6_15:INDEL:homalt	0/1:FP:am:100:d6_15:INDEL:het	TTGTGTGTG	T	no	NA
+ITER	GRCh37	INDEL	chr19	15795570	15684760	FP	.:.:.:.:.:NOCALL:nocall	0/1:762.06:FP:lm:d1_5:INDEL:het	GTGTG	G	no	yes
+Common	GRCh37	NA	chr19	15795570	15684760	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	GTGTG	G	no	NA
+Common	GRCh38	NA	chr19	15795570	15684760	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	GTGTG	G	no	NA
+Common	GRCh37	NA	chr19	16598292	16487481	FP_FN	0|2:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:100:i1_5:INDEL:het	C	CA,CAA	no	yes
+Common	GRCh38	NA	chr19	16598292	16487481	FP_FN	0|2:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:100:i1_5:INDEL:het	C	CA,CAA	no	yes
+ITER	GRCh37	INDEL	chr19	17198740	17087930	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	yes	no
+Common	GRCh37	NA	chr19	17210626	17099816	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	AA	A	unsure	unsure
+Common	GRCh37	NA	chr19	17258352	17147542	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	yes
+Common	GRCh38	NA	chr19	17258352	17147542	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CA	no	yes
+ITER	GRCh38	INDEL	chr19	34860609	34369704	FP_FN	3|3:FN:lm:.:i1_5:INDEL:homalt	2/1:FP:lm:10.8:i1_5:INDEL:hetalt	C	CA,CAAA,CAA	yes	no
+Common	GRCh37	NA	chr19	34862516	34371611	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:100:ti:SNP:het	G	A	no	yes
+Common	GRCh38	NA	chr19	34862516	34371611	FP_FN	1|1:FN:am:.:ti:SNP:homalt	0/1:FP:am:100:ti:SNP:het	G	A	no	yes
+Common	GRCh37	NA	chr19	34869102	34378197	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	CTTG	C	no	yes
+NYGC	GRCh38	INDEL	chr19	34869102	34378197	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	"0/1:FP:am:479.73:d1_5:INDEL:het
+"	CTTG	C	no	yes
+Common	GRCh38	NA	chr19	34869102	34378197	FP_FN	1|1:FN:am:.:d1_5:INDEL:homalt	0/1:FP:am:100:d1_5:INDEL:het	CTTG	C	no	yes
+DNAnexus	GRCh38	INDEL	chr19	41400913	40895008	FN	0|1:FN:.:d1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	AAAAC	A	yes	no
+Common	GRCh38	NA	chr19	41416831	40910926	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:d1_5:INDEL:het	AT	A	no	yes
+Common	GRCh37	NA	chr19	44012498	43508346	FP_FN	1|2:FN:.:i1_5:.:INDEL:hetalt	.:.:.:.:0:NOCALL:nocall	C	CTT,CTTTTT	yes	no
+NCBI	GRCh37	INDEL	chr19	44018637	43514485	FP_FN	0|2:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:30:i1_5:INDEL:het	C	CTTT,CTTTT	no	yes
+Common	GRCh38	NA	chr19	44018637	43514485	FP_FN	0|2:FN:lm:.:i1_5:INDEL:het	0/1:FP:lm:36.9903:i1_5:INDEL:het	C	CTTT,CTTTT	no	yes
+Common	GRCh37	NA	chr19	45419394	44916137	FP_FN	2|1:FN:lm:i6_15:.:INDEL:hetalt	3/3:FP:lm:i6_15:100:INDEL:homalt	C	CAAAAAAAA,CAAAAAAAAAA,CAAAAAAAAA	unsure	unsure
+Common	GRCh38	NA	chr19	45419394	44916137	FP_FN	3|2:FN:lm:.:i6_15:INDEL:hetalt	1/1:FP:lm:100:i6_15:INDEL:homalt	C	CAAAAAAAAA,CAAAAAAAA,CAAAAAAAAAA	unsure	unsure
+Common	GRCh38	NA	chr19	45709679	45206421	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CTT	C	no	yes
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr19	46277520	45774262	FP_FN	2|2:FN:lm:.:i1_5:INDEL:homalt	"1/1:FP:lm:10:i1_5:INDEL:homalt
+"	C	CT,CTT	no	yes
+Common	GRCh37	NA	chr19	46277520	45774262	FP_FN	2|2:FN:am:.:i1_5:INDEL:homalt	2/1:FP:am:100:i1_5:INDEL:hetalt	C	CT,CTT	no	yes
+BCM-HGSC_xAtlas	GRCh38	SNP	chr19	50364989	49861732	FP	.:.:.:.:.:NOCALL:nocall	"0/1:3:FP:.:tv:SNP:het
+"	A	C	yes	no
+Common	GRCh37	NA	chr19	50473429	49970172	FN	1|0:TP:gm:i1_5:INDEL:het:10.0601	.:.:.:.:NOCALL:nocall:0	A	ATGCG	yes	no
+Common	GRCh37	NA	chr19	50473448	49970191	FP_FN	0|1:TP:gm:36.989:tv:SNP:het	0/1:TP:gm:36.989:tv:SNP:het	G	C	yes	no
+DNAnexus	GRCh38	SNP	chr19	50473448	49970191	FP_FN	0|1:FN:am:.:tv:SNP:het	"1/1:FP:am:0:tv:SNP:homalt
+"	G	C	yes	no
+Common	GRCh38	NA	chr19	50473448	49970191	FP_FN	0|1:TP:gm:36.989:tv:SNP:het	0/1:TP:gm:36.989:tv:SNP:het	G	C	yes	no
+Common	GRCh37	NA	chr19	50473561	49970304	FN	1|0:TP:gm:d1_5:INDEL:het:100	0/1:TP:gm:d1_5:INDEL:het:100	AC	A	yes	no
+DNAnexus	GRCh38	INDEL	chr19	50473561	49970304	FN	1|0:FN:.:d1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	AC	A	yes	no
+Common	GRCh38	NA	chr19	50473561	49970304	FN	1|0:TP:gm:100:d1_5:INDEL:het	0/1:TP:gm:100:d1_5:INDEL:het	AC	A	yes	no
+NCBI	GRCh37	SNP	chr19	50474224	49970967	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:30:ti:SNP:homalt	G	A	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr19	50474326	49971069	FN	1|0:FN:lm:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	T	C	yes	no
+NCBI	GRCh38	INDEL	chr19	50474355	49971098	FN	0|1:FN:lm:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CCTCT	C	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr19	50474549	49971292	FP_FN	1|0:FN:am:.:tv:SNP:het	1/1:FP:am:51.63:tv:SNP:homalt	G	C	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr19	50474549	49971292	FP_FN	1|0:FN:am:.:tv:SNP:het	1/1:FP:am:51.63:tv:SNP:homalt	G	C	yes	no
+NCBI	GRCh38	SNP	chr19	50474562	49971305	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:30:ti:SNP:homalt	C	T	yes	no
+Common	GRCh37	NA	chr19	50474851	49971594	FN	0|1:TP:gm:tv:SNP:het:100	0/1:TP:gm:tv:SNP:het:100	C	G	yes	no
+Common	GRCh38	NA	chr19	50474851	49971594	FN	0|1:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	C	G	yes	no
+Common	GRCh37	NA	chr19	50474859	49971602	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	C	T	yes	no
+Common	GRCh38	NA	chr19	50474859	49971602	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	C	T	yes	no
+Common	GRCh37	NA	chr19	50474860	49971603	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	G	A	yes	no
+Common	GRCh38	NA	chr19	50474860	49971603	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	G	A	yes	no
+Common	GRCh37	NA	chr19	50474861	49971604	FN	0|1:TP:gm:tv:SNP:het:100	0/1:TP:gm:tv:SNP:het:100	C	G	yes	no
+Common	GRCh38	NA	chr19	50474861	49971604	FN	0|1:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	C	G	yes	no
+Common	GRCh37	NA	chr19	50474870	49971613	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	G	A	yes	no
+Common	GRCh38	NA	chr19	50474870	49971613	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	G	A	yes	no
+Common	GRCh37	NA	chr19	50474883	49971626	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	T	C	yes	no
+Common	GRCh38	NA	chr19	50474883	49971626	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	T	C	yes	no
+Common	GRCh37	NA	chr19	50474892	49971635	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	C	T	yes	no
+Common	GRCh38	NA	chr19	50474892	49971635	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	C	T	yes	no
+Common	GRCh37	NA	chr19	50475017	49971760	FP_FN	1|0:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr19	50475017	49971760	FP_FN	1|0:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	G	A	yes	no
+Common	GRCh37	NA	chr19	50475027	49971770	FN	0|1:TP:gm:tv:SNP:het:100	0/1:TP:gm:tv:SNP:het:100	T	A	yes	no
+Common	GRCh38	NA	chr19	50475027	49971770	FN	0|1:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	T	A	yes	no
+Common	GRCh37	NA	chr19	50475044	49971787	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	T	C	yes	no
+Common	GRCh38	NA	chr19	50475044	49971787	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	T	C	yes	no
+ITER	GRCh37	SNP	chr19	50475045	49971788	FN	0|1:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr19	50475045	49971788	FN	0|1:TP:gm:ti:SNP:het:36.989	0/1:TP:gm:ti:SNP:het:36.989	G	A	yes	no
+Common	GRCh38	NA	chr19	50475045	49971788	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	G	A	yes	no
+Common	GRCh37	NA	chr19	50475050	49971793	FN	0|1:TP:gm:tv:SNP:het:29.5872	0/1:TP:gm:tv:SNP:het:29.5872	C	A	yes	no
+Common	GRCh38	NA	chr19	50475050	49971793	FN	0|1:TP:gm:29.5872:tv:SNP:het	0/1:TP:gm:29.5872:tv:SNP:het	C	A	yes	no
+Common	GRCh37	NA	chr19	50475075	49971818	FP_FN	1|0:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	G	A	yes	no
+Common	GRCh38	NA	chr19	50475075	49971818	FP_FN	1|0:TP:gm:36.989:ti:SNP:het	0/1:TP:gm:36.989:ti:SNP:het	G	A	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr19	50475076	49971819	FP_FN	1|0:FN:am:.:tv:SNP:het	"1/1:FP:am:35:tv:SNP:homalt
+"	T	A	yes	no
+ITER	GRCh37	SNP	chr19	50475076	49971819	FP_FN	1|0:FN:am:.:tv:SNP:het	1/1:FP:am:661.03:tv:SNP:homalt	T	A	yes	no
+Common	GRCh37	NA	chr19	50475076	49971819	FP_FN	1|0:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	T	A	yes	no
+Common	GRCh38	NA	chr19	50475076	49971819	FP_FN	1|0:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	T	A	yes	no
+Common	GRCh37	NA	chr19	50475077	49971820	FP_FN	1|0:TP:gm:19.0792:ti:SNP:het	0/1:TP:gm:19.0792:ti:SNP:het	C	T	yes	no
+Common	GRCh38	NA	chr19	50475077	49971820	FP_FN	1|0:TP:gm:20.7663:ti:SNP:het	0/1:TP:gm:20.7663:ti:SNP:het	C	T	yes	no
+ITER	GRCh37	SNP	chr19	50475115	49971858	FN	0|1:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh37	NA	chr19	50475115	49971858	FN	0|1:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	G	yes	no
+Common	GRCh38	NA	chr19	50475115	49971858	FN	0|1:TP:gm:19.1476:ti:SNP:het	0/1:TP:gm:19.1476:ti:SNP:het	A	G	yes	no
+Common	GRCh37	NA	chr19	50475134	49971877	FN	0|1:TP:gm:tv:SNP:het:36.989	0/1:TP:gm:tv:SNP:het:36.989	G	C	yes	no
+NCBI	GRCh38	SNP	chr19	50475134	49971877	FN	0|1:FN:lm:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	C	yes	no
+Common	GRCh38	NA	chr19	50475134	49971877	FN	0|1:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	G	C	yes	no
+Common	GRCh37	NA	chr19	50475159	49971902	FN	0|1:TP:gm:ti:SNP:het:23.7716	0/1:TP:gm:ti:SNP:het:23.7716	T	C	yes	no
+Common	GRCh38	NA	chr19	50475159	49971902	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	T	C	yes	no
+CMH_DRAGEN_3.6.3	GRCh37	SNP	chr19	50475208	49971951	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:105.03:ti:SNP:homalt	C	T	yes	no
+ITER	GRCh37	SNP	chr19	50475208	49971951	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:1066.03:ti:SNP:homalt	C	T	yes	no
+Common	GRCh37	NA	chr19	50475208	49971951	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:100:ti:SNP:homalt	C	T	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr19	50475208	49971951	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:105.04:ti:SNP:homalt	C	T	yes	no
+Roche	GRCh38	SNP	chr19	50475208	49971951	FP_FN	1|0:FN:am:.:ti:SNP:het	"1/1:FP:am:100:ti:SNP:homalt
+"	C	T	yes	no
+Common	GRCh38	NA	chr19	50475208	49971951	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh37	NA	chr19	50475211	49971954	FP_FN	1|0:FN:am:.:tv:SNP:het	1/1:FP:am:100:tv:SNP:homalt	T	G	yes	no
+Common	GRCh38	NA	chr19	50475211	49971954	FP_FN	1|0:FN:am:.:tv:SNP:het	1/1:FP:am:100:tv:SNP:homalt	T	G	yes	no
+Common	GRCh37	NA	chr19	50475215	49971958	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:100:ti:SNP:homalt	G	A	yes	no
+CMH_DRAGEN_3.6.3	GRCh38	SNP	chr19	50475215	49971958	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:108.5:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr19	50475215	49971958	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:100:ti:SNP:homalt	G	A	yes	no
+Common	GRCh37	NA	chr19	50475249	49971992	FN	0|1:TP:gm:ti:SNP:het:100	0/1:TP:gm:ti:SNP:het:100	T	C	yes	no
+Common	GRCh38	NA	chr19	50475249	49971992	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	T	C	yes	no
+BCM-HGSC_xAtlas	GRCh37	SNP	chr19	50475259	49972002	FP_FN	1|0:FN:am:.:tv:SNP:het	"1/1:FP:am:34:tv:SNP:homalt
+"	G	C	yes	no
+Common	GRCh37	NA	chr19	50475259	49972002	FP_FN	1|0:TP:gm:30.0008:tv:SNP:het	0/1:TP:gm:30.0008:tv:SNP:het	G	C	yes	no
+Common	GRCh38	NA	chr19	50475259	49972002	FP_FN	1|0:TP:gm:30.0008:tv:SNP:het	0/1:TP:gm:30.0008:tv:SNP:het	G	C	yes	no
+Common	GRCh37	NA	chr19	50475267	49972010	FN	0|1:TP:gm:tv:SNP:het:100	0/1:TP:gm:tv:SNP:het:100	T	A	yes	no
+Common	GRCh38	NA	chr19	50475267	49972010	FN	0|1:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	T	A	yes	no
+Common	GRCh37	NA	chr19	50475269	49972012	FN	0|1:TP:gm:tv:SNP:het:17.6374	0/1:TP:gm:tv:SNP:het:17.6374	G	C	yes	no
+Common	GRCh38	NA	chr19	50475269	49972012	FN	0|1:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	G	C	yes	no
+Common	GRCh37	NA	chr19	50475270	49972013	FN	0|1:TP:gm:tv:SNP:het:39.9993	0/1:TP:gm:tv:SNP:het:39.9993	G	C	yes	no
+Common	GRCh38	NA	chr19	50475270	49972013	FN	0|1:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	G	C	yes	no
+Common	GRCh37	NA	chr19	50475271	49972014	FN	0|1:TP:gm:ti:SNP:het:39.9993	0/1:TP:gm:ti:SNP:het:39.9993	G	A	yes	no
+Common	GRCh38	NA	chr19	50475271	49972014	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	G	A	yes	no
+NCBI	GRCh37	INDEL	chr19	51860740	51357486	FN	1|0:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CT	yes	no
+Roche	GRCh37	INDEL	chr19	54322263	53819009	FN	0|1:FN:.:d1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	TGG	T	no	yes
+Common	GRCh37	NA	chr19	54322263	53819009	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TGG	T	no	yes
+Common	GRCh38	NA	chr19	54322263	53819009	FN	0|1:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	TGG	T	no	yes
+Common	GRCh37	NA	chr19	54399630	53896376	FP_FN	1|1:FN:am:.:d6_15:INDEL:homalt	0/1:FP:am:100:d6_15:INDEL:het	GATTATTATT	G	no	yes
+Common	GRCh38	NA	chr19	54399630	53896376	FP_FN	1|1:FN:am:.:d6_15:INDEL:homalt	0/1:FP:am:100:d6_15:INDEL:het	GATTATTATT	G	no	yes
+Common	GRCh37	NA	chr19	54399633	53896379	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d6_15:INDEL:het	TATTATT	T	no	yes
+Roche	GRCh38	INDEL	chr19	54399633	53896379	FP	.:.:.:.:.:NOCALL:nocall	"0/1:100:FP:lm:d6_15:INDEL:het
+"	TATTATT	T	no	yes
+Common	GRCh38	NA	chr19	54399633	53896379	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d6_15:INDEL:het	TATTATT	T	no	yes
+DNAnexus	GRCh37	SNP	chr19	55474210	54962842	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr19	55479860	54968492	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	A	AT	no	yes
+DNAnexus	GRCh38	INDEL	chr19	55479860	54968492	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	"0/1:FP:am:0:i1_5:INDEL:het
+"	A	AT	no	yes
+Common	GRCh38	NA	chr19	55479860	54968492	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	A	AT	no	yes
+Common	GRCh37	NA	chr19	55488178	54976810	FP_FN	2|1:TP:gm:i16_plus,i1_5:100:INDEL:hetalt	2/1:TP:gm:i16_plus,i1_5:100:INDEL:hetalt	C	CT,CTTTTTTTTTTTTTTTTTTTT	unsure	NA
+Common	GRCh37	NA	chr19	55495853	54984485	FP_FN	2|1:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:100:INDEL:homalt	C	CTTTTTTT,CTTTTTTTT,CTTTTTTTTTTTTTTTTTT	unsure	NA
+Common	GRCh38	NA	chr19	55495853	54984485	FP_FN	2|1:FN:am:i6_15:.:INDEL:hetalt	1/1:FP:am:i6_15:100:INDEL:homalt	C	CTTTTTTT,CTTTTTTTT	unsure	NA
+DNAnexus	GRCh37	INDEL	chr19	55511960	55000592	FP	.:.:.:.:.:NOCALL:nocall	0/1:0:FP:lm:d1_5:INDEL:het	TAA	T	yes	no
+Common	GRCh37	NA	chr19	55532888	55021520	FP_FN	2|1:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:100:INDEL:homalt	G	GT,GTT	no	yes
+Common	GRCh38	NA	chr19	55532888	55021520	FP_FN	2|1:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:100:INDEL:homalt	G	GT,GTT	no	yes
+Common	GRCh37	NA	chr19	55649648	55138280	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GT	unsure	NA
+Common	GRCh38	NA	chr19	55649648	55138280	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	G	GT	unsure	NA
+Common	GRCh37	NA	chr19	59015940	58504573	FP_FN	2|1:FN:am:d1_5,i1_5:.:INDEL:hetalt	0/1:FP:am:d1_5:100:INDEL:het	TGG	T,TGGGGG	unsure	NA
+Common	GRCh37	NA	chr20	62718787	64087434	FN	1|0:TP:gm:tv:SNP:het:36.989	0/1:TP:gm:tv:SNP:het:36.989	G	C	yes	no
+Common	GRCh38	NA	chr20	62718787	64087434	FN	1|0:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	G	C	yes	no
+Common	GRCh37	NA	chr20	62826754	64195401	FP_FN	2|1:TP:gm:i6_15:100:INDEL:hetalt	2/1:TP:gm:i6_15:100:INDEL:hetalt	C	CTTTTTT,CTTTTTTT	yes	no
+Common	GRCh38	NA	chr21	35819014	34446716	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh38	NA	chr21	35819063	34446765	FN	1|0:FN:lm:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh38	NA	chr21	35819082	34446784	FP_FN	0|1:FN:am:.:ti:SNP:het	1/1:FP:am:21.8776:ti:SNP:homalt	T	C	yes	no
+Common	GRCh38	NA	chr21	35819995	34447697	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	G	GC	yes	no
+Common	GRCh38	NA	chr21	35820324	34448026	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh38	NA	chr21	35821087	34448789	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh38	NA	chr21	35821419	34449121	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh38	NA	chr21	35822111	34449813	FN	1|1:TP:gm:39.9993:ti:SNP:homalt	1/1:TP:gm:39.9993:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr21	35822270	34449972	FN	1|1:TP:gm:22.3715:ti:SNP:homalt	1/1:TP:gm:22.3715:ti:SNP:homalt	T	C	yes	no
+Common	GRCh38	NA	chr21	35822368	34450070	FN	1|1:TP:gm:36.989:ti:SNP:homalt	1/1:TP:gm:36.989:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35822758	34450460	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh38	NA	chr21	35823779	34451481	FN	1|1:TP:gm:33.98:ti:SNP:homalt	1/1:TP:gm:33.98:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr21	35824230	34451932	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+Common	GRCh38	NA	chr21	35824468	34452170	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr21	35824602	34452304	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+Common	GRCh38	NA	chr21	35825036	34452738	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GT	G	yes	no
+Common	GRCh38	NA	chr21	35825100	34452802	FN	1|1:TP:gm:14.5683:tv:SNP:homalt	1/1:TP:gm:14.5683:tv:SNP:homalt	A	C	yes	no
+Common	GRCh38	NA	chr21	35825266	34452968	FN	1|1:TP:gm:30.4577:ti:SNP:homalt	1/1:TP:gm:30.4577:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr21	35825410	34453112	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	G	C	yes	no
+Common	GRCh38	NA	chr21	35825678	34453380	FN	1|1:TP:gm:39.9993:ti:SNP:homalt	1/1:TP:gm:39.9993:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr21	35826776	34454478	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr21	35826877	34454579	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35827183	34454885	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr21	35827373	34455075	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35827431	34455133	FN	1|1:TP:gm:21.1389:ti:SNP:homalt	1/1:TP:gm:21.1389:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr21	35827480	34455182	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	T	TA	yes	no
+Common	GRCh38	NA	chr21	35828470	34456172	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	C	G	yes	no
+Common	GRCh38	NA	chr21	35829070	34456772	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	C	A	yes	no
+Common	GRCh38	NA	chr21	35829219	34456921	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35829234	34456936	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	G	T	yes	no
+Common	GRCh38	NA	chr21	35829704	34457406	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	C	T	yes	no
+Common	GRCh38	NA	chr21	35829782	34457484	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+Common	GRCh38	NA	chr21	35829858	34457560	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+PacBio_gatk4	GRCh38	SNP	chr21	35829885	34457587	FN	1|1:FN:.:tv:SNP:homalt:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+Common	GRCh38	NA	chr21	35829885	34457587	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	G	T	yes	no
+Common	GRCh38	NA	chr21	35831815	34459517	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	A	C	yes	no
+Common	GRCh38	NA	chr21	35832335	34460037	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr21	35833543	34461245	FN	1|1:TP:gm:29.2094:ti:SNP:homalt	1/1:TP:gm:29.2094:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr21	35834327	34462029	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+NYGC	GRCh38	INDEL	chr21	35835530	34463232	FN	1|1:FN:.:i1_5:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	C	CT	yes	no
+Common	GRCh38	NA	chr21	35835530	34463232	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	C	CT	yes	no
+Common	GRCh38	NA	chr21	35835589	34463291	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35835635	34463337	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35836157	34463859	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	T	A	yes	no
+Common	GRCh38	NA	chr21	35836698	34464400	FN	1|1:TP:gm:39.9993:ti:SNP:homalt	1/1:TP:gm:39.9993:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr21	35837806	34465508	FN	1|1:TP:gm:39.9993:ti:SNP:homalt	1/1:TP:gm:39.9993:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35837925	34465627	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr21	35838533	34466235	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+Common	GRCh38	NA	chr21	35838907	34466609	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	G	T	yes	no
+Common	GRCh38	NA	chr21	35839067	34466769	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35839129	34466831	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	G	T	yes	no
+Common	GRCh38	NA	chr21	35839141	34466843	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	C	G	yes	no
+NYGC	GRCh38	SNP	chr21	35839234	34466936	FN	1|1:FN:.:ti:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	G	A	yes	no
+Common	GRCh38	NA	chr21	35839234	34466936	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr21	35839274	34466976	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+Common	GRCh38	NA	chr21	35839399	34467101	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35839623	34467325	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35839963	34467665	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35840246	34467948	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	C	CA	yes	no
+Common	GRCh38	NA	chr21	35841186	34468888	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	T	C	yes	no
+Common	GRCh38	NA	chr21	35841328	34469030	FN	1|1:FN:.:i6_15:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	A	AAAACAAACAAAC	yes	no
+Common	GRCh38	NA	chr21	35841740	34469442	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	C	A	yes	no
+Common	GRCh38	NA	chr21	35845485	34473187	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	G	C	yes	no
+Common	GRCh38	NA	chr21	35845645	34473347	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr21	35845771	34473473	FN	1|1:TP:gm:33.0111:ti:SNP:homalt	1/1:TP:gm:33.0111:ti:SNP:homalt	G	A	yes	no
+Common	GRCh38	NA	chr21	35845823	34473525	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	35846031	34473733	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	C	A	yes	no
+Common	GRCh38	NA	chr21	35847214	34474916	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	G	A	yes	no
+Roche	GRCh38	INDEL	chr21	35848139	34475841	FN	1|0:FN:.:d1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	GA	G	yes	no
+Common	GRCh38	NA	chr21	35848139	34475841	FN	1|0:FN:.:d1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GA	G	yes	no
+Common	GRCh38	NA	chr21	35848910	34476612	FN	1|0:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	T	A	yes	no
+Common	GRCh38	NA	chr21	35849047	34476749	FN	1|0:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	T	A	yes	no
+Common	GRCh38	NA	chr21	35849347	34477049	FN	1|0:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CAT	yes	no
+Common	GRCh38	NA	chr21	35851329	34479031	FN	1|0:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	A	G	yes	no
+Common	GRCh38	NA	chr21	35852048	34479750	FN	0|1:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	A	G	yes	no
+Common	GRCh38	NA	chr21	35853176	34480878	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+NYGC	GRCh38	SNP	chr21	35853628	34481330	FN	1|0:FN:.:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	T	C	yes	no
+Common	GRCh38	NA	chr21	35853628	34481330	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh38	NA	chr21	35854599	34482301	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	G	yes	no
+Roche	GRCh38	INDEL	chr21	37514729	36142431	FP_FN	1|1:FN:am:.:i6_15:INDEL:homalt	"0/1:FP:am:100:i6_15:INDEL:het
+"	C	CAAAAAAAAAAAAAA	yes	no
+PacBio_gatk4	GRCh38	SNP	chr21	44473425	43053315	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:137.9:ti:SNP:homalt	G	A	yes	no
+PacBio_gatk4	GRCh38	SNP	chr21	44473446	43053336	FP_FN	1|0:FN:am:.:ti:SNP:het	1/1:FP:am:137.9:ti:SNP:homalt	A	G	yes	no
+Roche	GRCh38	SNP	chr21	44475714	43055604	FP_FN	1|0:FN:am:.:ti:SNP:het	"1/1:FP:am:100:ti:SNP:homalt
+"	T	C	yes	no
+DNAnexus	GRCh38	SNP	chr21	44475786	43055676	FP_FN	1|0:FN:am:.:ti:SNP:het	"1/1:FP:am:0:ti:SNP:homalt
+"	C	T	yes	no
+NYGC	GRCh38	SNP	chr21	44475786	43055676	FP_FN	1|0:FN:am:.:ti:SNP:het	"1/1:FP:am:912.77:ti:SNP:homalt
+"	C	T	yes	no
+NYGC	GRCh38	SNP	chr21	44475796	43055686	FP_FN	1|0:FN:am:.:ti:SNP:het	"1/1:FP:am:975.77:ti:SNP:homalt
+"	T	C	yes	no
+Common	GRCh38	NA	chr21	44475877	43055767	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh38	NA	chr21	44476759	43056649	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	A	G	yes	no
+Common	GRCh38	NA	chr21	44477441	43057331	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh38	NA	chr21	44480115	43060005	FN	0|1:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+Common	GRCh38	NA	chr21	44481169	43061059	FN	1|0:TP:gm:100:ti:SNP:het	0/1:TP:gm:100:ti:SNP:het	T	C	yes	no
+DNAnexus	GRCh38	INDEL	chr21	44481524	43061414	FN	1|0:FN:.:i1_5:INDEL:het:.	".:.:.:.:NOCALL:nocall:0
+"	C	CT	yes	no
+Common	GRCh38	NA	chr21	44481891	43061781	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr21	44483453	43063343	FP_FN	1|0:FN:am:.:ti:SNP:het	"1/1:FP:am:22:ti:SNP:homalt
+"	C	T	yes	no
+PacBio_gatk4	GRCh38	SNP	chr21	44483772	43063662	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh38	NA	chr21	44483772	43063662	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh38	NA	chr21	44485350	43065240	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh38	NA	chr21	44486271	43066161	FN	0|1:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+Common	GRCh38	NA	chr21	44486324	43066214	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+PacBio_gatk4	GRCh38	SNP	chr21	44486964	43066854	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh38	NA	chr21	44486964	43066854	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh38	NA	chr21	44487007	43066897	FN	0|1:TP:gm:10.3388:ti:SNP:het	0/1:TP:gm:10.3388:ti:SNP:het	G	A	yes	no
+Roche	GRCh38	SNP	chr21	44487111	43067001	FN	0|1:FN:.:tv:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	C	A	yes	no
+Common	GRCh38	NA	chr21	44487111	43067001	FN	0|1:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	A	yes	no
+Common	GRCh38	NA	chr21	44487891	43067781	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh38	NA	chr21	44488395	43068285	FN	0|1:TP:gm:6.3995:tv:SNP:het	0/1:TP:gm:6.3995:tv:SNP:het	G	T	yes	no
+Common	GRCh38	NA	chr21	44488755	43068645	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	G	GA	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr21	44489113	43069003	FN	1|0:FN:.:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	T	C	yes	no
+Common	GRCh38	NA	chr21	44489977	43069867	FP_FN	1|0:FN:am:.:tv:SNP:het	1/1:FP:am:100:tv:SNP:homalt	G	T	yes	no
+DNAnexus	GRCh38	SNP	chr21	44490074	43069964	FP_FN	1|0:FN:am:.:ti:SNP:het	"1/1:FP:am:0:ti:SNP:homalt
+"	G	A	yes	no
+Roche	GRCh38	SNP	chr21	44490214	43070104	FN	0|1:FN:.:tv:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	G	T	yes	no
+Common	GRCh38	NA	chr21	44490214	43070104	FN	0|1:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	T	yes	no
+Common	GRCh38	NA	chr21	44491293	43071183	FN	0|1:TP:gm:39.9993:ti:SNP:het	0/1:TP:gm:39.9993:ti:SNP:het	T	C	yes	no
+Common	GRCh38	NA	chr21	44492603	43072493	FN	1|0:TP:gm:100:tv:SNP:het	0/1:TP:gm:100:tv:SNP:het	C	G	yes	no
+Common	GRCh38	NA	chr21	44492838	43072728	FN	1|0:TP:gm:35.2289:tv:SNP:het	0/1:TP:gm:35.2289:tv:SNP:het	C	A	yes	no
+BCM-HGSC_xAtlas	GRCh38	SNP	chr21	44496062	43075952	FN	1|1:FN:.:tv:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	C	G	yes	no
+Common	GRCh38	NA	chr21	44496062	43075952	FN	1|1:TP:gm:100:tv:SNP:homalt	1/1:TP:gm:100:tv:SNP:homalt	C	G	yes	no
+Common	GRCh38	NA	chr21	44496941	43076831	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+DNAnexus	GRCh38	SNP	chr21	44496976	43076866	FP_FN	1|0:FN:am:.:tv:SNP:het	"1/1:FP:am:0:tv:SNP:homalt
+"	C	G	yes	no
+Roche	GRCh38	SNP	chr21	44496976	43076866	FP_FN	1|0:FN:am:.:tv:SNP:het	"1/1:FP:am:100:tv:SNP:homalt
+"	C	G	yes	no
+Common	GRCh38	NA	chr21	44496976	43076866	FP_FN	1|0:FN:am:.:tv:SNP:het	1/1:FP:am:100:tv:SNP:homalt	C	G	yes	no
+NYGC	GRCh38	SNP	chr21	44589215	43169105	FN	1|1:FN:.:ti:SNP:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	C	T	yes	no
+Common	GRCh38	NA	chr21	44589215	43169105	FN	1|1:TP:gm:100:ti:SNP:homalt	1/1:TP:gm:100:ti:SNP:homalt	C	T	yes	no
+Roche	GRCh38	SNP	chr21	44589569	43169459	FN	0|1:FN:.:ti:SNP:het:.	".:.:.:.:NOCALL:nocall:0
+"	C	T	yes	no
+Common	GRCh38	NA	chr21	44589569	43169459	FN	0|1:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+DNAnexus	GRCh37	INDEL	chr21	44589920	43169810	FN	1|1:FN:.:i1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	G	GC	yes	no
+Common	GRCh38	NA	chr21	44590059	43169949	FN	1|1:TP:gm:29.2081:ti:SNP:homalt	1/1:TP:gm:29.2081:ti:SNP:homalt	C	T	yes	no
+Common	GRCh38	NA	chr21	44590921	43170811	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh38	NA	chr21	44591488	43171378	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	T	yes	no
+Common	GRCh38	NA	chr21	44591617	43171507	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	T	C	yes	no
+Common	GRCh38	NA	chr21	44592875	43172765	FN	1|0:FN:.:ti:SNP:het:.	.:.:.:.:NOCALL:nocall:0	G	A	yes	no
+Common	GRCh37	NA	chr21	45454213	44034332	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AC	unsure	unsure
+Common	GRCh38	NA	chr21	45454213	44034332	FN	0|1:FN:.:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AC	unsure	unsure
+Common	GRCh38	NA	chr21	45666581	44246698	FN	1|1:TP:gm:100:d1_5:INDEL:homalt	1/1:TP:gm:100:d1_5:INDEL:homalt	AC	A	yes	no
+ITER	GRCh37	SNP	chr21	45677577	44257694	FN	1|0:FN:.:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	A	T	yes	no
+Common	GRCh37	NA	chr21	46831674	45411759	FN	1|0:FN:lm:i6_15:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	C	CGGGGGG	unsure	unsure
+Common	GRCh37	NA	chr21	46831681	45411766	FN	1|0:TP:gm:10.0242:tv:SNP:het	0/1:TP:gm:10.0242:tv:SNP:het	T	G	unsure	unsure
+Common	GRCh37	NA	chr21	46831692	45411777	FN	1|0:FN:lm:tv:SNP:het:.	.:.:.:.:NOCALL:nocall:0	C	G	unsure	unsure
+ITER	GRCh37	INDEL	chr21	46909771	45489857	FP_FN	0|1:FN:am:.:d16_plus:INDEL:het	1/1:FP:am:35.44:d16_plus:INDEL:homalt	CACTTGCCCCTCCCCCACACCTCCTCCCCG	C	yes	no
+Common	GRCh37	NA	chr21	46909870	45489956	FN	0|1:FN:lm:d16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	GCCCCACACCTCCTCCCCCACACCCTCCCCCACTTCCCCGTC	G	yes	no
+ITER	GRCh37	INDEL	chr21	46922884	45502970	FN	0|1:FN:lm:d16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CTAAGCAATTAAAAATGAAGTTTTAAAAAGGCA	C	no	yes
+Common	GRCh37	NA	chr21	46922884	45502970	FN	0|1:FN:lm:d16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CTAAGCAATTAAAAATGAAGTTTTAAAAAGGCA	C	no	yes
+Common	GRCh38	NA	chr21	46922884	45502970	FN	0|1:FN:lm:d16_plus:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	CTAAGCAATTAAAAATGAAGTTTTAAAAAGGCA	C	no	yes
+NCBI	GRCh37	INDEL	chr21	47419277	45999363	FP	.:.:.:.:.:NOCALL:nocall	0/1:30:FP:lm:i1_5:INDEL:het	G	GTT	yes	no
+DNAnexus	GRCh37	INDEL	chr22	43044209	42648203	FP	.:.:.:.:.:NOCALL:nocall	0/1:0:FP:lm:d16_plus:INDEL:het	TCCCCAAGGAGGAGACTCCAGGTCC	T	yes	no
+PacBio_gatk4	GRCh37	INDEL	chr22	43099265	42703259	FP_FN	2|2:FN:lm:.:i1_5:INDEL:homalt	1/1:FP:lm:598.73:i1_5:INDEL:homalt	G	GTTT,GTT	yes	no
+Common	GRCh37	NA	chr22	43105054	42709048	FN	0|1:FN:lm:i6_15:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	ATATATATATAT	no	yes
+Common	GRCh37	NA	chr22	43105073	42709067	FP_FN	1|2:FN:am:i6_15:.:INDEL:hetalt	3/1:FP:am:i16_plus,i6_15:100:INDEL:hetalt	A	ATATATATATTTTTT,ATTTTTT,ATATATATATATATTTTTTTT	no	yes
+Common	GRCh37	NA	chr22	43111050	42715044	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	T	TG	no	yes
+Common	GRCh38	NA	chr22	43111050	42715044	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:.:i1_5:INDEL:het	T	TG	no	yes
+NYGC	GRCh38	INDEL	chr22	43437538	43041532	FP_FN	2|1:FN:am:i6_15:.:INDEL:hetalt	"1/1:FP:am:i6_15:661.73:INDEL:homalt
+"	C	CTTTTTTT,CTTTTTTTTT	yes	no
+Common	GRCh37	NA	chr22	43465397	43069391	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CA	no	yes
+Common	GRCh38	NA	chr22	43465397	43069391	FP_FN	1|1:FN:am:.:i1_5:INDEL:homalt	0/1:FP:am:100:i1_5:INDEL:het	C	CA	no	yes
+BCM-HGSC_xAtlas	GRCh38	INDEL	chr22	43469331	43073325	FP	.:.:.:.:.:NOCALL:nocall	"0/1:7:FP:am:d1_5:INDEL:het
+"	CTATT	C	yes	no
+Common	GRCh37	NA	chr22	43469835	43073829	FN	1|0:FN:lm:i1_5:INDEL:het:.	.:.:.:.:NOCALL:nocall:0	A	AT	no	yes
+BCM-HGSC_xAtlas	GRCh37	INDEL	chr22	43470433	43074427	FN	1|1:FN:lm:d1_5:INDEL:homalt:.	".:.:.:.:NOCALL:nocall:0
+"	CA	C	no	yes
+Common	GRCh37	NA	chr22	43470433	43074427	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	CAA	C	no	yes
+Common	GRCh37	NA	chr22	43470433	43074427	FN	1|1:FN:am:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CA	C	no	yes
+Common	GRCh38	NA	chr22	43470433	43074427	FN	1|1:FN:am:d1_5:INDEL:homalt:.	.:.:.:.:NOCALL:nocall:0	CA	C	no	yes
+Common	GRCh38	NA	chr22	43470433	43074427	FP	.:.:.:.:.:NOCALL:nocall	0/1:100:FP:lm:d1_5:INDEL:het	CAA	C	no	yes
+NCBI	GRCh37	INDEL	chr22	43483843	43087837	FP_FN	1|2:FN:am:i1_5:.:INDEL:hetalt	1/1:FP:am:i1_5:30:INDEL:homalt	C	CAA,CA	yes	no
