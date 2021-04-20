@@ -17,66 +17,77 @@ python find_overlap_per_gene.py --input_benchmark HG002v11-align2-GRCh37.dip.bed
 
 # bp_in_segmental_duplications_stratification and fraction_in_segmental_duplications_stratification
 # genome-stratifications-v2.0/GRCh37/SegmentalDuplications
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/SegmentalDuplications/GRCh37_segdups.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_segdups.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_segdups.bed
 ```
 
 # bp_in_low_mappability_and_segmental_duplications_stratification and fraction_in_low_mappability_and_segmental_duplications_stratification
 # genome-stratifications-v2.0/GRCh37/union
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/union/GRCh37_alllowmapandsegdupregions.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_alllowmapandsegdupregions.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_lowmapandsegdups.bed
 ```
 
 # bp_in_AllRepeats_gt_10kb and fraction_in_AllRepeats_gt_10kb
 # genome-stratifications-v2.0/GRCh37/LowComplexity/
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/LowComplexity/GRCh37_AllTandemRepeats_gt10000bp_slop5.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_AllTandemRepeats_gt10000bp_slop5.bed --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_AllTandemRepeats_gt10000bp_slop5.bed
 ```
 
 # bp_in_reference_gaps_stratification and fraction_in_reference_gaps_stratification
 # genome-stratifications-v2.0/GRCh37/OtherDifficult
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/OtherDifficult/GRCh37_gaps_slop15kb.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_gaps_slop15kb.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_gaps_slop15kb.bed
 ```
 
 # bp_in_Tier1andTier2_SV_0.6_slop150_stratification and fraction_in_Tier1andTier2_SV_0.6_slop150_stratification
 # genome-stratifications-v2.0/GRCh37/GenomeSpecific
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_expanded_150__Tier1plusTier2_v0.6.1.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_HG002_expanded_150_Tier1plusTier2_v0.6.1.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_HG002_expanded_150__Tier1plusTier2_v0.6.bed
 ```
 
 # bp_in_ccs_ont_elliptical_outlier_cnv_stratification and fraction_in_ccs_ont_elliptical_outlier_cnv_stratification
 # genome-stratifications-v2.0/GRCh37/GenomeSpecific
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_GIABv4.1_CNV_CCSandONT_elliptical_outlier.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_HG002_GIABv4.1_CNV_CCSandONT_elliptical_outlier.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_CNV_CCSandONT_elliptical_outlier.bed
 ```
 
 # bp_in_assembly_cnv_stratification and fraction_in_assembly_cnv_stratification
 # genome-stratifications-v2.0/GRCh37/GenomeSpecific
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_GIABv4.1_CNV_gt2assemblycontigs_ONTCanu_ONTFlye_CCSCanu.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_HG002_GIABv4.1_CNV_gt2assemblycontigs_ONTCanu_ONTFlye_CCSCanu.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_CNV_gt2assemblycontigs_ONTCanu_ONTFlye_CCSCanu.bed
 ```
 
 # bp_in_illumina_ccs_ont_cnv_stratification and fraction_in_illumina_ccs_ont_cnv_stratification
 # genome-stratifications-v2.0/GRCh37/GenomeSpecific
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_GIABv4.1_CNV_mrcanavarIllumina_CCShighcov_ONThighcov_intersection.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_HG002_GIABv4.1_CNV_mrcanavarIllumina_CCShighcov_ONThighcov_intersection.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_CNV_mrcanavarIllumina_CCShighcov_ONThighcov_intersection.bed
 ```
 
 # bp_in_vdj_stratification and fraction_in_vdj_stratification
 # genome-stratifications-v2.0/GRCh37/OtherDifficult
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/OtherDifficult/GRCh37_VDJ.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_VDJ.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_VDJ.bed
 ```
 
 # bp_in_inversions_stratification and fraction_in_inversions_stratification
 # genome-stratifications-v2.0/GRCh37/GenomeSpecific
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_GIABv4.1_inversions_slop25percent.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_HG002_GIABv4.1_inversions_slop25percent.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_inversions_slop25percent.bed
 ```
 
 # bp_in_segmental_duplications_gt5_percent_identity_gte_990_stratification and fraction_in_segmental_duplications_gt5_percent_identity_gte_990_stratification
 # genome-stratifications-v2.0/GRCh37/SegmentalDuplications
+# https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/SegmentalDuplications/GRCh37_gt5segdups_gt10kb_gt99percidentity.bed.gz
 ```
 python find_overlap_per_gene.py --input_benchmark GRCh37_gt5segdups_gt10kb_gt99percidentity.bed.gz --input_genes GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates.bed --output GRCh37_ENSEMBL_genes_biomart_version_101_Medical_Gene_Coordinates_overlap_with_GRCh37_gt5segdups_gt10kb_gt99percidentity.bed
 ```
