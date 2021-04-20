@@ -14,6 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(ggridges)
+library(ggupset)
+library(ggpubr)
 ```
 
 # Objective
@@ -62,7 +64,6 @@ strat_overlap_df <- here("data","tidy","gene_strat_overlap.tsv") %>%
 ## Gene Source
 Gene source information - potentially use in place of an upset diagram.
 ```{r}
-library(ggupset)
 gene_list_df <- mrg_info_tbl %>% 
     ## Only plotting GRCh38 initially
     filter(ref == "GRCh38") %>% 
@@ -70,7 +71,7 @@ gene_list_df <- mrg_info_tbl %>%
                  names_to = "gene_list") %>% 
     filter(value == "yes")
 
-gene_list_df %>% 
+(gene_list_upset_plt <- gene_list_df %>% 
     group_by(ref, chrom, start, end, gene) %>%
     summarise(list_set = list(gene_list)) %>% 
     # distinct(title, year, length, .keep_all=TRUE) %>%
@@ -79,8 +80,9 @@ gene_list_df %>%
     geom_text(stat='count', aes(label=after_stat(count)), vjust=-0.25) +
     scale_x_upset() + 
     scale_y_log10() + 
+    annotation_logticks(sides = "lr") +
     theme_bw() +
-    labs(x = "Gene List", y = "Number of Genes")
+    labs(x = "Gene List", y = "Number of Genes"))
 ```
 
 
@@ -88,12 +90,9 @@ gene_list_df %>%
 Most medically relevant genes are covered by V4 benchmark set. 
 A number of genes with less than 90% coverage including >40 genes with no coverage.
 __QUESTION:__ Is this the gene body + flank or gene body?
-```{r}
-bench_asm_cov_df
-```
 
 ```{r}
-bench_asm_cov_df %>% 
+(v4_cov_full_dist <- bench_asm_cov_df %>% 
     ## Excluding mito and sex chromosomes
     filter(ref == "GRCh38",
         str_detect(coords, "[MTXY]",negate = TRUE), 
@@ -101,27 +100,88 @@ bench_asm_cov_df %>%
            benchmark == "v4") %>% 
     ggplot() +
     geom_histogram(aes(x = cov), 
-                   fill = "grey80", color = "grey20", size = 0.25, bins = 100) +
+                   fill = "grey80", color = "grey20",
+                   size = 0.25, bins = 100) +
     theme_bw() + 
-    labs(x = "Gene Coverage", y = "Number of Genes")
+    labs(x = "Gene Coverage", y = "Number of Genes"))
 ```
 Inset of coverage for genes with less than 90% coverage
 _TODO_ Color by in MRG(stacked plot), use xlims instead of filter.
+
 ```{r}
-bench_asm_cov_df %>% 
+v4_cov_df <- bench_asm_cov_df %>% 
     ## Excluding mito and sex chromosomes
     filter(ref == "GRCh38",
            str_detect(coords, "[MTXY]",negate = TRUE), 
-           region == "gene", 
-           benchmark == "v4", cov < 0.9) %>% 
-    ggplot() +
-    geom_histogram(aes(x = cov), 
-                   fill = "grey80", color = "grey20", size = 0.25, bins = 90) +
-    theme_bw() + 
-    labs(x = "Gene Coverage", y = "Number of Genes")
+           region == "gene") %>% 
+     pivot_wider(id_cols = c("gene","ref","coords"), 
+                 names_from = benchmark, values_from = cov)
+
+n_cov_df <- v4_cov_df %>% 
+    mutate(cov_lvl = if_else(v4 > 0.9, "high v4 cov", "low v4 cov")) %>% 
+    count(ref, cov_lvl)
+
+v4_low_cov_df <- bench_asm_cov_df %>% 
+    ## Excluding mito and sex chromosomes
+    filter(ref == "GRCh38",
+           str_detect(coords, "[MTXY]",negate = TRUE), 
+           region == "gene") %>% 
+     pivot_wider(id_cols = c("gene","ref","coords"), 
+                 names_from = benchmark, values_from = cov) %>% 
+    filter(v4 < 0.9) %>% 
+    mutate(benchmarked = if_else(mrg > 0, "in MRG","not in MRG"))
+```
+```{r}
+n_cov_df
 ```
 
 
+
+```{r}
+n_high_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "high v4 cov"]
+n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"]
+
+(
+    v4_cov_plt <- ggplot(v4_low_cov_df) +
+        geom_histogram(
+            aes(x = v4, fill = benchmarked),
+            color = "grey20",
+            size = 0.25,
+            bins = 90
+        ) +
+        geom_text(aes(
+            x = 0.05,
+            y = 42,
+            label = str_c(n_high_v4_cov,
+                          " High Coverage Genes (not shown)"),
+            hjust = 0
+        )) +
+        geom_text(aes(
+            x = 0.05,
+            y = 38,
+            label = str_c(n_low_v4_cov, 
+                          " Low Coverage Genes"),
+            hjust = 0
+        )) +
+        theme_bw() +
+        labs(x = "Gene Coverage by V4 Benchmark", y = "Number of Genes") +
+        theme(legend.position = "bottom",
+              legend.title = element_blank())
+)
+```
+
+
+# Gene List Figure
+```{r}
+(gene_list_plt <- ggarrange(gene_list_upset_plt, v4_cov_plt, labels = "AUTO"))
+```
+
+
+```{r}
+ggsave(here("figures","gene_list.png"),
+       gene_list_plt, 
+       width = 8, height = 6)
+```
 
 
 
