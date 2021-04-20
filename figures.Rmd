@@ -8,17 +8,20 @@ output:
         toc_float: true
         df_print: paged
         code_folding: hide
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 # TODO
--[] Slack ebbert RE figs and writing course
-    - RE figs: take up offer to help with figs for false duplication
--[X] Finish outlining plots 
--[] generate tidy datasets for analysis: WIP
--[] Workout panel drafts 
--[] Re-org panels for figure construction  
--[] Construct figures  
--[] Generate list of supplemental data files
+
+- [ ] Slack ebbert RE figs and writing course\
+- [x] Finish outlining plots\
+- [ ] generate tidy datasets for analysis: WIP\
+- [ ] Workout panel drafts\
+- [ ] Re-org panels for figure construction\
+- [ ] Construct figures\
+- [ ] Generate list of supplemental data files
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -26,143 +29,179 @@ library(tidyverse)
 library(here)
 ```
 
-# Main Text
 ## High Level Workflow
 
-__Figure__:  Diagram of benchmark set development process
-<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embeddedchart/5d688f72-e442-4f27-ae57-79bd3f6a7560" id="sh_rd3t24.Fl"></iframe></div>
+**Figure**: Diagram of benchmark set development process
+
+::: {style="width: 640px; height: 480px; margin: 10px; position: relative;"}
+<iframe frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embeddedchart/5d688f72-e442-4f27-ae57-79bd3f6a7560" id="sh_rd3t24.Fl">
+
+</iframe>
+:::
 
 ## Supplemental Table HG002 v4.2.1 and hifiasm v0.11 Overlaps
+
 [TODO] get file
 
 ## Selection Of Difficult Medical Genes
 
-__Key Points__  
-1. Generated exhaustive list of medically relevant genes  
-2. Gene list contains difficult to characterize genes excluded from the current version, v4.2.1  
-3. Excluded genes that are difficult for multiple reasons. (sets stage/ justification for assembly based approach)  
+**Key Points**\
+1. Generated list of medically relevant genes\
+2. Gene list contains difficult to characterize genes excluded from the
+current version, v4.2.1\
+3. Excluded genes that are difficult for multiple reasons. (sets stage/
+justification for assembly based approach)
 
-__Panels__
-{DRAFT} A. Gene List Venn Diagram: `analysis/gene_list_analysis.Rmd` _Med Genes List UpSet_ 
+**Panels**
+
+{DRAFT} A. Gene List Venn Diagram: `analysis/gene_list_analysis.Rmd`
+*Med Genes List UpSet*
+
 B. (Potentially cut/ move) UpSet plot med benchmark gene source  
-{DRAFT} C. V4 overlap: `analysis/gene_list_analysis.Rmd` _Medically Relevant Genes V4 Coverage_
-D. Characterization of 396 genes with < 90% coverage. (similar to text describing med genes benchmark characterization)
 
-## Supplemental Figure Excluded Gene Characterization 
+{DRAFT} C. V4 overlap: `analysis/gene_list_analysis.Rmd` *Medically
+Relevant Genes V4 Coverage*
+
+D. Characterization of 396 genes with \< 90% coverage. (similar to text
+describing med genes benchmark characterization)
+
+## Supplemental Figure Excluded Gene Characterization
+
 (Maybe Incorporate into Selection of Difficult Med Genes???)
 
+**Panel A**:
 
-__Panel A__: Reasons genes not fully resolved in V4    
-- Overlap with GIAB SVs (number of genes with > 10% overlap)
-- Difficult to characterize regions: complex variants in segdups and long tandem repeats  (number of complex variants in segdups or long TRs per gene)
-- CNVs relative to ref genome  (number of genes with > 10% overlap)
-- 50bp flanking regions around ambiguous variants  (number of 100 bp exclusion regions)
+Reasons genes not fully resolved in V4\
+strats: lowmap, CNV (union), SV, large repeats
 
+\- Overlap with GIAB SVs (number of genes with \> 10% overlap)
 
+\- Difficult to characterize regions: \> 10% overlap segdups and long
+tandem repeats
 
-Provides information to support - "XX genes have putative SVs, xx have putative CNVs, xx have seg dups, and xx have others"
+\- CNVs relative to ref genome (number of genes with \> 10% overlap)
 
-__Panel B__: Mapping coverage  
-Coverage relative to whole genome or genes included in V4  
-Datasets: ILL, PacBio, 10X, and ONT
+\- 50bp flanking regions around ambiguous variants (number of 100 bp
+exclusion regions) [Don't spend too much time on, maybe just sentence in
+the text]
 
+Provides information to support - "XX genes have putative SVs, xx have
+putative CNVs, xx have seg dups, and xx have others"
 
+**Panel B**: Mapping coverage\
+showing overlap with lowmap ability strat - add as facet to panel A
 
 ## Supplemental Figure HG002 hifiasm v0.11 Assembly Quality Metrics
-https://www.google.com/url?q=https://drive.google.com/file/d/15o-2q152S206JDS92iVuRKWL4AmoB5QX/view?usp%3Dsharing&sa=D&source=editors&ust=1618002287325000&usg=AOvVaw3YVU7lPdGCwFNlXECB5eqf  
 
-## Medical Genes Benchmark  
-__Panels__  
+<https://www.google.com/url?q=https://drive.google.com/file/d/15o-2q152S206JDS92iVuRKWL4AmoB5QX/view?usp%3Dsharing&sa=D&source=editors&ust=1618002287325000&usg=AOvVaw3YVU7lPdGCwFNlXECB5eqf>
+
+## Medical Genes Benchmark
+
+**TODO** Add plot with overlap distributions for 4 gene cats, lowmap as
+shortcut **Panels**
 
 A. Gene assembly coverage - flanking diagram  
-B. Medical composition  
+B. Medical composition - Upset plot with testing modalities 
 C. Small variant benchmark (poster figure) over GATK  
-D. Sanger confirmation? 
-E. Coverage by gene part (exon, introns, flanking)  
+D. Sanger confirmation?   
+E. Coverage by gene part (exon, introns,
+flanking)    
 F. small var sv and indel size distributions
 
-__Key Points__  
-- Identification of candidate genes  
-- 274 genes with know significant relevance  
-- Not all genes are benchmarkable - coverage of genes and number of small and structural variants, bases / variants excluded due to different filters.
+**Key Points**\
+- Identification of candidate genes\
+- 274 genes with know significant relevance\
+- Not all genes are benchmarkable - coverage of genes and number of
+small and structural variants, bases / variants excluded due to
+different filters.
 
 ## Table Small Variant Benchmark Statistics
 
 ## Table SV Benchmark Statistics
 
 ## (Potential To Add) Prominent things in new benchmark
+
 Overlap with Medical Genes benchmark figure
 
 ## Figure Improvements after masking false duplications
-JM Figure 
-[TODO] Get input data and code from Jenny
 
+JM Figure [TODO] Get input data and code from Jenny
 
 ## Supp Fig Masking Minimally affects whole genome accuracy
-JM Figure 
-[TODO] Get input data and code from Jenny
+
+JM Figure [TODO] Get input data and code from Jenny
 
 ## Supplementary Fig SMN12 Dotplot and Graph
-page 11
-Dotplots and graph
+
+page 11 Dotplots and graph
 
 ## Fig SMN1 IGV
+
 Potentially combine with SMN12 supp
 
-## Figure RHCE  
+## Figure RHCE
 
 ## Supplementary Figure RHD
 
 ## Figure GPI 17kb INS
+
 IGV screenshot
 
 ## Fig GTF2IRD2 INS in SegDup
+
 IGV screenshot
 
 ## Supplementary Figure Large Duplication
+
 IGV screenshot
 
 ## Supplemental Figure Complex Variant TR
+
 IGV screenshot
 
 ## Figure Manual Curation Results (Panels for Small vars and SVs??)
-- Reuse/ revise V4 manuscript code
-- [TODO] Get input data from Jenny
+
+-   Reuse/ revise V4 manuscript code
+-   [TODO] Get input data from Jenny
 
 ## Figure MRG_Benchmark_Perfomance_vs_v4.2.1
-Scatter plot benchmark fig 
-- code in `scratch/ASHG_poster_work.R`
 
-## Supplemental Figure CR1 
+Scatter plot benchmark fig - code in `scratch/ASHG_poster_work.R`
+
+## Supplemental Figure CR1
+
 Dotplot
 
 ## Supplemental Figure KIR
+
 Dotplot
 
 ## Supplemental Figure PRSS1
 
 ## Supplemental Figure DUX4
- 
+
 ## Supplementary Figure Reference_Gap_FAM20C
+
 IGV screenshot
 
 # Figs to add to list
-1. Supplementary Figure CBS_GRCh37: IGV screenshot
-1. Supplementary Figure NCF1: IGV screenshot
-1. Supplementary Figure DSPP: IGV screenshot
-1. Supplementary Figure TNNI3: IGV screenshot
-1. Supplementary Figure FLG: doplots
 
-
+1.  Supplementary Figure CBS_GRCh37: IGV screenshot
+2.  Supplementary Figure NCF1: IGV screenshot
+3.  Supplementary Figure DSPP: IGV screenshot
+4.  Supplementary Figure TNNI3: IGV screenshot
+5.  Supplementary Figure FLG: doplots
 
 # Session Information
+
 ## System Information
+
 ```{r}
 sessioninfo::platform_info()
 ```
 
-
 ## Package Versions
+
 ```{r}
 sessioninfo::package_info() %>% 
     filter(attached = TRUE) %>% 
