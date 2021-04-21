@@ -60,6 +60,25 @@ strat_overlap_df <- here("data","tidy","gene_strat_overlap.tsv") %>%
 ```
 
 
+Combining Benchmark Coverage and Strat data frames
+```{r}
+mrg_gene_cats <- bench_asm_cov_df %>% 
+    filter(str_detect(coords, "[MTXY]",negate = TRUE),
+           ref == "GRCh38",
+           region == "gene") %>% 
+    select(-vars, -svs) %>% 
+    pivot_wider(names_from = benchmark, values_from = cov) %>% 
+    mutate(gene_cat = case_when(mrg > 0 ~ "MRG",
+                                v4 > 0.9 ~ "V4",
+                                v4 < 0.9 & hifi < 1 ~ "Not Benchmarked",
+                                mrg == 0 & hifi == 1 ~ "Excluded?",
+                                TRUE ~ "???"))
+
+bench_cov_anno_df <- mrg_gene_cats %>% 
+    left_join(strat_overlap_df)
+```
+
+
 # Figures
 ## Gene Source
 Gene source information - potentially use in place of an upset diagram.
@@ -92,23 +111,6 @@ A number of genes with less than 90% coverage including >40 genes with no covera
 __QUESTION:__ Is this the gene body + flank or gene body?
 
 ```{r}
-(v4_cov_full_dist <- bench_asm_cov_df %>% 
-    ## Excluding mito and sex chromosomes
-    filter(ref == "GRCh38",
-        str_detect(coords, "[MTXY]",negate = TRUE), 
-           region == "gene", 
-           benchmark == "v4") %>% 
-    ggplot() +
-    geom_histogram(aes(x = cov), 
-                   fill = "grey80", color = "grey20",
-                   size = 0.25, bins = 100) +
-    theme_bw() + 
-    labs(x = "Gene Coverage", y = "Number of Genes"))
-```
-Inset of coverage for genes with less than 90% coverage
-_TODO_ Color by in MRG(stacked plot), use xlims instead of filter.
-
-```{r}
 v4_cov_df <- bench_asm_cov_df %>% 
     ## Excluding mito and sex chromosomes
     filter(ref == "GRCh38",
@@ -131,11 +133,6 @@ v4_low_cov_df <- bench_asm_cov_df %>%
     filter(v4 < 0.9) %>% 
     mutate(benchmarked = if_else(mrg > 0, "in MRG","not in MRG"))
 ```
-```{r}
-n_cov_df
-```
-
-
 
 ```{r}
 n_high_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "high v4 cov"]
@@ -169,18 +166,40 @@ n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"]
               legend.title = element_blank())
 )
 ```
+# Difficult Overlap
+```{r}
+(diff_overlap_plt <- bench_cov_anno_df %>% 
+    filter(ref == "GRCh38",
+           gene_cat %in% c("V4", "MRG","Not Benchmarked"),
+        str_detect(coords, "[MTXY]",negate = TRUE),
+        strat == "allDiff") %>% 
+    mutate(gene_cat = factor(gene_cat, 
+                             level = c("V4", "MRG","Not Benchmarked"))
+           ) %>% 
+    ggplot() + 
+    geom_histogram(aes(x = overlap, fill = gene_cat), 
+                   color = "grey40", size = 0.25, bins = 100) + 
+    facet_wrap(~gene_cat, ncol = 1, scales = "free_y") + 
+    theme_bw() + 
+    theme(legend.position = "bottom") + 
+    labs(x = "Difficult Region and SV Overlap", 
+         y = "Number of Genes",
+         fill = "Benchmark"))
+```
 
 
 # Gene List Figure
-```{r}
-(gene_list_plt <- ggarrange(gene_list_upset_plt, v4_cov_plt, labels = "AUTO"))
+```{r fig.height = 8}
+(gene_list_plt <- ggarrange(gene_list_upset_plt, v4_cov_plt, 
+                            diff_overlap_plt, 
+                            labels = "AUTO", ncol = 1, heights = c(1,1,2)))
 ```
 
 
 ```{r}
 ggsave(here("figures","gene_list.png"),
        gene_list_plt, 
-       width = 8, height = 6)
+       width = 6, height = 12)
 ```
 
 

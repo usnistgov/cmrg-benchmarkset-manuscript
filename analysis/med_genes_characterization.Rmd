@@ -15,7 +15,61 @@ library(tidyverse)
 library(here)
 ```
 
+
+
 # Loading and Tidying Data
+```{r}
+## Gene Stratfication Overlap
+gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"))
+
+## Benchmark and Asm Coverage information
+bench_asm_cov_df <- here("data","tidy","gene_asm_bench_coverage.tsv") %>% 
+    read_tsv(col_types = "cccccddd")
+
+```
+
+Combining Benchmark Coverage and Strat data frames
+```{r}
+mrg_gene_cats <- bench_asm_cov_df %>% 
+    filter(str_detect(coords, "[MTXY]",negate = TRUE),
+           ref == "GRCh38",
+           region == "gene") %>% 
+    select(-vars, -svs) %>% 
+    pivot_wider(names_from = benchmark, values_from = cov) %>% 
+    mutate(gene_cat = case_when(mrg > 0 ~ "MRG",
+                                v4 > 0.9 ~ "V4",
+                                v4 < 0.9 & hifi < 1 ~ "Not Benchmarked",
+                                mrg == 0 & hifi == 1 ~ "Excluded?",
+                                TRUE ~ "???"))
+
+bench_cov_anno_df <- mrg_gene_cats %>% 
+    left_join(gene_strat_df)
+```
+
+## Figure
+```{r}
+bench_cov_anno_df %>% 
+    filter(ref == "GRCh38",
+           gene_cat %in% c("V4", "MRG","Not Benchmarked"),
+        str_detect(coords, "[MTXY]",negate = TRUE),
+        strat == "allDiff") %>% 
+    mutate(gene_cat = factor(gene_cat, 
+                             level = c("V4", "MRG","Not Benchmarked"))
+           ) %>% 
+    ggplot() + 
+    geom_histogram(aes(x = overlap, fill = gene_cat), 
+                   color = "grey40", size = 0.25, bins = 100) + 
+    facet_wrap(~gene_cat, ncol = 1, scales = "free_y") + 
+    theme_bw() + 
+    theme(legend.position = "bottom") + 
+    labs(x = "Difficult Region and SV Overlap", 
+         y = "Number of Genes",
+         fill = "Benchmark")
+```
+
+
+
+# Extra
 ```{r}
 # Load overlap for HG002 GRCh38 hifiasm v0.11 and 
 #v4.2.1 of medically relevant gene coordinates

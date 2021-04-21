@@ -62,12 +62,11 @@ B. (Potentially cut/ move) UpSet plot med benchmark gene source
 {DRAFT} C. V4 overlap: `analysis/gene_list_analysis.Rmd` *Medically
 Relevant Genes V4 Coverage*
 
-D. Characterization of 396 genes with \< 90% coverage. (similar to text
-describing med genes benchmark characterization)
+{DRAFT} D. Characterization of 396 genes with \< 90% coverage. - Difficult strat coverage
 
 ## Supplemental Figure Excluded Gene Characterization
 
-(Maybe Incorporate into Selection of Difficult Med Genes???)
+__Incorporated into Selection of Difficult Med Genes__
 
 **Panel A**:
 
@@ -100,7 +99,7 @@ showing overlap with lowmap ability strat - add as facet to panel A
 **TODO** Add plot with overlap distributions for 4 gene cats, lowmap as
 shortcut **Panels**
 
-A. Gene assembly coverage - flanking diagram  
+{DRAFT} A. Gene assembly coverage - flanking diagram  - Illustrator diagram
 B. Medical composition - Upset plot with testing modalities 
 C. Small variant benchmark (poster figure) over GATK  
 D. Sanger confirmation?   
