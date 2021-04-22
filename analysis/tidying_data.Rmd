@@ -119,27 +119,8 @@ testing_modality_df <- list(ACMG = "ACMG_SF_2.0.tsv",
     rename(gene = "Gene")
 ```
 
-### Annotating with Somatic and WES testing modalities
-
-__QUESTION__ how are these defined, i.e. how do we know these set operations return the correct gene set.
-Code from JW MRG_alluvial_diagram script
-
-
-```
-somatic_cancer <- setdiff(cosmic_list$Gene, union(mandelker_list$Gene, 
-                                                  lincoln_list$Gene))
-
-
-whole_exome_seq <- setdiff(mandelker_list$Gene, union(cosmic_list$Gene, 
-                                                  lincoln_list$Gene))
-```
-                                                  
 ```{r}
 mrg_info_tbl <- mrg_source_tbl %>%
-    mutate(wes = (mandelker == "no" &
-                      (cosmic == "yes" | high_priority == "yes")),
-           somatic = (cosmic == "no" &
-                          (mandelker == "yes" | high_priority == "yes"))) %>% 
     full_join(testing_modality_df)
 ```
 

@@ -100,11 +100,11 @@ showing overlap with lowmap ability strat - add as facet to panel A
 shortcut **Panels**
 
 {DRAFT} A. Gene assembly coverage - flanking diagram  - Illustrator diagram
-B. Medical composition - Upset plot with testing modalities 
-C. Small variant benchmark (poster figure) over GATK  
+{DRAFT}B. Medical composition - Upset plot with testing modalities - `analysis/med_genes_characterization.Rmd}
+{DRAFT} C. Small variant benchmark (poster figure) over GATK   - `analysis/med_genes_characterization.Rmd` "## MRG Small Var Benchmark GATK"
 D. Sanger confirmation?   
-E. Coverage by gene part (exon, introns,
-flanking)    
+{DRAFT} E. Coverage by gene part (exon, introns,
+flanking)   - `analysis/med_genes_characterization.Rmd` does not include flanking region coverage
 F. small var sv and indel size distributions
 
 **Key Points**\
@@ -159,13 +159,10 @@ IGV screenshot
 IGV screenshot
 
 ## Figure Manual Curation Results (Panels for Small vars and SVs??)
-
--   Reuse/ revise V4 manuscript code
--   [TODO] Get input data from Jenny
+{DRAFT} `analysis/manual_curation_fig.Rmd`
 
 ## Figure MRG_Benchmark_Perfomance_vs_v4.2.1
-
-Scatter plot benchmark fig - code in `scratch/ASHG_poster_work.R`
+{DRAFT} `analysis/med_genes_characterization.Rmd` "## MRG Small Var Benchmark GATK"
 
 ## Supplemental Figure CR1
 

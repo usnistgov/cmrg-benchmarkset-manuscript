@@ -13,12 +13,35 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
+library(readxl)
 ```
 
+## Medical Genes Benchmark
 
+**TODO** Add plot with overlap distributions for 4 gene cats, lowmap as
+shortcut **Panels**
+
+{DRAFT} A. Gene assembly coverage - flanking diagram  - Illustrator diagram
+{DRAFT} B. Medical composition - Upset plot with testing modalities 
+{DRAFT} C. Small variant benchmark (poster figure) over GATK  
+D. Sanger confirmation?   
+E. Coverage by gene part (exon, introns,
+flanking)    
+F. small var sv and indel size distributions
+
+**Key Points**\
+- Identification of candidate genes\
+- 274 genes with know significant relevance\
+- Not all genes are benchmarkable - coverage of genes and number of
+small and structural variants, bases / variants excluded due to
+different filters.
 
 # Loading and Tidying Data
 ```{r}
+## Gene source and testing modality information
+mrg_info_tbl <- here("data","tidy","gene_list_info.tsv") %>% 
+    read_tsv(col_types = "cccddcccllddddddd")
+
 ## Gene Stratfication Overlap
 gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"))
 
@@ -26,6 +49,22 @@ gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"))
 bench_asm_cov_df <- here("data","tidy","gene_asm_bench_coverage.tsv") %>% 
     read_tsv(col_types = "cccccddd")
 
+## MRG versus GATK
+# Extracting Column Names
+gatk_colnames <- here("data","benchmark_evaluation",
+                      "smvar HG002 MRG v0.03.00 evaluation.xlsx") %>% 
+    read_excel(sheet = "summary stats NYGC", range = "B1:AR2", na = "NA")
+
+## Getting benchmark results
+gatk_bench_df <- here("data",
+                      "benchmark_evaluation",
+                      "smvar HG002 MRG v0.03.00 evaluation.xlsx") %>%
+    read_excel(
+        sheet = "summary stats NYGC",
+        range = "B32:AR45",
+        na = "NA",
+        col_names = colnames(gatk_colnames)
+    )
 ```
 
 Combining Benchmark Coverage and Strat data frames
@@ -46,7 +85,62 @@ bench_cov_anno_df <- mrg_gene_cats %>%
     left_join(gene_strat_df)
 ```
 
-## Figure
+## Figure Panel
+### testing modality
+__TODO__ Update somatic and WES `since these are derivatives of lists, I wouldn't use these in this figure.  Instead, I'd just add Mandelker and COSMIC, but name Mandelker as "OMIM/HGMD/ClinVar"` (message from JZ on slack)
+```{r}
+mrg_info_tbl
+```
+
+```{r}
+mrg_testing_modality_df <- mrg_gene_cats %>%
+    filter(gene_cat == "MRG") %>%
+    left_join(mrg_info_tbl) %>%
+    mutate(
+        mandelker = if_else(mandelker == "yes", 1, 0),
+        COSMIC = if_else(cosmic == "yes", 1, 0)
+    ) %>%
+    
+    pivot_longer(
+        cols = c(
+            "mandelker",
+            "COSMIC",
+            "ClinGen",
+            "CPIC",
+            "Counsyl",
+            "ACMG",
+            "HTD",
+            "NCCN_ESMO",
+            "ACOG"
+        ),
+        names_to = "testing_modality"
+    ) %>%
+    filter(value != 0) %>%
+    mutate(
+        testing_modality = if_else(
+            testing_modality == "mandelker",
+            "OMIM/HGMD/ClinVar",
+            testing_modality
+        )
+    )
+
+(testing_modality_upset_plt <- mrg_testing_modality_df %>% 
+    group_by(ref, chrom, start, end, gene) %>%
+    summarise(list_set = list(testing_modality)) %>% 
+    ggplot(aes(x = list_set)) +
+    geom_bar() +
+    geom_text(stat='count', aes(label=after_stat(count)), vjust=-0.25) +
+    scale_x_upset() + 
+    theme_bw() +
+    theme(plot.margin = margin(10, 10, 10, 60)) +
+    labs(x = "Testing Modalities", y = "Number of Genes"))
+```
+```{r}
+ggsave(here("figures","testing_modalities.png"), testing_modality_upset_plt, width = 6, height = 6)
+```
+
+
+### Difficult Coverage
 ```{r}
 bench_cov_anno_df %>% 
     filter(ref == "GRCh38",
@@ -67,6 +161,74 @@ bench_cov_anno_df %>%
          fill = "Benchmark")
 ```
 
+## MRG Small Var Benchmark GATK
+```{r}
+tidy_gatk_bench_df <- gatk_bench_df %>% 
+    select(-contains("PLUS"),
+           -contains("het"),
+           -contains("homalt")) %>% 
+    mutate(SNP.fn_rate = 1 - SNP.Recall,
+           INDEL.fn_rate = 1 - INDEL.Recall) %>% 
+    pivot_longer(cols = -c(Query, Genome, Ref, benchmark, Subset), 
+                 names_to = "metric") %>% 
+    mutate(var_type = case_when(str_detect(metric, "INDEL") ~ "INDEL",
+                                str_detect(metric, "SNP") ~ "SNV",
+                                TRUE ~ "Other"),
+           metric = str_remove(metric, "INDEL.|SNP.")) 
+```
+
+```{r}
+library(ggrepel)
+gatk_plt_df <- tidy_gatk_bench_df %>% 
+    filter(metric %in% c("fn_rate", "Frac_NA")) %>% 
+    select(benchmark, var_type, Subset, metric, value) %>% 
+    pivot_wider(names_from = benchmark, values_from = value)
+
+gatk_plt_df %>% 
+    mutate(metric = if_else(metric == "fn_rate", "FN Rate", "Frac Not Assessed")) %>% 
+    mutate(Subset = case_when(Subset == "*" ~ "MRG Benchmark Regions",
+                              Subset == "GRCh38_MRG_benchmark_gene_coordinates_falselyduplicated.bed.gz" ~ "Falsely Duplicated Regions",
+                              Subset == "GRCh38_notinalllowmapandsegdupregions.bed.gz" ~ "Not In LowMap and SegDup",
+                              Subset == "HG002_GRCh38_MRG_stratification_large_duplication_not_in_ref.bed" ~ "HG002 Large Dups",
+                              Subset == "GRCh38_MHC.bed.gz" ~ "MHC",
+                              Subset == "GRCh38_notinalldifficultregions.bed.gz" ~ "Not In All Difficult",
+                              Subset == "HG002_GRCh38_MRG_stratification_ComplexVar_in_TR.bed.gz" ~ "ComplexVars In TR",
+                              TRUE ~ "DEBUGME")) %>% 
+    ggplot(aes(x = v4.2.1, y = v0.03.00)) + 
+    geom_abline(aes(intercept = 0, slope = 1), linetype = 2, color = "grey60") + 
+    geom_text_repel(aes(label = Subset), size = 2) +
+    geom_point(aes(fill = Subset), shape = 21, color = "grey60") + 
+    facet_grid(var_type~metric) + 
+    
+    guides(fill = guide_legend(nrow = 3)) +
+    scale_color_brewer(type = "qual", palette = 2) + 
+    theme_bw() + 
+    theme(legend.position = "none") + 
+    labs(x = "V4.2 Benchmark", y = "MRG Benchmark", 
+         shape = "Variant Type", fill = "Stratification")
+
+```
+## MRG Gene Coverage
+```{r}
+mrg_gene_cov <- bench_cov_anno_df %>% 
+    filter(gene_cat == "MRG") %>% 
+    select(gene, ref, coords) %>% 
+    distinct() %>% 
+    left_join(bench_asm_cov_df) %>% 
+    filter(ref == "GRCh38", 
+           str_detect(coords, "[MTXY]",negate = TRUE),
+           benchmark == "mrg")
+
+(mrg_gene_cov_plt <- ggplot(mrg_gene_cov) + 
+    geom_histogram(aes(x = cov, fill = region), 
+                   position = "dodge",
+                   color = "grey40",
+                   size = 0.25) + 
+    theme_bw() +
+    labs(x = "Benchmark Coverage", y = "Number of Genes", fill = "") +
+    theme(legend.position = c(0.15,0.9), 
+          legend.direction = "horizontal", legend.background = element_blank()))
+```
 
 
 # Extra
