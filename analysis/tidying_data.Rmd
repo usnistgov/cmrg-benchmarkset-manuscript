@@ -141,16 +141,6 @@ mrg_info_tbl %>%
 ```
 
 
-_DATA CHECK:_ Verifying WES and Somatic testing modality correctly assigned
-```{r}
-mrg_info_tbl %>% 
-    count(mandelker, cosmic, high_priority, wes)
-```
-```{r}
-mrg_info_tbl %>% 
-    count(mandelker, cosmic, high_priority, somatic)
-```
-
 Tidying tibble up for export
 ```{r}
 tidy_mrg_info_tbl <- mrg_info_tbl %>%
@@ -175,6 +165,40 @@ write_tsv(tidy_mrg_info_tbl,
 ## Benchmark and Assembly Coverage
 Generating tidy table with gene and exon coverage for the medically relevant genes benchmark, v4 small variant benchmark, and hifi assembly.
 
+### Loading MRG Benchmark Gene Lists
+```{r}
+## Gene List Files
+mrg_gene_beds <- list(
+  GRCh37 = here(
+    "data",
+    "mrg_benchmarkset",
+    "HG002",
+    "GRCh37",
+    "intermediate_files",
+    "HG002_GRCh37_MRG_no_MHC.bed"
+  ),
+  GRCh38 = here(
+    "data",
+    "mrg_benchmarkset",
+    "HG002",
+    "GRCh38",
+    "intermediate_files",
+    "HG002_GRCh38_MRG_no_MHC.bed"
+  )
+)
+  
+
+
+mrg_genes_df <- mrg_gene_beds %>%
+  map_dfr(
+    read_tsv,
+    col_names = c("chrom", "start", "end", "gene"),
+    col_types = "cddc",
+    .id = "ref"
+  ) %>% 
+  mutate(in_mrg = TRUE)
+```
+
 
 
 __QUESTION__ Are these 440 NA values expected for GRCh38
@@ -195,6 +219,7 @@ mrg_stats_tbl %>%
 na_genes <- mrg_stats_tbl %>% 
   filter(is.na(fraction_exon_covered_MRG_small_variant_v0.03_benchmark)) %>% 
   {.$gene} %>% unique()
+
 mrg_stats_tbl %>% 
   filter(gene %in% na_genes,
          str_detect(chrom, "[MTXY]", negate = TRUE)) %>% 
@@ -204,8 +229,10 @@ mrg_stats_tbl %>%
 
 ```{r}
 mrg_bench_asm_df <- mrg_stats_tbl %>% 
+  left_join(mrg_genes_df) %>% 
+  mutate(in_mrg = if_else(is.na(in_mrg), FALSE, in_mrg)) %>% 
     mutate(coords = str_c(chrom, ":",start,"-",end)) %>% 
-    select(gene, ref, coords, 
+    select(gene, ref, coords, in_mrg,
            contains("V4"), 
            contains("MRG"), 
            -starts_with("bp_"), 
@@ -232,11 +259,13 @@ mrg_bench_asm_df <- mrg_stats_tbl %>%
            mrg_gene_svs = num_MRG_SV_v0.02_SVs_in_gene,
            mrg_exon_svs = num_MRG_SV_v0.02_variants_in_exons,
            hifi_gene_cov = fraction_hifiasm_dip.bed) %>% 
-    pivot_longer(cols = -c("gene", "ref", "coords"),
+    pivot_longer(cols = -c("gene", "ref", "coords", "in_mrg"),
                  names_to = c("benchmark", "region","metric"),
                  names_sep = "_", values_to = "value") %>%
-    pivot_wider(id_cols = c(gene, ref, coords, benchmark, region),
+    pivot_wider(id_cols = c(gene, ref, coords, in_mrg, benchmark, region),
                 names_from = metric, values_from = value)
+
+mrg_bench_asm_df
 ```
 
 
@@ -460,6 +489,11 @@ write_tsv(tidy_bench_eval_df,
           here("data","tidy","manual_curation.tsv"))
 ```
 
+
+## MRG Variants Table
+```{r}
+
+```
 
 # Getting MD5s
 ```{r}

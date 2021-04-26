@@ -47,7 +47,7 @@ gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"))
 
 ## Benchmark and Asm Coverage information
 bench_asm_cov_df <- here("data","tidy","gene_asm_bench_coverage.tsv") %>% 
-    read_tsv(col_types = "cccccddd")
+    read_tsv(col_types = "ccclccddd")
 
 ## MRG versus GATK
 # Extracting Column Names
@@ -75,7 +75,7 @@ mrg_gene_cats <- bench_asm_cov_df %>%
            region == "gene") %>% 
     select(-vars, -svs) %>% 
     pivot_wider(names_from = benchmark, values_from = cov) %>% 
-    mutate(gene_cat = case_when(mrg > 0 ~ "MRG",
+    mutate(gene_cat = case_when(in_mrg ~ "MRG",
                                 v4 > 0.9 ~ "V4",
                                 v4 < 0.9 & hifi < 1 ~ "Not Benchmarked",
                                 mrg == 0 & hifi == 1 ~ "Excluded?",
@@ -209,6 +209,7 @@ gatk_plt_df %>%
 
 ```
 ## MRG Gene Coverage
+
 ```{r}
 mrg_gene_cov <- bench_cov_anno_df %>% 
     filter(gene_cat == "MRG") %>% 
@@ -223,11 +224,21 @@ mrg_gene_cov <- bench_cov_anno_df %>%
     geom_histogram(aes(x = cov, fill = region), 
                    position = "dodge",
                    color = "grey40",
-                   size = 0.25) + 
+                   size = 0.25, bins = 50) + 
     theme_bw() +
     labs(x = "Benchmark Coverage", y = "Number of Genes", fill = "") +
     theme(legend.position = c(0.15,0.9), 
           legend.direction = "horizontal", legend.background = element_blank()))
+```
+__QUESTION:__ Reason for gene with ~15% exon coverage
+```{r}
+mrg_gene_cov %>% filter(gene == "FLG")
+```
+
+
+## INDEL Size Distribution
+```{r}
+read_tsv(here("data","mrg_benchmarkset",""))
 ```
 
 
