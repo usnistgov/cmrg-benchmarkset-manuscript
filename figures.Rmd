@@ -15,9 +15,8 @@ editor_options:
 
 # TODO
 
-- [ ] Slack ebbert RE figs and writing course\
-- [x] Finish outlining plots\
-- [ ] generate tidy datasets for analysis: WIP\
+- [ ] Sanger confirmation plot\
+- [ ] Variant size distribution plot\ 
 - [ ] Workout panel drafts\
 - [ ] Re-org panels for figure construction\
 - [ ] Construct figures\
@@ -39,56 +38,32 @@ library(here)
 </iframe>
 :::
 
+
+
 ## Supplemental Table HG002 v4.2.1 and hifiasm v0.11 Overlaps
 
 [TODO] get file
 
+
+
 ## Selection Of Difficult Medical Genes
-
-**Key Points**\
-1. Generated list of medically relevant genes\
-2. Gene list contains difficult to characterize genes excluded from the
-current version, v4.2.1\
-3. Excluded genes that are difficult for multiple reasons. (sets stage/
-justification for assembly based approach)
-
-**Panels**
 
 {DRAFT} A. Gene List Venn Diagram: `analysis/gene_list_analysis.Rmd`
 *Med Genes List UpSet*
 
-B. (Potentially cut/ move) UpSet plot med benchmark gene source  
+B. (Potentially cut/ move) UpSet plot med benchmark gene source  *Maybe add to gene source upset.*
 
 {DRAFT} C. V4 overlap: `analysis/gene_list_analysis.Rmd` *Medically
 Relevant Genes V4 Coverage*
 
 {DRAFT} D. Characterization of 396 genes with \< 90% coverage. - Difficult strat coverage
 
-## Supplemental Figure Excluded Gene Characterization
 
-__Incorporated into Selection of Difficult Med Genes__
 
-**Panel A**:
+## *CUT* Supplemental Figure Excluded Gene Characterization 
+Incorporated into Selection of Difficult Med Genes 
 
-Reasons genes not fully resolved in V4\
-strats: lowmap, CNV (union), SV, large repeats
 
-\- Overlap with GIAB SVs (number of genes with \> 10% overlap)
-
-\- Difficult to characterize regions: \> 10% overlap segdups and long
-tandem repeats
-
-\- CNVs relative to ref genome (number of genes with \> 10% overlap)
-
-\- 50bp flanking regions around ambiguous variants (number of 100 bp
-exclusion regions) [Don't spend too much time on, maybe just sentence in
-the text]
-
-Provides information to support - "XX genes have putative SVs, xx have
-putative CNVs, xx have seg dups, and xx have others"
-
-**Panel B**: Mapping coverage\
-showing overlap with lowmap ability strat - add as facet to panel A
 
 ## Supplemental Figure HG002 hifiasm v0.11 Assembly Quality Metrics
 
@@ -96,27 +71,23 @@ showing overlap with lowmap ability strat - add as facet to panel A
 
 ## Medical Genes Benchmark
 
-**TODO** Add plot with overlap distributions for 4 gene cats, lowmap as
-shortcut **Panels**
-
 {DRAFT} A. Gene assembly coverage - flanking diagram  - Illustrator diagram
 {DRAFT}B. Medical composition - Upset plot with testing modalities - `analysis/med_genes_characterization.Rmd}
 {DRAFT} C. Small variant benchmark (poster figure) over GATK   - `analysis/med_genes_characterization.Rmd` "## MRG Small Var Benchmark GATK"
-D. Sanger confirmation?   
+*TODO* D. Sanger confirmation?   
 {DRAFT} E. Coverage by gene part (exon, introns,
 flanking)   - `analysis/med_genes_characterization.Rmd` does not include flanking region coverage
-F. small var sv and indel size distributions
+*TODO* F. small var sv and indel size distributions
 
-**Key Points**\
-- Identification of candidate genes\
-- 274 genes with know significant relevance\
-- Not all genes are benchmarkable - coverage of genes and number of
-small and structural variants, bases / variants excluded due to
-different filters.
+
 
 ## Table Small Variant Benchmark Statistics
 
+
+
 ## Table SV Benchmark Statistics
+
+
 
 ## (Potential To Add) Prominent things in new benchmark
 
