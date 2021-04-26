@@ -174,15 +174,18 @@ n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"]
         str_detect(coords, "[MTXY]",negate = TRUE),
         strat == "allDiff") %>% 
     mutate(gene_cat = factor(gene_cat, 
-                             level = c("V4", "MRG","Not Benchmarked"))
+                             level = c("V4", "MRG","Not Benchmarked"),
+                             labels = c(">90% coverage by V4.2.1",
+                                        "in MRG Benchmark",
+                                        "Not Benchmarked"))
            ) %>% 
     ggplot() + 
     geom_histogram(aes(x = overlap, fill = gene_cat), 
                    color = "grey40", size = 0.25, bins = 100) + 
     facet_wrap(~gene_cat, ncol = 1, scales = "free_y") + 
     theme_bw() + 
-    theme(legend.position = "bottom") + 
-    labs(x = "Difficult Region and SV Overlap", 
+    theme(legend.position = "none") + 
+    labs(x = "Fraction of gene with challenging sequence or variants", 
          y = "Number of Genes",
          fill = "Benchmark"))
 ```
