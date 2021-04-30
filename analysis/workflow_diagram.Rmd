@@ -1,0 +1,85 @@
+---
+title: "Plots for MRG Benchmark Workflow Diagram"
+date: '`r Sys.Date()`'
+output: 
+    bookdown::html_document2:
+        toc: true
+        toc_float: true
+        df_print: paged
+        code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(ggupset)
+library(scales)
+```
+
+# Objective
+Generate plots for mrg benchmark development workflow diagram
+
+
+# Loading and tidying data
+Input data tables generated with `analysis/tidying_data.Rmd`.
+```{r}
+## Gene source and testing modality information
+mrg_info_tbl <- here("data","tidy","gene_list_info.tsv") %>% 
+    read_tsv(col_types = "cccddcccllddddddd")
+```
+
+
+# Figures
+## Gene Source
+Gene source information - potentially use in place of an upset diagram.
+```{r}
+gene_list_df <- mrg_info_tbl %>% 
+    ## Only plotting GRCh38 initially
+    filter(ref == "GRCh38") %>% 
+    pivot_longer(cols = c("mandelker","cosmic","high_priority"),
+                 names_to = "gene_list") %>% 
+    filter(value == "yes") %>% 
+    mutate(gene_list = case_when(
+        gene_list == "mandelker" ~ "OMIM/HGMD/ClinVar",
+        gene_list == "cosmic" ~ "COSMIC",
+        gene_list == "high_priority" ~ "High Priority"
+    ))
+
+(gene_list_upset_plt <- gene_list_df %>% 
+    group_by(ref, chrom, start, end, gene) %>%
+    summarise(list_set = list(gene_list)) %>% 
+    # distinct(title, year, length, .keep_all=TRUE) %>%
+    ggplot(aes(x = list_set)) +
+    geom_bar() +
+    geom_text(stat='count', aes(label=after_stat(count)), vjust=-0.25) +
+    scale_x_upset() + 
+    scale_y_log10(limits = c(1, 10000), 
+                  breaks = c(10, 100, 1000, 10000),
+                  labels = trans_format("log10", math_format(10^.x))) + 
+    annotation_logticks(sides = "lr") +
+    theme_bw() +
+    labs(x = "Gene List", y = "# of Genes") + 
+    theme(plot.margin = margin(10, 10, 10, 60)))
+```
+
+
+```{r}
+ggsave(here("figures", "gene_list.pdf"), gene_list_upset_plt, width = 8, height = 4)
+```
+
+
+# Session Information
+## System Information
+```{r}
+sessioninfo::platform_info()
+```
+
+
+## Package Versions
+```{r}
+sessioninfo::package_info() %>% 
+    filter(attached = TRUE) %>% 
+    select(package, loadedversion, date, source) %>%
+    knitr::kable(booktabs = TRUE, row.names = FALSE)
+```
