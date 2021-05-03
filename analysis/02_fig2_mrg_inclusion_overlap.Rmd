@@ -162,13 +162,37 @@ mrg_gene_cov <- bench_cov_anno_df %>%
 ```
 
 ### Small Variant Size Distribution
+```{r}
+## Skeleton Code for indel fig
+# (indel_perf_plt <- ggplot(data.frame()) + geom_blank())
+```
 
 ### Large Variant Size Distribution 
+```{r}
+## Skeleton Code for indel fig
+# (indel_perf_plt <- ggplot(data.frame()) + geom_blank())
+```
 
 
 
+# Combined Figure
+```{r}
+## Skeleton Code for combined figure
+# (
+#     combined_fig <-
+#         ggarrange(
+#             ## TODO - add plot list
+#             ncol = 2,
+#             nrow = 1,
+#             labels = "AUTO"
+#         )
+# )
+```
 
-
+```{r}
+# ggsave(filename = here("figures", "fig2_mrg_inclusion_overlap.png"), 
+#        plot = combined_fig, width = 6, height = 6, dpi = 300) 
+```
 
 
 

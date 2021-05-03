@@ -27,7 +27,6 @@ Generate tidy data sets for generating manuscript figures and tables.
 1. Medical Gene List (`data/tidy/mrg_list_info.tsv`): gene coordinates, gene list membership, and testing modality  
 1. Genes coverage (`data/tidy/gene_asm_bench_coverage.tsv`): benchmark set and asm coverage information  
 1. Gene stratification overlap (`data/tidy/gene_strat_overlap.tsv`): overlap fraction of difficult stratifications with medically relevant genes.
-1. Sequencing read coverage (`data/tidy/seq_coverage.tsv`): Gene Coverage for by different datasets
 
 
 # Making Tidy Data Tables
@@ -327,92 +326,6 @@ write_tsv(mrg_strat_df,
           here("data","tidy","gene_strat_overlap.tsv"))
 ```
 
-
-## Sequencing Read Coverage Data
-__TODO__ Get better input source data
-Only coverage information for GRCh37, file downloaded from `https://gitlab.nist.gov/gitlab/jmw7/medically_relevant_characterization/-/raw/master/GRCh37/GRCh37_characterizations_assembly_contig_coverages_merged.tsv`
-Manually modified file, only keeping gene list and read coverage columns.
-
-```{r}
-grch37_gene_cov_df <- read_tsv(
-  here(
-    "data",
-    "seq_coverage",
-    "GRCh37_characterizations_assembly_contig_coverages_merged.tsv"
-  )
-)
-
-gene_cov_df <- grch37_gene_cov_df %>% 
-  rename(chrom = Chromosome,
-         gene = `Gene Symbol`) %>% 
-  mutate(start = `Start minus 20kbp` + 20000,
-         end = `End plus 20kbp` - 20000,
-         ref = "GRCh37") %>% 
-  select(-`Start minus 20kbp`, -`End plus 20kbp`)
-```
-
-
-_DATA Check:_ Verifying genes and coordinates match other data sources
-```{r}
-gene_check_df <- gene_cov_df %>% 
-  mutate(chrom = paste0("chr",chrom)) %>% 
-  full_join(mrg_stats_tbl)
-```
-```{r}
-## Gene lists not matching as they are for different reference versions
-nrow(gene_check_df)
-```
-
-```{r}
-gene_check_df %>% arrange(gene) %>% 
-  select(GRCh37, chrom, gene, start, end) %>% 
-  top_n(10)
-```
-
-
-### Tidying data
-```{r}
-tidy_gene_cov_df <- gene_cov_df %>%
-  select(gene, ref, chrom, start, end, contains("cover")) %>%
-  gather(key = "analysis",
-         value = "value",
-         -gene,
-         -ref,
-         -chrom,
-         -start,
-         -end) %>%
-  filter(!is.na(value)) %>%
-  mutate(
-    data_set = case_when(
-      str_detect(analysis, "CCS") ~ "CCS",
-      str_detect(analysis, "10X") ~ "10X",
-      str_detect(analysis, "ONT") ~ "ONT"
-    ),
-    cov_stat = if_else(
-      str_detect(analysis, "average"),
-      "avg_cov",
-      str_extract(analysis, "(?<=covered.by.).*(?=.CCS|.ONT|.10X)")
-    )
-  ) %>%
-  mutate(cov_stat = str_replace(cov_stat, "at.least.", "bp_cov_by_")) %>%
-  select(-analysis) %>%
-  spread(cov_stat, value)
-```
-
-
-### Example Gene
-```{r}
-## Only displaying info for 1 gene to reduce html file size
-tidy_gene_cov_df %>% 
-    filter(gene == "OR4F5") %>% 
-    DT::datatable()
-```
-
-### Writing To File 
-```{r}
-write_tsv(tidy_gene_cov_df,
-          here("data","tidy","seq_coverage.tsv"))
-```
 
 ## Sanger Confirmation
 Summary table at https://docs.google.com/spreadsheets/d/1_29bJkQ1snrKb9TGeCWh2hRl6Rx7tPVd/edit#gid=985369016

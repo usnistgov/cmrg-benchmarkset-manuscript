@@ -1,0 +1,183 @@
+---
+title: "MRG Utility - Benchmarking with the New MRG Benchmark"
+date: '`r Sys.Date()`'
+output: 
+    bookdown::html_document2:
+        toc: true
+        toc_float: true
+        df_print: paged
+        code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(readxl)
+library(ggrepel)
+library(ggpubr)
+```
+
+# Objective
+
+__Panels__ 
+A. Benchmarking performance for challenging indels: MRG v. V4 - indel size v. performance   
+B. V4 v. MRG GATK benchmarking performance 
+
+
+# Loading and Tidying Data
+```{r}
+## Gene source and testing modality information
+mrg_info_tbl <- here("data","tidy","gene_list_info.tsv") %>% 
+    read_tsv(col_types = "cccddcccllddddddd")
+
+## Gene Stratfication Overlap
+gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"))
+
+## Benchmark and Asm Coverage information
+bench_asm_cov_df <- here("data","tidy","gene_asm_bench_coverage.tsv") %>% 
+    read_tsv(col_types = "ccclccddd")
+
+## MRG versus GATK
+# Extracting Column Names
+gatk_colnames <- here("data","benchmark_evaluation",
+                      "smvar HG002 MRG v0.03.00 evaluation.xlsx") %>% 
+    read_excel(sheet = "summary stats NYGC", range = "B1:AR2", na = "NA")
+
+## Getting benchmark results
+gatk_bench_df <- here("data",
+                      "benchmark_evaluation",
+                      "smvar HG002 MRG v0.03.00 evaluation.xlsx") %>%
+    read_excel(
+        sheet = "summary stats NYGC",
+        range = "B32:AR45",
+        na = "NA",
+        col_names = colnames(gatk_colnames)
+    )
+```
+
+Combining Benchmark Coverage and Strat data frames
+```{r}
+mrg_gene_cats <- bench_asm_cov_df %>% 
+    filter(str_detect(coords, "[MTXY]",negate = TRUE),
+           ref == "GRCh38",
+           region == "gene") %>% 
+    select(-vars, -svs) %>% 
+    pivot_wider(names_from = benchmark, values_from = cov) %>% 
+    mutate(gene_cat = case_when(in_mrg ~ "MRG",
+                                v4 > 0.9 ~ "V4",
+                                v4 < 0.9 & hifi < 1 ~ "Not Benchmarked",
+                                mrg == 0 & hifi == 1 ~ "Excluded?",
+                                TRUE ~ "???"))
+
+bench_cov_anno_df <- mrg_gene_cats %>% 
+    left_join(gene_strat_df)
+```
+
+# Figure Panels
+
+## MRG Small Var Benchmark GATK
+```{r}
+tidy_gatk_bench_df <- gatk_bench_df %>% 
+    select(-contains("PLUS"),
+           -contains("het"),
+           -contains("homalt")) %>% 
+    mutate(SNP.fn_rate = 1 - SNP.Recall,
+           INDEL.fn_rate = 1 - INDEL.Recall) %>% 
+    pivot_longer(cols = -c(Query, Genome, Ref, benchmark, Subset), 
+                 names_to = "metric") %>% 
+    mutate(var_type = case_when(str_detect(metric, "INDEL") ~ "INDEL",
+                                str_detect(metric, "SNP") ~ "SNV",
+                                TRUE ~ "Other"),
+           metric = str_remove(metric, "INDEL.|SNP.")) 
+```
+
+```{r}
+gatk_plt_df <- tidy_gatk_bench_df %>% 
+    filter(metric %in% c("fn_rate", "Frac_NA")) %>% 
+    select(benchmark, var_type, Subset, metric, value) %>% 
+    pivot_wider(names_from = benchmark, values_from = value)
+
+(
+    bench_scatter_plt <- gatk_plt_df %>%
+        mutate(metric = if_else(
+            metric == "fn_rate", "FN Rate", "Frac Not Assessed"
+        )) %>%
+        mutate(
+            Subset = case_when(
+                Subset == "*" ~ "MRG Benchmark Regions",
+                Subset == "GRCh38_MRG_benchmark_gene_coordinates_falselyduplicated.bed.gz" ~ "Falsely Duplicated Regions",
+                Subset == "GRCh38_notinalllowmapandsegdupregions.bed.gz" ~ "Not In LowMap and SegDup",
+                Subset == "HG002_GRCh38_MRG_stratification_large_duplication_not_in_ref.bed" ~ "HG002 Large Dups",
+                Subset == "GRCh38_MHC.bed.gz" ~ "MHC",
+                Subset == "GRCh38_notinalldifficultregions.bed.gz" ~ "Not In All Difficult",
+                Subset == "HG002_GRCh38_MRG_stratification_ComplexVar_in_TR.bed.gz" ~ "ComplexVars In TR",
+                TRUE ~ "DEBUGME"
+            )
+        ) %>%
+        ggplot(aes(x = v4.2.1, y = v0.03.00)) +
+        geom_abline(
+            aes(intercept = 0, slope = 1),
+            linetype = 2,
+            color = "grey60"
+        ) +
+        geom_text_repel(aes(label = Subset), size = 2) +
+        geom_point(aes(fill = Subset), shape = 21, color = "grey60") +
+        facet_grid(var_type ~ metric) +
+        
+        guides(fill = guide_legend(nrow = 3)) +
+        scale_color_brewer(type = "qual", palette = 2) +
+        theme_bw() +
+        theme(legend.position = "none") +
+        labs(
+            x = "V4.2 Benchmark",
+            y = "MRG Benchmark",
+            shape = "Variant Type",
+            fill = "Stratification"
+        )
+)
+
+```
+
+
+## Indel Performance
+```{r}
+## Skeleton Code for indel fig
+(indel_perf_plt <- ggplot(data.frame()) + geom_blank())
+```
+
+# Combined Figure
+```{r}
+## Skeleton Code for combined figure)
+(
+    combined_fig <-
+        ggarrange(
+            bench_scatter_plt,
+            indel_perf_plt,
+            ncol = 2,
+            nrow = 1,
+            labels = "AUTO"
+        )
+)
+```
+
+```{r}
+ggsave(filename = here("figures", "fig4_benchmarking_w_mrg.png"), 
+       plot = combined_fig, width = 6, height = 6, dpi = 300) 
+```
+
+
+# Session Information
+## System Information
+```{r}
+sessioninfo::platform_info()
+```
+
+
+## Package Versions
+```{r}
+sessioninfo::package_info() %>% 
+    filter(attached = TRUE) %>% 
+    select(package, loadedversion, date, source) %>%
+    knitr::kable(booktabs = TRUE, row.names = FALSE)
+```
