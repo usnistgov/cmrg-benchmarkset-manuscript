@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(readxl)
+library(ggpubr)
 ```
 
 ## Loading and Tidying
@@ -21,7 +22,7 @@ library(readxl)
 ```{r}
 ## Gene source and testing modality information
 mrg_info_tbl <- here("data","tidy","gene_list_info.tsv") %>% 
-    read_tsv(col_types = "cccddcccllddddddd")
+    read_tsv(col_types = "cccddcccddddddd")
 
 ## Gene Stratfication Overlap
 gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"))
@@ -30,6 +31,10 @@ gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"))
 ## Benchmark and Asm Coverage information 
 bench_asm_cov_df <- here("data","tidy","gene_asm_bench_coverage.tsv") %>% 
     read_tsv(col_types = "ccclccddd")
+
+## Benchmark Variant tbl
+mrg_var_df <- read_tsv(here("data","tidy","mrg_var_tbl.tsv"),
+                       col_types = "cciccccici")
 ```
 
 Combining Benchmark Coverage and Strat data frames
@@ -75,12 +80,13 @@ v4_low_cov_df <- bench_asm_cov_df %>%
      pivot_wider(id_cols = c("gene","ref","coords"), 
                  names_from = benchmark, values_from = cov) %>% 
     filter(v4 < 0.9) %>% 
-    mutate(benchmarked = if_else(mrg > 0, "in MRG","not in MRG"))
+    mutate(benchmarked = if_else(mrg > 0, "in MRG","not in MRG"),
+           benchmarked = factor(benchmarked, levels = c("not in MRG", "in MRG")))
 ```
 
 ```{r}
 n_high_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "high v4 cov"]
-n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"]
+n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"] 
 
 (
     v4_cov_plt <- ggplot(v4_low_cov_df) +
@@ -106,7 +112,7 @@ n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"]
         )) +
         theme_bw() +
         labs(x = "Gene Coverage by V4 Benchmark", y = "Number of Genes") +
-        theme(legend.position = "bottom",
+        theme(legend.position = c(0.25, 0.65),
               legend.title = element_blank())
 )
 ```
@@ -163,12 +169,10 @@ mrg_gene_cov <- bench_cov_anno_df %>%
 
 ### Small Variant Size Distribution
 ```{r}
-mrg_var_df <- read_tsv(here("data","tidy","mrg_var_tbl.tsv"),
-                       col_types = "cciccccici")
-
 (smv_size_dist_plt <- mrg_var_df %>% 
     filter(TYPE == "INDEL", bench_type == "smvar") %>% 
-    mutate(gene_part = if_else(EXON == ".", "intro","exon")) %>% 
+    mutate(gene_part = if_else(EXON == ".", "intron","exon"),
+           gene_part = factor(gene_part, levels = c("intron","exon"))) %>% 
     ggplot() + 
     geom_bar(aes(x = var_size, fill = gene_part)) + 
         scale_fill_brewer(type = "qual", palette = 3) +
@@ -190,7 +194,8 @@ sv_breaks <- sort(c(-breaks, 0, breaks))
 
 (sv_size_dist_plt <- mrg_var_df %>% 
     filter(TYPE == "INDEL", bench_type == "sv") %>% 
-    mutate(gene_part = if_else(EXON == ".", "intro","exon")) %>% 
+    mutate(gene_part = if_else(EXON == ".", "intron","exon"),
+           gene_part = factor(gene_part, levels = c("intron","exon"))) %>%         
     ## Log scale var length with 1 offset 
     mutate(var_size = if_else(var_size < 0, 
                               -log10(abs(var_size)) + log10(25),
@@ -204,29 +209,41 @@ sv_breaks <- sort(c(-breaks, 0, breaks))
     theme_bw() +
     theme(axis.text.x = element_text(angle = -45, hjust = 0),
           legend.position = c(0.15, 0.8), legend.background = element_blank()) + 
-    labs(x = "Large INDEL Size (bp)", y = "# of Variants"))
+    labs(x = "Large SV Size (bp)", y = "# of Variants"))
 ```
 
 
 # Combined Figure
 ```{r}
-## Skeleton Code for combined figure
-# (
-#     combined_fig <-
-#         ggarrange(
-#             ## TODO - add plot list
-#             ncol = 2,
-#             nrow = 1,
-#             labels = "AUTO"
-#         )
-# )
+(combined_fig <-
+     ggarrange(
+         ggarrange(
+             ggarrange(
+                 v4_cov_plt,
+                 mrg_gene_cov_plt,
+                 ncol = 1,
+                 labels = "AUTO"
+             ),
+             diff_overlap_plt,
+             labels = c("", "C"),
+             nrow = 1
+         ),
+         ggarrange(
+             smv_size_dist_plt,
+             sv_size_dist_plt + rremove(object = "legend"),
+             nrow = 1,
+             labels = c("D", "E")
+         ),
+         nrow = 2,
+         heights = c(3,2)
+     )
+)
 ```
 
 ```{r}
-# ggsave(filename = here("figures", "fig2_mrg_inclusion_overlap.png"), 
-#        plot = combined_fig, width = 6, height = 6, dpi = 300) 
+ggsave(filename = here("figures", "fig2_mrg_inclusion_overlap.png"),
+       plot = combined_fig, width = 8, height = 10, dpi = 300)
 ```
-
 
 
 
