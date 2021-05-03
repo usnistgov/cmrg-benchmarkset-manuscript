@@ -15,7 +15,7 @@ editor_options:
 
 # TODO
 
-- [ ] Sanger confirmation plot\
+- [ ] Revise MRG coverage to use Union of SM and SV
 - [ ] Variant size distribution plot\ 
 - [ ] Workout panel drafts\
 - [ ] Re-org panels for figure construction\
@@ -74,15 +74,13 @@ Incorporated into Selection of Difficult Med Genes
 {DRAFT} A. Gene assembly coverage - flanking diagram  - Illustrator diagram
 {DRAFT}B. Medical composition - Upset plot with testing modalities - `analysis/med_genes_characterization.Rmd}
 {DRAFT} C. Small variant benchmark (poster figure) over GATK   - `analysis/med_genes_characterization.Rmd` "## MRG Small Var Benchmark GATK"
-*TODO* D. Sanger confirmation?   
-{DRAFT} E. Coverage by gene part (exon, introns,
-flanking)   - `analysis/med_genes_characterization.Rmd` does not include flanking region coverage
-*TODO* F. small var sv and indel size distributions
+*TODO* D. Coverage by gene part (exon, introns)   - `analysis/med_genes_characterization.Rmd` update with MRG union
+*TODO* E. small var sv and indel size distributions
 
 
 
 ## Table Small Variant Benchmark Statistics
-
+*TODO*
 
 
 ## Table SV Benchmark Statistics
