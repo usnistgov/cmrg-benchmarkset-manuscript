@@ -504,7 +504,6 @@ write_tsv(mrg_strat_df,
 ```
 
 
-
 ## Sanger Confirmation
 Summary table at https://docs.google.com/spreadsheets/d/1_29bJkQ1snrKb9TGeCWh2hRl6Rx7tPVd/edit#gid=985369016
 

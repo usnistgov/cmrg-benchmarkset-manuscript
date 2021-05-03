@@ -162,13 +162,70 @@ mrg_gene_cov <- bench_cov_anno_df %>%
 ```
 
 ### Small Variant Size Distribution
+```{r}
+mrg_var_df <- read_tsv(here("data","tidy","mrg_var_tbl.tsv"),
+                       col_types = "cciccccici")
+
+(smv_size_dist_plt <- mrg_var_df %>% 
+    filter(TYPE == "INDEL", bench_type == "smvar") %>% 
+    mutate(gene_part = if_else(EXON == ".", "intro","exon")) %>% 
+    ggplot() + 
+    geom_bar(aes(x = var_size, fill = gene_part)) + 
+        scale_fill_brewer(type = "qual", palette = 3) +
+    theme_bw() +
+    labs(x = "Small INDEL Size (bp)", y = "# of Variants", fill = "Gene Part") + 
+    theme(legend.position = c(0.15, 0.8), legend.background = element_blank()))
+```
 
 ### Large Variant Size Distribution 
 
 
+```{r}
+breaks <- c(50, 100, 500, 1000, 5000, 10000)
+log_breaks <- log10(breaks)
+
+sv_log_breaks <- sort(c(-log_breaks + log10(25), 0,  log_breaks - log10(25)))
+
+sv_breaks <- sort(c(-breaks, 0, breaks))
+
+(sv_size_dist_plt <- mrg_var_df %>% 
+    filter(TYPE == "INDEL", bench_type == "sv") %>% 
+    mutate(gene_part = if_else(EXON == ".", "intro","exon")) %>% 
+    ## Log scale var length with 1 offset 
+    mutate(var_size = if_else(var_size < 0, 
+                              -log10(abs(var_size)) + log10(25),
+                              log10(var_size) - log10(25))) %>% 
+    ggplot() + 
+    geom_histogram(aes(x = var_size, fill = gene_part), 
+                   color = "grey40", size = 0.25, binwidth = 0.125) +
+    scale_x_continuous(breaks = sv_log_breaks,
+                       labels = sv_breaks) + 
+        scale_fill_brewer(type = "qual", palette = 3) + 
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = -45, hjust = 0),
+          legend.position = c(0.15, 0.8), legend.background = element_blank()) + 
+    labs(x = "Large INDEL Size (bp)", y = "# of Variants"))
+```
 
 
+# Combined Figure
+```{r}
+## Skeleton Code for combined figure
+# (
+#     combined_fig <-
+#         ggarrange(
+#             ## TODO - add plot list
+#             ncol = 2,
+#             nrow = 1,
+#             labels = "AUTO"
+#         )
+# )
+```
 
+```{r}
+# ggsave(filename = here("figures", "fig2_mrg_inclusion_overlap.png"), 
+#        plot = combined_fig, width = 6, height = 6, dpi = 300) 
+```
 
 
 
