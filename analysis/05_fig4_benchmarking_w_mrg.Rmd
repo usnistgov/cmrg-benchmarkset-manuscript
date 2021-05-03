@@ -29,14 +29,15 @@ B. V4 v. MRG GATK benchmarking performance
 ```{r}
 ## Gene source and testing modality information
 mrg_info_tbl <- here("data","tidy","gene_list_info.tsv") %>% 
-    read_tsv(col_types = "cccddcccllddddddd")
+    read_tsv(col_types = "cccddcccddddddd")
 
 ## Gene Stratfication Overlap
 gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"))
 
 ## Benchmark and Asm Coverage information
 bench_asm_cov_df <- here("data","tidy","gene_asm_bench_coverage.tsv") %>% 
-    read_tsv(col_types = "ccclccddd")
+    read_tsv(col_types = "ccclccddd"
+             )
 
 ## MRG versus GATK
 # Extracting Column Names
@@ -115,26 +116,29 @@ gatk_plt_df <- tidy_gatk_bench_df %>%
                 TRUE ~ "DEBUGME"
             )
         ) %>%
-        ggplot(aes(x = v4.2.1, y = v0.03.00)) +
-        geom_abline(
-            aes(intercept = 0, slope = 1),
-            linetype = 2,
-            color = "grey60"
-        ) +
-        geom_text_repel(aes(label = Subset), size = 2) +
-        geom_point(aes(fill = Subset), shape = 21, color = "grey60") +
-        facet_grid(var_type ~ metric) +
-        
-        guides(fill = guide_legend(nrow = 3)) +
-        scale_color_brewer(type = "qual", palette = 2) +
-        theme_bw() +
-        theme(legend.position = "none") +
-        labs(
-            x = "V4.2 Benchmark",
-            y = "MRG Benchmark",
-            shape = "Variant Type",
-            fill = "Stratification"
-        )
+        filter(
+            !Subset %in% c("MHC", "Falsely Duplicated Regions", "HG002 Large Dups")
+        ) %>%
+    ggplot(aes(x = v4.2.1, y = v0.03.00)) +
+    geom_abline(
+        aes(intercept = 0, slope = 1),
+        linetype = 2,
+        color = "grey60"
+    ) +
+    geom_text_repel(aes(label = Subset), size = 2) +
+    geom_point(aes(fill = Subset), shape = 21, color = "grey60") +
+    facet_grid(var_type ~ metric) +
+    
+    guides(fill = guide_legend(nrow = 3)) +
+    scale_color_brewer(type = "qual", palette = 2) +
+    theme_bw() +
+    theme(legend.position = "none") +
+    labs(
+        x = "V4.2 Benchmark",
+        y = "MRG Benchmark",
+        shape = "Variant Type",
+        fill = "Stratification"
+    )
 )
 
 ```
