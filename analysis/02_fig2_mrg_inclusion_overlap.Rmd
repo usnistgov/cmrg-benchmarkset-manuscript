@@ -59,13 +59,14 @@ bench_cov_anno_df <- mrg_gene_cats %>%
 
 ### V4 Coverage
 
+
 ```{r}
 v4_cov_df <- bench_asm_cov_df %>% 
     ## Excluding mito and sex chromosomes
     filter(ref == "GRCh38",
            str_detect(coords, "[MTXY]",negate = TRUE), 
            region == "gene") %>% 
-     pivot_wider(id_cols = c("gene","ref","coords"), 
+     pivot_wider(id_cols = c("gene","ref","coords", "in_mrg"), 
                  names_from = benchmark, values_from = cov)
 
 n_cov_df <- v4_cov_df %>% 
@@ -77,10 +78,10 @@ v4_low_cov_df <- bench_asm_cov_df %>%
     filter(ref == "GRCh38",
            str_detect(coords, "[MTXY]",negate = TRUE), 
            region == "gene") %>% 
-     pivot_wider(id_cols = c("gene","ref","coords"), 
+     pivot_wider(id_cols = c("gene","ref","coords","in_mrg"), 
                  names_from = benchmark, values_from = cov) %>% 
     filter(v4 < 0.9) %>% 
-    mutate(benchmarked = if_else(mrg > 0, "in MRG","not in MRG"),
+    mutate(benchmarked = if_else(in_mrg, "in MRG","not in MRG"),
            benchmarked = factor(benchmarked, levels = c("not in MRG", "in MRG")))
 ```
 
@@ -115,6 +116,17 @@ n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"]
         theme(legend.position = c(0.25, 0.65),
               legend.title = element_blank())
 )
+```
+__DEBUGME__ Fix issue with number of genes in MRG
+```{r}
+v4_low_cov_df
+```
+Bug with processing `bench_asm_cov_df`
+```{r}
+bench_asm_cov_df %>% 
+    select(gene, ref, in_mrg) %>% 
+    distinct() %>% 
+    count(ref, in_mrg)
 ```
 
 
