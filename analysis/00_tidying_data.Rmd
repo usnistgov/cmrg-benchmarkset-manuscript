@@ -75,8 +75,8 @@ mrg_source_tbl <- mrg_stats_tbl %>%
 
 
 _DATA CHECK:_ Check for genes with multiple entries
-__QUESTION:__ Determine reason for duplicate entries, are they table errors
-33 genes with duplicate coordiante entries Using gene coordinates to differentiate.
+33 genes with duplicate coordinate entries Using gene coordinates to differentiate.
+__Follow-up__ Duplicate genes most likely due to multiple ENSAMBL gene id for the same gene name
 ```{r}
 mrg_source_tbl %>%
   group_by(gene, ref) %>%
@@ -92,10 +92,7 @@ mrg_source_tbl %>%
     filter(n > 1)
 ```
 
-__QUESTION:__ Is ClinGen a testing modality?
-__QUESTION:__ Is the test modality information ref genome specific at all? (potentially a stupid question)
-
-__TODO:__ Get testing modality source info
+__QUESTION:__ Is ClinGen a testing modality? - Ask Steve During call 4/28 (Modalities should be targeted panels)
 
 Information on testing modality and high priority gene list from Lincoln https://drive.google.com/drive/u/1/folders/1gUjMx24CkZCbt4vC46W3nQY_3DcjP4X9 
 
@@ -108,7 +105,7 @@ testing_modality_df <- list(ACMG = "ACMG_SF_2.0.tsv",
                              ClinGen = "ClinGen_moderate_definitive_strong.tsv",
                              Counsyl = "Counsyl.tsv",
                              CPIC = "CPIC.tsv",
-                             NCCN_ESMO = "NCCN_ESMO.tsv") %>% 
+                             NCCN = "NCCN_ESMO.tsv") %>% 
     map(~here("data","mrg_lists","testing_modalities", .)) %>% 
     map_df(read_tsv, col_types = "c", .id = "testing_modality") %>% 
     count(Gene, testing_modality) %>% 
@@ -200,7 +197,8 @@ mrg_genes_df <- mrg_gene_beds %>%
 
 
 
-__QUESTION__ Are these 440 NA values expected for GRCh38
+
+__QUESTION__ Are these 440 NA values expected for GRCh38 - Out dated
 Number of entries with NA values for MRG v0.03 and SV 0.02
 ```{r}
 mrg_stats_tbl %>% 
@@ -283,6 +281,185 @@ bench_cov_file <-  here("data","tidy","gene_asm_bench_coverage.tsv")
 write_tsv(mrg_bench_asm_df, bench_cov_file)
 ```
 
+## MRG Benchmark Coverage
+```{r}
+## Gene Coverage
+gene_cov_files <- list.files(path = here("data", "gene_stat_tbls", "tbl_inputs"),
+                            pattern = "mrg.*gene_cov.tsv") %>% 
+  set_names(~str_remove(., "_cov.tsv")) %>% 
+  map(~here("data", "gene_stat_tbls", "tbl_inputs", .))
+
+mrg_gene_cov_df <- gene_cov_files %>% 
+  map_dfr(read_tsv, 
+          col_names = c("chrom","start","end","gene",
+                        "n_regions", "bp_cov", "gene_size", "cov"),
+          col_types = "ciiciiid",
+          .id = "covset") %>% 
+    separate(col = covset, 
+           into = c("giab_id", "ref","benchmark","bench_type","region"),
+           remove = TRUE) %>% 
+    mutate(coords = str_c(chrom, ":",start,"-",end))
+
+## Gene Coordinates
+mrg_gene_coords_df <- mrg_gene_cov_df %>% 
+  select(gene, ref, chrom, coords) %>% 
+  distinct()
+```
+
+
+```{r}
+## Exon Coverage
+exon_cov_files <- list.files(path = here("data", "gene_stat_tbls", "tbl_inputs"),
+                            pattern = "mrg.*exon_cov.tsv") %>% 
+  set_names(~str_remove(., "_cov.tsv")) %>% 
+  map(~here("data", "gene_stat_tbls", "tbl_inputs", .))
+
+mrg_exon_cov_df <- exon_cov_files %>% 
+  map_dfr(read_tsv, 
+          ## ensembl colnames are assumed
+          col_names = c("chrom","start","end","gene", 
+                        "ensembl_gene_id", "ensembl_exon_id",
+                        "n_regions", "bp_cov", "exon_size", "frac_cov"),
+          col_types = "ciiccciiid",
+          .id = "covset") %>% 
+  group_by(covset, chrom, gene, ensembl_gene_id) %>%
+  summarise(total_bp_cov = sum(bp_cov),
+            total_exon_size = sum(exon_size)) %>%
+  mutate(cov = total_bp_cov/ total_exon_size) %>%
+  separate(col = covset,
+           into = c("giab_id", "ref","benchmark","bench_type","region"),
+           remove = TRUE) %>% 
+    left_join(mrg_gene_coords_df)
+```
+```{r}
+mrg_gene_cov_df %>% filter(gene == "ALG9")
+```
+
+
+
+__QUESTION__ Check why duplicate genes here - is it the same, should be addressed after fixing duplicate gene names in Gene bed
+```{r}
+nrow(mrg_exon_cov_df)
+```
+
+```{r}
+nrow(mrg_gene_cov_df)
+```
+```{r}
+mrg_gene_cov_df
+```
+
+```{r}
+## Combined Cov DF making data frames consistent with DF defined below
+# Only keeping genes in MRG benchmark set 
+mrg_cov_df <- bind_rows(mrg_exon_cov_df, mrg_gene_cov_df) %>%
+  ungroup() %>%
+  select(gene, ref, coords, benchmark, bench_type, region, cov) %>%
+  ## Annotating with in MRG info
+    left_join(mrg_genes_df) %>%
+  filter(in_mrg) %>%
+  select(-chrom, -start, -end, -in_mrg)
+```
+
+```{r}
+glimpse(mrg_cov_df)
+```
+
+
+__QUESTION:__ Genes with duplicate entries for gene coverage bed - addressing with input gene list bed fix
+```{r}
+dup_genes_df <- bind_rows(mrg_exon_cov_df, mrg_gene_cov_df) %>% 
+  select(gene, ref, chrom, start, end, benchmark, bench_type, region, cov) %>% 
+  arrange(gene) %>% 
+  count(gene, ref, chrom, bench_type, region) %>% 
+  filter(n != 1)
+
+dup_genes <- unique(dup_genes_df$gene)
+
+dup_genes_df
+```
+__TODO__ Fix bug - Only 4 genes in MRG benchmark affected by bug - addressing with input gene list bed fix
+```{r}
+bind_rows(mrg_exon_cov_df, mrg_gene_cov_df) %>% 
+  filter(gene %in% dup_genes, 
+         cov > 0) %>% 
+  arrange(gene)
+```
+
+
+### Example Gene
+```{r}
+## Only displaying info for 1 gene to reduce html file size
+mrg_cov_df %>% 
+    filter(gene == "AGL") %>% 
+    DT::datatable(rownames = FALSE)
+```
+
+### Writing To File 
+```{r}
+mrg_cov_file <-  here("data","tidy","mrg_bench_coverage.tsv")
+
+write_tsv(mrg_cov_df, mrg_cov_file)
+```
+
+## MRG Variants Tables
+__Scratch__
+- Check with JZ about variant lengths when multiple alternate alleles
+
+```{r}
+mrg_grch38_smvar_tbl <- read_tsv(here("scratch","anno_vcfs","grch38_smvar.tbl"),
+                                 col_names = c("CHROM","POS","GT","TYPE","GENE","EXON","REF","ALT"),
+                                 col_types = "cicccccc")
+
+mrg_grch38_sv_tbl <- read_tsv(here("scratch", "anno_vcfs","grch38_sv.tbl"),
+                              col_names = c("CHROM","POS","GT","TYPE","REPTYPE","BREAKSIMLENGTH","GENE","EXON","REF","ALT"),
+                                 col_types = "cicccicccc")
+
+## Calculating INDEL Variant Size
+get_var_size <- function(REF, ALT){
+  ref_bp <- nchar(REF)
+  
+  ## Dealing with multiple ALTs
+  # --- using largest SV
+  if(str_detect(ALT, ",")){
+    alts <- unlist(str_split(ALT, ","))
+    alts_bp <- nchar(alts)
+    var_sizes <- alts_bp - ref_bp
+    
+    var_size <- var_sizes[abs(var_sizes) == max(abs(var_sizes))]
+    
+    ## returning first entry value if the two genotypes are the same size
+    return(var_size[1])
+  }
+  return(nchar(ALT) - ref_bp)
+}
+
+
+smvar_df <- mrg_grch38_smvar_tbl %>% 
+  rowwise() %>% 
+  mutate(var_size = get_var_size(REF,ALT)) %>% 
+  filter(abs(var_size) < 50) %>% 
+  select(-REF, -ALT)
+
+sv_df <- mrg_grch38_sv_tbl %>% 
+  rowwise() %>% 
+  mutate(var_size = get_var_size(REF,ALT)) %>% 
+  select(-REF, -ALT)
+
+mrg_var_df <- bind_rows(smvar = smvar_df, sv = sv_df, .id = "bench_type")
+```
+
+```{r}
+glimpse(mrg_var_df)
+```
+
+### Writing To File 
+```{r}
+mrg_var_file <-  here("data","tidy","mrg_var_tbl.tsv")
+
+write_tsv(mrg_var_df, mrg_var_file)
+```
+
 ## Stratification Coverage
 ```{r}
 colnames(mrg_stats_tbl)
@@ -337,7 +514,7 @@ _Note from Slack_ RE: spreadsheet source
     
 
     
-### Loading and Tiydying
+### Loading and Tidying
 ```{r}
 eval_sheet <- "combined curation responses from benchmarking with sm variant v0.02.03.xlsx"
 raw_bench_eval_df <- read_excel(here("data", "benchmark_evaluation", eval_sheet), 
@@ -403,10 +580,6 @@ write_tsv(tidy_bench_eval_df,
 ```
 
 
-## MRG Variants Table
-```{r}
-
-```
 
 # Getting MD5s
 ```{r}
