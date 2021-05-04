@@ -1,3 +1,7 @@
+### Next Steps
+## Work out input file naming conventions - making symbolic links
+## Get new coverage data and 
+
 ### set minimum snakemake version
 # min_version("5.27.4")
 
@@ -5,25 +9,33 @@
 # configfile: "config/config.yaml"
 
 ## Variables for data paths
-benchdir = "data/mrg_benchmarkset/HG002"
+benchdir = "data/benchmarksets/HG002"
 
 ## Defining Wildcards
 REFS = ["GRCh37","GRCh38"]
-REGIONS = ["gene","exon","flank"]
+REGIONS = ["gene","exon"]
 BENCHSETS = ["smallvar","SV", "union"]
+BENCHTYPES = ["v4", "mrg"]
 
 wildcard_constraints:
     ref="|".join(REFS),
     region="|".join(REGIONS),
-    benchset="|".join(BENCHSETS)
+    benchset="|".join(BENCHSETS),
+    benchtype="|".join(BENCHTYPES)
 
 ## Define target files for pipeline
 rule all:
     input:
-        expand(benchdir + "/{ref}/HG002_{ref}_difficult_medical_gene_union_benchmark_v1.00.00.bed", 
+        expand(benchdir + "/{ref}/HG002_{ref}_mrg_union.bed", 
                 ref = REFS),
-        expand("data/gene_stat_tbls/tbl_inputs/HG002_{ref}_mrg_{benchset}_{region}_cov.tsv", 
-                ref = REFS, region = REGIONS, benchset = BENCHSETS)
+        expand("data/gene_stat_tbls/tbl_inputs/HG002_{ref}_mrg_{benchtype}_{region}_cov.tsv", 
+                ref = REFS, region = REGIONS, benchtype = BENCHTYPES),
+        expand("data/gene_stat_tbls/cov_tbls/HG002_{ref}_v4_smallvar_{region}_cov.tsv", 
+                ref = REFS, region = REGIONS),
+        expand("data/gene_stat_tbls/cov_inputs/allDiff_{ref}_mrg_{region}_cov.tsv", 
+                ref = REFS, region = REGIONS),
+
+
                 
 
 ################################################################################
@@ -32,9 +44,9 @@ rule all:
 
 rule make_union_bed: 
     input:
-        sm = benchdir + "/{ref}/HG002_{ref}_difficult_medical_gene_smallvar_benchmark_v1.00.00.bed",
-        sv = benchdir + "/{ref}/HG002_{ref}_difficult_medical_gene_SV_benchmark_v1.00.00.bed"
-    output: benchdir + "/{ref}/HG002_{ref}_difficult_medical_gene_union_benchmark_v1.00.00.bed"
+        sm = benchdir + "/{ref}/HG002_{ref}_mrg_smallvar.bed",
+        sv = benchdir + "/{ref}/HG002_{ref}_mrg_SV.bed"
+    output: benchdir + "/{ref}/HG002_{ref}_mrg_union.bed"
     conda: "envs/bedtools.yml"
     shell: """
         multiintersectbed \
@@ -44,24 +56,20 @@ rule make_union_bed:
             -i stdin > {output}
     """
 
-## Get Flanking Beds
-# Used symbolic links to standardize file names
-rule get_flanks: 
-    input: 
-        gene = "data/mrg_lists/ENSEMBL_coordinates/{ref}_Medical_Gene_gene-plus-flank.bed",
-        gene_plus_flank = "data/mrg_lists/ENSEMBL_coordinates/{ref}_Medical_Gene_gene-plus-flank.bed"
-    output: "data/mrg_lists/ENSEMBL_coordinates/{ref}_Medical_Gene_flank.bed"
-    conda: "envs/bedtools.yml"
-    shell: """
-        bedtools subtract -a {input.gene_plus_flank} -b {input.gene} > {output}
-    """
-
-
 ## Using symbolic links for consistent benchmark region files
-rule calc_coverage:
+rule calc_gene_coverage:
     input:
         a="data/mrg_lists/ENSEMBL_coordinates/{ref}_Medical_Gene_{region}.bed",
-        b=benchdir + "/{ref}/HG002_{ref}_difficult_medical_gene_{benchset}_benchmark_v1.00.00.bed"
-    output: "data/gene_stat_tbls/tbl_inputs/HG002_{ref}_mrg_{benchset}_{region}_cov.tsv"
+        b=benchdir + "/{ref}/HG002_{ref}_{benchmarkset}_{benchtype}.bed"
+    output: "data/gene_stat_tbls/cov_inputs/HG002_{ref}_{benchmarkset}_{benchtype}_{region}_cov.tsv"
+    threads: 2
+    wrapper: "0.74.0/bio/bedtools/coveragebed"
+
+
+rule_calc_strat_coverage:
+    input:
+        a=TODO - replace with all difficult strat,
+        b="data/mrg_lists/ENSEMBL_coordinates/{ref}_Medical_Gene_{region}.bed"
+    output: "data/gene_stat_tbls/cov_inputs/allDiff_{ref}_mrg_{region}_cov.tsv"
     threads: 2
     wrapper: "0.74.0/bio/bedtools/coveragebed"
