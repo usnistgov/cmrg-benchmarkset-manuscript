@@ -47,8 +47,7 @@ mrg_gene_cats <- bench_asm_cov_df %>%
     pivot_wider(names_from = benchmark, values_from = cov) %>% 
     mutate(gene_cat = case_when(in_mrg ~ "MRG",
                                 v4 > 0.9 ~ "V4",
-                                v4 < 0.9 & hifi < 1 ~ "Not Benchmarked",
-                                mrg == 0 & hifi == 1 ~ "Excluded?",
+                                v4 < 0.9 ~ "Excluded",
                                 TRUE ~ "???"))
 
 bench_cov_anno_df <- mrg_gene_cats %>% 
@@ -157,18 +156,22 @@ mrg_gene_cov <- bench_cov_anno_df %>%
 
 ### Difficult Gene Overlap
 ```{r}
-(diff_overlap_plt <- bench_cov_anno_df %>% 
-    filter(ref == "GRCh38",
-           gene_cat %in% c("V4", "MRG","Not Benchmarked"),
-        str_detect(coords, "[MTXY]",negate = TRUE),
-        strat == "allDiff") %>% 
-    mutate(gene_cat = factor(gene_cat, 
-                             level = c("V4", "MRG","Not Benchmarked"),
-                             labels = c(">90% coverage by V4.2.1",
-                                        "in MRG Benchmark",
-                                        "Not Benchmarked"))
-           ) %>% 
-    ggplot() + 
+diff_overlap_df <- bench_cov_anno_df %>%
+    filter(
+        ref == "GRCh38",
+        gene_cat %in% c("V4", "MRG", "Excluded"),
+        str_detect(coords, "[MTXY]", negate = TRUE),
+        strat == "allDiff"
+    ) %>%
+    mutate(gene_cat = factor(
+        gene_cat,
+        level = c("V4", "MRG", "Excluded"),
+        labels = c(">90% coverage by V4.2.1",
+                   ">90% coverage by MRG Benchmark",
+                   "Excluded")
+    ))
+
+(diff_overlap_plt <- ggplot(diff_overlap_df) + 
     geom_histogram(aes(x = overlap, fill = gene_cat), 
                    color = "grey40", size = 0.25, bins = 100) + 
     facet_wrap(~gene_cat, ncol = 1, scales = "free_y") + 
@@ -178,6 +181,185 @@ mrg_gene_cov <- bench_cov_anno_df %>%
          y = "Number of Genes",
          fill = "Benchmark"))
 ```
+```{r}
+diff_overlap_df <- bench_cov_anno_df %>%
+    filter(
+        ref == "GRCh38",
+        gene_cat %in% c("V4", "MRG", "Excluded"),
+        str_detect(coords, "[MTXY]", negate = TRUE),
+        strat == "allDiff"
+    ) %>%
+    mutate(gene_cat = factor(
+        gene_cat,
+        level = c("Excluded", "V4", "MRG"),
+        labels = c("Excluded",
+                   ">90% coverage by V4.2.1",
+                   ">90% coverage by MRG Benchmark")
+    ))
+
+diff_overlap_cnts <- diff_overlap_df %>% 
+    mutate(threshold = if_else(overlap > 0.97, "full","partial")) %>% 
+    count(gene_cat, threshold) %>% 
+    pivot_wider(id_cols = "gene_cat", names_from = "threshold", values_from = "n") %>% 
+    mutate(full_prop = round(full/ (full + partial), 2),
+           anno_text = paste0(full_prop, " (",full,")")) %>% 
+    add_column(y = c(0.9, 0.5, 0.1))
+
+# diff_overlap_cnts 
+(diff_overlap_plt <- ggplot(diff_overlap_df) + 
+    geom_histogram(aes(x = overlap, fill = gene_cat), 
+                   # color = "grey40", size = 0.25, 
+                   bins = 33,
+                   position = "fill") + 
+    scale_fill_brewer(type = "qual", palette = 2) + 
+    geom_text(data = diff_overlap_cnts, 
+              aes(x = 0.95, y = y, label = anno_text)) + 
+    # facet_wrap(~gene_cat, ncol = 1, scales = "free_y") + 
+    theme_bw() + 
+    theme(legend.position = "bottom") +
+    labs(x = "Fraction of gene with challenging sequence or variants", 
+         y = "Fraction of Genes",
+         fill = "Benchmark"))
+```
+
+
+```{r}
+(diff_overlap_plt <- ggplot(diff_overlap_df) + 
+    stat_ecdf(aes(x = 1 - overlap, fill = gene_cat), 
+              alpha = 0.25, geom = "area") + 
+         stat_ecdf(aes(x = 1-overlap, color = gene_cat), 
+                   geom = "line") + 
+    # facet_wrap(~gene_cat, ncol = 1, scales = "free_y") + 
+     
+    scale_fill_brewer(type = "qual", palette = 2) + 
+         scale_color_brewer(type = "qual", palette = 2) + 
+     xlim(0,1) + 
+    theme_bw() + 
+    theme(legend.position = "bottom") + 
+    labs(x = "Fraction of gene NO OVERLAP challenging sequence or variants", 
+         y = "Fraction of Genes",
+         color = "Benchmark",
+         fill = "Benchmark")) #+ 
+    # coord_flip()
+```
+```{r}
+(diff_overlap_plt <- ggplot(diff_overlap_df) + 
+    ggdist::stat_ccdfinterval(aes(x = overlap, y = gene_cat, fill = gene_cat), 
+              alpha = 0.25, show_interval = FALSE) + 
+    # facet_wrap(~gene_cat, ncol = 1, scales = "free_y") + 
+     
+    scale_fill_brewer(type = "qual", palette = 2) + 
+         scale_color_brewer(type = "qual", palette = 2) + 
+     xlim(0,1) + 
+    theme_bw() + 
+    theme(legend.position = "bottom") + 
+    labs(x = "Fraction of gene with challenging sequence or variants", 
+         # y = "Fraction of Genes",
+         color = "Benchmark",
+         fill = "Benchmark")) #+ 
+    # coord_flip()
+```
+```{r}
+cum_rank_df <- diff_overlap_df  %>% 
+    group_by(gene_cat) %>% 
+    arrange(overlap) %>% 
+    mutate(gene_rank = 1:n(),
+           n_genes = n(),
+           gene_rank_frac = (n_genes - gene_rank)/n_genes)
+
+cum_rank_text_df <- cum_rank_df %>% 
+    filter(overlap >= 0.15) %>% 
+    top_n(1, gene_rank_frac) %>% 
+    mutate(n_genes_gt15_overlap = n_genes - gene_rank)
+
+ggplot(cum_rank_df) +
+    geom_line(aes(y = gene_rank_frac * 100, x = overlap, color = gene_cat)) +
+    geom_vline(aes(xintercept = 0.15), linetype = 2) +
+    geom_point(data = cum_rank_text_df,
+               aes(x = overlap, y = gene_rank_frac * 100, fill = gene_cat),
+               shape = 21) +
+    # ggforce::geom_mark_rect(data = cum_rank_text_df,
+    #            aes(x = overlap,
+    #                y = gene_rank_frac,
+    #                group = gene_cat,
+    #                label = gene_cat,
+    #                description = paste0(round(gene_rank_frac, 2),
+    #                               " (", n_genes_gt15_overlap,")")),
+    #            color = "transparent", label.buffer = unit(25, 'mm'),
+    #            label.fill = "transparent") +
+    # ggrepel::geom_label_repel(data = cum_rank_text_df,
+    #                           aes(
+    #                               x = overlap,
+    #                               y = gene_rank_frac,
+    #                               group = gene_cat,
+    #                               # label = gene_cat,
+    #                               label = paste0(round(gene_rank_frac, 2),
+    #                                              " (", n_genes_gt15_overlap, ")")
+    #                           )) +
+    geom_text(data = cum_rank_text_df, 
+              aes(x = overlap, 
+                  y = gene_rank_frac * 100, 
+                  label = n_genes_gt15_overlap), 
+              nudge_x = 0.01,
+              vjust = "bottom", 
+              hjust = "left") + 
+    theme_bw() +
+    theme(legend.position = c(0.75,0.75),
+          legend.background = element_blank()) +
+    labs(x = "Fraction of gene region with challenging sequence or variants",
+         y = "% of Genes with > X Challenging", color = "", fill = "") 
+```
+
+```{r}
+cum_rank_df <- diff_overlap_df  %>% 
+    group_by(gene_cat) %>% 
+    arrange(overlap) %>% 
+    mutate(gene_rank = 1:n(),
+           n_genes = n(),
+           gene_rank_frac = (n_genes - gene_rank)/n_genes)
+
+cum_rank_text_df <- cum_rank_df %>% 
+    mutate(overlap_round = round(overlap,2)) %>% 
+    filter(overlap_round %in% c(0.15,0.25,1)) %>% 
+    group_by(gene_cat, overlap_round) %>% 
+    top_n(1, gene_rank_frac) %>% 
+    mutate(n_genes_gt15_overlap = n_genes - gene_rank)
+
+
+ggplot(cum_rank_df) +
+    geom_segment(data = cum_rank_text_df,
+               aes(x = overlap_round, xend = overlap_round, y = 0, yend = gene_rank_frac * 100),
+               linetype = 2) +
+    geom_ribbon(aes(ymin = 0, ymax = gene_rank_frac * 100, 
+                    x = overlap, 
+                    fill = gene_cat),
+                alpha = 0.25) +
+        geom_line(aes(y = gene_rank_frac * 100, x = overlap, color = gene_cat)) +
+    geom_point(
+        data = cum_rank_text_df,
+        aes(x = overlap, y = gene_rank_frac * 100, fill = gene_cat),
+        shape = 21
+    ) +
+    geom_text(
+        data = cum_rank_text_df,
+        aes(x = overlap,
+            y = gene_rank_frac * 100,
+            label = n_genes_gt15_overlap),
+        nudge_x = -0.01,
+        vjust = "bottom",
+        hjust = "right"
+    ) +
+       scale_fill_brewer(type = "qual", palette = 2) + 
+         scale_color_brewer(type = "qual", palette = 2) + 
+    theme_bw() +
+    theme(legend.position = c(0.80, 0.85),
+          legend.background = element_blank()) +
+    labs(x = "Fraction of gene region with challenging sequence or variants",
+         y = "% of Genes with > X Challenging",
+         color = "",
+         fill = "") 
+```
+
 
 ### Small Variant Size Distribution
 ```{r}
