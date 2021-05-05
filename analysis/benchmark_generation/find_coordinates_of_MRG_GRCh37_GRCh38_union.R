@@ -3,6 +3,7 @@ library(sessioninfo)
 `%ni%` <- Negate(`%in%`)
 
 # Load overlap for HG002 GRCh37 hifiasm v0.11 and v4.2.1 of medically relevant gene coordinates
+# GRCh37_overlap_v4.2.1_hifiasm.tsv is from https://gitlab.nist.gov/gitlab/nolson/mrg-bench-manuscript/-/blob/master/data/overlap_analysis/GRCh37/GRCh37_overlap_v4.2.1_hifiasm.tsv
 hifiasm_v11_and_v421_overlap_df_grch37 <- read_tsv("GRCh37_overlap_v4.2.1_hifiasm.tsv", col_types = "cddcddddd")
 
 # Find genes that are less than 90% overlap by v4.2.1 but fully covered including flanking and segdups by hifiasm v11
@@ -13,6 +14,7 @@ hifiasm_v11_fully_overlap_lt90_overlap_v421_df_grch37 <- hifiasm_v11_and_v421_ov
 		   flanking_breaks_in_dip_bed == 0)
 
 # Load overlap for HG002 GRCh38 hifiasm v0.11 and v4.2.1 of medically relevant gene coordinates
+# GRCh38_overlap_v4.2.1_hifiasm.tsv is from https://gitlab.nist.gov/gitlab/nolson/mrg-bench-manuscript/-/blob/master/data/overlap_analysis/GRCh38/GRCh38_overlap_v4.2.1_hifiasm.tsv
 hifiasm_v11_and_v421_overlap_df_grch38 <- read_tsv("GRCh38_overlap_v4.2.1_hifiasm.tsv", col_types = "cddcddddd")
 
 # Find genes that are less than 90% overlap by v4.2.1 but fully covered including flanking and segdups by hifiasm v11
