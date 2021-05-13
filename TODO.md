@@ -1,9 +1,28 @@
 # Project Action Items 
-<!-- Alternatively use gitlab issues -->
+## Questions
+- How were `GRCh38_Mandelker_COSMIC_ENSEMBLE_coordinates_primary_assembly.bed` and `GRCh38_Mandelker_COSMIC_ENSEMBLE_coordinates_primary_assembly_slop20000.bed` in `data/mrg_lists/ENSEMBL_coordinates` generated?
+- `find_overlap_per_gene_w_segdups_coordinates.py` not in repo
+- `fix_reference_allele_py.py` not in repo
+
+## Fig Revisions
+1. Make separate Rmarkdown files for each figure
+1. Work out input data - tidy as needed
+1. Generate figure panels
+1. make combined plots
+
+
 ## Project structure
 -[] add documentation for resource/ input data locations
 -[] remove unnecessary data files
 -[] make sure data file generation is documented (md, txt, pynb, or snakefile) in primary-analysis directory
+
+### Data Documentation
+- `data/mrg_lists`
+
+## Questions
+- `data/mrg_benchmarkset` can we remove intermediate files in HG002 subfolders?
+- maybe move benchmark generation to seperate repo
+- `data/mrg_benchmarkset/HG002/GRCh37/remapped*` what is this?
 
 ## Notes
 Duplicated genes from Mitchell Robert Vollger's segmental duplication T2T analysis
