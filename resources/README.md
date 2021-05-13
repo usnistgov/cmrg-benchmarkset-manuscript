@@ -28,4 +28,9 @@ GRCh38
     file: 
 	url: 
 	md5sum: 
-    
+
+[TODO] Document
+- human.b37.genome
+- human.h38.genome
+- GRCh37_segdups.bed.gz
+- GRCh38_segdups.bed.gz
