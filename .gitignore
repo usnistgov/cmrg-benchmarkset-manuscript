@@ -6,3 +6,7 @@
 *.html
 scratch/*
 .snakemake
+workflow/data
+resources/*
+data/gene_stat_tbls/cov_tbls
+data/mrg_benchmarkset
