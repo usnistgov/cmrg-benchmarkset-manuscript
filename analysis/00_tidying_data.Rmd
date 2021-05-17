@@ -257,9 +257,9 @@ mrg_bench_asm_df %>%
 
 ### Writing To File 
 ```{r}
-bench_cov_file <-  here("data","tidy","gene_asm_bench_coverage.tsv")
-
-write_tsv(mrg_bench_asm_df, bench_cov_file)
+# bench_cov_file <-  here("data","tidy","gene_asm_bench_coverage.tsv")
+# 
+# write_tsv(mrg_bench_asm_df, bench_cov_file)
 ```
 
 ## Included Bases
@@ -547,8 +547,8 @@ mrg_strat_df %>%
 
 ### Writing Gene List Table to file 
 ```{r}
-write_tsv(mrg_strat_df,
-          here("data","tidy","gene_strat_overlap.tsv"))
+# write_tsv(mrg_strat_df,
+#           here("data","tidy","gene_strat_overlap.tsv"))
 ```
 
 
