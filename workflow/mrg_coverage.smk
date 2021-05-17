@@ -37,9 +37,9 @@ rule all:
         expand("data/gene_stat_tbls/cov_tbls/HG002_{ref}_mrg_{benchtype}_{region}_cov.tsv", 
                 ref = REFS, region = REGIONS, benchtype = BENCHTYPES),
         expand("data/gene_stat_tbls/cov_tbls/HG002_{ref}_v4_smallvar_{region}_cov.tsv", 
-                ref = REFS, region = REGIONS)#,
-        # expand("data/gene_stat_tbls/cov_inputs/allDiff_{ref}_mrg_{region}_cov.tsv", 
-        #         ref = REFS, region = REGIONS)
+                ref = REFS, region = REGIONS),
+        expand("data/gene_stat_tbls/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv", 
+                ref = REFS, region = REGIONS)
 
 ################################################################################
 ## Preparing input files
@@ -160,10 +160,10 @@ rule calc_gene_coverage:
     wrapper: "0.74.0/bio/bedtools/coveragebed"
 
 
-# rule calc_strat_coverage:
-#     input:
-#         a=TODO - replace with all difficult strat,
-#         b="data/mrg_lists/ENSEMBL_coordinates/{ref}_Medical_Gene_{region}.bed"
-#     output: "data/gene_stat_tbls/cov_inputs/allDiff_{ref}_mrg_{region}_cov.tsv"
-#     threads: 2
-#     wrapper: "0.74.0/bio/bedtools/coveragebed"
+rule calc_strat_coverage:
+    input:
+        a= "resources/{ref}_alldifficultregions.bed.gz",
+        b= ensembl_dir + "/{ref}_mrg_full_{region}.bed"
+    output: "data/gene_stat_tbls/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv"
+    threads: 2
+    wrapper: "0.74.0/bio/bedtools/coveragebed"
