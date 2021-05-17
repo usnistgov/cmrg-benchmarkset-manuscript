@@ -274,11 +274,10 @@ write_tsv(mrg_bench_asm_df, bench_cov_file)
 ## Included Bases
 ```{r}
 ## Included Bases for Gene Body and Introns
-gene_cov_files <-
-  list.files(path = here("data", "gene_stat_tbls", "cov_tbls"),
-             pattern = "*_gene_cov.tsv") %>%
-  set_names( ~ str_remove(., "_cov.tsv")) %>%
-  map( ~ here("data", "gene_stat_tbls", "cov_tbls", .))
+gene_cov_files <- list.files(path = here("data", "gene_stat_tbls", "cov_tbls"),
+                             pattern = "HG002.*_gene_cov.tsv") %>%
+  set_names(~ str_remove(., "_cov.tsv")) %>%
+  map(~ here("data", "gene_stat_tbls", "cov_tbls", .))
 
 gene_cov_df <- gene_cov_files %>%
   map_dfr(
@@ -320,7 +319,7 @@ glimpse(gene_cov_df)
 ## Included Exon Bases
 exon_cov_files <-
   list.files(path = here("data", "gene_stat_tbls", "cov_tbls"),
-             pattern = "*_exon_cov.tsv",
+             pattern = "HG002.*_exon_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
   map( ~ here("data", "gene_stat_tbls", "cov_tbls", .))
@@ -364,7 +363,7 @@ glimpse(exon_cov_df)
 ## Included Bases for Introns
 intron_cov_files <-
   list.files(path = here("data", "gene_stat_tbls", "cov_tbls"),
-             pattern = "*_intron_cov.tsv",
+             pattern = "HG002.*_intron_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
   map( ~ here("data", "gene_stat_tbls", "cov_tbls", .))
@@ -422,18 +421,16 @@ glimpse(bench_cov_df)
 ```
 
 
-__QUESTION:__ Genes with duplicate entries for gene coverage bed - addressing with input gene list bed fix
+_DATA CHECK:_ Single entry per benchmark set and region coverage type. Should return 0 rows
 ```{r}
-dup_genes_df <- bind_rows(exon_cov_df, gene_cov_df, intron_cov_df) %>% 
-  select(gene, ref, chrom, start, end, benchmark, bench_type, region, cov) %>% 
+bench_cov_df  %>% 
   arrange(gene) %>% 
-  count(gene, ref, chrom, bench_type, region) %>% 
+  group_by(gene, ref, benchmark, bench_type, region) %>% 
+  mutate(n = n()) %>% 
   filter(n != 1)
-
-dup_genes <- unique(dup_genes_df$gene)
-
-dup_genes_df
 ```
+
+
 __TODO__ Fix bug - Only 4 genes in MRG benchmark affected by bug - addressing with input gene list bed fix
 ```{r}
 bind_rows(exon_cov_df, gene_cov_df, intron_cov_df) %>% 
