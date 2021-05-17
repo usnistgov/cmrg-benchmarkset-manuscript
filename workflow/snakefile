@@ -162,8 +162,8 @@ rule calc_gene_coverage:
 
 rule calc_strat_coverage:
     input:
-        a= "resources/{ref}_alldifficultregions.bed.gz",
-        b= ensembl_dir + "/{ref}_mrg_full_{region}.bed"
+        a= ensembl_dir + "/{ref}_mrg_full_{region}.bed",
+        b= "resources/{ref}_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed.gz"
     output: "data/gene_stat_tbls/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv"
     threads: 2
     wrapper: "0.74.0/bio/bedtools/coveragebed"
