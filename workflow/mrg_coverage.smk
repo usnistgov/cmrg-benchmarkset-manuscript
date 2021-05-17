@@ -117,9 +117,9 @@ rule make_union_bed:
 
 rule make_intron_bed: 
     input: 
-        exon = "data/mrg_lists/ENSEMBL_coordinates/{ref}_mrg_full_exon.bed",
-        gene = "data/mrg_lists/ENSEMBL_coordinates/{ref}_mrg_full_gene.bed"
-    output: "data/mrg_lists/ENSEMBL_coordinates/{ref}_mrg_full_intron.bed"
+        exon = ensembl_dir + "/{ref}_mrg_full_exon.bed",
+        gene = ensembl_dir + "/{ref}_mrg_full_gene.bed"
+    output: ensembl_dir + "/{ref}_mrg_full_intron.bed"
     conda: "envs/bedtools.yml"
     shell: """
         subtractBed \
@@ -135,6 +135,7 @@ rule make_intron_bed:
 ## Using symbolic links for consistent benchmark region files
 rule calc_gene_coverage:
     input:
+        a=ensembl_dir + "/{ref}_mrg_full_{region}.bed",
         b=benchdir + "/HG002_{ref}_{benchmarkset}_{benchtype}.bed"
     output: "data/gene_stat_tbls/cov_tbls/HG002_{ref}_{benchmarkset}_{benchtype}_{region}_cov.tsv"
     threads: 2
