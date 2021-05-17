@@ -508,7 +508,39 @@ mrg_var_file <-  here("data","tidy","mrg_var_tbl.tsv")
 write_tsv(mrg_var_df, mrg_var_file)
 ```
 
-## Stratification Coverage
+## All Difficult Strat Coverage
+```{r}
+diff_gene_overlap_df <- list.files(path = here("data","gene_stat_tbls","cov_tbls"),
+                                   pattern = "allDiff_.*gene_cov.tsv", 
+                                   full.names = TRUE) %>% 
+   {set_names(.,str_extract(., "(?<=allDiff_).*(?=_mrg)"))} %>% 
+   map_dfr(read_tsv, 
+       col_types = "cddcdddd", 
+       col_names = c("chrom", "start", "end", "gene", "n_regions", 
+                     "bp_cov", "gene_size", "overlap"),
+       .id = "ref") %>% 
+  add_column(strat = "allDiff",.before = 1)
+```
+
+```{r}
+glimpse(diff_gene_overlap_df)
+```
+
+```{r}
+## Only displaying info for 1 gene to reduce html file size
+diff_gene_overlap_df %>% 
+    filter(gene == "OR4F5") %>% 
+    DT::datatable()
+```
+
+### Writing Gene List Table to file 
+```{r}
+write_tsv(diff_gene_overlap_df,
+          here("data","tidy","diff_strat_overlap.tsv"))
+```
+
+
+## Stratification Coverage - Old table
 ```{r}
 colnames(mrg_stats_tbl)
 ```
