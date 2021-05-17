@@ -3,6 +3,7 @@
 - How were `GRCh38_Mandelker_COSMIC_ENSEMBLE_coordinates_primary_assembly.bed` and `GRCh38_Mandelker_COSMIC_ENSEMBLE_coordinates_primary_assembly_slop20000.bed` in `data/mrg_lists/ENSEMBL_coordinates` generated?
 - `find_overlap_per_gene_w_segdups_coordinates.py` not in repo
 - `fix_reference_allele_py.py` not in repo
+- Multiple versions of `find_flanking_and_segdups_coverage_GRCh3*.py` scripts which one to keep/ whick one was used?
 
 ## Fig Revisions
 1. Make separate Rmarkdown files for each figure
