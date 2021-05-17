@@ -30,47 +30,48 @@ gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"),
 
 
 ## Benchmark Included Bases
- bench_cov_df <- here("data","tidy","bench_coverage.tsv") %>% 
+bench_cov_df <- here("data","tidy","bench_coverage.tsv") %>% 
     read_tsv(col_types = "ccccccdl")
+
+## Difficult Strat Overlap
+diff_gene_overlap_df <- read_tsv(
+    here("data","tidy","diff_strat_overlap.tsv"),
+    col_types = "ccciiciiidc")
 
 ## TODO - replace with new updated coverage data
 ## Benchmark and Asm Coverage information 
-bench_asm_cov_df <- here("data","tidy","gene_asm_bench_coverage.tsv") %>% 
-    read_tsv(col_types = "ccclccddd")
+# bench_asm_cov_df <- here("data","tidy","gene_asm_bench_coverage.tsv") %>% 
+#     read_tsv(col_types = "ccclccddd")
 
 ## Benchmark Variant tbl
 mrg_var_df <- read_tsv(here("data","tidy","mrg_var_tbl.tsv"),
                        col_types = "cciccccici")
 ```
 
-Combining Benchmark Coverage and Strat data frames
+Getting gene categories
 ```{r}
-mrg_gene_cats <- bench_asm_cov_df %>% 
+(mrg_gene_cats <- bench_cov_df %>% 
     filter(str_detect(coords, "[MTXY]",negate = TRUE),
            ref == "GRCh38",
-           region == "gene") %>% 
-    select(-vars, -svs) %>% 
-    pivot_wider(names_from = benchmark, values_from = cov) %>% 
-    mutate(gene_cat = case_when(in_mrg ~ "MRG",
+           region == "gene",
+           (benchmark == "v4" & bench_type == "smallvar") | 
+           (benchmark == "mrg" & bench_type == "union"),
+           ) %>% 
+     select(-bench_type) %>% 
+    pivot_wider(names_from = benchmark, values_from = cov) %>%
+    mutate(gene_cat = case_when(mrg > 0.9 ~ "MRG", #in_mrg ~ "MRG",
                                 v4 > 0.9 ~ "V4",
                                 v4 < 0.9 ~ "Excluded",
                                 TRUE ~ "???"))
-
-bench_cov_anno_df <- mrg_gene_cats %>% 
-    left_join(gene_strat_df)
-```
-
-```{r}
-mrg_gene_cats %>% 
-    select(gene, ref, coords,)
+)
 ```
 
 ## Panels
 
-### V4 Coverage
+### V4 Coverage - dropped from figure
 
 
-```{r}
+```{r, include = FALSE}
 v4_cov_df <- bench_asm_cov_df %>% 
     ## Excluding mito and sex chromosomes
     filter(#ref == "GRCh37",
@@ -94,13 +95,13 @@ v4_low_cov_df <- bench_asm_cov_df %>%
     mutate(benchmarked = if_else(in_mrg == TRUE, "in MRG","not in MRG"),
            benchmarked = factor(benchmarked, levels = c("not in MRG", "in MRG")))
 ```
-```{r}
+```{r , include = FALSE}
 bench_asm_cov_df %>% 
     select(gene, ref, coords, in_mrg) %>% 
     distinct() %>% 
     count(ref, in_mrg)
 ```
-```{r}
+```{r , include = FALSE}
 v4_low_cov_df %>% 
     select(gene, ref, coords, in_mrg) %>% 
     distinct() %>% 
@@ -109,7 +110,7 @@ v4_low_cov_df %>%
 
 
 
-```{r}
+```{r, include = FALSE}
 n_high_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "high v4 cov"]
 n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"] 
 
@@ -149,7 +150,7 @@ n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"]
 )
 ```
 
-```{r}
+```{r, include = FALSE}
 (
     v4_cov_plt <- ggplot(v4_low_cov_df) +
         geom_histogram(
@@ -168,7 +169,7 @@ n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"]
 )
 ```
 
-```{r}
+```{r, include = FALSE}
 (
     v4_cov_plt <- ggplot(v4_low_cov_df) +
         geom_histogram(
@@ -185,30 +186,30 @@ n_low_v4_cov <- n_cov_df$n[n_cov_df$cov_lvl == "low v4 cov"]
 ```
 
 __DEBUGME__ Fix issue with number of genes in MRG
-```{r}
+```{r, include = FALSE}
 v4_low_cov_df %>% 
     ggplot() + geom_boxplot(aes(x = benchmarked, y = mrg))
 ```
 
-```{r}
+```{r, include = FALSE}
 v4_low_cov_df %>% 
     ggplot() + geom_boxplot(aes(x = benchmarked, y = v4))
 ```
 
 Bug with processing `bench_asm_cov_df`
-```{r}
+```{r, include = FALSE}
 bench_asm_cov_df %>% 
     select(gene, ref, in_mrg) %>% 
     distinct() %>% 
     count(ref, in_mrg)
 ```
 
-```{r}
+```{r, include = FALSE}
 v4_low_cov_df %>% 
     count(ref, benchmarked)
 ```
 
-```{r}
+```{r, include = FALSE}
 mrg_gene_cov %>% count(ref, region)
 ```
 
@@ -226,19 +227,19 @@ mrg_gene_cov <- bench_cov_df %>%
     geom_histogram(aes(x = cov, fill = region), 
                    position = "dodge",
                    color = "grey40",
-                   size = 0.25, bins = 50) + 
+                   size = 0.25, bins = 25) + 
     theme_bw() +
-    labs(x = "Fraction included in MRG benchmark", y = "Number of Genes", fill = "") +
-    theme(legend.position = c(0.15,0.9), 
-          legend.direction = "horizontal", legend.background = element_blank()))
+    labs(x = "Fraction included in\nMRG benchmark", y = "Number of Genes", fill = "") +
+    theme(legend.position = c(0.25,0.8), 
+          legend.direction = "vertical", 
+          legend.background = element_blank()))
 ```
-
-### MRG v. V4 Coverage (TO REPLACE V4 and MRG Coverage)
 
 ### Difficult Gene Overlap
 
 ```{r}
-diff_overlap_df <- bench_cov_anno_df %>%
+diff_overlap_df <- mrg_gene_cats %>% 
+    left_join(diff_gene_overlap_df) %>%
     filter(
         ref == "GRCh38",
         gene_cat %in% c("V4", "MRG", "Excluded"),
@@ -262,11 +263,12 @@ cum_rank_df <- diff_overlap_df  %>%
 
 cum_rank_text_df <- cum_rank_df %>% 
     mutate(overlap_round = round(overlap,2)) %>% 
-    filter(overlap_round %in% c(0.15,0.25,1)) %>% 
+    filter(overlap_round %in% c(0.20,1)) %>% 
     group_by(gene_cat, overlap_round) %>% 
     top_n(1, gene_rank_frac) %>% 
     mutate(n_genes_gt15_overlap = n_genes - gene_rank)
 ```
+
 
 
 ```{r}
@@ -316,7 +318,7 @@ cum_rank_text_df <- cum_rank_df %>%
             legend.background = element_blank()
         ) +
         labs(
-            x = "Fraction of gene region with challenging sequence or variants",
+            x = "Fraction of gene region with\nchallenging sequence or variants",
             y = "% of Genes with > X Challenging",
             color = "",
             fill = ""
@@ -373,45 +375,24 @@ sv_breaks <- sort(c(-breaks, 0, breaks))
 
 # Combined Figure
 ```{r}
-# (combined_fig <-
-#      ggarrange(
-#          ggarrange(
-#              ggarrange(
-#                  v4_cov_plt,
-#                  mrg_gene_cov_plt,
-#                  ncol = 1,
-#                  labels = "AUTO"
-#              ),
-#              diff_overlap_plt,
-#              labels = c("", "C"),
-#              nrow = 1
-#          ),
-#          ggarrange(
-#              smv_size_dist_plt,
-#              sv_size_dist_plt + rremove(object = "legend"),
-#              nrow = 1,
-#              labels = c("D", "E")
-#          ),
-#          nrow = 2,
-#          heights = c(3,2)
-#      )
-# )
-```
-
-```{r}
 (
     combined_fig <- ggarrange(
-        mrg_gene_cov_plt,
-        diff_overlap_plt,
+        ggarrange(
+            mrg_gene_cov_plt,
+            diff_overlap_plt,
+            nrow = 1,
+            widths = c(1,1),
+            labels = "AUTO"),
         ggarrange(
             smv_size_dist_plt,
             sv_size_dist_plt + rremove(object = "legend"),
             nrow = 1,
             labels = c("C", "D")
         ),
-        labels = c("A", "B"),
-        nrow = 3,
-        heights = c(1, 2, 1)
+        # labels = "AUTO", #c("A", "B"),
+        nrow = 2, # ncol = 2,
+        heights = c(2,1)
+        # heights = c(1, 2, 1)
     )
 )
 ```
@@ -419,7 +400,7 @@ sv_breaks <- sort(c(-breaks, 0, breaks))
 
 ```{r}
 ggsave(filename = here("figures", "fig2_mrg_inclusion_overlap.png"),
-       plot = combined_fig, width = 8, height = 10, dpi = 300)
+       plot = combined_fig, width = 8, height = 8, dpi = 300)
 ```
 
 
