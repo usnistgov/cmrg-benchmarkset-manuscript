@@ -392,7 +392,11 @@ intron_cov_df <- intron_cov_files %>%
 glimpse(intron_cov_df)
 ```
 
-__QUESTION__ Check why duplicate genes here - is it the same, should be addressed after fixing duplicate gene names in Gene bed
+```{r}
+filter(exon_cov_df, is.na(coords))
+```
+
+__QUESTION__ Different number of rows - assuming due to lack of coverage by some genes 
 ```{r}
 nrow(exon_cov_df)
 ```
@@ -432,11 +436,10 @@ bench_cov_df  %>%
 
 
 __TODO__ Fix bug - Only 4 genes in MRG benchmark affected by bug - addressing with input gene list bed fix
+Genes with name fix are not in the full gene list.
 ```{r}
-bind_rows(exon_cov_df, gene_cov_df, intron_cov_df) %>% 
-  filter(gene %in% dup_genes, 
-         cov > 0) %>% 
-  arrange(gene)
+bench_cov_df %>% 
+  filter(is.na(coords))
 ```
 
 
