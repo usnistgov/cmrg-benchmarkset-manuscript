@@ -70,14 +70,13 @@ glimpse(mrg_stats_tbl)
 Extracting gene source information from main MRG table
 ```{r}
 mrg_source_tbl <- mrg_stats_tbl %>% 
-    select(gene, ref, chrom, start, end, 
-           mandelker, cosmic, high_priority)
+  select(gene, ref, mandelker, cosmic, high_priority) %>%
+  ## Removing duplicate gene entries
+  distinct()
 ```
 
 
-_DATA CHECK:_ Check for genes with multiple entries
-33 genes with duplicate coordinate entries Using gene coordinates to differentiate.
-__Follow-up__ Duplicate genes most likely due to multiple ENSAMBL gene id for the same gene name
+_DATA CHECK:_ Check for genes with multiple entries. Should be 0 rows
 ```{r}
 mrg_source_tbl %>%
   group_by(gene, ref) %>%
@@ -85,15 +84,6 @@ mrg_source_tbl %>%
   filter(count != 1) %>%
   arrange(gene)
 ```
-
-_DATA CHECK:_ Verifying only one entry per gene + coordinate combination. Should be 0 rows
-```{r}
-mrg_source_tbl %>% 
-    count(gene, ref, chrom, start, end) %>% 
-    filter(n > 1)
-```
-
-__QUESTION:__ Is ClinGen a testing modality? - Ask Steve During call 4/28 (Modalities should be targeted panels)
 
 Information on testing modality and high priority gene list from Lincoln https://drive.google.com/drive/u/1/folders/1gUjMx24CkZCbt4vC46W3nQY_3DcjP4X9 
 
@@ -128,9 +118,8 @@ All genes in the testing modality list are in the combined GRCh37 and GRCh38 gen
 nrow(mrg_info_tbl) == nrow(mrg_source_tbl)
 ```
 
-Differing numbers of genes with and without testing modalities for the two reference genomes. 
+Differing numbers of genes with testing modalities for the two reference genomes. 
 This might be expected. 
-Related to question above about which ref genome the testing modalities are relevant to.
 ```{r}
 mrg_info_tbl %>% 
   mutate(test_modality_info = !is.na(ClinGen)) %>% 
