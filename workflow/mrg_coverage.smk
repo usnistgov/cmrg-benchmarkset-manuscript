@@ -32,7 +32,7 @@ wildcard_constraints:
 ## Define target files for pipeline
 rule all:
     input:
-        expand(benchdir + "/{ref}/HG002_{ref}_mrg_union.bed", 
+        expand("workflow/data/benchmark_sets/HG002_{ref}_mrg_union.bed", 
                 ref = REFS),
         expand("data/gene_stat_tbls/cov_tbls/HG002_{ref}_mrg_{benchtype}_{region}_cov.tsv", 
                 ref = REFS, region = REGIONS, benchtype = BENCHTYPES),
@@ -92,6 +92,24 @@ rule make_v4_symlinks:
         cp {input.v4_38_smallvar_vcf} {output.v4_38_smallvar_vcf}
         cp {input.v4_38_smallvar_bed} {output.v4_38_smallvar_bed}
     """
+
+rule sort_grch37_exon_beds:
+    input:
+        in_file= ensembl_dir + "/unsorted/GRCh37_mrg_full_exon.bed",
+        faidx="resources/hs37d5.fa.gz.fai"
+    output:
+        ensembl_dir + "/GRCh37_mrg_full_exon.bed"
+    wrapper:
+        "0.74.0/bio/bedtools/sort"
+
+rule sort_grch38_exon_beds:
+    input:
+        in_file= ensembl_dir + "/unsorted/GRCh38_mrg_full_exon.bed",
+        faidx="resources/GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta.gz.fai"
+    output:
+        ensembl_dir + "/GRCh38_mrg_full_exon.bed"
+    wrapper:
+        "0.74.0/bio/bedtools/sort"
 
 ################################################################################
 ## Combined SM and SV bed file
