@@ -5,12 +5,22 @@
 - Use subfolders for multifile datasets when appropriate and it facilitates documentation
 -->
 
-`combined curation responses from benchmarking with sm variant v0.02.03.xlxs`: table downloaded from google sheets on 4/19/21 https://docs.google.com/spreadsheets/d/1Pn7WP78JfWKCO2Df31n_4gzDOwtP69flgDyyjeBS6JE/edit?usp=sharing 
+`benchmark_evaluation/combined curation responses from benchmarking with sm variant v0.02.03.xlxs`: table downloaded from google sheets on 4/19/21 https://docs.google.com/spreadsheets/d/1Pn7WP78JfWKCO2Df31n_4gzDOwtP69flgDyyjeBS6JE/edit?usp=sharing 
 
+`benchmark_evaluation/smvar HG002 MRG v0.03.00 evaluation.xlsx`: spreadsheed exported as excel file from googlesheet on 4/21/21 https://docs.google.com/spreadsheets/d/1smJ-ATsXwko2sCOTh4Lcyi8msnx1FM1zkERacQdHYY0/edit#gid=417145618 
 
 MRG_alluvial_diagram.R - Alluvial diagram figure code
 
 Steve_Lincoln_Compiled_Medical_Gene_List.tsv - # https://docs.google.com/spreadsheets/d/1PLfRdIQIRm186frFYNbseCEOzIi5RW-l/edit#gid=61579885 accessed 2020-12-16
+
+COSMIC Gene Census:
+	file: COSMIC_Gene_Census.tsv
+	url: https://cancer.sanger.ac.uk/census
+	Accessed: Dec 17, 2020
+	
+Mandelker Medically Relevant Genes:
+    file: Mandelker_Medically_Relevant_Genes.tsv
+    url: https://static-content.springer.com/esm/art%3A10.1038%2Fgim.2016.58/MediaObjects/41436_2016_BFgim201658_MOESM14_ESM.zip, Table_S13_Medically_Relevant_Genes.xlsx
 
 Data file documentation split by subdirectory
 ## ams_vars_regions
