@@ -19,26 +19,11 @@ library(ggpubr)
 ```
 
 # Objective
-
-__Panels__ 
-A. Benchmarking performance for challenging indels: MRG v. V4 - indel size v. performance   
-B. V4 v. MRG GATK benchmarking performance 
+V4 v. MRG GATK benchmarking performance 
 
 
 # Loading and Tidying Data
 ```{r}
-## Gene source and testing modality information
-mrg_info_tbl <- here("data","tidy","gene_list_info.tsv") %>% 
-    read_tsv(col_types = "cccddcccddddddd")
-
-## Gene Stratfication Overlap
-gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"))
-
-## Benchmark and Asm Coverage information
-bench_asm_cov_df <- here("data","tidy","gene_asm_bench_coverage.tsv") %>% 
-    read_tsv(col_types = "ccclccddd"
-             )
-
 ## MRG versus GATK
 # Extracting Column Names
 gatk_colnames <- here("data","benchmark_evaluation",
@@ -55,24 +40,6 @@ gatk_bench_df <- here("data",
         na = "NA",
         col_names = colnames(gatk_colnames)
     )
-```
-
-Combining Benchmark Coverage and Strat data frames
-```{r}
-mrg_gene_cats <- bench_asm_cov_df %>% 
-    filter(str_detect(coords, "[MTXY]",negate = TRUE),
-           ref == "GRCh38",
-           region == "gene") %>% 
-    select(-vars, -svs) %>% 
-    pivot_wider(names_from = benchmark, values_from = cov) %>% 
-    mutate(gene_cat = case_when(in_mrg ~ "MRG",
-                                v4 > 0.9 ~ "V4",
-                                v4 < 0.9 & hifi < 1 ~ "Not Benchmarked",
-                                mrg == 0 & hifi == 1 ~ "Excluded?",
-                                TRUE ~ "???"))
-
-bench_cov_anno_df <- mrg_gene_cats %>% 
-    left_join(gene_strat_df)
 ```
 
 # Figure Panels
@@ -126,13 +93,17 @@ gatk_plt_df <- tidy_gatk_bench_df %>%
         color = "grey60"
     ) +
     geom_text_repel(aes(label = Subset), size = 2) +
-    geom_point(aes(fill = Subset), shape = 21, color = "grey60") +
-    facet_grid(var_type ~ metric) +
-    
-    guides(fill = guide_legend(nrow = 3)) +
-    scale_color_brewer(type = "qual", palette = 2) +
+    geom_point(aes(fill = Subset, shape = metric), 
+               # shape = 21, 
+               color = "grey20") +
+    # facet_grid(var_type ~ metric) +
+    facet_wrap(~var_type) +
+    scale_fill_brewer(type = "qual", palette = 2) +
+    scale_shape_manual(values = c(21,24)) +
+    guides(fill = "none") +
     theme_bw() +
-    theme(legend.position = "none") +
+    theme(legend.position = "bottom", 
+          legend.box = "vertical") +
     labs(
         x = "V4.2 Benchmark",
         y = "MRG Benchmark",
@@ -144,30 +115,10 @@ gatk_plt_df <- tidy_gatk_bench_df %>%
 ```
 
 
-## Indel Performance
-```{r}
-## Skeleton Code for indel fig
-(indel_perf_plt <- ggplot(data.frame()) + geom_blank())
-```
-
-# Combined Figure
-```{r}
-## Skeleton Code for combined figure)
-(
-    combined_fig <-
-        ggarrange(
-            bench_scatter_plt,
-            indel_perf_plt,
-            ncol = 2,
-            nrow = 1,
-            labels = "AUTO"
-        )
-)
-```
 
 ```{r}
 ggsave(filename = here("figures", "fig4_benchmarking_w_mrg.png"), 
-       plot = combined_fig, width = 6, height = 6, dpi = 300) 
+       plot = bench_scatter_plt, width = 6, height = 4, dpi = 300) 
 ```
 
 
