@@ -338,6 +338,7 @@ exon_cov_df <- exon_cov_files %>%
   summarise(total_bp_cov = sum(bp_cov),
             total_exon_size = sum(exon_size)) %>%
   mutate(cov = total_bp_cov / total_exon_size) %>%
+  rename(bp_cov = total_bp_cov) %>% 
   separate(
     col = covset,
     into = c("giab_id", "ref", "benchmark", "bench_type", "region"),
@@ -371,6 +372,7 @@ intron_cov_df <- intron_cov_files %>%
   summarise(total_bp_cov = sum(bp_cov),
             total_intron_size = sum(intron_size)) %>%
   mutate(cov = total_bp_cov / total_intron_size) %>%
+  rename(bp_cov = total_bp_cov) %>% 
   separate(
     col = covset,
     into = c("giab_id", "ref", "benchmark", "bench_type", "region"),
@@ -404,7 +406,7 @@ nrow(intron_cov_df)
 ## Combined Cov DF making data frames consistent with DF defined below
 bench_cov_df <- bind_rows(gene_cov_df, exon_cov_df, intron_cov_df) %>%
   ungroup() %>%
-  select(gene, ref, coords, benchmark, bench_type, region, cov) %>%
+  select(gene, ref, coords, benchmark, bench_type, region, cov, bp_cov) %>%
   ## Annotating with in MRG info
   left_join(mrg_genes_df) %>%
   mutate(in_mrg = if_else(is.na(in_mrg), FALSE, in_mrg)) %>% 

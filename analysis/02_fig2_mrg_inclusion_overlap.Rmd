@@ -31,7 +31,7 @@ gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"),
 
 ## Benchmark Included Bases
 bench_cov_df <- here("data","tidy","bench_coverage.tsv") %>% 
-    read_tsv(col_types = "ccccccdl")
+    read_tsv(col_types = "ccccccdil")
 
 ## Difficult Strat Overlap
 diff_gene_overlap_df <- read_tsv(
