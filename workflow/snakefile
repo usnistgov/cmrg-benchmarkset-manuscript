@@ -39,6 +39,10 @@ rule all:
         expand("data/gene_stat_tbls/cov_tbls/HG002_{ref}_v4_smallvar_{region}_cov.tsv", 
                 ref = REFS, region = REGIONS),
         expand("data/gene_stat_tbls/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv", 
+                ref = REFS, region = REGIONS),
+        expand("data/gene_stat_tbls/mrg_diff_regions/HG002_{ref}_mrg_{benchtype}_mrg-{region}-diff_cov.tsv", 
+                ref = REFS, region = REGIONS, benchtype = BENCHTYPES),
+        expand("data/gene_stat_tbls/mrg_diff_regions/HG002_{ref}_v4_smallvar_mrg-{region}-diff_cov.tsv", 
                 ref = REFS, region = REGIONS)
 
 ################################################################################
@@ -167,3 +171,19 @@ rule calc_strat_coverage:
     output: "data/gene_stat_tbls/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv"
     threads: 2
     wrapper: "0.74.0/bio/bedtools/coveragebed"
+
+rule benchmark_diff_mrg_bases:
+    input: 
+        diff_strat = "resources/{ref}_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed.gz",
+        mrg_genes  = ensembl_dir + "/{ref}_mrg_full_{region}.bed",
+        benchmark_region = benchdir + "/HG002_{ref}_{benchmarkset}_{benchtype}.bed"
+    output: "data/gene_stat_tbls/mrg_diff_regions/HG002_{ref}_{benchmarkset}_{benchtype}_mrg-{region}-diff_cov.tsv"
+    conda: "envs/bedtools.yml"
+    shell: """
+        ## Getting overlap of benchmark and difficult regions
+        intersectBed \
+            -a {input.benchmark_region} -b {input.diff_strat} \
+            | coverageBed -a {input.mrg_genes} -b stdin \
+            > {output}
+    """
+

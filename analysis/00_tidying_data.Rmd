@@ -452,6 +452,182 @@ bench_cov_file <-  here("data","tidy","bench_coverage.tsv")
 write_tsv(bench_cov_df, bench_cov_file)
 ```
 
+
+## Included Difficult Bases
+Copied and edited from included bases above
+```{r}
+## Included Bases for Gene Body and Introns
+gene_diff_files <- list.files(path = here("data", "gene_stat_tbls", "mrg_diff_regions"),
+                             pattern = "HG002.*_mrg-gene-diff_cov.tsv") %>%
+  set_names(~ str_remove(., "_cov.tsv")) %>%
+  map(~ here("data", "gene_stat_tbls", "mrg_diff_regions", .))
+
+gene_diff_bases_df <- gene_diff_files %>%
+  map_dfr(
+    read_tsv,
+    col_names = c(
+      "chrom",
+      "start",
+      "end",
+      "gene",
+      "n_regions",
+      "bp_cov",
+      "gene_size",
+      "cov"
+    ),
+    col_types = "ciiciiid",
+    .id = "covset"
+  ) %>%
+  separate(
+    col = covset,
+    into = c("giab_id", "ref", "benchmark", "bench_type", "region"),
+    sep = "_",
+    remove = TRUE
+  ) %>%
+  mutate(coords = str_c(chrom, ":", start, "-", end))
+
+## Gene Coordinates
+gene_coords_df <- gene_diff_bases_df %>%
+  select(gene, ref, chrom, coords) %>%
+  distinct()
+
+```
+
+```{r}
+glimpse(gene_diff_bases_df)
+```
+
+
+
+```{r}
+## Included Exon Bases
+exon_diff_files <-
+  list.files(path = here("data", "gene_stat_tbls", "mrg_diff_regions"),
+             pattern = "HG002.*_mrg-exon-diff_cov.tsv",
+  ) %>%
+  set_names( ~ str_remove(., "_cov.tsv")) %>%
+  map( ~ here("data", "gene_stat_tbls", "mrg_diff_regions", .))
+
+exon_diff_bases_df <- exon_diff_files %>%
+  map_dfr(
+    read_tsv,
+    ## ensembl colnames are assumed
+    col_names = c(
+      "chrom",
+      "start",
+      "end",
+      "gene",
+      "ensembl_gene_id",
+      "ensembl_exon_id",
+      "n_regions",
+      "bp_cov",
+      "exon_size",
+      "frac_cov"
+    ),
+    col_types = "ciiccciiid",
+    .id = "covset"
+  ) %>%
+  group_by(covset, chrom, gene, ensembl_gene_id) %>%
+  summarise(total_bp_cov = sum(bp_cov),
+            total_exon_size = sum(exon_size)) %>%
+  mutate(cov = total_bp_cov / total_exon_size) %>%
+  rename(bp_cov = total_bp_cov) %>% 
+  separate(
+    col = covset,
+    into = c("giab_id", "ref", "benchmark", "bench_type", "region"),
+    sep = "_",
+    remove = TRUE
+  ) %>%
+  left_join(gene_coords_df)
+```
+
+```{r}
+glimpse(exon_diff_bases_df)
+```
+
+```{r}
+## Included Bases for Introns
+intron_diff_files <-
+  list.files(path = here("data", "gene_stat_tbls", "mrg_diff_regions"),
+             pattern = "HG002.*_mrg-intron-diff_cov.tsv",
+  ) %>%
+  set_names( ~ str_remove(., "_cov.tsv")) %>%
+  map( ~ here("data", "gene_stat_tbls", "mrg_diff_regions", .))
+
+cnames <- c("chrom", "start", "end", "gene", "n_regions", 
+            "bp_cov", "intron_size", "cov")
+
+intron_diff_bases_df <- intron_diff_files %>%
+  map_dfr(read_tsv,
+          col_names = cnames,
+          col_types = "ciiciiid",
+          .id = "covset") %>%
+  group_by(covset, chrom, gene) %>%
+  summarise(total_bp_cov = sum(bp_cov),
+            total_intron_size = sum(intron_size)) %>%
+  mutate(cov = total_bp_cov / total_intron_size) %>%
+  rename(bp_cov = total_bp_cov) %>% 
+  separate(
+    col = covset,
+    into = c("giab_id", "ref", "benchmark", "bench_type", "region"),
+    sep = "_",
+    remove = TRUE
+  ) %>%
+  left_join(gene_coords_df)
+```
+
+```{r}
+glimpse(intron_diff_bases_df)
+```
+
+
+
+```{r}
+## Combined Cov DF making data frames consistent with DF defined below
+diff_bases_df <- bind_rows(gene_diff_bases_df, exon_diff_bases_df, intron_diff_bases_df) %>%
+  ungroup() %>%
+  select(gene, ref, coords, benchmark, bench_type, region, cov, bp_cov)
+```
+
+```{r}
+glimpse(diff_bases_df)
+```
+
+
+_DATA CHECK:_ Single entry per benchmark set and region coverage type. Should return 0 rows
+```{r}
+diff_bases_df  %>% 
+  arrange(gene) %>% 
+  group_by(gene, ref, benchmark, bench_type, region) %>% 
+  mutate(n = n()) %>% 
+  filter(n != 1)
+```
+
+
+__TODO__ Fix bug - Only 4 genes in MRG benchmark affected by bug - addressing with input gene list bed fix
+Genes with name fix are not in the full gene list.
+```{r}
+diff_bases_df %>% 
+  filter(is.na(coords))
+```
+
+
+
+### Example Gene
+```{r}
+## Only displaying info for 1 gene to reduce html file size
+diff_bases_df %>% 
+    filter(gene == "AGL") %>% 
+    DT::datatable(rownames = FALSE)
+```
+
+### Writing To File 
+```{r}
+bench_diff_file <-  here("data","tidy","bench_diff_bases.tsv")
+
+write_tsv(diff_bases_df, bench_diff_file)
+```
+
 ## MRG Variants Tables
 __Scratch__
 - Check with JZ about variant lengths when multiple alternate alleles
