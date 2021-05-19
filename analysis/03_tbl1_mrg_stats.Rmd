@@ -9,6 +9,11 @@ output:
         code_folding: hide
 ---
 
+__Next Steps__
+- Add tidying steps for all diff coverage
+- Add V0.6 SV to snakemake pipeline for coverage calculations
+- Add V4 and V0.6 to var stats table
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
@@ -18,11 +23,99 @@ library(here)
 # Objective
 
 Metrics to include - break down relevant metrics by intron/ exon and for high priority genes
-Total bases
-- # of small indels
-- # of large indels
+- Total bases in MRG and high priority
+    - Calculate total bases for can use bench coverage table, after adding total bases and annotating high priority genes
+        - MRG regions
+        - MRG overlap high priority 
+        - V4 overlap med genes
+        - v4 overlap high priority
+- Variant Counts
+    - # of SNVs, # of small indels, # of large indels - bcftools
+    - Calculate using bcftools stats
+        - MRG smallvar
+        - MRG SV
+        - MRG small var overlap with high priority 
+        - MRG SV overlap with high priority
+        - V4 overlap with MRG
+        - V4 overlap with high priority
+        - v0.6 sv overlap with MRG
+        - v0.6 sv overlap with high priority
 - # bp in low map and segdups
+    - Calculate gene + lowmap & segdup coverage bed
 
+# Loading Data
+```{r}
+## Gene List Info - for high priority genes
+mrg_info_tbl <- here("data", "tidy", "gene_list_info.tsv") %>%
+    read_tsv(col_types = "ccccciiiiiii")
+
+## Benchmark Included Bases
+bench_cov_df <- here("data","tidy","bench_coverage.tsv") %>% 
+    read_tsv(col_types = "ccccccdil")
+
+## Benchmark Difficult Bases
+bench_diff_df <- here("data", "tidy", "bench_diff_bases.tsv") %>% 
+    read_tsv(col_types = "ccccccdi")
+
+## Variant Stats Table
+mrg_var_df <- read_tsv(here("data","tidy","mrg_var_tbl.tsv"),
+                       col_types = "cciccccici")
+```
+
+```{r}
+nrow(mrg_info_tbl)
+```
+
+```{r}
+nrow(hp_genes_df)
+```
+
+# Extracting Stats
+- Total bases in MRG gene list for mrg and v4 benchmarks
+```{r}
+(mr_gene_bases_df <- bench_cov_df %>% 
+     group_by(ref, benchmark, bench_type, region) %>% 
+     summarise(total_bp = sum(bp_cov)) %>% 
+     filter(ref == "GRCh38") %>% 
+     pivot_wider(names_from = "region", values_from = "total_bp") %>% 
+     arrange(-gene)
+)
+```
+- total bases in high priority gene list for mrg and v4 benchmarks
+
+```{r}
+(hp_gene_bases_df <- bench_cov_df  %>%
+    left_join(mrg_info_tbl) %>%
+     # filter(high_priority == "yes") %>%
+    group_by(ref, benchmark, bench_type, region, high_priority) %>%
+    summarise(total_bp = sum(bp_cov)) %>%
+    filter(ref == "GRCh38") %>%
+    pivot_wider(names_from = "region", values_from = "total_bp") %>%
+    arrange(bench_type, benchmark, high_priority)
+)
+
+```
+
+- Bases in difficult regions
+```{r}
+(
+    mr_diff_bases_df <- diff_bases_df %>%
+        mutate(region = str_extract(region, "(?<=-).*(?=-)")) %>% 
+        group_by(ref, benchmark, bench_type, region) %>%
+        summarise(total_bp = sum(bp_cov)) %>%
+        filter(ref == "GRCh38") %>%
+        pivot_wider(names_from = "region", values_from = "total_bp")
+)
+
+```
+
+
+__QUESTION__ Do we want to add SV benchmark to table?
+
+- Variant Counts
+```{r}
+mrg_var_df
+```
 
 
 # Session Information
