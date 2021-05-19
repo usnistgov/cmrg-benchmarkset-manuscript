@@ -1,9 +1,9 @@
-sequencing_technology	variant_caller	mapper_assembler	callset
-Multi	neuSomatic	???	Roche
-???	???	???	DNAnexus
-Ill	DRAGEN	DRAGEN	CMH_DRAGEN_3.6.3
-Ill	xAtlas	???	BCM-HGSC_xAtlas
-???	???	???	NCBI
-???	???	???	ITER
-PB	GATK4	???	PacBio_gatk4
-???	???	???	NYGC
+sequencing_technology	variant_caller	mapper_assembler	callset_id	callset
+Multi	neuSomatic	???	Multi neuSomatic	Roche
+Ill	Union	BWA	Ill Union	DNAnexus		
+Ill	CMH DRAGEN 3.6.3	CMH DRAGEN 3.6.3	Ill DRAGEN	CMH_DRAGEN_3.6.3
+Ill	xAtlas	???	Ill xAtlas	BCM-HGSC_xAtlas
+Multi	dipcall	NextDenovo	Multi NextDenovo	NCBI
+Multi	GATK4,LongShot	BWA,mm2	Multi GATK4+LongShot	ITER
+PB	GATK4	mm2	PB GATK4	PacBio_gatk4
+Ill	GATK4	BWA	Ill GATK4	NYGC

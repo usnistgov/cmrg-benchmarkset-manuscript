@@ -66,25 +66,24 @@ https://gitlab.nist.gov/gitlab/jmw7/v4_manuscript/-/blob/master/scripts/manual_c
 # Panel A #####################################################################
 panel_a_df <- mc_df %>% 
         mutate(curation = paste(benchmark_correct, query_correct)) %>% 
-        group_by(callset, var_type, fp_or_fn) %>% 
+        group_by(callset_id, var_type, fp_or_fn) %>% 
         mutate(total_vars = n(),
                fp_or_fn = if_else(fp_or_fn == "FP_FN", "genotype", fp_or_fn)) %>% 
-        group_by(callset, var_type, fp_or_fn, curation, total_vars) %>%
+        group_by(callset_id, var_type, fp_or_fn, curation, total_vars) %>%
         summarise(curation_count = n()) %>% 
         mutate(curation_prop = curation_count/ total_vars) %>% 
         filter(curation == "yes no") %>%
         ungroup() %>% 
-        mutate(callset = fct_reorder(callset,curation_prop, min)) %>% 
+        mutate(callset_id = fct_reorder(callset_id,curation_prop, min)) %>% 
         mutate(var_type = factor(var_type, levels = c("SNP","INDEL")))
 
 panel_a <- ggplot(panel_a_df) +
-        geom_bar(aes(x = callset, y = curation_prop, fill = fp_or_fn),
+        geom_bar(aes(x = callset_id, y = curation_prop, fill = fp_or_fn),
                  color = "grey40",
                  size = 0.25,
                  stat = "identity",
                  position = "dodge") +
         geom_hline(aes(yintercept = 0.5), linetype = 2) +
-        # facet_wrap(~var_type, ncol = 2) +
         facet_wrap(~var_type, ncol = 3) +
         scale_fill_brewer(palette = "Paired",type = "qual") + 
         theme_bw() +
@@ -103,7 +102,7 @@ grey_vars_df <- mc_df %>%
         ungroup() %>%
         mutate(benchmark_correct = fct_reorder(benchmark_correct,
                                                count, .desc = TRUE)) 
-## TODO - Fix issue with NA for query_correct column, mostly Common variants, one for Roche
+
 panel_b <- ggplot(grey_vars_df) +
         geom_bar(aes(x = benchmark_correct, 
                      fill = query_correct),
@@ -119,16 +118,16 @@ panel_b <- ggplot(grey_vars_df) +
 unsure_vars <- mc_df %>%
         mutate(curation = paste(benchmark_correct, query_correct)) %>%
         filter(benchmark_correct == "unsure") %>% 
-        group_by(callset) %>%
+        group_by(callset_id) %>%
         mutate(count = n()) %>%
         ungroup() %>%
-        mutate(callset = fct_reorder(callset,count))  %>%
+        mutate(callset_id = fct_reorder(callset_id,count))  %>%
         mutate(query_correct = factor(query_correct, 
                                       levels = c("no", "unsure","yes"))
         )
 
 panel_c <-  ggplot(unsure_vars) +
-        geom_bar(aes(x = callset, fill = query_correct),
+        geom_bar(aes(x = callset_id, fill = query_correct),
                  color = "grey40", size = 0.25) + 
         coord_flip() + 
         theme_bw() + 
@@ -147,10 +146,6 @@ full_fig <- ggpubr::ggarrange(panel_a,
                               labels = "A", heights = c(4,3))
 
 ```
-
-__Notes/ Potential Issues__
-
-1. Low INDEL proportions for ITER, Roche, DRAGEN
 
 ```{r}
 full_fig
