@@ -7,7 +7,7 @@
 
 `benchmark_evaluation/combined curation responses from benchmarking with sm variant v0.02.03.xlxs`: table downloaded from google sheets on 4/19/21 https://docs.google.com/spreadsheets/d/1Pn7WP78JfWKCO2Df31n_4gzDOwtP69flgDyyjeBS6JE/edit?usp=sharing 
 
-`benchmark_evaluation/smvar HG002 MRG v0.03.00 evaluation.xlsx`: spreadsheed exported as excel file from googlesheet on 4/21/21 https://docs.google.com/spreadsheets/d/1smJ-ATsXwko2sCOTh4Lcyi8msnx1FM1zkERacQdHYY0/edit#gid=417145618 
+`benchmark_evaluation/smvar HG002 MRG v0.03.00 evaluation.xlsx`: spreadsheed exported as excel file from googlesheet on 5/18/21 https://docs.google.com/spreadsheets/d/1smJ-ATsXwko2sCOTh4Lcyi8msnx1FM1zkERacQdHYY0/edit#gid=417145618
 
 MRG_alluvial_diagram.R - Alluvial diagram figure code
 
