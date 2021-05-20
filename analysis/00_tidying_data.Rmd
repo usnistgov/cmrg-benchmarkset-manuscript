@@ -289,6 +289,7 @@ gene_cov_df <- gene_cov_files %>%
   separate(
     col = covset,
     into = c("giab_id", "ref", "benchmark", "bench_type", "region"),
+    sep = "_",
     remove = TRUE
   ) %>%
   mutate(coords = str_c(chrom, ":", start, "-", end))
@@ -342,6 +343,7 @@ exon_cov_df <- exon_cov_files %>%
   separate(
     col = covset,
     into = c("giab_id", "ref", "benchmark", "bench_type", "region"),
+    sep = "_",
     remove = TRUE
   ) %>%
   left_join(gene_coords_df)
@@ -376,6 +378,7 @@ intron_cov_df <- intron_cov_files %>%
   separate(
     col = covset,
     into = c("giab_id", "ref", "benchmark", "bench_type", "region"),
+    sep = "_",
     remove = TRUE
   ) %>%
   left_join(gene_coords_df)

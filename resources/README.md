@@ -47,3 +47,4 @@ GRCh38
 - human.h38.genome
 - GRCh37_segdups.bed.gz
 - GRCh38_segdups.bed.gz
+- V0.6 SV - dowhloaded 5/20/21 HG002_Svs_Tier1_v0.6.vcf.gz, HG002_SVs_Tier1_noVDJorXorY_v0.6.2.bed

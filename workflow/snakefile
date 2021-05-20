@@ -21,7 +21,15 @@ ensembl_dir = "workflow/data/gene_coords"
 REFS = ["GRCh37","GRCh38"]
 REGIONS = ["gene","exon","intron"]
 BENCHTYPES = ["smallvar","SV", "union"]
-BENCHSETS = ["v4", "mrg"]
+BENCHSETS = ["v4", "v0.6","mrg"]
+BENCHVARS = ["GRCh37_v4_smallvar", "GRCh37_v0.6_SV",
+             "GRCh37_mrg_smallvar","GRCh37_mrg_SV",
+             "GRCh38_v4_smallvar", 
+             "GRCh38_mrg_smallvar","GRCh38_mrg_SV"]
+BENCHREGIONS = ["GRCh37_v4_smallvar", "GRCh37_v0.6_SV",
+             "GRCh37_mrg_smallvar","GRCh37_mrg_SV", "GRCh37_mrg_union",
+             "GRCh38_v4_smallvar", 
+             "GRCh38_mrg_smallvar","GRCh38_mrg_SV", "GRCh38_mrg_union"]
 
 wildcard_constraints:
     ref="|".join(REFS),
@@ -34,16 +42,12 @@ rule all:
     input:
         expand("workflow/data/benchmark_sets/HG002_{ref}_mrg_union.bed", 
                 ref = REFS),
-        expand("data/gene_stat_tbls/cov_tbls/HG002_{ref}_mrg_{benchtype}_{region}_cov.tsv", 
-                ref = REFS, region = REGIONS, benchtype = BENCHTYPES),
-        expand("data/gene_stat_tbls/cov_tbls/HG002_{ref}_v4_smallvar_{region}_cov.tsv", 
-                ref = REFS, region = REGIONS),
+        expand("data/gene_stat_tbls/cov_tbls/HG002_{benchregion}_{region}_cov.tsv", 
+                region = REGIONS, benchregion = BENCHREGIONS),
         expand("data/gene_stat_tbls/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv", 
                 ref = REFS, region = REGIONS),
-        expand("data/gene_stat_tbls/mrg_diff_regions/HG002_{ref}_mrg_{benchtype}_mrg-{region}-diff_cov.tsv", 
-                ref = REFS, region = REGIONS, benchtype = BENCHTYPES),
-        expand("data/gene_stat_tbls/mrg_diff_regions/HG002_{ref}_v4_smallvar_mrg-{region}-diff_cov.tsv", 
-                ref = REFS, region = REGIONS)
+        expand("data/gene_stat_tbls/mrg_diff_regions/HG002_{benchregion}_mrg-{region}-diff_cov.tsv", 
+                region = REGIONS, benchregion = BENCHREGIONS),
 
 ################################################################################
 ## Preparing input files
@@ -95,6 +99,18 @@ rule make_v4_symlinks:
         cp {input.v4_37_smallvar_bed} {output.v4_37_smallvar_bed}
         cp {input.v4_38_smallvar_vcf} {output.v4_38_smallvar_vcf}
         cp {input.v4_38_smallvar_bed} {output.v4_38_smallvar_bed}
+    """
+
+rule make_v06_symlinks:
+    input: 
+        vcf = "resources/HG002_Svs_Tier1_v0.6.vcf.gz",
+        bed = "resources/HG002_SVs_Tier1_noVDJorXorY_v0.6.2.bed"
+    output:
+        vcf = benchdir + "/HG002_GRCh37_v0.6_SV.vcf.gz",
+        bed = benchdir + "/HG002_GRCh37_v0.6_SV.bed"
+    shell: """
+        cp {input.vcf} {output.vcf}
+        cp {input.bed} {output.bed}
     """
 
 rule sort_grch37_exon_beds:
