@@ -8,6 +8,6 @@ scratch/*
 .snakemake
 workflow/data
 resources/*
-data/gene_stat_tbls/cov_tbls
+data/gene_stat_tbls/*
 data/mrg_benchmarkset
 docs/ASHG-2020-MRG-Poster-Complete.pptx
