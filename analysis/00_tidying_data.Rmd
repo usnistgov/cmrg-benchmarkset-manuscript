@@ -631,19 +631,9 @@ bench_diff_file <-  here("data","tidy","bench_diff_bases.tsv")
 write_tsv(diff_bases_df, bench_diff_file)
 ```
 
-## MRG Variants Tables
-__Scratch__
-- Check with JZ about variant lengths when multiple alternate alleles
+## Annotated Variants Tables
 
 ```{r}
-mrg_grch38_smvar_tbl <- read_tsv(here("scratch","anno_vcfs","grch38_smvar.tbl"),
-                                 col_names = c("CHROM","POS","GT","TYPE","GENE","EXON","REF","ALT"),
-                                 col_types = "cicccccc")
-
-mrg_grch38_sv_tbl <- read_tsv(here("scratch", "anno_vcfs","grch38_sv.tbl"),
-                              col_names = c("CHROM","POS","GT","TYPE","REPTYPE","BREAKSIMLENGTH","GENE","EXON","REF","ALT"),
-                                 col_types = "cicccicccc")
-
 ## Calculating INDEL Variant Size
 get_var_size <- function(REF, ALT){
   ref_bp <- nchar(REF)
@@ -663,31 +653,113 @@ get_var_size <- function(REF, ALT){
   return(nchar(ALT) - ref_bp)
 }
 
+## Reading annotated var vcf
+read_anno_tsv <- function(anno_tsv_file) {
+  ## Colnames and types for small variants (smv) and SVs (stv)
+  if (str_detect(anno_tsv_file, "_smallvar_")) {
+    var_type <- "smallvar"
+    cnames <-
+      c("CHROM", "POS", "GT", "TYPE", "GENE", "EXON", "REF", "ALT")
+    ctypes <-  "cicccccc"
+    
+  } else if (str_detect(anno_tsv_file, "_SV_")) {
+    var_type <- "SV"
+    cnames <-
+      c(
+        "CHROM",
+        "POS",
+        "GT",
+        "TYPE",
+        "REPTYPE",
+        "BREAKSIMLENGTH",
+        "GENE",
+        "EXON",
+        "REF",
+        "ALT"
+      )
+    ctypes <-  "cicccicccc"
+  } else {
+    warning("variant type not determined from file name")
+    return(tibble())
+  }
+  
+  
+  
+  ## Parsers for different benchmark sets
+  if (str_detect(anno_tsv_file, "_mrg_")) {
+    var_df <-
+      read_tsv(anno_tsv_file,
+               col_names = cnames,
+               col_types = ctypes)
+    
+    ## Getting variant size
+    sized_var_df <- var_df %>%
+      rowwise() %>%
+      mutate(var_size = get_var_size(REF, ALT)) %>%
+      select(-REF, -ALT)
+    
+    if (var_type == "smallvar") {
+      sized_var_df <- sized_var_df %>%
+        filter(abs(var_size) < 50)
+    }
+  } else if (str_detect(anno_tsv_file, "_v4_")) {
+    sized_var_df <- read_tsv(anno_tsv_file,
+                             col_names = cnames,
+                             col_types = ctypes) %>%
+      ## Excluding variants not in mrg gene list
+      filter(GENE != ".") %>%
+      rowwise() %>%
+      mutate(var_size = get_var_size(REF, ALT)) %>%
+      select(-REF,-ALT) %>%
+      filter(abs(var_size) < 50)
+    
+  } else if (str_detect(anno_tsv_file, "_v0.6_")) {
+    sized_var_df <- read_tsv(anno_tsv_file,
+                             col_names = cnames,
+                             col_types = ctypes) %>%
+      ## Excluding variants not in mrg gene list and non-HG002 variants
+      filter(GENE != ".",
+             GT %in% c("0/1", "1/1")) %>%
+      rowwise() %>%
+      mutate(var_size = get_var_size(REF, ALT)) %>%
+      select(-REF,-ALT)
+  } else{
+    warning("benchmark set not determined from file name")
+    return(tibble())
+  }
+  
+  ## Returning size variant table
+  return(sized_var_df)
+}
 
-smvar_df <- mrg_grch38_smvar_tbl %>% 
-  rowwise() %>% 
-  mutate(var_size = get_var_size(REF,ALT)) %>% 
-  filter(abs(var_size) < 50) %>% 
-  select(-REF, -ALT)
+## Generating data frame from individual annotated vcf tables
+var_tbl_files <- list.files(path = here("data",
+                                        "gene_stat_tbls",
+                                        "anno_vcf_tbls"),
+                            pattern = "HG002.*_anno.tsv") %>%
+  set_names( ~ str_remove(., "_anno.tsv")) %>%
+  map( ~ here("data", "gene_stat_tbls", "anno_vcf_tbls", .))
 
-sv_df <- mrg_grch38_sv_tbl %>% 
-  rowwise() %>% 
-  mutate(var_size = get_var_size(REF,ALT)) %>% 
-  select(-REF, -ALT)
 
-mrg_var_df <- bind_rows(smvar = smvar_df, sv = sv_df, .id = "bench_type")
+var_df <- var_tbl_files %>% 
+  map_dfr(read_anno_tsv, .id = "benchmarkset") %>% 
+  separate(benchmarkset, 
+           into = c("giab_id", "ref", "benchmark", "bench_type"),
+           sep = "_",
+           remove = TRUE)
 ```
 
 ```{r}
-glimpse(mrg_var_df)
+glimpse(var_df)
 ```
 
 ### Writing To File 
 ```{r}
-mrg_var_file <-  here("data","tidy","mrg_var_tbl.tsv")
+var_file <-  here("data","tidy","var_tbl.tsv")
 
-write_tsv(mrg_var_df, mrg_var_file)
+write_tsv(var_df, var_file)
 ```
+
 
 ## All Difficult Strat Coverage
 ```{r}

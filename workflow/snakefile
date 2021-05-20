@@ -48,6 +48,8 @@ rule all:
                 ref = REFS, region = REGIONS),
         expand("data/gene_stat_tbls/mrg_diff_regions/HG002_{benchregion}_mrg-{region}-diff_cov.tsv", 
                 region = REGIONS, benchregion = BENCHREGIONS),
+        expand("data/gene_stat_tbls/anno_vcf_tbls/HG002_{benchvar}_anno.tsv",
+                benchvar = BENCHVARS)
 
 ################################################################################
 ## Preparing input files
@@ -203,3 +205,60 @@ rule benchmark_diff_mrg_bases:
             > {output}
     """
 
+############################ Annotating and Converting Benchmark VCFs to Tables
+## Preparing bed files for annotation  and generating hdr.txt file- steps excluded from pipeline
+## 1. Sorting exon bed, downloading ref genome faidx from GIAB FTP site
+## 2. Sorting gene bed with excluding mito
+## 3. Making header file saved as `hdr.txt`
+# Following text pasted into hdr.txt
+#     ##INFO=<ID=GENE,Number=1,Type=String,Description="Gene name">
+#     ##INFO=<ID=EXON,Number=1,Type=String,Description="ENSEMBL exon ID">
+
+## Annotating VCFs
+rule annotate_vcf:
+    input:
+        bench_vcf=benchdir + "/HG002_{ref}_{benchmarkset}_{var_type}.vcf.gz",
+        mrg_gene_bed=ensembl_dir + "/{ref}_mrg_full_gene.bed",
+        mrg_exon_bed=ensembl_dir + "/{ref}_mrg_full_exon.bed",
+        hdr="resources/hdr.txt"
+    output: "workflow/data/anno_vcf/HG002_{ref}_{benchmarkset}_{var_type}_anno.vcf"
+    conda: "envs/bcftools.yml"
+    shell: """
+    bcftools annotate \
+        -a  {input.mrg_gene_bed} \
+        -c CHROM,FROM,TO,INFO/GENE \
+        -h {input.hdr} \
+        {input.bench_vcf} \
+        | bcftools annotate \
+            -a {input.mrg_exon_bed} \
+            -c CHROM,FROM,TO,-,-,INFO/EXON \
+            -h {input.hdr} \
+            - \
+            > {output}
+    """
+
+### Small Var Table
+rule make_smallvar_tbl:
+    input: 
+        anno_vcf="workflow/data/anno_vcf/HG002_{ref}_{benchmarkset}_smallvar_anno.vcf"
+    output: "data/gene_stat_tbls/anno_vcf_tbls/HG002_{ref}_{benchmarkset}_smallvar_anno.tsv"
+    conda: "envs/bcftools.yml"
+    shell: """
+        bcftools query \
+            -f '%CHROM\\t%POS\\t[ %GT]\\t%TYPE\\t%INFO/GENE\\t%INFO/EXON\\t%REF\\t%ALT\\n' \
+            {input.anno_vcf} \
+            > {output}
+    """
+
+## Structural Var Table
+rule make_sv_tbl:
+    input: 
+        anno_vcf="workflow/data/anno_vcf/HG002_{ref}_{benchmarkset}_SV_anno.vcf"
+    output: "data/gene_stat_tbls/anno_vcf_tbls/HG002_{ref}_{benchmarkset}_SV_anno.tsv"
+    conda: "envs/bcftools.yml"
+    shell: """
+        bcftools query \
+            -f '%CHROM\\t%POS\\t[ %GT]\\t%TYPE\\t%REPTYPE\\t%BREAKSIMLENGTH\\t%INFO/GENE\\t%INFO/EXON\\t%REF\\t%ALT\\n' \
+            {input.anno_vcf} \
+            > {output}
+    """

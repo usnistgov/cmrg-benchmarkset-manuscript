@@ -44,8 +44,10 @@ diff_gene_overlap_df <- read_tsv(
 #     read_tsv(col_types = "ccclccddd")
 
 ## Benchmark Variant tbl
-mrg_var_df <- read_tsv(here("data","tidy","mrg_var_tbl.tsv"),
-                       col_types = "cciccccici")
+mrg_var_df <- read_tsv(here("data","tidy","var_tbl.tsv"),
+                       col_types = "ccccciccccici") %>% 
+    filter(benchmark == "mrg",
+           ref == "GRCh38")
 ```
 
 Getting gene categories
@@ -330,7 +332,7 @@ cum_rank_text_df <- cum_rank_df %>%
 ### Small Variant Size Distribution
 ```{r}
 (smv_size_dist_plt <- mrg_var_df %>% 
-    filter(TYPE == "INDEL", bench_type == "smvar") %>% 
+    filter(TYPE == "INDEL", bench_type == "smallvar") %>% 
     mutate(gene_part = if_else(EXON == ".", "intron","exon"),
            gene_part = factor(gene_part, levels = c("intron","exon"))) %>% 
     ggplot() + 
@@ -353,7 +355,7 @@ sv_log_breaks <- sort(c(-log_breaks + log10(25), 0,  log_breaks - log10(25)))
 sv_breaks <- sort(c(-breaks, 0, breaks))
 
 (sv_size_dist_plt <- mrg_var_df %>% 
-    filter(TYPE == "INDEL", bench_type == "sv") %>% 
+    filter(TYPE == "INDEL", bench_type == "SV") %>% 
     mutate(gene_part = if_else(EXON == ".", "intron","exon"),
            gene_part = factor(gene_part, levels = c("intron","exon"))) %>%         
     ## Log scale var length with 1 offset 
