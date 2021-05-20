@@ -21,12 +21,12 @@ library(ggpubr)
 # Loading and Tidying Data
 ```{r}
 ## Gene source and testing modality information
-mrg_info_tbl <- here("data","tidy","gene_list_info.tsv") %>% 
-    read_tsv(col_types = "cccddcccddddddd")
+mrg_info_tbl <- here("data", "tidy", "gene_list_info.tsv") %>%
+    read_tsv(col_types = "cccccddddddd")
 
-## Gene Stratfication Overlap
-gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"),
-                          col_types = cols())
+## Gene Stratfication Overlap - no longer needed
+# gene_strat_df <- read_tsv(here("data","tidy","gene_strat_overlap.tsv"),
+#                           col_types = cols())
 
 
 ## Benchmark Included Bases
@@ -34,9 +34,8 @@ bench_cov_df <- here("data","tidy","bench_coverage.tsv") %>%
     read_tsv(col_types = "ccccccdil")
 
 ## Difficult Strat Overlap
-diff_gene_overlap_df <- read_tsv(
-    here("data","tidy","diff_strat_overlap.tsv"),
-    col_types = "ccciiciiidc")
+diff_gene_overlap_df <- read_tsv(here("data", "tidy", "diff_strat_overlap.tsv"),
+                                 col_types = "ccciiciiid")
 
 ## TODO - replace with new updated coverage data
 ## Benchmark and Asm Coverage information 
