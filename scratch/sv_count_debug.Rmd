@@ -1,0 +1,275 @@
+---
+title: "Debugging SV Counts"
+author: "Nathan D Olson"
+date: '`r Sys.Date()`'
+output: 
+    bookdown::html_document2:
+        toc: true
+        toc_float: true
+        df_print: paged
+        code_folding: hide
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+```
+
+# Objective
+Number of SVs in MRg benchmark is inconsistent with the number of SVs identified by Truvari. 
+Want to have a similar number of variants in manuscript as reported by truvari for people who use Truvari for SV benchmarking.
+
+# Approach
+Compare the SV counts for variants in the MRG benchmark to the list of SVs reported by Truvari to see which ones are in the Rmarkdown table but not in Truvari then figure out how to revise the SV table to exclude the additional variants.
+
+Truvari VCFs for comparison - getting variant lists from Truvari benchmarking runs `tp-base.vcf` and `fn.vcf` files.
+
+
+
+# Loading Data
+
+## MRG SV Benchmark Variants
+```{r}
+## Benchmark Included Bases
+bench_cov_df <- here("data","tidy","bench_coverage.tsv") %>% 
+    read_tsv(col_types = "ccccccdil")
+
+## List of genes in benchmark
+mrg_bench_genes_df <- bench_cov_df %>% 
+    select(gene, ref, in_mrg) %>% 
+    distinct() %>% 
+    filter(in_mrg == TRUE) %>% 
+    select(-in_mrg)
+
+## MRG SV variants table
+mrg_sv_var_df <- read_tsv(here("data","tidy","var_tbl.tsv"),
+                       col_types = "ccccciccccici"
+                   ) %>% 
+    rename(gene = GENE) %>% 
+    right_join(mrg_bench_genes_df) %>% 
+    ## Using same SV size file as in `analysis/03_tbl1_mrg_stats.Rmd`
+        ## Excluding variants in SV benchmark less thank 50 bp
+    filter(!(bench_type == "SV" & abs(var_size) < 50)) %>% 
+    ## Limiting to just MRG SV benchmark
+    filter(benchmark == "mrg", bench_type == "SV")
+```
+
+```{r}
+mrg_sv_var_df
+```
+## Truvari MRG SV Variants List
+```{r}
+truvari_files <- list.files(path = "SV_v0.02.00_Truvari", 
+                            pattern = "tp-base|fn.vcf", 
+                            recursive = TRUE) %>% 
+    keep(~str_detect(., pattern = "PacBio")) %>% 
+    set_names(., str_replace(., pattern = "/.*/", replacement = "_")) %>% 
+    map(~here("scratch", "SV_v0.02.00_Truvari", .))
+
+truvari_files
+
+## Hard coding column names
+cnames <- c("CHROM","POS","ID","REF_seq","ALT_seq","QUAL","FILTER","INFO","FORMAT","syndip")
+ctypes <- "cicccccccc"
+
+truvari_vars_df <- truvari_files %>%
+    map_dfr(read_tsv, 
+            col_names = cnames,
+            col_types = ctypes,
+            comment = "#",
+            .id = "vcf_id"
+        ) %>% 
+    separate(vcf_id,
+             into = c("ref", "source_vcf"),
+             sep = "_") %>% 
+    add_column(truvari_var = TRUE)
+
+truvari_vars_df
+```
+
+## Original MRG SV vcf table
+Using code from tidying data to load table
+```{r}
+## Calculating INDEL Variant Size
+get_var_size <- function(REF, ALT){
+  ref_bp <- nchar(REF)
+  
+  ## Dealing with multiple ALTs
+  # --- using largest SV
+  if(str_detect(ALT, ",")){
+    alts <- unlist(str_split(ALT, ","))
+    alts_bp <- nchar(alts)
+    var_sizes <- alts_bp - ref_bp
+    
+    var_size <- var_sizes[abs(var_sizes) == max(abs(var_sizes))]
+    
+    ## returning first entry value if the two genotypes are the same size
+    return(var_size[1])
+  }
+  return(nchar(ALT) - ref_bp)
+}
+
+## Reading annotated var vcf
+read_anno_tsv <- function(anno_tsv_file) {
+  ## Colnames and types for small variants (smv) and SVs (stv)
+  if (str_detect(anno_tsv_file, "_smallvar_")) {
+    var_type <- "smallvar"
+    cnames <-
+      c("CHROM", "POS", "GT", "TYPE", "GENE", "EXON", "REF", "ALT")
+    ctypes <-  "cicccccc"
+    
+  } else if (str_detect(anno_tsv_file, "_SV_")) {
+    var_type <- "SV"
+    cnames <-
+      c(
+        "CHROM",
+        "POS",
+        "GT",
+        "TYPE",
+        "REPTYPE",
+        "BREAKSIMLENGTH",
+        "GENE",
+        "EXON",
+        "REF",
+        "ALT"
+      )
+    ctypes <-  "cicccicccc"
+  } else {
+    warning("variant type not determined from file name")
+    return(tibble())
+  }
+    
+    ## Parsers for different benchmark sets
+  if (str_detect(anno_tsv_file, "_mrg_")) {
+    var_df <-
+      read_tsv(anno_tsv_file,
+               col_names = cnames,
+               col_types = ctypes)
+    
+    ## Getting variant size
+    sized_var_df <- var_df %>%
+      rowwise() %>%
+      mutate(var_size = get_var_size(REF, ALT))
+    
+    if (var_type == "smallvar") {
+      sized_var_df <- sized_var_df %>%
+        filter(abs(var_size) < 50)
+    }
+  } else if (str_detect(anno_tsv_file, "_v4_")) {
+    sized_var_df <- read_tsv(anno_tsv_file,
+                             col_names = cnames,
+                             col_types = ctypes) %>%
+      ## Excluding variants not in mrg gene list
+      filter(GENE != ".") %>%
+      rowwise() %>%
+      mutate(var_size = get_var_size(REF, ALT)) %>%
+      select(-REF,-ALT) %>%
+      filter(abs(var_size) < 50)
+    
+  } else if (str_detect(anno_tsv_file, "_v0.6_")) {
+    sized_var_df <- read_tsv(anno_tsv_file,
+                             col_names = cnames,
+                             col_types = ctypes) %>%
+      ## Excluding variants not in mrg gene list and non-HG002 variants
+      filter(GENE != ".",
+             GT %in% c("0/1", "1/1")) %>%
+      rowwise() %>%
+      mutate(var_size = get_var_size(REF, ALT)) %>%
+      select(-REF,-ALT)
+  } else{
+    warning("benchmark set not determined from file name")
+    return(tibble())
+  }
+  
+  ## Returning size variant table
+  return(sized_var_df)
+}
+
+
+mrg_sv_var_tbl <- list(GRCh37 = here("data","gene_stat_tbls","anno_vcf_tbls",
+                                     "HG002_GRCh37_mrg_SV_anno.tsv"),
+                       GRCh38 = here("data","gene_stat_tbls","anno_vcf_tbls",
+                                     "HG002_GRCh38_mrg_SV_anno.tsv")) %>% 
+    map_dfr(read_anno_tsv, .id = "ref")
+```
+
+```{r}
+mrg_sv_var_tbl
+```
+
+
+# Finding Variants unique to Rmarkdown list
+```{r}
+combined_var_df <-  mrg_sv_var_df %>%
+  add_column(in_rtbl = TRUE) %>% 
+    full_join(truvari_vars_df)
+```
+
+```{r}
+truvari_vars_df %>% count(ref)
+```
+```{r}
+mrg_sv_var_df %>% count(ref)
+```
+
+
+Four variants are unique to the Rmarkdown variant list.
+A number of variants were duplicated when the join was performed. __Assume okay to ignore for now__
+```{r}
+combined_var_df %>% 
+    count(ref, truvari_var)
+```
+
+```{r}
+combined_var_df %>% 
+    filter(is.na(truvari_var))
+```
+```{r}
+mrg_bench_genes_df %>% filter(gene == "PCDHA10")
+```
+Variant unique to truvari
+```{r}
+combined_var_df %>% 
+    filter(is.na(in_rtbl))
+```
+
+```{r}
+combined_var_df %>% 
+  filter(gene == "GP1BA")
+```
+```{r}
+truvari_vars_df %>% 
+  filter(ref == "GRCh38", CHROM == "chr17")
+```
+```{r}
+combined_var_df %>% 
+  filter(ref == "GRCh38",CHROM == "chr17") %>% 
+  View()
+```
+
+```{r}
+mrg_sv_var_tbl %>% 
+  filter(GENE == "GP1BA")
+```
+The variant missing from the R table is assigned to CHRNE gene
+```{r}
+mrg_sv_var_tbl %>% 
+  filter(CHROM == "chr17")
+```
+
+# Session Information
+## System Information
+```{r}
+sessioninfo::platform_info()
+```
+
+
+## Package Versions
+```{r}
+sessioninfo::package_info() %>% 
+    filter(attached = TRUE) %>% 
+    select(package, loadedversion, date, source) %>%
+    knitr::kable(booktabs = TRUE, row.names = FALSE)
+```
