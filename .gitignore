@@ -11,3 +11,6 @@ resources/*
 data/gene_stat_tbls/*
 data/mrg_benchmarkset
 docs/ASHG-2020-MRG-Poster-Complete.pptx
+data/gene_coords
+data/refs
+data/false_dups
