@@ -68,36 +68,51 @@ rule prepare_genome:
         cp {input.grch37_genome} {output.grch37_genome}
         cp {input.grch38_genome} {output.grch38_genome}    
     """
+
+rule prepare_mrg_sv_beds:
+    input:
+        in_file= mrg_dir + "/HG002_{ref}_difficult_medical_gene_SV_benchmark_v1.00.01.bed",
+        genome="data/refs/{ref}.genome"
+    output:
+        benchdir + "/HG002_{ref}_mrg_SV.bed"
+    wrapper:
+        "0.74.0/bio/bedtools/sort"
+
+rule prepare_mrg_sv:
+    input:
+        mrg_sv_vcf=mrg_dir + "/HG002_{ref}_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz",
+        mrg_sv_bed=benchdir + "/HG002_{ref}_mrg_SV.bed"
+    output:     
+        mrg_sv_vcf=benchdir + "/HG002_{ref}_mrg_SV.vcf.gz"
+    conda: "envs/mrgtools.yml"
+    shell: """
+        ## Filtering for variants in benchmark regions
+        bcftools view \
+            -O z -o {output.mrg_sv_vcf} \
+            -R {input.mrg_sv_bed} \
+            {input.mrg_sv_vcf}
+    """
+
+rule prepare_mrg_smallvar:
     input:
         mrg_37_smallvar_vcf=mrg_dir + "/HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz",
         mrg_37_smallvar_bed=mrg_dir + "/HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed",
-        mrg_37_sv_vcf=mrg_dir + "/HG002_GRCh37_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz",
-        mrg_37_sv_bed=mrg_dir + "/HG002_GRCh37_difficult_medical_gene_SV_benchmark_v1.00.01.bed",
         mrg_38_smallvar_vcf=mrg_dir + "/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz",
-        mrg_38_smallvar_bed=mrg_dir + "/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed",
-        mrg_38_sv_vcf=mrg_dir + "/HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz",
-        mrg_38_sv_bed=mrg_dir + "/HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.bed"
+        mrg_38_smallvar_bed=mrg_dir + "/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed"
     output:     
         mrg_37_smallvar_vcf=benchdir + "/HG002_GRCh37_mrg_smallvar.vcf.gz",
         mrg_37_smallvar_bed=benchdir + "/HG002_GRCh37_mrg_smallvar.bed",
-        mrg_37_sv_vcf=benchdir + "/HG002_GRCh37_mrg_SV.vcf.gz",
-        mrg_37_sv_bed=benchdir + "/HG002_GRCh37_mrg_SV.bed",
         mrg_38_smallvar_vcf=benchdir + "/HG002_GRCh38_mrg_smallvar.vcf.gz",
-        mrg_38_smallvar_bed=benchdir + "/HG002_GRCh38_mrg_smallvar.bed",
-        mrg_38_sv_vcf=benchdir + "/HG002_GRCh38_mrg_SV.vcf.gz",
-        mrg_38_sv_bed=benchdir + "/HG002_GRCh38_mrg_SV.bed"
+        mrg_38_smallvar_bed=benchdir + "/HG002_GRCh38_mrg_smallvar.bed"
     shell: """
+        ## Copying and renaming small variant vcf and bed files
         cp {input.mrg_37_smallvar_vcf} {output.mrg_37_smallvar_vcf}
         cp {input.mrg_37_smallvar_bed} {output.mrg_37_smallvar_bed}
-        cp {input.mrg_37_sv_vcf} {output.mrg_37_sv_vcf}
-        cp {input.mrg_37_sv_bed} {output.mrg_37_sv_bed}
         cp {input.mrg_38_smallvar_vcf} {output.mrg_38_smallvar_vcf}
         cp {input.mrg_38_smallvar_bed} {output.mrg_38_smallvar_bed}
-        cp {input.mrg_38_sv_vcf} {output.mrg_38_sv_vcf}
-        cp {input.mrg_38_sv_bed} {output.mrg_38_sv_bed}
     """
 
-rule make_v4_symlinks:
+rule prepare_v4:
     input:
         v4_37_smallvar_vcf = "resources/HG002_GRCh37_1_22_v4.2.1_benchmark.vcf.gz",
         v4_37_smallvar_bed = "resources/HG002_GRCh37_1_22_v4.2.1_benchmark_noinconsistent.bed",
@@ -115,7 +130,7 @@ rule make_v4_symlinks:
         cp {input.v4_38_smallvar_bed} {output.v4_38_smallvar_bed}
     """
 
-rule make_v06_symlinks:
+rule prepare_v06:
     input: 
         vcf = "resources/HG002_Svs_Tier1_v0.6.vcf.gz",
         bed = "resources/HG002_SVs_Tier1_noVDJorXorY_v0.6.2.bed"
@@ -124,8 +139,17 @@ rule make_v06_symlinks:
         bed = benchdir + "/HG002_GRCh37_v0.6_SV.bed"
     conda: "envs/mrgtools.yml"
     shell: """
-        cp {input.vcf} {output.vcf}
         cp {input.bed} {output.bed}
+        
+        ## Indexing vcf if not already
+        bcftools index -f {input.vcf}
+        
+        ## Filter VCF for passing variants in benchmark regions
+        bcftools view \
+            -O z -o {output.vcf} \
+            -R {input.bed} \
+            --include 'FILTER="PASS"' \
+            {input.vcf}
     """
 
 rule sort_gene_list_beds:
