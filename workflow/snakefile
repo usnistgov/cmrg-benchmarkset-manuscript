@@ -15,7 +15,7 @@ min_version("5.27.4")
 ## Variables for data paths
 mrg_dir = "resources/NIST_MedicalGene_v1.00.01"
 benchdir = "workflow/data/benchmark_sets"
-ensembl_dir = "workflow/data/gene_coords"
+ensembl_dir = "data/gene_coords"
 
 ## Defining Wildcards
 REFS = ["GRCh37","GRCh38"]
@@ -40,6 +40,7 @@ wildcard_constraints:
 ## Define target files for pipeline
 rule all:
     input:
+        expand(ensembl_dir + "/{ref}_mrg_bench_gene.bed", ref = REFS),
         expand("workflow/data/benchmark_sets/HG002_{ref}_mrg_union.bed", 
                 ref = REFS),
         expand("data/gene_stat_tbls/cov_tbls/HG002_{benchregion}_{region}_cov.tsv", 

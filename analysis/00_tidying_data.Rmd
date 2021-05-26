@@ -70,13 +70,11 @@ glimpse(mrg_stats_tbl)
 ## Gene List Files
 mrg_gene_beds <- list(
   GRCh37 = here(
-    "workflow",
     "data",
     "gene_coords",
     "GRCh37_mrg_bench_gene.bed"
   ),
   GRCh38 = here(
-    "workflow",
     "data",
     "gene_coords",
     "GRCh38_mrg_bench_gene.bed"
