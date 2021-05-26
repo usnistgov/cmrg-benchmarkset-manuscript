@@ -10,10 +10,6 @@ output:
         code_folding: hide
 ---
 
-__Next Steps__
-- Add tidying steps for all diff coverage
-- Add V0.6 SV to snakemake pipeline for coverage calculations
-- Add V4 and V0.6 to var stats table
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -56,6 +52,7 @@ mrg_info_tbl <- here("data", "tidy", "gene_list_info.tsv") %>%
 bench_cov_df <- here("data","tidy","bench_coverage.tsv") %>% 
     read_tsv(col_types = "ccccccdil")
 
+
 ## Benchmark Difficult Bases
 bench_diff_df <- here("data", "tidy", "bench_diff_bases.tsv") %>% 
     read_tsv(col_types = "ccccccdi")
@@ -65,6 +62,15 @@ var_df <- read_tsv(here("data","tidy","var_tbl.tsv"),
                        col_types = "ccccciccccici"
                    )
 ```
+Data frame with just genes in mrg benchmark
+```{r}
+mrg_bench_genes_df <- bench_cov_df %>% 
+    select(gene, ref, in_mrg) %>% 
+    distinct() %>% 
+    filter(in_mrg == TRUE) %>% 
+    select(-in_mrg)
+
+```
 
 
 # Extracting Stats
@@ -72,13 +78,14 @@ var_df <- read_tsv(here("data","tidy","var_tbl.tsv"),
 ## Total bases in MRG gene list for GIAB Benchmarks
 ```{r}
 mr_gene_bases_df <- bench_cov_df %>% 
+     ## Only genes in mrg benchmark
+     right_join(mrg_bench_genes_df) %>% 
+     ## Total bases by benchmark and region
      group_by(ref, benchmark, bench_type, region) %>% 
      summarise(total_bp = sum(bp_cov)) %>% 
-     # filter((benchmark == "v0.6" & ref == "GRCh37") | 
-     #        (benchmark != "v0.6" & ref == "GRCh38")) %>% 
-     pivot_wider(names_from = "region", values_from = "total_bp") %>% 
-    ungroup() %>% 
-     arrange(bench_type, benchmark, ref) %>% 
+     pivot_wider(names_from = "region", values_from = "total_bp") %>%
+    ungroup() %>%
+     arrange(bench_type, benchmark, ref) %>%
     select(ref, benchmark, bench_type, gene, exon, intron)
 
 DT::datatable(mr_gene_bases_df,
@@ -89,6 +96,8 @@ DT::datatable(mr_gene_bases_df,
 
 ```{r}
 hp_gene_bases_df <- bench_cov_df  %>%
+         ## Only genes in mrg benchmark
+     right_join(mrg_bench_genes_df) %>% 
     left_join(mrg_info_tbl) %>%
      filter(high_priority == "yes") %>%
     group_by(ref, benchmark, bench_type, region, high_priority) %>%
@@ -107,6 +116,8 @@ DT::datatable(hp_gene_bases_df,
 __Note__ Can add high priority bases
 ```{r}
 mr_diff_bases_df <- bench_diff_df %>%
+         ## Only genes in mrg benchmark
+     right_join(mrg_bench_genes_df) %>% 
     mutate(region = str_extract(region, "(?<=-).*(?=-)")) %>%
     group_by(ref, benchmark, bench_type, region) %>%
     summarise(total_bp = sum(bp_cov)) %>%
@@ -118,12 +129,28 @@ DT::datatable(mr_diff_bases_df,
              caption = "Medically relevant genes bases in difficult regions included in GIAB benchmarks by gene region")
 ```
 
+```{r}
+(v06_df <- var_df %>% 
+    filter(!(bench_type == "SV" & abs(var_size) < 50)) %>% 
+     filter(bench_type == "SV") %>% 
+     arrange(abs(var_size))
+)
+    
+```
+
 ## Variant Counts
 ```{r}
+
 var_count_tbl <- var_df %>% 
+    ## Limiting to genes in mrg benchmark
+    rename(gene = GENE) %>% 
+    right_join(mrg_bench_genes_df) %>% 
+    ## Excluding variants in SV benchmark less thank 50 bp
+    filter(!(bench_type == "SV" & abs(var_size) < 50)) %>% 
     mutate(region = if_else(EXON == ".","exon","intron")) %>% 
     group_by(ref, benchmark, bench_type, TYPE, region) %>% 
     count(name = "n_vars") %>% 
+     ## Only genes in mrg benchmark
     pivot_wider(names_from = "region", 
                 values_from = "n_vars", 
                 values_fill = 0) %>% 
@@ -135,7 +162,32 @@ var_count_tbl <- var_df %>%
 DT::datatable(var_count_tbl,
               caption = "Variants in medically relevant genes included in GIAB benchmarks by gene region")
 ```
+```{r}
+sv_only_df <- var_df %>% 
+    ## Limiting to genes in mrg benchmark
+    rename(gene = GENE) %>% 
+    right_join(mrg_bench_genes_df) %>% 
+    ## Excluding variants in SV benchmark less thank 50 bp
+    filter(bench_type == "SV" & abs(var_size) >= 50) 
 
+sv_only_df %>% 
+    mutate(region = if_else(EXON == ".","exon","intron")) %>% 
+    group_by(ref, benchmark, bench_type, TYPE, region) %>% 
+    count(name = "n_vars") %>% 
+     ## Only genes in mrg benchmark
+    pivot_wider(names_from = "region", 
+                values_from = "n_vars", 
+                values_fill = 0) %>% 
+    arrange(bench_type, TYPE, ref) %>% 
+    mutate(gene = exon + intron)  %>%
+    arrange(bench_type, benchmark)  %>% 
+    select(ref, benchmark, bench_type, gene, exon, intron)
+```
+
+# Summary Table
+- GRCh38 Only
+- Rows - benchmarks
+- Columns - bases and variants or all mrg, high priority
 
 # Session Information
 ## System Information
