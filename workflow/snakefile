@@ -55,7 +55,18 @@ rule all:
 ## Preparing input files
 ################################################################################
 
-rule make_mrg_sym_links:
+rule prepare_genome:
+    input:
+        grch37_genome="resources/human.b37.genome",
+        grch38_genome="resources/human.hg38.genome"
+    output:
+        grch37_genome="data/refs/GRCh37.genome",
+        grch38_genome="data/refs/GRCh38.genome"
+    shell: """
+        ## Copying and renaming reference index files
+        cp {input.grch37_genome} {output.grch37_genome}
+        cp {input.grch38_genome} {output.grch38_genome}    
+    """
     input:
         mrg_37_smallvar_vcf=mrg_dir + "/HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz",
         mrg_37_smallvar_bed=mrg_dir + "/HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed",
@@ -116,21 +127,12 @@ rule make_v06_symlinks:
         cp {input.bed} {output.bed}
     """
 
-rule sort_grch37_exon_beds:
+rule sort_gene_list_beds:
     input:
-        in_file= ensembl_dir + "/unsorted/GRCh37_mrg_full_exon.bed",
-        faidx="resources/hs37d5.fa.gz.fai"
+        in_file= ensembl_dir + "/unsorted/{ref}_{gene_list}.bed",
+        genome="data/refs/{ref}.genome"
     output:
-        ensembl_dir + "/GRCh37_mrg_full_exon.bed"
-    wrapper:
-        "0.74.0/bio/bedtools/sort"
-
-rule sort_grch38_exon_beds:
-    input:
-        in_file= ensembl_dir + "/unsorted/GRCh38_mrg_full_exon.bed",
-        faidx="resources/GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta.gz.fai"
-    output:
-        ensembl_dir + "/GRCh38_mrg_full_exon.bed"
+        ensembl_dir + "/{ref}_{gene_list}.bed"
     wrapper:
         "0.74.0/bio/bedtools/sort"
 
