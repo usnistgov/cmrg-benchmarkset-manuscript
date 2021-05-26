@@ -110,6 +110,7 @@ rule make_v06_symlinks:
     output:
         vcf = benchdir + "/HG002_GRCh37_v0.6_SV.vcf.gz",
         bed = benchdir + "/HG002_GRCh37_v0.6_SV.bed"
+    conda: "envs/mrgtools.yml"
     shell: """
         cp {input.vcf} {output.vcf}
         cp {input.bed} {output.bed}
@@ -142,7 +143,7 @@ rule make_union_bed:
         sm = benchdir + "/HG002_{ref}_mrg_smallvar.bed",
         sv = benchdir + "/HG002_{ref}_mrg_SV.bed"
     output: benchdir + "/HG002_{ref}_mrg_union.bed"
-    conda: "envs/bedtools.yml"
+    conda: "envs/mrgtools.yml"
     shell: """
         multiintersectbed \
             -i {input.sm} {input.sv} \
@@ -160,7 +161,7 @@ rule make_intron_bed:
         exon = ensembl_dir + "/{ref}_mrg_full_exon.bed",
         gene = ensembl_dir + "/{ref}_mrg_full_gene.bed"
     output: ensembl_dir + "/{ref}_mrg_full_intron.bed"
-    conda: "envs/bedtools.yml"
+    conda: "envs/mrgtools.yml"
     shell: """
         subtractBed \
             -a {input.gene} -b {input.exon} \
@@ -196,7 +197,7 @@ rule benchmark_diff_mrg_bases:
         mrg_genes  = ensembl_dir + "/{ref}_mrg_full_{region}.bed",
         benchmark_region = benchdir + "/HG002_{ref}_{benchmarkset}_{benchtype}.bed"
     output: "data/gene_stat_tbls/mrg_diff_regions/HG002_{ref}_{benchmarkset}_{benchtype}_mrg-{region}-diff_cov.tsv"
-    conda: "envs/bedtools.yml"
+    conda: "envs/mrgtools.yml"
     shell: """
         ## Getting overlap of benchmark and difficult regions
         intersectBed \
@@ -222,7 +223,7 @@ rule annotate_vcf:
         mrg_exon_bed=ensembl_dir + "/{ref}_mrg_full_exon.bed",
         hdr="resources/hdr.txt"
     output: "workflow/data/anno_vcf/HG002_{ref}_{benchmarkset}_{var_type}_anno.vcf"
-    conda: "envs/bcftools.yml"
+    conda: "envs/mrgtools.yml"
     shell: """
     bcftools annotate \
         -a  {input.mrg_gene_bed} \
@@ -242,7 +243,7 @@ rule make_smallvar_tbl:
     input: 
         anno_vcf="workflow/data/anno_vcf/HG002_{ref}_{benchmarkset}_smallvar_anno.vcf"
     output: "data/gene_stat_tbls/anno_vcf_tbls/HG002_{ref}_{benchmarkset}_smallvar_anno.tsv"
-    conda: "envs/bcftools.yml"
+    conda: "envs/mrgtools.yml"
     shell: """
         bcftools query \
             -f '%CHROM\\t%POS\\t[ %GT]\\t%TYPE\\t%INFO/GENE\\t%INFO/EXON\\t%REF\\t%ALT\\n' \
@@ -255,7 +256,7 @@ rule make_sv_tbl:
     input: 
         anno_vcf="workflow/data/anno_vcf/HG002_{ref}_{benchmarkset}_SV_anno.vcf"
     output: "data/gene_stat_tbls/anno_vcf_tbls/HG002_{ref}_{benchmarkset}_SV_anno.tsv"
-    conda: "envs/bcftools.yml"
+    conda: "envs/mrgtools.yml"
     shell: """
         bcftools query \
             -f '%CHROM\\t%POS\\t[ %GT]\\t%TYPE\\t%REPTYPE\\t%BREAKSIMLENGTH\\t%INFO/GENE\\t%INFO/EXON\\t%REF\\t%ALT\\n' \
