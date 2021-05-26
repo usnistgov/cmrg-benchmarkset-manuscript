@@ -14,23 +14,24 @@
 ## Data: Benchmarking data (HG002-GRCh38-masking-comparison-stratifications.csv)
 ## from https://docs.google.com/spreadsheets/d/1smJ-ATsXwko2sCOTh4Lcyi8msnx1FM1zkERacQdHYY0/edit#gid=1746581338
 ## "GRCh38 mask/nomask" sheet.  This data was generated using mrg_benchmark_eval
-## Snakfile_final_evaluation.py which can be found in JM GitLab repo:
+## Snakefile_final_evaluation.py which can be found in JM GitLab repo:
 ## https://gitlab.nist.gov/gitlab/jennifer.mcdaniel/mrg-benchmark-eval
 ##===========================================================================
 
 ##===========================================================================
-## Load Libraties
+## Load Libraries
 ##===========================================================================
 
 library(reshape2)
 library(ggplot2)
+library(here)
 #contains color blind pallette
-library(RColorBrewer)
+# library(RColorBrewer)
 library(tidyverse)
-
-#to view paletts in RColorBrewer pkg
-par(mar=c(3,4,2,2))
-display.brewer.all()
+# 
+# #to view paletts in RColorBrewer pkg
+# par(mar=c(3,4,2,2))
+# display.brewer.all()
 
 #### suggestion from Nate regarding use of shapes
 # If you want to get fancy I like using shapes with outlines, this makes the 
@@ -43,12 +44,13 @@ display.brewer.all()
 ##===========================================================================
 
 # DF with all metrics
-benchComps_strats <- read.csv("HG002-GRCh38-masking-comparison-stratifications.csv")
-benchCompsnew_strats<- benchComps_strats[, c("Callset", "Reference", "Genome", 
-                                             "benchmark", "masking", "Subset", 
-                                             "INDEL.TRUTH.FN", "SNP.TRUTH.FN", 
-                                             "INDEL.QUERY.FP", "SNP.QUERY.FP",  
-                                             "INDEL.TRUTH.TP", "SNP.TRUTH.TP")]
+benchComps_strats <- read_csv(
+    here("data", "HG002-GRCh38-masking-comparison-stratifications.csv"),
+    col_types = cols()
+  ) %>% select(Callset, Reference, Genome, benchmark, masking, Subset,
+               INDEL.TRUTH.FN, SNP.TRUTH.FN, 
+               INDEL.QUERY.FP, SNP.QUERY.FP,  
+               INDEL.TRUTH.TP, SNP.TRUTH.TP)
 
 ##===========================================================================
 ## Plot for v0.03.00 -- included in manuscript figure"                      
@@ -56,12 +58,13 @@ benchCompsnew_strats<- benchComps_strats[, c("Callset", "Reference", "Genome",
 ##===========================================================================
 
 #subset to v0.03.00, we only want falsely duplicated strat for the MRG benchmark
-png("Improvements after masking false duplications.png")
-benchCompsnew_strats_0.03.00 <- benchCompsnew_strats %>%  
+benchComps_strats_mrg <- benchComps_strats %>%  
   filter(benchmark == "v0.03.00",
          Subset == "GRCh38_MRG_benchmark_gene_coordinates_falselyduplicated.bed.gz")
-meltybench_v0.03.00 <- melt(benchCompsnew_strats_0.03.00)
-meltybench_v0.03.00$variable_f = factor(meltybench_v0.03.00$variable, 
+
+meltybench_mrg <- melt(benchComps_strats_mrg)
+
+meltybench_mrg$variable_f = factor(meltybench_mrg$variable, 
                                         levels= c("SNP.TRUTH.FN", 
                                                   "SNP.QUERY.FP", 
                                                   "SNP.TRUTH.TP",
@@ -69,31 +72,40 @@ meltybench_v0.03.00$variable_f = factor(meltybench_v0.03.00$variable,
                                                   "INDEL.QUERY.FP", 
                                                   "INDEL.TRUTH.TP"))
 
-ggplot(data=meltybench_v0.03.00,aes(x=factor(masking,level = c("unmasked", "masked")), 
+mrg_false_dups_fig <- ggplot(data=meltybench_mrg,
+                              aes(x=factor(masking,level = c("unmasked", "masked")), 
            y=value, fill="Callset")) +
   geom_path(aes(group = interaction(Callset)), color="grey") +
   geom_point(size=3, aes(colour = Callset)) +
-  facet_wrap(~variable_f, ncol=3, scales = "free") +
-  labs(x="GRCh38 False Duplication Masking", y="Count", 
-       title="MRG v0.03.00 benchmark") +
+  facet_wrap(~variable_f, nrow = 1, scales = "free") +
+  labs(x="GRCh38 False Duplication Masking", y="Count") +
   guides(fill=FALSE) +
   scale_color_brewer(palette = "Set2") +
   theme_bw() +
-  theme(legend.position="bottom")
-dev.off()
+  theme(legend.position="right")
+
+mrg_false_dups_fig
+
+ggsave(here("figures","fig3_false_dups.png"), 
+       mrg_false_dups_fig,
+       height = 2, width = 10, dpi = 300)
+
+ggsave(here("figures","fig3_false_dups.pdf"), 
+       mrg_false_dups_fig,
+       height = 2, width = 10, dpi = 300)
 
 ##===========================================================================
 ## Plot for v4.2.1 -- included in manuscript figure: 
 ## "Supplementary Figure Masking Minimally affects whole genome accuracy"
 ##===========================================================================
 
-png("Masking minimally affects whole genome accuracy.png")
 
 # subset to 4.2.1 data, no TPs used for 4.2.1 since they are inverse of FN, 
 # use all stratifications (*)
-benchCompsnew_strats_4.2.1 <- benchCompsnew_strats %>%
+benchCompsnew_strats_4.2.1 <- benchComps_strats %>%
   filter(benchmark == "v4.2.1",Subset == "*") %>%
   select(-SNP.TRUTH.TP, -INDEL.TRUTH.TP)
+
 meltybench_v4.2.1 <- melt(benchCompsnew_strats_4.2.1)
 meltybench_v4.2.1$variable_f = factor(meltybench_v4.2.1$variable, 
                                       levels= c("SNP.TRUTH.FN", 
@@ -101,12 +113,16 @@ meltybench_v4.2.1$variable_f = factor(meltybench_v4.2.1$variable,
                                                 "SNP.QUERY.FP", 
                                                 "INDEL.QUERY.FP"))
 
+
+
 # use previously melted data and widen adding new columns for relative change (RC) 
 # and count_change
 benchwider_v4.2.1<- meltybench_v4.2.1 %>%
   pivot_wider(names_from = masking, values_from= value) %>%
   mutate(RC = ((unmasked - masked)/unmasked)) %>%
   mutate(count_change = unmasked - masked)
+
+
 
 # Plot count change (unmasked - masked), Facet by variabe, color by callset and 
 # xaxis = Type 
@@ -121,6 +137,5 @@ ggplot(data=benchwider_v4.2.1, aes(x=variable_f, y=count_change,
   theme(legend.position="bottom") 
 #use with theme to make xaxis vertical axis.text.x = element_text(angle = 90)
 
-dev.off()
 
 
