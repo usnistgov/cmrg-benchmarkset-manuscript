@@ -3,6 +3,7 @@ title: "MRG Benchmark Set Summary Statistics"
 author: "Nate Olson"
 date: '`r Sys.Date()`'
 output: 
+    bookdown::word_document2:
     bookdown::html_document2:
         toc: true
         toc_float: true
@@ -15,6 +16,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
+library(glue)
 ```
 
 # Objective
@@ -88,8 +90,8 @@ mr_gene_bases_df <- bench_cov_df %>%
      arrange(bench_type, benchmark, ref) %>%
     select(ref, benchmark, bench_type, gene, exon, intron)
 
-DT::datatable(mr_gene_bases_df,
-              caption = "Medically relevant gene bases included in GIAB benchmarks by gene region.")
+# DT::datatable(mr_gene_bases_df,
+#               caption = "Medically relevant gene bases included in GIAB benchmarks by gene region.")
 
 ```
 ## total bases in high priority gene list for mrg and v4 benchmarks
@@ -106,8 +108,8 @@ hp_gene_bases_df <- bench_cov_df  %>%
     arrange(bench_type, benchmark)  %>% 
     select(ref, benchmark, bench_type, gene, exon, intron)
 
-DT::datatable(hp_gene_bases_df, 
-              caption = "High priority gene bases included in GIAB benchmarks by gene region")
+# DT::datatable(hp_gene_bases_df, 
+#               caption = "High priority gene bases included in GIAB benchmarks by gene region")
 
 ```
 
@@ -125,16 +127,15 @@ mr_diff_bases_df <- bench_diff_df %>%
     arrange(bench_type, benchmark)  %>% 
     select(ref, benchmark, bench_type, gene, exon, intron)
 
-DT::datatable(mr_diff_bases_df,
-             caption = "Medically relevant genes bases in difficult regions included in GIAB benchmarks by gene region")
+# DT::datatable(mr_diff_bases_df,
+#              caption = "Medically relevant genes bases in difficult regions included in GIAB benchmarks by gene region")
 ```
 
 ```{r}
-(v06_df <- var_df %>% 
+v06_df <- var_df %>% 
     filter(!(bench_type == "SV" & abs(var_size) < 50)) %>% 
      filter(bench_type == "SV") %>% 
      arrange(abs(var_size))
-)
     
 ```
 
@@ -158,9 +159,9 @@ var_count_tbl <- var_df %>%
     mutate(gene = exon + intron)  %>%
     arrange(bench_type, benchmark)  %>% 
     select(ref, benchmark, bench_type, gene, exon, intron)
-
-DT::datatable(var_count_tbl,
-              caption = "Variants in medically relevant genes included in GIAB benchmarks by gene region")
+# 
+# DT::datatable(var_count_tbl,
+#               caption = "Variants in medically relevant genes included in GIAB benchmarks by gene region")
 ```
 ```{r}
 sv_only_df <- var_df %>% 
@@ -188,6 +189,72 @@ sv_only_df %>%
 - GRCh38 Only
 - Rows - benchmarks
 - Columns - bases and variants or all mrg, high priority
+
+```{r}
+var_count_tbl <- var_df %>% 
+    ## Limiting to genes in mrg benchmark
+    rename(gene = GENE) %>% 
+    right_join(mrg_bench_genes_df) %>% 
+    ## Excluding variants in SV benchmark less thank 50 bp
+    filter(!(bench_type == "SV" & abs(var_size) < 50)) %>% 
+    mutate(region = if_else(EXON == ".","exon","intron")) %>% 
+    group_by(ref, benchmark, bench_type, region) %>% 
+    count(name = "n_vars") %>% 
+     ## Only genes in mrg benchmark
+    pivot_wider(names_from = "region", 
+                values_from = "n_vars", 
+                values_fill = 0) %>% 
+    arrange(bench_type, ref) %>% 
+    mutate(gene = exon + intron)  %>%
+    arrange(bench_type, benchmark)  %>% 
+    select(ref, benchmark, bench_type, gene, exon)
+
+mrg_vars_df <- var_count_tbl %>%
+        filter((
+            ref == "GRCh38" & benchmark %in% c("mrg", "v4")
+        ) |
+            benchmark == "v0.6") %>%
+        mutate(
+            bench_type = factor(bench_type, levels = c("union", "smallvar", "SV")),
+            benchmark = factor(benchmark, levels = c("mrg", "v4", "v0.6"))
+        ) %>%
+        arrange(bench_type, benchmark) %>%
+        select(ref, benchmark, bench_type, gene, exon)
+```
+
+```{r}
+mrg_bases_df <- mr_gene_bases_df %>% 
+    filter((ref == "GRCh38" & benchmark %in% c("mrg","v4")) |
+               benchmark == "v0.6") %>% 
+    select(-intron)
+
+diff_bases_df <- mr_diff_bases_df %>% 
+         filter((ref == "GRCh38" & benchmark %in% c("mrg","v4")) |
+               benchmark == "v0.6") %>% 
+    select(-intron)
+
+stats_tbl <- list(`bp in MRG Benchmark Genes` = mrg_bases_df,
+                  `bp in Difficult Context`= diff_bases_df,
+                  `Number of Variants` = mrg_vars_df) %>%
+    bind_rows(.id = "Context") %>%
+    filter(bench_type != "union") %>%
+    mutate(
+        pct_exon = format(round((exon / gene) * 100, 1), width = 2),
+        gene = format(gene, big.mark = " "),
+        tbl_value = glue("{gene} ({pct_exon} %)", .trim = FALSE)
+    ) %>% 
+    mutate(bench = case_when(benchmark == "mrg" ~ "MRG",
+                                 benchmark == "v4" ~ "v4.2.1",
+                                 TRUE ~ benchmark),
+           bench_type = if_else(bench_type == "smallvar", "Small Var.", "SV"),
+        `Benchmark Set` = glue("{bench} {bench_type}")) %>% 
+    select(Context, `Benchmark Set`, tbl_value) %>% 
+    pivot_wider(names_from = Context, values_from = tbl_value)
+```
+
+```{r}
+knitr::kable(stats_tbl, row.names = FALSE, align = 'lrrr')
+```
 
 # Session Information
 ## System Information
