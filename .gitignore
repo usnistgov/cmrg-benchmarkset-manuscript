@@ -4,6 +4,7 @@
 .Ruserdata
 *.DS_Store
 *.html
+*.docx
 scratch/*
 .snakemake
 workflow/data
