@@ -34,8 +34,8 @@ bench_cov_df <- here("data","tidy","bench_coverage.tsv") %>%
     read_tsv(col_types = "ccccccdil")
 
 ## Difficult Strat Overlap
-diff_gene_overlap_df <- read_tsv(here("data", "tidy", "diff_strat_overlap.tsv"),
-                                 col_types = "ccciiciiid")
+diff_gene_overlap_df <- here("data", "tidy", "diff_strat_overlap.tsv") %>% 
+    read_tsv(col_types = "ccciiciiid")
 
 ## TODO - replace with new updated coverage data
 ## Benchmark and Asm Coverage information 
@@ -51,7 +51,7 @@ mrg_var_df <- read_tsv(here("data","tidy","var_tbl.tsv"),
 
 Getting gene categories
 ```{r}
-(mrg_gene_cats <- bench_cov_df %>% 
+mrg_gene_cats <- bench_cov_df %>% 
     filter(str_detect(coords, "[MTXY]",negate = TRUE),
            ref == "GRCh38",
            region == "gene",
@@ -60,11 +60,10 @@ Getting gene categories
            ) %>% 
      select(-bench_type) %>% 
     pivot_wider(names_from = benchmark, values_from = cov) %>%
-    mutate(gene_cat = case_when(mrg > 0.9 ~ "MRG", #in_mrg ~ "MRG",
+    mutate(gene_cat = case_when(mrg > 0.9 ~ "CMRG", #in_mrg ~ "MRG",
                                 v4 > 0.9 ~ "V4",
                                 v4 < 0.9 ~ "Excluded",
                                 TRUE ~ "???"))
-)
 ```
 
 ## Panels
@@ -78,7 +77,8 @@ mrg_gene_cov <- bench_cov_df %>%
            str_detect(coords, "[MTXY]",negate = TRUE),
            benchmark == "mrg",
            bench_type == "union",
-           region != "intron")
+           region != "intron") %>% 
+    mutate(region = if_else(region == "gene", "Gene", "Exon"))
 
 (mrg_gene_cov_plt <- ggplot(mrg_gene_cov) + 
     geom_histogram(aes(x = cov, fill = region), 
@@ -86,29 +86,37 @@ mrg_gene_cov <- bench_cov_df %>%
                    color = "grey40",
                    size = 0.25, bins = 25) + 
     theme_bw() +
-    labs(x = "Fraction included in\nMRG benchmark", y = "Number of Genes", fill = "") +
+    labs(x = "Fraction included in\nCMRG benchmark", 
+         y = "Count", 
+         fill = "") +
     theme(legend.position = c(0.25,0.8), 
           legend.direction = "vertical", 
           legend.background = element_blank()))
 ```
 
 ### Difficult Gene Overlap
+```{r}
+mrg_gene_cats %>% 
+    select(gene, ref, coords, gene_cat) %>% 
+    count(ref, gene_cat)
+```
 
 ```{r}
 diff_overlap_df <- mrg_gene_cats %>% 
+    select(gene, ref, coords, gene_cat) %>% 
     left_join(diff_gene_overlap_df) %>%
     filter(
         ref == "GRCh38",
-        gene_cat %in% c("V4", "MRG", "Excluded"),
+        gene_cat %in% c("V4", "CMRG", "Excluded"),
         str_detect(coords, "[MTXY]", negate = TRUE),
         strat == "allDiff"
     ) %>%
     mutate(gene_cat = factor(
         gene_cat,
-        level = c("Excluded", "V4", "MRG"),
+        level = c("Excluded", "V4", "CMRG"),
         labels = c("Excluded",
                    ">90% included in V4.2.1",
-                   ">90% included in MRG Bench")
+                   ">90% included in CMRG Bench")
     ))
 
 cum_rank_df <- diff_overlap_df  %>% 
@@ -188,8 +196,8 @@ cum_rank_text_df <- cum_rank_df %>%
 ```{r}
 (smv_size_dist_plt <- mrg_var_df %>% 
     filter(TYPE == "INDEL", bench_type == "smallvar") %>% 
-    mutate(gene_part = if_else(EXON == ".", "intron","exon"),
-           gene_part = factor(gene_part, levels = c("intron","exon"))) %>% 
+    mutate(gene_part = if_else(EXON == ".", "Intron","Exon"),
+           gene_part = factor(gene_part, levels = c("Intron","Exon"))) %>% 
     ggplot() + 
     geom_bar(aes(x = var_size, fill = gene_part)) + 
         scale_fill_brewer(type = "qual", palette = 3) +
@@ -211,8 +219,8 @@ sv_breaks <- sort(c(-breaks, 0, breaks))
 
 (sv_size_dist_plt <- mrg_var_df %>% 
     filter(TYPE == "INDEL", bench_type == "SV") %>% 
-    mutate(gene_part = if_else(EXON == ".", "intron","exon"),
-           gene_part = factor(gene_part, levels = c("intron","exon"))) %>%         
+    mutate(gene_part = if_else(EXON == ".", "Intron","Exon"),
+           gene_part = factor(gene_part, levels = c("Intron","Exon"))) %>%         
     ## Log scale var length with 1 offset 
     mutate(var_size = if_else(var_size < 0, 
                               -log10(abs(var_size)) + log10(25),
