@@ -233,7 +233,7 @@ diff_bases_df <- mr_diff_bases_df %>%
                benchmark == "v0.6") %>% 
     select(-intron)
 
-stats_tbl <- list(`bp in MRG Benchmark Genes` = mrg_bases_df,
+stats_tbl <- list(`bp in CMRG Benchmark Genes` = mrg_bases_df,
                   `bp in Difficult Context`= diff_bases_df,
                   `Number of Variants` = mrg_vars_df) %>%
     bind_rows(.id = "Context") %>%
@@ -243,7 +243,7 @@ stats_tbl <- list(`bp in MRG Benchmark Genes` = mrg_bases_df,
         gene = format(gene, big.mark = " "),
         tbl_value = glue("{gene} ({pct_exon} %)", .trim = FALSE)
     ) %>% 
-    mutate(bench = case_when(benchmark == "mrg" ~ "MRG",
+    mutate(bench = case_when(benchmark == "mrg" ~ "CMRG",
                                  benchmark == "v4" ~ "v4.2.1",
                                  TRUE ~ benchmark),
            bench_type = if_else(bench_type == "smallvar", "Small Var.", "SV"),
