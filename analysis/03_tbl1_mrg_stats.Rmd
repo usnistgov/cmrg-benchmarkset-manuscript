@@ -115,7 +115,6 @@ hp_gene_bases_df <- bench_cov_df  %>%
 
 ## Bases in difficult regions
 
-__Note__ Can add high priority bases
 ```{r}
 mr_diff_bases_df <- bench_diff_df %>%
          ## Only genes in mrg benchmark
@@ -148,7 +147,7 @@ var_count_tbl <- var_df %>%
     right_join(mrg_bench_genes_df) %>% 
     ## Excluding variants in SV benchmark less thank 50 bp
     filter(!(bench_type == "SV" & abs(var_size) < 50)) %>% 
-    mutate(region = if_else(EXON == ".","exon","intron")) %>% 
+    mutate(region = if_else(EXON == ".","intron","exon")) %>% 
     group_by(ref, benchmark, bench_type, TYPE, region) %>% 
     count(name = "n_vars") %>% 
      ## Only genes in mrg benchmark
@@ -172,7 +171,7 @@ sv_only_df <- var_df %>%
     filter(bench_type == "SV" & abs(var_size) >= 50) 
 
 sv_only_df %>% 
-    mutate(region = if_else(EXON == ".","exon","intron")) %>% 
+    mutate(region = if_else(EXON == ".","intron","exon")) %>% 
     group_by(ref, benchmark, bench_type, TYPE, region) %>% 
     count(name = "n_vars") %>% 
      ## Only genes in mrg benchmark
@@ -197,7 +196,7 @@ var_count_tbl <- var_df %>%
     right_join(mrg_bench_genes_df) %>% 
     ## Excluding variants in SV benchmark less thank 50 bp
     filter(!(bench_type == "SV" & abs(var_size) < 50)) %>% 
-    mutate(region = if_else(EXON == ".","exon","intron")) %>% 
+    mutate(region = if_else(EXON == ".","intron","exon")) %>% 
     group_by(ref, benchmark, bench_type, region) %>% 
     count(name = "n_vars") %>% 
      ## Only genes in mrg benchmark
@@ -221,6 +220,7 @@ mrg_vars_df <- var_count_tbl %>%
         arrange(bench_type, benchmark) %>%
         select(ref, benchmark, bench_type, gene, exon)
 ```
+
 
 ```{r}
 mrg_bases_df <- mr_gene_bases_df %>% 
@@ -250,6 +250,7 @@ stats_tbl <- list(`bp in MRG Benchmark Genes` = mrg_bases_df,
         `Benchmark Set` = glue("{bench} {bench_type}")) %>% 
     select(Context, `Benchmark Set`, tbl_value) %>% 
     pivot_wider(names_from = Context, values_from = tbl_value)
+    
 ```
 
 ```{r}
