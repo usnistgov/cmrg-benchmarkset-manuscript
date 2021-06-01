@@ -71,20 +71,34 @@ meltybench_mrg$variable_f = factor(meltybench_mrg$variable,
                                                   "INDEL.TRUTH.FN", 
                                                   "INDEL.QUERY.FP", 
                                                   "INDEL.TRUTH.TP"))
+mrg_false_dups_plt_df <- meltybench_mrg %>% 
+  select(-Subset,-Reference, -Genome, -benchmark) %>%
+  separate(variable, into = c("var_type", "Metric"), extra = "merge") %>% 
+  mutate(masking = factor(masking,level = c("unmasked", "masked")))
+  
 
-mrg_false_dups_fig <- ggplot(data=meltybench_mrg,
-                              aes(x=factor(masking,level = c("unmasked", "masked")), 
-           y=value, fill="Callset")) +
-  geom_path(aes(group = interaction(Callset)), color="grey") +
-  geom_point(size=3, aes(colour = Callset)) +
-  facet_wrap(~variable_f, nrow = 1, scales = "free") +
-  labs(x="GRCh38 False Duplication Masking", y="Count") +
-  guides(fill=FALSE) +
-  scale_color_brewer(palette = "Set2") +
+(mrg_false_dups_fig <- ggplot(mrg_false_dups_plt_df) +
+  geom_path(aes(x = masking,
+                y = value,
+                group = paste(Callset,  var_type)),
+            color = "grey") +
+  geom_point(aes(x = masking,
+                 y = value,
+                 fill = Callset,
+                 shape = var_type
+                 ),
+             size = 3) +
+  facet_wrap(~ Metric) +
+  labs(x = "GRCh38 False Duplication Masking",
+       y = "Count",
+       shape = "Variant Type") +
+    scale_y_log10() + 
+  scale_fill_brewer(palette = "Set2") +
+  scale_shape_manual(values = c(21,24)) +
+guides(fill = guide_legend(override.aes = list(shape = 21))) +
   theme_bw() +
-  theme(legend.position="right")
-
-mrg_false_dups_fig
+  theme(legend.position = "right", legend.box = "vertical")
+)
 
 ggsave(here("figures","fig3_false_dups.png"), 
        mrg_false_dups_fig,
@@ -92,7 +106,7 @@ ggsave(here("figures","fig3_false_dups.png"),
 
 ggsave(here("figures","fig3_false_dups.pdf"), 
        mrg_false_dups_fig,
-       height = 2, width = 10, dpi = 300)
+       height = 2.5, width = 10, dpi = 300)
 
 ##===========================================================================
 ## Plot for v4.2.1 -- included in manuscript figure: 
