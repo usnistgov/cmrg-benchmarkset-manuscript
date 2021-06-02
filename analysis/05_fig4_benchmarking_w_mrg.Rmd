@@ -75,7 +75,7 @@ gatk_plt_df <- tidy_gatk_bench_df %>%
         ) %>%
         mutate(
             Subset = case_when(
-                Subset == "*" ~ "All MRG Benchmark Regions",
+                Subset == "*" ~ "All CMRG Benchmark Regions",
                 Subset == "GRCh38_MRG_benchmark_gene_coordinates_falselyduplicated.bed.gz" ~ "Falsely Duplicated Regions",
                 Subset == "GRCh38_notinalllowmapandsegdupregions.bed.gz" ~ "Not In LowMap and SegDup",
                 Subset == "HG002_GRCh38_MRG_stratification_large_duplication_not_in_ref.bed" ~ "HG002 Large Dups",
@@ -96,10 +96,8 @@ gatk_plt_df <- tidy_gatk_bench_df %>%
     ) +
     geom_text_repel(aes(label = Subset), size = 2) +
     geom_point(aes(fill = Subset, shape = metric), 
-               # shape = 21, 
                color = "grey20", 
                size = 3) +
-    # facet_grid(var_type ~ metric) +
     facet_wrap(~var_type) +
     scale_fill_brewer(type = "qual", palette = 2) +
     scale_shape_manual(values = c(21,24)) +
@@ -109,7 +107,7 @@ gatk_plt_df <- tidy_gatk_bench_df %>%
           legend.box = "vertical") +
     labs(
         x = "V4.2.1 Benchmark",
-        y = "MRG Benchmark",
+        y = "CMRG Benchmark",
         shape = "Variant Type",
         fill = "Stratification"
     )
