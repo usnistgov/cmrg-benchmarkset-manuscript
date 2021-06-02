@@ -74,7 +74,11 @@ meltybench_mrg$variable_f = factor(meltybench_mrg$variable,
 mrg_false_dups_plt_df <- meltybench_mrg %>% 
   select(-Subset,-Reference, -Genome, -benchmark) %>%
   separate(variable, into = c("var_type", "Metric"), extra = "merge") %>% 
-  mutate(masking = factor(masking,level = c("unmasked", "masked")))
+  mutate(masking = factor(masking,level = c("unmasked", "masked"))) %>% 
+  mutate(Metric = fct_recode(Metric, 
+                             "False Negatives" = "TRUTH.FN",
+                             "False Positives" = "QUERY.FP",
+                             "True Positives"  = "TRUTH.TP"))
   
 
 (mrg_false_dups_fig <- ggplot(mrg_false_dups_plt_df) +
@@ -95,18 +99,19 @@ mrg_false_dups_plt_df <- meltybench_mrg %>%
     scale_y_log10() + 
   scale_fill_brewer(palette = "Set2") +
   scale_shape_manual(values = c(21,24)) +
-guides(fill = guide_legend(override.aes = list(shape = 21))) +
+guides(fill = guide_legend(override.aes = list(shape = 21)),
+       shape = guide_legend(nrow = 1)) +
   theme_bw() +
   theme(legend.position = "right", legend.box = "vertical")
 )
 
 ggsave(here("figures","fig3_false_dups.png"), 
        mrg_false_dups_fig,
-       height = 2, width = 10, dpi = 300)
+       height = 2, width = 8, dpi = 300)
 
 ggsave(here("figures","fig3_false_dups.pdf"), 
        mrg_false_dups_fig,
-       height = 2.5, width = 10, dpi = 300)
+       height = 2, width = 8, dpi = 300)
 
 ##===========================================================================
 ## Plot for v4.2.1 -- included in manuscript figure: 
