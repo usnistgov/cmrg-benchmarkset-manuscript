@@ -199,7 +199,8 @@ cum_rank_text_df <- cum_rank_df %>%
     mutate(gene_part = if_else(EXON == ".", "Intron","Exon"),
            gene_part = factor(gene_part, levels = c("Intron","Exon"))) %>% 
     ggplot() + 
-    geom_bar(aes(x = var_size, fill = gene_part)) + 
+    geom_bar(aes(x = var_size, fill = gene_part),
+             color = "grey40", size = 0.25) + 
         scale_fill_brewer(type = "qual", palette = 3) +
     theme_bw() +
     labs(x = "Small INDEL Size (bp)", y = "# of Variants", fill = "Gene Part") + 
@@ -254,10 +255,8 @@ sv_breaks <- sort(c(-breaks, 0, breaks))
             nrow = 1,
             labels = c("C", "D")
         ),
-        # labels = "AUTO", #c("A", "B"),
-        nrow = 2, # ncol = 2,
+        nrow = 2,
         heights = c(2,1)
-        # heights = c(1, 2, 1)
     )
 )
 ```
