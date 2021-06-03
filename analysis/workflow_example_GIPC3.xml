@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Session genome="hg38" hasGeneTrack="true" hasSequenceTrack="true" locus="chr19:3564474-3615630" version="8">
+    <Resources>
+        <Resource name="GRCh38_ENSEMBL_genes_biomart_version_100_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates.bed" path="../data/mrg_lists/ENSEMBL_coordinates/GRCh38_ENSEMBL_genes_biomart_version_100_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates.bed"/>
+        <Resource name="HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.bed" path="../resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.bed"/>
+        <Resource name="HG002v11-align2-GRCh38.hap2.bam" path="../data-raw/HG002v11-align2-GRCh38/HG002v11-align2-GRCh38.hap2.bam"/>
+        <Resource name="HG002_GRCh38_1_22_v4.2.1_benchmark_noinconsistent.bed" path="../resources/HG002_GRCh38_1_22_v4.2.1_benchmark_noinconsistent.bed"/>
+        <Resource name="GRCh38_AllTandemRepeatsandHomopolymers_slop5.bed.gz" path="../data-raw/ref_genome_files/GRCh38/GRCh38_AllTandemRepeatsandHomopolymers_slop5.bed.gz"/>
+        <Resource name="HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz" path="../resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz"/>
+        <Resource name="HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz" path="../resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz"/>
+        <Resource name="HG002v11-align2-GRCh38.hap1.bam" path="../data-raw/HG002v11-align2-GRCh38/HG002v11-align2-GRCh38.hap1.bam"/>
+        <Resource name="HG002v11-align2-GRCh38.dip.bed" path="../data-raw/HG002v11-align2-GRCh38/HG002v11-align2-GRCh38.dip.bed"/>
+        <Resource name="HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed" path="../resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed"/>
+    </Resources>
+    <Panel height="699" name="FeaturePanel" width="1423">
+        <Track attributeKey="Reference sequence" clazz="org.broad.igv.track.SequenceTrack" fontSize="10" id="Reference sequence" name="Reference sequence" sequenceTranslationStrandValue="POSITIVE" shouldShowTranslation="false" visible="true"/>
+        <Track attributeKey="Gene" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" colorScale="ContinuousColorScale;0.0;845.0;255,255,255;0,0,178" fontSize="10" height="35" id="hg38_genes" name="Gene" visible="true"/>
+        <Track attributeKey="GRCh38_ENSEMBL_genes_biomart_version_100_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates.bed" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" displayMode="EXPANDED" fontSize="10" id="/Users/nolson/Projects/mrg-bench-manuscript/data/mrg_lists/ENSEMBL_coordinates/GRCh38_ENSEMBL_genes_biomart_version_100_Medical_Gene_Coordinates_slop20000bp_flanking_and_segdups_coordinates.bed" name="MRG + flank" visible="true"/>
+        <Track attributeKey="HG002v11-align2-GRCh38.dip.bed" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" fontSize="10" id="/Users/nolson/Projects/mrg-bench-manuscript/data-raw/HG002v11-align2-GRCh38/HG002v11-align2-GRCh38.dip.bed" name="HG002v11-align2-GRCh38.dip.bed" visible="true"/>
+        <Track attributeKey="HG002_GRCh38_1_22_v4.2.1_benchmark_noinconsistent.bed" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" fontSize="10" id="/Users/nolson/Projects/mrg-bench-manuscript/resources/HG002_GRCh38_1_22_v4.2.1_benchmark_noinconsistent.bed" name="HG002_GRCh38_1_22_v4.2.1_benchmark_noinconsistent.bed" visible="true"/>
+        <Track attributeKey="GRCh38_AllTandemRepeatsandHomopolymers_slop5.bed.gz" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" fontSize="10" id="/Users/nolson/Projects/mrg-bench-manuscript/data-raw/ref_genome_files/GRCh38/GRCh38_AllTandemRepeatsandHomopolymers_slop5.bed.gz" name="Tandem Repeats and Homopolymers" visible="true"/>
+        <Track attributeKey="HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz" clazz="org.broad.igv.variant.VariantTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="100000" fontSize="10" id="/Users/nolson/Projects/mrg-bench-manuscript/resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz" name="CMRG SmVs" siteColorMode="ALLELE_FREQUENCY" squishedHeight="1" visible="true"/>
+        <Track attributeKey="HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" fontSize="10" id="/Users/nolson/Projects/mrg-bench-manuscript/resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed" name="CMRG SmV Regions" visible="true"/>
+        <Track attributeKey="HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz" clazz="org.broad.igv.variant.VariantTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="100000" fontSize="10" id="/Users/nolson/Projects/mrg-bench-manuscript/resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz" name="CMRG SVs" siteColorMode="ALLELE_FREQUENCY" squishedHeight="1" visible="true"/>
+        <Track attributeKey="HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.bed" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" fontSize="10" id="/Users/nolson/Projects/mrg-bench-manuscript/resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.bed" name="CMRG SV Regions" visible="true"/>
+        <Track attributeKey="HG002v11-align2-GRCh38.hap1.bam" clazz="org.broad.igv.sam.AlignmentTrack" displayMode="EXPANDED" experimentType="THIRD_GEN" fontSize="10" id="/Users/nolson/Projects/mrg-bench-manuscript/data-raw/HG002v11-align2-GRCh38/HG002v11-align2-GRCh38.hap1.bam" name="HiFiAsm Hap1" visible="true">
+            <RenderOptions/>
+        </Track>
+        <Track attributeKey="HG002v11-align2-GRCh38.hap2.bam" clazz="org.broad.igv.sam.AlignmentTrack" displayMode="EXPANDED" experimentType="THIRD_GEN" fontSize="10" id="/Users/nolson/Projects/mrg-bench-manuscript/data-raw/HG002v11-align2-GRCh38/HG002v11-align2-GRCh38.hap2.bam" name="HiFi Asm Hap2" visible="true">
+            <RenderOptions/>
+        </Track>
+    </Panel>
+    <PanelLayout dividerFractions="0.008450704225352112"/>
+    <HiddenAttributes>
+        <Attribute name="DATA FILE"/>
+        <Attribute name="DATA TYPE"/>
+        <Attribute name="NAME"/>
+    </HiddenAttributes>
+</Session>
