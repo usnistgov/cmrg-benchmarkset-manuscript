@@ -7,6 +7,8 @@
 - `data/mrg_benchmarkset` can we remove intermediate files in HG002 subfolders?
 - maybe move benchmark generation to seperate repo
 - `data/mrg_benchmarkset/HG002/GRCh37/remapped*` what is this?
+- Do we want to add the tidy data file to the repo?
+- How should we include or should we include the overlap analysis in the manuscript repo?
 
 ## Notes
 Duplicated genes from Mitchell Robert Vollger's segmental duplication T2T analysis
