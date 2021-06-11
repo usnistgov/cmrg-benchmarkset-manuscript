@@ -1,0 +1,139 @@
+---
+title: "MRG Utility - Benchmarking with the New MRG Benchmark"
+date: '`r Sys.Date()`'
+output: 
+    bookdown::html_document2:
+        toc: true
+        toc_float: true
+        df_print: paged
+        code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(readxl)
+library(ggrepel)
+library(ggpubr)
+```
+
+# Objective
+V4 v. MRG GATK benchmarking performance 
+
+
+# Loading and Tidying Data
+```{r}
+## MRG versus GATK
+# Extracting Column Names
+gatk_colnames <- here("data","benchmark_evaluation",
+                      "smvar HG002 MRG v0.03.00 evaluation.xlsx") %>% 
+    read_excel(sheet = "summary stats NYGC", range = "B1:AR2", na = "NA")
+
+## Getting benchmark results
+gatk_bench_df <- here("data",
+                      "benchmark_evaluation",
+                      "smvar HG002 MRG v0.03.00 evaluation.xlsx") %>%
+    read_excel(
+        sheet = "summary stats NYGC",
+        range = "B39:AR52",
+        na = "NA",
+        col_names = colnames(gatk_colnames)
+    )
+```
+
+# Figure Panels
+
+## MRG Small Var Benchmark GATK
+```{r}
+tidy_gatk_bench_df <- gatk_bench_df %>% 
+    select(-contains("PLUS"),
+           -contains("het"),
+           -contains("homalt")) %>% 
+    mutate(SNP.fn_rate = 1 - SNP.Recall,
+           INDEL.fn_rate = 1 - INDEL.Recall) %>% 
+    pivot_longer(cols = -c(Query, Genome, Ref, benchmark, Subset), 
+                 names_to = "metric") %>% 
+    mutate(var_type = case_when(str_detect(metric, "INDEL") ~ "INDEL",
+                                str_detect(metric, "SNP") ~ "SNV",
+                                TRUE ~ "Other"),
+           metric = str_remove(metric, "INDEL.|SNP.")) 
+```
+
+```{r}
+gatk_plt_df <- tidy_gatk_bench_df %>% 
+    filter(metric %in% c("fn_rate", "Frac_NA")) %>% 
+    select(benchmark, var_type, Subset, metric, value) %>% 
+    pivot_wider(names_from = benchmark, values_from = value)
+
+(
+    bench_scatter_plt <- gatk_plt_df %>%
+        mutate(metric = if_else(metric == "fn_rate", 
+                                "FN Rate", 
+                                "Frac Not Assessed"),
+               var_type = factor(var_type, levels = c("SNV","INDEL"))
+        ) %>%
+        mutate(
+            Subset = case_when(
+                Subset == "*" ~ "All CMRG Benchmark Regions",
+                Subset == "GRCh38_MRG_benchmark_gene_coordinates_falselyduplicated.bed.gz" ~ "Falsely Duplicated Regions",
+                Subset == "GRCh38_notinalllowmapandsegdupregions.bed.gz" ~ "Not In LowMap and SegDup",
+                Subset == "HG002_GRCh38_MRG_stratification_large_duplication_not_in_ref.bed" ~ "HG002 Large Dups",
+                Subset == "GRCh38_MHC.bed.gz" ~ "MHC",
+                Subset == "GRCh38_notinalldifficultregions.bed.gz" ~ "Not In All Difficult",
+                Subset == "HG002_GRCh38_MRG_stratification_ComplexVar_in_TR.bed.gz" ~ "ComplexVars In TR",
+                TRUE ~ "DEBUGME"
+            )
+        ) %>%
+        filter(
+            !Subset %in% c("MHC", "Falsely Duplicated Regions", "HG002 Large Dups")
+        ) %>% 
+    ggplot(aes(x = v4.2.1, y = v1.00.01)) +
+    geom_abline(
+        aes(intercept = 0, slope = 1),
+        linetype = 2,
+        color = "grey60"
+    ) +
+    geom_text_repel(aes(label = Subset), size = 2) +
+    geom_point(aes(fill = Subset, shape = metric), 
+               color = "grey20", 
+               size = 3) +
+    facet_wrap(~var_type) +
+    scale_fill_brewer(type = "qual", palette = 2) +
+    scale_shape_manual(values = c(21,24)) +
+    guides(fill = "none") +
+    theme_bw() +
+    theme(legend.position = "bottom", 
+          legend.box = "vertical") +
+    labs(
+        x = "V4.2.1 Benchmark",
+        y = "CMRG Benchmark",
+        shape = "Variant Type",
+        fill = "Stratification"
+    )
+)
+
+```
+
+
+
+```{r}
+ggsave(filename = here("figures", "fig4_benchmarking_w_mrg.png"), 
+       plot = bench_scatter_plt, width = 6, height = 4, dpi = 300) 
+```
+
+
+# Session Information
+## System Information
+```{r}
+sessioninfo::platform_info()
+```
+
+
+## Package Versions
+```{r}
+sessioninfo::package_info() %>% 
+    filter(attached = TRUE) %>% 
+    select(package, loadedversion, date, source) %>%
+    knitr::kable(booktabs = TRUE, row.names = FALSE)
+```

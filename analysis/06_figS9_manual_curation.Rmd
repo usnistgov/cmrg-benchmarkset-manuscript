@@ -1,0 +1,176 @@
+---
+title: "Manual Curation Evaluation"
+date: '`r Sys.Date()`'
+output: 
+    bookdown::html_document2:
+        toc: true
+        toc_float: true
+        df_print: paged
+        code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(ggpubr)
+```
+
+# Objective
+Develop figure summarizing evaluation / manual curation results for draft benchmark
+
+# Approach
+Using googlesheet summary table, input data table cleaned first in `tidying_data.Rmd` 
+
+_Note from Slack_ RE: spreadsheet source 
+    @nolson for the evaluation results figure, I think you'll want to use my curation results in columns T-U, unless they are blank, in which case you should use columns Q-S, in the GRCh37andGRCh38 tab in https://docs.google.com/spreadsheets/d/1Pn7WP78JfWKCO2Df31n_4gzDOwtP69flgDyyjeBS6JE/edit?usp=sharing.  This'll be a bit more complicated than previous figs, since we have the CommonFP/FN/FP_FN rows, so happy to chat about this when you get to it (edited) 
+
+
+# Loading Data
+```{r}
+
+## Callset method info
+callset_meta_df <- read_tsv(here("data", "benchmark_evaluation", "dataset_names.tsv"))
+
+## Manual Curation Results
+bench_eval_df <- read_tsv(here("data","tidy","manual_curation.tsv"))
+
+## Annotating with Tech
+anno_bench_eval_df <- bench_eval_df %>% 
+    left_join(callset_meta_df)
+    
+no_common_df <-  anno_bench_eval_df %>%
+    filter(callset != "Common")
+
+common_df <- anno_bench_eval_df %>%
+    filter(callset == "Common") %>% 
+    mutate(var_type = case_when(str_detect(truth_gt, "SNP") ~ "SNP",
+                            str_detect(truth_gt, "INDEL") ~ "INDEL",
+                            str_detect(query_gt, "SNP") ~ "SNP",
+                            str_detect(query_gt, "INDEL") ~ "INDEL",
+                            nchar(ref_base) == 1 & nchar(alt_base) == 1 ~ "SNP",
+                            nchar(ref_base) > 1 | nchar(alt_base) > 1 ~ "INDEL",
+                            TRUE ~ "DEBUGME")
+    )
+
+mc_df <- no_common_df #bind_rows(no_common_df, common_df)
+```
+__TODO:__ Work out how to incorporate COMMON variants
+
+Code from V4 manuscript
+https://gitlab.nist.gov/gitlab/jmw7/v4_manuscript/-/blob/master/scripts/manual_curation.R 
+
+
+# Figure generation
+```{r}
+# Panel A #####################################################################
+panel_a_df <- mc_df %>% 
+        mutate(curation = paste(benchmark_correct, query_correct)) %>% 
+        group_by(callset_id, var_type, fp_or_fn) %>% 
+        mutate(total_vars = n(),
+               fp_or_fn = if_else(fp_or_fn == "FP_FN", "genotype", fp_or_fn)) %>% 
+        group_by(callset_id, var_type, fp_or_fn, curation, total_vars) %>%
+        summarise(curation_count = n()) %>% 
+        mutate(curation_prop = curation_count/ total_vars) %>% 
+        filter(curation == "yes no") %>%
+        ungroup() %>% 
+        mutate(callset_id = fct_reorder(callset_id,curation_prop, min)) %>% 
+        mutate(var_type = factor(var_type, levels = c("SNP","INDEL")))
+
+panel_a <- ggplot(panel_a_df) +
+        geom_bar(aes(x = callset_id, y = curation_prop, fill = fp_or_fn),
+                 color = "grey40",
+                 size = 0.25,
+                 stat = "identity",
+                 position = "dodge") +
+        geom_hline(aes(yintercept = 0.5), linetype = 2) +
+        facet_wrap(~var_type, ncol = 3) +
+        scale_fill_brewer(palette = "Paired",type = "qual") + 
+        theme_bw() +
+        labs(x = "Callset",
+             y = "Proportion",
+             fill = "Discrepancy Type") +
+        theme(legend.position = "bottom") + 
+        coord_flip()
+
+## Panel B #####################################################################
+grey_vars_df <- mc_df %>%
+        mutate(curation = paste(benchmark_correct, query_correct)) %>%
+        filter(curation != "yes no") %>%
+        group_by(benchmark_correct) %>%
+        mutate(count = n()) %>%
+        ungroup() %>%
+        mutate(benchmark_correct = fct_reorder(benchmark_correct,
+                                               count, .desc = TRUE)) 
+
+panel_b <- ggplot(grey_vars_df) +
+        geom_bar(aes(x = benchmark_correct, 
+                     fill = query_correct),
+                 color = "grey40",
+                 size = 0.25) +
+        scale_fill_brewer(palette = 2, type = "qual") + 
+        theme_bw() +
+        labs(x = "Benchmark Curation", y = "Variants", 
+             fill = "Query Curation") + 
+        theme( legend.position = "bottom")
+
+## Panel C #####################################################################
+unsure_vars <- mc_df %>%
+        mutate(curation = paste(benchmark_correct, query_correct)) %>%
+        filter(benchmark_correct == "unsure") %>% 
+        group_by(callset_id) %>%
+        mutate(count = n()) %>%
+        ungroup() %>%
+        mutate(callset_id = fct_reorder(callset_id,count))  %>%
+        mutate(query_correct = factor(query_correct, 
+                                      levels = c("no", "unsure","yes"))
+        )
+
+panel_c <-  ggplot(unsure_vars) +
+        geom_bar(aes(x = callset_id, fill = query_correct),
+                 color = "grey40", size = 0.25) + 
+        coord_flip() + 
+        theme_bw() + 
+        scale_fill_manual(values = c(no = "#1b9e77", unsure = "#7570b3")) +
+        labs(y = "Variants", x = "Callset", fill = "Query Curation") +
+        theme(legend.position = "bottom")
+
+## Combining Panels ############################################################
+full_fig <- ggpubr::ggarrange(panel_a,  
+                              ggarrange(panel_b, panel_c, 
+                                        ncol = 2, 
+                                        legend = "bottom",
+                                        labels = c("B","C"),
+                                        common.legend = TRUE),
+                              nrow = 2,
+                              labels = "A", heights = c(4,3))
+
+```
+
+```{r}
+full_fig
+```
+
+
+## Saving to file
+```{r}
+ggsave(filename = here("figures", "manual_curation.png"), 
+       full_fig, width = 6, height = 6)
+
+```
+
+
+# Session Information
+## System Information
+```{r}
+sessioninfo::platform_info()
+```
+
+
+## Package Versions
+```{r}
+sessioninfo::package_info() %>% 
+    filter(attached = TRUE) %>% 
+    select(package, loadedversion, date, source) %>%
+    knitr::kable(booktabs = TRUE, row.names = FALSE)
+```
