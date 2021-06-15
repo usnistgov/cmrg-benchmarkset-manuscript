@@ -1,3 +1,0 @@
-##INFO=<ID=GENE,Number=1,Type=String,Description="Gene name">
-##INFO=<ID=EXON,Number=1,Type=String,Description="ENSEMBL exon ID">
-
