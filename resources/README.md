@@ -7,12 +7,12 @@
 ## Genome Files
 
 __Reference Genome Files__
-- file: resources.human.b37.genome
+- file: resources/human.b37.genome
 	- url:
 	- md5: 7c2448bb45cf051baf2239c35ce1dca2
 	- notes: [TODO] Add file source
 
-- file: resources.human.hg38.genome
+- file: resources/human.hg38.genome
 	- url:
 	- md5: 8213a20ea4c51028d282f31fd2f9b48f
 	- notes: [TODO] Add file source
