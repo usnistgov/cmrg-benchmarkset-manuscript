@@ -9,9 +9,6 @@ from snakemake.utils import min_version
 ### set minimum snakemake version
 min_version("5.27.4")
 
-## Loading config file and sample sheet
-# configfile: "config/config.yaml"
-
 ## Variables for data paths
 mrg_dir = "resources/NIST_MedicalGene_v1.00.01"
 benchdir = "workflow/data/benchmark_sets"
