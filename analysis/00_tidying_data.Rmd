@@ -169,7 +169,7 @@ tidy_mrg_info_tbl %>%
 ### Writing To File 
 ```{r}
 write_tsv(tidy_mrg_info_tbl,
-          here("data","tidy","gene_list_info.tsv"))
+          here("data","tidy","gene_list_info.tsv.gz"))
 ```
 
 
@@ -448,7 +448,7 @@ bench_cov_df %>%
 
 ### Writing To File 
 ```{r}
-bench_cov_file <-  here("data","tidy","bench_coverage.tsv")
+bench_cov_file <-  here("data","tidy","bench_coverage.tsv.gz")
 
 write_tsv(bench_cov_df, bench_cov_file)
 ```
@@ -624,7 +624,7 @@ diff_bases_df %>%
 
 ### Writing To File 
 ```{r}
-bench_diff_file <-  here("data","tidy","bench_diff_bases.tsv")
+bench_diff_file <-  here("data","tidy","bench_diff_bases.tsv.gz")
 
 write_tsv(diff_bases_df, bench_diff_file)
 ```
@@ -753,7 +753,7 @@ glimpse(var_df)
 
 ### Writing To File 
 ```{r}
-var_file <-  here("data","tidy","var_tbl.tsv")
+var_file <-  here("data","tidy","var_tbl.tsv.gz")
 
 write_tsv(var_df, var_file)
 ```
@@ -787,7 +787,7 @@ diff_gene_overlap_df %>%
 ### Writing Gene List Table to file 
 ```{r}
 write_tsv(diff_gene_overlap_df,
-          here("data","tidy","diff_strat_overlap.tsv"))
+          here("data","tidy","diff_strat_overlap.tsv.gz"))
 ```
 
 

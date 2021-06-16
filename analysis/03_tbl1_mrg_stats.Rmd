@@ -47,20 +47,20 @@ Metrics to include - break down relevant metrics by intron/ exon and for high pr
 # Loading Data
 ```{r}
 ## Gene List Info - for high priority genes
-mrg_info_tbl <- here("data", "tidy", "gene_list_info.tsv") %>%
+mrg_info_tbl <- here("data", "tidy", "gene_list_info.tsv.gz") %>%
     read_tsv(col_types = "ccccciiiiiii")
 
 ## Benchmark Included Bases
-bench_cov_df <- here("data","tidy","bench_coverage.tsv") %>% 
+bench_cov_df <- here("data","tidy","bench_coverage.tsv.gz") %>% 
     read_tsv(col_types = "ccccccdil")
 
 
 ## Benchmark Difficult Bases
-bench_diff_df <- here("data", "tidy", "bench_diff_bases.tsv") %>% 
+bench_diff_df <- here("data", "tidy", "bench_diff_bases.tsv.gz") %>% 
     read_tsv(col_types = "ccccccdi")
 
 ## Variant Stats Table
-var_df <- read_tsv(here("data","tidy","var_tbl.tsv"),
+var_df <- read_tsv(here("data","tidy","var_tbl.tsv.gz"),
                        col_types = "ccccciccccici"
                    )
 ```

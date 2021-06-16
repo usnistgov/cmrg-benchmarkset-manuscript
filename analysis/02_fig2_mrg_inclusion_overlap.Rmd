@@ -21,7 +21,7 @@ library(ggpubr)
 # Loading and Tidying Data
 ```{r}
 ## Gene source and testing modality information
-mrg_info_tbl <- here("data", "tidy", "gene_list_info.tsv") %>%
+mrg_info_tbl <- here("data", "tidy", "gene_list_info.tsv.gz") %>%
     read_tsv(col_types = "cccccddddddd")
 
 ## Gene Stratfication Overlap - no longer needed
@@ -30,11 +30,11 @@ mrg_info_tbl <- here("data", "tidy", "gene_list_info.tsv") %>%
 
 
 ## Benchmark Included Bases
-bench_cov_df <- here("data","tidy","bench_coverage.tsv") %>% 
+bench_cov_df <- here("data","tidy","bench_coverage.tsv.gz") %>% 
     read_tsv(col_types = "ccccccdil")
 
 ## Difficult Strat Overlap
-diff_gene_overlap_df <- here("data", "tidy", "diff_strat_overlap.tsv") %>% 
+diff_gene_overlap_df <- here("data", "tidy", "diff_strat_overlap.tsv.gz") %>% 
     read_tsv(col_types = "ccciiciiid")
 
 ## TODO - replace with new updated coverage data
@@ -43,7 +43,7 @@ diff_gene_overlap_df <- here("data", "tidy", "diff_strat_overlap.tsv") %>%
 #     read_tsv(col_types = "ccclccddd")
 
 ## Benchmark Variant tbl
-mrg_var_df <- read_tsv(here("data","tidy","var_tbl.tsv"),
+mrg_var_df <- read_tsv(here("data","tidy","var_tbl.tsv.gz"),
                        col_types = "ccccciccccici") %>% 
     filter(benchmark == "mrg",
            ref == "GRCh38")
