@@ -16,18 +16,16 @@ library(readxl)
 library(here)
 ```
 
-__TODOs__
--[] Add data descriptors
-
 # Objective
 Generate tidy data sets for generating manuscript figures and tables.
 
 ## Datasets
-
-1. Medical Gene List (`data/tidy/mrg_list_info.tsv`): gene coordinates, gene list membership, and testing modality  
-1. Genes coverage (`data/tidy/gene_asm_bench_coverage.tsv`): benchmark set and asm coverage information  
-1. Gene stratification overlap (`data/tidy/gene_strat_overlap.tsv`): overlap fraction of difficult stratifications with medically relevant genes.
-1. Included bases for benchmark sets
+1. Medical Gene List (`data/tidy/gene_list_info.tsv.gz`): 
+1. Genes coverage (`data/tidy/bench_coverage.tsv.gz`): benchmark set coverage information  
+1. Difficult stratification overlap (`data/tidy/diff_strat_overlap.tsv`): overlap fraction of difficult stratification with medically relevant genes.
+1. `bench_diff_bases_tsv.gz`: 
+1. `manual_curation.tsv`
+1. `var_tbl.tsv.gz`
 
 
 # Making Tidy Data Tables
@@ -91,24 +89,27 @@ mrg_genes_df <- mrg_gene_beds %>%
   mutate(in_mrg = TRUE)
 ```
 
+
 ## Medical Gene List
-Extracting gene source information from main MRG table
+Using Gene Lists in `data/mrg_lists` directory to generate medically relevant genes list table.
 ```{r}
-mrg_source_tbl <- mrg_stats_tbl %>% 
-  select(gene, ref, mandelker, cosmic, high_priority) %>%
-  ## Removing duplicate gene entries
-  distinct()
+gene_list_files <-
+  list(mandelker     = "Mandelker_Medically_Relevant_Genes.tsv",
+       cosmic        = "COSMIC_Gene_Census.tsv",
+       high_priority = "Steve_Lincoln_Compiled_Medical_Gene_List.tsv") %>%
+  map(~ here("data", "mrg_lists", .))
+
+mrg_source_tbl <- gene_list_files %>% 
+  map_dfr(read_tsv, col_types = "c", .id = "gene_list") %>% 
+  add_column(in_list = "yes") %>% 
+  rename(gene = Gene) %>% 
+  pivot_wider(names_from = gene_list,
+                values_from = in_list,
+                values_fill = "no")
 ```
 
 
-_DATA CHECK:_ Check for genes with multiple entries. Should be 0 rows
-```{r}
-mrg_source_tbl %>%
-  group_by(gene, ref) %>%
-  mutate(count = n()) %>%
-  filter(count != 1) %>%
-  arrange(gene)
-```
+
 
 Information on testing modality and high priority gene list from Lincoln https://drive.google.com/drive/u/1/folders/1gUjMx24CkZCbt4vC46W3nQY_3DcjP4X9 
 
@@ -143,14 +144,6 @@ All genes in the testing modality list are in the combined GRCh37 and GRCh38 gen
 nrow(mrg_info_tbl) == nrow(mrg_source_tbl)
 ```
 
-Differing numbers of genes with testing modalities for the two reference genomes. 
-This might be expected. 
-```{r}
-mrg_info_tbl %>% 
-  mutate(test_modality_info = !is.na(ClinGen)) %>% 
-  count(ref, test_modality_info)
-```
-
 
 Tidying tibble up for export
 ```{r}
@@ -172,93 +165,6 @@ write_tsv(tidy_mrg_info_tbl,
           here("data","tidy","gene_list_info.tsv.gz"))
 ```
 
-
-## Benchmark and Assembly Coverage
-Generating tidy table with gene and exon coverage for the medically relevant genes benchmark, v4 small variant benchmark, and hifi assembly.
-
-
-__QUESTION__ Are these 440 NA values expected for GRCh38 - Out dated
-Number of entries with NA values for MRG v0.03 and SV 0.02
-```{r}
-mrg_stats_tbl %>% 
-  group_by(ref) %>% 
-  summarise(across(where(is.numeric), ~ sum(is.na(.x)))) %>% 
-  pivot_longer(cols = -ref) %>% 
-  group_by(name) %>% 
-  mutate(total = sum(value)) %>% 
-  filter(total != 0) %>% 
-  arrange(-total, name) %>% 
-  select(-total)
-```
-
-```{r}
-na_genes <- mrg_stats_tbl %>% 
-  filter(is.na(fraction_exon_covered_MRG_small_variant_v0.03_benchmark)) %>% 
-  {.$gene} %>% unique()
-
-mrg_stats_tbl %>% 
-  filter(gene %in% na_genes,
-         str_detect(chrom, "[MTXY]", negate = TRUE)) %>% 
-  arrange(gene)
-```
-
-
-```{r}
-mrg_bench_asm_df <- mrg_stats_tbl %>% 
-  left_join(mrg_genes_df) %>% 
-  mutate(in_mrg = if_else(is.na(in_mrg), FALSE, in_mrg)) %>% 
-    mutate(coords = str_c(chrom, ":",start,"-",end)) %>% 
-    select(gene, ref, coords, in_mrg,
-           contains("V4"), 
-           contains("MRG"), 
-           -starts_with("bp_"), 
-           -contains("CNV"), 
-           -contains("stratification"),
-           fraction_hifiasm_dip.bed,
-          ## excluding small MRG v0.2 var counts and coverage
-          -fraction_MRG_benchmark_bed,
-          -fraction_exon_covered_MRG_benchmark,
-           -num_MRG_small_variant_v0.2_variants_in_gene,
-           -num_MRG_small_variant_v0.2_variants_in_exons,
-          ## excluding SVs MRG v0.1 counts
-          -num_MRG_SV_v0.1_in_gene,
-          -num_MRG_SV_v0.1_benchmark_variants_in_exons) %>% 
-  ## Renaming columns for consistent formatting
-    rename(v4_gene_cov = fraction_HG002_v4.2.1,
-           v4_exon_cov = fraction_exon_covered_v4.2.1,
-           v4_gene_vars = num_v4.2.1_small_variants_in_gene,
-           v4_exon_vars = num_v4.2.1_variants_in_exons,
-           mrg_gene_cov = fraction_MRG_small_variant_v0.03,
-           mrg_exon_cov = fraction_exon_covered_MRG_small_variant_v0.03_benchmark,
-           mrg_gene_vars = num_MRG_small_variant_v0.03_variants_in_gene,
-           mrg_exon_vars = num_MRG_small_variant_v0.03_variants_in_exons,
-           mrg_gene_svs = num_MRG_SV_v0.02_SVs_in_gene,
-           mrg_exon_svs = num_MRG_SV_v0.02_variants_in_exons,
-           hifi_gene_cov = fraction_hifiasm_dip.bed) %>% 
-    pivot_longer(cols = -c("gene", "ref", "coords", "in_mrg"),
-                 names_to = c("benchmark", "region","metric"),
-                 names_sep = "_", values_to = "value") %>%
-    pivot_wider(id_cols = c(gene, ref, coords, in_mrg, benchmark, region),
-                names_from = metric, values_from = value)
-
-mrg_bench_asm_df
-```
-
-
-### Example Gene
-```{r}
-## Only displaying info for 1 gene to reduce html file size
-mrg_bench_asm_df %>% 
-    filter(gene == "OR4F5") %>% 
-    DT::datatable(rownames = FALSE)
-```
-
-### Writing To File 
-```{r}
-# bench_cov_file <-  here("data","tidy","gene_asm_bench_coverage.tsv")
-# 
-# write_tsv(mrg_bench_asm_df, bench_cov_file)
-```
 
 ## Included Bases
 ```{r}
@@ -788,50 +694,6 @@ diff_gene_overlap_df %>%
 ```{r}
 write_tsv(diff_gene_overlap_df,
           here("data","tidy","diff_strat_overlap.tsv.gz"))
-```
-
-
-## Stratification Coverage - Old table
-```{r}
-colnames(mrg_stats_tbl)
-```
-
-```{r}
-mrg_strat_df <- mrg_stats_tbl %>% 
-    mutate(coords = str_c(chrom, ":",start,"-",end)) %>%  
-    select(ref, gene, coords, 
-           contains("fraction"),
-           -contains("V4.2"), 
-           -contains("MRG"), 
-           -fraction_hifiasm_dip.bed) %>% 
-    rename(giabSV = fraction_in_Tier1andTier2_SV_0.6_slop150_stratification,
-           repeatsGt10kb = fraction_in_AllRepeats_gt_10kb,
-           asmCNV = fraction_in_assembly_cnv_stratification,
-           vdj = fraction_in_vdj_stratification,
-           inversion = fraction_in_inversions_stratification,
-           segdupHiCntHiPct = fraction_in_segmental_duplications_gt5_percent_identity_gte_990_stratification,
-           segdup = fraction_in_segmental_duplications_stratification,
-           lowmapAndSegDup = fraction_in_low_mappability_and_segmental_duplications_stratification,
-           intersectCNV =fraction_in_illumina_ccs_ont_cnv_stratification,
-           outlierCNV = fraction_in_ccs_ont_elliptical_outlier_cnv_stratification,
-           allDiff = fraction_in_HG002_GIABv4.1_complexandSVs_alldifficultregions_stratification,
-           refGaps = fraction_in_reference_gaps_stratification,
-           CNVandSVs = fraction_in_HG002_GIABv4.1_CNVsandSVs_stratification) %>% 
-    pivot_longer(cols = -c("ref", "gene", "coords"), 
-                 names_to = "strat", values_to = "overlap")
-```
-
-```{r}
-## Only displaying info for 1 gene to reduce html file size
-mrg_strat_df %>% 
-    filter(gene == "OR4F5") %>% 
-    DT::datatable()
-```
-
-### Writing Gene List Table to file 
-```{r}
-# write_tsv(mrg_strat_df,
-#           here("data","tidy","gene_strat_overlap.tsv"))
 ```
 
 

@@ -26,7 +26,7 @@ Input data tables generated with `analysis/tidying_data.Rmd`.
 ```{r}
 ## Gene source and testing modality information
 mrg_info_tbl <- here("data","tidy","gene_list_info.tsv.gz") %>% 
-    read_tsv(col_types = "cccccddddddd")
+    read_tsv(col_types = "ccccddddddd")
 ```
 
 
@@ -36,7 +36,6 @@ Gene source information - potentially use in place of an upset diagram.
 ```{r}
 gene_list_df <- mrg_info_tbl %>% 
     ## Only plotting GRCh38 initially
-    filter(ref == "GRCh38") %>% 
     pivot_longer(cols = c("mandelker","cosmic","high_priority"),
                  names_to = "gene_list") %>% 
     filter(value == "yes") %>% 
@@ -47,7 +46,7 @@ gene_list_df <- mrg_info_tbl %>%
     ))
 
 (gene_list_upset_plt <- gene_list_df %>% 
-    group_by(ref, gene) %>%
+    group_by(gene) %>%
     summarise(list_set = list(gene_list)) %>% 
     # distinct(title, year, length, .keep_all=TRUE) %>%
     ggplot(aes(x = list_set)) +
