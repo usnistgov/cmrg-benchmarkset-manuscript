@@ -231,13 +231,13 @@ rule benchmark_diff_mrg_bases:
     """
 
 ############################ Annotating and Converting Benchmark VCFs to Tables
-## Preparing bed files for annotation  and generating hdr.txt file- steps excluded from pipeline
-## 1. Sorting exon bed, downloading ref genome faidx from GIAB FTP site
-## 2. Sorting gene bed with excluding mito
-## 3. Making header file saved as `hdr.txt`
-# Following text pasted into hdr.txt
-#     ##INFO=<ID=GENE,Number=1,Type=String,Description="Gene name">
-#     ##INFO=<ID=EXON,Number=1,Type=String,Description="ENSEMBL exon ID">
+
+rule make_hdr_file:
+    output: temp("hdr.txt")
+    shell: """
+        echo '##INFO=<ID=GENE,Number=1,Type=String,Description="Gene name">' > {output}
+        echo '##INFO=<ID=EXON,Number=1,Type=String,Description="ENSEMBL exon ID">' >> {output}
+    """
 
 ## Annotating VCFs
 rule annotate_vcf:
@@ -245,7 +245,7 @@ rule annotate_vcf:
         bench_vcf=benchdir + "/HG002_{ref}_{benchmarkset}_{var_type}.vcf.gz",
         mrg_gene_bed=ensembl_dir + "/{ref}_mrg_full_gene.bed",
         mrg_exon_bed=ensembl_dir + "/{ref}_mrg_full_exon.bed",
-        hdr="resources/hdr.txt"
+        hdr="hdr.txt"
     output: "workflow/data/anno_vcf/HG002_{ref}_{benchmarkset}_{var_type}_anno.vcf"
     conda: "envs/mrgtools.yml"
     shell: """
