@@ -136,10 +136,10 @@ write_tsv(tidy_mrg_info_tbl,
 ## Included Bases
 ```{r}
 ## Included Bases for Gene Body and Introns
-gene_cov_files <- list.files(path = here("data", "gene_stat_tbls", "cov_tbls"),
+gene_cov_files <- list.files(path = here("workflow", "results", "cov_tbls"),
                              pattern = "HG002.*_gene_cov.tsv") %>%
   set_names(~ str_remove(., "_cov.tsv")) %>%
-  map(~ here("data", "gene_stat_tbls", "cov_tbls", .))
+  map(~ here("workflow", "results", "cov_tbls", .))
 
 gene_cov_df <- gene_cov_files %>%
   map_dfr(
@@ -181,11 +181,11 @@ glimpse(gene_cov_df)
 ```{r}
 ## Included Exon Bases
 exon_cov_files <-
-  list.files(path = here("data", "gene_stat_tbls", "cov_tbls"),
+  list.files(path = here("workflow", "results", "cov_tbls"),
              pattern = "HG002.*_exon_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
-  map( ~ here("data", "gene_stat_tbls", "cov_tbls", .))
+  map( ~ here("workflow", "results", "cov_tbls", .))
 
 exon_cov_df <- exon_cov_files %>%
   map_dfr(
@@ -227,11 +227,11 @@ glimpse(exon_cov_df)
 ```{r}
 ## Included Bases for Introns
 intron_cov_files <-
-  list.files(path = here("data", "gene_stat_tbls", "cov_tbls"),
+  list.files(path = here("workflow", "results", "cov_tbls"),
              pattern = "HG002.*_intron_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
-  map( ~ here("data", "gene_stat_tbls", "cov_tbls", .))
+  map( ~ here("workflow", "results", "cov_tbls", .))
 
 cnames <- c("chrom", "start", "end", "gene", "n_regions", 
             "bp_cov", "intron_size", "cov")
@@ -331,10 +331,10 @@ write_tsv(bench_cov_df, bench_cov_file)
 Copied and edited from included bases above
 ```{r}
 ## Included Bases for Gene Body and Introns
-gene_diff_files <- list.files(path = here("data", "gene_stat_tbls", "mrg_diff_regions"),
+gene_diff_files <- list.files(path = here("workflow", "results", "mrg_diff_regions"),
                              pattern = "HG002.*_mrg-gene-diff_cov.tsv") %>%
   set_names(~ str_remove(., "_cov.tsv")) %>%
-  map(~ here("data", "gene_stat_tbls", "mrg_diff_regions", .))
+  map(~ here("workflow", "results", "mrg_diff_regions", .))
 
 gene_diff_bases_df <- gene_diff_files %>%
   map_dfr(
@@ -376,11 +376,11 @@ glimpse(gene_diff_bases_df)
 ```{r}
 ## Included Exon Bases
 exon_diff_files <-
-  list.files(path = here("data", "gene_stat_tbls", "mrg_diff_regions"),
+  list.files(path = here("workflow", "results", "mrg_diff_regions"),
              pattern = "HG002.*_mrg-exon-diff_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
-  map( ~ here("data", "gene_stat_tbls", "mrg_diff_regions", .))
+  map( ~ here("workflow", "results", "mrg_diff_regions", .))
 
 exon_diff_bases_df <- exon_diff_files %>%
   map_dfr(
@@ -422,11 +422,11 @@ glimpse(exon_diff_bases_df)
 ```{r}
 ## Included Bases for Introns
 intron_diff_files <-
-  list.files(path = here("data", "gene_stat_tbls", "mrg_diff_regions"),
+  list.files(path = here("workflow", "results", "mrg_diff_regions"),
              pattern = "HG002.*_mrg-intron-diff_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
-  map( ~ here("data", "gene_stat_tbls", "mrg_diff_regions", .))
+  map( ~ here("workflow", "results", "mrg_diff_regions", .))
 
 cnames <- c("chrom", "start", "end", "gene", "n_regions", 
             "bp_cov", "intron_size", "cov")
@@ -604,12 +604,12 @@ read_anno_tsv <- function(anno_tsv_file) {
 }
 
 ## Generating data frame from individual annotated vcf tables
-var_tbl_files <- list.files(path = here("data",
-                                        "gene_stat_tbls",
+var_tbl_files <- list.files(path = here("workflow",
+                                        "results",
                                         "anno_vcf_tbls"),
                             pattern = "HG002.*_anno.tsv") %>%
   set_names( ~ str_remove(., "_anno.tsv")) %>%
-  map( ~ here("data", "gene_stat_tbls", "anno_vcf_tbls", .))
+  map( ~ here("workflow", "results", "anno_vcf_tbls", .))
 
 
 var_df <- var_tbl_files %>% 
@@ -634,7 +634,7 @@ write_tsv(var_df, var_file)
 
 ## All Difficult Strat Coverage
 ```{r}
-diff_gene_overlap_df <- list.files(path = here("data","gene_stat_tbls","cov_tbls"),
+diff_gene_overlap_df <- list.files(path = here("workflow","results","cov_tbls"),
                                    pattern = "allDiff_.*gene_cov.tsv", 
                                    full.names = TRUE) %>% 
    {set_names(.,str_extract(., "(?<=allDiff_).*(?=_mrg)"))} %>% 

@@ -12,7 +12,7 @@ min_version("5.27.4")
 ## Variables for data paths
 mrg_dir = "resources/NIST_MedicalGene_v1.00.01"
 benchdir = "workflow/data/benchmark_sets"
-ensembl_dir = "data/gene_coords"
+ensembl_dir = "workflow/data/gene_coords"
 
 ## Defining Wildcards
 REFS = ["GRCh37","GRCh38"]
@@ -40,13 +40,13 @@ rule all:
         expand(ensembl_dir + "/{ref}_mrg_bench_gene.bed", ref = REFS),
         expand("workflow/data/benchmark_sets/HG002_{ref}_mrg_union.bed", 
                 ref = REFS),
-        expand("data/gene_stat_tbls/cov_tbls/HG002_{benchregion}_{region}_cov.tsv", 
+        expand("workflow/results/cov_tbls/HG002_{benchregion}_{region}_cov.tsv", 
                 region = REGIONS, benchregion = BENCHREGIONS),
-        expand("data/gene_stat_tbls/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv", 
+        expand("workflow/results/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv", 
                 ref = REFS, region = REGIONS),
-        expand("data/gene_stat_tbls/mrg_diff_regions/HG002_{benchregion}_mrg-{region}-diff_cov.tsv", 
+        expand("workflow/results/mrg_diff_regions/HG002_{benchregion}_mrg-{region}-diff_cov.tsv", 
                 region = REGIONS, benchregion = BENCHREGIONS),
-        expand("data/gene_stat_tbls/anno_vcf_tbls/HG002_{benchvar}_anno.tsv",
+        expand("workflow/results/anno_vcf_tbls/HG002_{benchvar}_anno.tsv",
                 benchvar = BENCHVARS)
 
 ################################################################################
@@ -151,7 +151,7 @@ rule prepare_v06:
 
 rule sort_gene_list_beds:
     input:
-        in_file= ensembl_dir + "/unsorted/{ref}_{gene_list}.bed",
+        in_file= "data/gene_coords/unsorted/{ref}_{gene_list}.bed",
         genome="data/refs/{ref}.genome"
     output:
         ensembl_dir + "/{ref}_{gene_list}.bed"
@@ -202,7 +202,7 @@ rule calc_gene_coverage:
     input:
         a=ensembl_dir + "/{ref}_mrg_full_{region}.bed",
         b=benchdir + "/HG002_{ref}_{benchmarkset}_{benchtype}.bed"
-    output: "data/gene_stat_tbls/cov_tbls/HG002_{ref}_{benchmarkset}_{benchtype}_{region}_cov.tsv"
+    output: "workflow/results/cov_tbls/HG002_{ref}_{benchmarkset}_{benchtype}_{region}_cov.tsv"
     threads: 2
     wrapper: "0.74.0/bio/bedtools/coveragebed"
 
@@ -211,7 +211,7 @@ rule calc_strat_coverage:
     input:
         a= ensembl_dir + "/{ref}_mrg_full_{region}.bed",
         b= "resources/{ref}_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed.gz"
-    output: "data/gene_stat_tbls/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv"
+    output: "workflow/results/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv"
     threads: 2
     wrapper: "0.74.0/bio/bedtools/coveragebed"
 
@@ -220,7 +220,7 @@ rule benchmark_diff_mrg_bases:
         diff_strat = "resources/{ref}_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed.gz",
         mrg_genes  = ensembl_dir + "/{ref}_mrg_full_{region}.bed",
         benchmark_region = benchdir + "/HG002_{ref}_{benchmarkset}_{benchtype}.bed"
-    output: "data/gene_stat_tbls/mrg_diff_regions/HG002_{ref}_{benchmarkset}_{benchtype}_mrg-{region}-diff_cov.tsv"
+    output: "workflow/results/mrg_diff_regions/HG002_{ref}_{benchmarkset}_{benchtype}_mrg-{region}-diff_cov.tsv"
     conda: "envs/mrgtools.yml"
     shell: """
         ## Getting overlap of benchmark and difficult regions
@@ -266,7 +266,7 @@ rule annotate_vcf:
 rule make_smallvar_tbl:
     input: 
         anno_vcf="workflow/data/anno_vcf/HG002_{ref}_{benchmarkset}_smallvar_anno.vcf"
-    output: "data/gene_stat_tbls/anno_vcf_tbls/HG002_{ref}_{benchmarkset}_smallvar_anno.tsv"
+    output: "workflow/results/anno_vcf_tbls/HG002_{ref}_{benchmarkset}_smallvar_anno.tsv"
     conda: "envs/mrgtools.yml"
     shell: """
         bcftools query \
@@ -279,7 +279,7 @@ rule make_smallvar_tbl:
 rule make_sv_tbl:
     input: 
         anno_vcf="workflow/data/anno_vcf/HG002_{ref}_{benchmarkset}_SV_anno.vcf"
-    output: "data/gene_stat_tbls/anno_vcf_tbls/HG002_{ref}_{benchmarkset}_SV_anno.tsv"
+    output: "workflow/results/anno_vcf_tbls/HG002_{ref}_{benchmarkset}_SV_anno.tsv"
     conda: "envs/mrgtools.yml"
     shell: """
         bcftools query \
