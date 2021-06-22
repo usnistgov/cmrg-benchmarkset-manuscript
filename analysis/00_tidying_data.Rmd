@@ -20,12 +20,7 @@ library(here)
 Generate tidy data sets for generating manuscript figures and tables.
 
 ## Datasets
-1. Medical Gene List (`data/tidy/gene_list_info.tsv.gz`): 
-1. Genes coverage (`data/tidy/bench_coverage.tsv.gz`): benchmark set coverage information  
-1. Difficult stratification overlap (`data/tidy/diff_strat_overlap.tsv`): overlap fraction of difficult stratification with medically relevant genes.
-1. `bench_diff_bases_tsv.gz`: 
-1. `manual_curation.tsv`
-1. `var_tbl.tsv.gz`
+Datasets described in `data/data_descriptor_tidy_data.md`.
 
 
 # Making Tidy Data Tables
