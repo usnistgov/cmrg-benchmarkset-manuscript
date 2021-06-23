@@ -8,50 +8,48 @@
 
 __Reference Genome Files__
 - file: resources/human.b37.genome
-	- url:
+	- description: manually generated from hs37d5.fa.fai
 	- md5: 7c2448bb45cf051baf2239c35ce1dca2
-	- notes: [TODO] Add file source
 
 - file: resources/human.hg38.genome
-	- url:
+	- description: manually generated from GRCh38 fasta index
 	- md5: 8213a20ea4c51028d282f31fd2f9b48f
-	- notes: [TODO] Add file source
 
 
 __CMRG HG002 Small Variant and Structural Variant Benchmark Set__
 see `analysis/benchmark_generation` for code use to generate the files 
 
 - Citation DOI: Wagner et al. 2021 https://doi.org/10.1101/2021.06.07.444885 
-- file: resources/NIST_MedicalGene_v1.00.01/HG002_GRCh37_difficult_medical_gene_SV_benchmark_v1.00.01.bed
-	- url:
+- file: CMRG_v1.00/GRCh37/SmallVariant/HG002_GRCh37_CMRG_smallvar_v1.00.bed
+	- url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/CMRG_v1.00/GRCh37/SmallVariant/HG002_GRCh37_CMRG_smallvar_v1.00.bed
 	- md5: decd77f73205cb179cdfc2b3b9ddea8b
 
-- file: resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.bed
-	- url:
+- file: CMRG_v1.00/GRCh37/SmallVariant/HG002_GRCh37_CMRG_smallvar_v1.00.vcf.gz
+	- url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/CMRG_v1.00/GRCh37/SmallVariant/HG002_GRCh37_CMRG_smallvar_v1.00.vcf.gz
 	- md5: f74e814fd017ebd04bd58e1ef6e3a126
 
-- file: resources/NIST_MedicalGene_v1.00.01/HG002_GRCh37_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz
-	- url:
+- file: CMRG_v1.00/GRCh37/StructuralVariant/HG002_GRCh37_CMRG_SV_v1.00.bed
+	- url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/CMRG_v1.00/GRCh37/StructuralVariant/HG002_GRCh37_CMRG_SV_v1.00.bed
 	- md5: 144fac921b18b1959032273461f28b3e  
 
-- file: resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz
-	- url:
+- file: CMRG_v1.00/GRCh37/StructuralVariant/HG002_GRCh37_CMRG_SV_v1.00.vcf.gz
+	- url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/CMRG_v1.00/GRCh37/StructuralVariant/HG002_GRCh37_CMRG_SV_v1.00.vcf.gz
 	- md5: 197110493bfdaf4f92a00d70523cfdd2
 
-- file: resources/NIST_MedicalGene_v1.00.01/HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz
-	- url:
+- file: CMRG_v1.00/GRCh37/SmallVariant/HG002_GRCh38_CMRG_smallvar_v1.00.bed
+	- url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/CMRG_v1.00/GRCh38/SmallVariant/HG002_GRCh38_CMRG_smallvar_v1.00.bed
 	- md5: a9427c1b6f470237c9b70c205a05b5cc
 
-- file: resources/NIST_MedicalGene_v1.00.01/HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed
-	- url:
+- file: CMRG_v1.00/GRCh37/SmallVariant/HG002_GRCh38_CMRG_smallvar_v1.00.vcf.gz
+	- url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/CMRG_v1.00/GRCh38/SmallVariant/HG002_GRCh38_CMRG_smallvar_v1.00.vcf.gz
 	- md5: e4d829c66b3a6ad50ab3f00aa78ab050
 
-- file: resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz
-	- url:
+- file: CMRG_v1.00/GRCh37/StructuralVariant/HG002_GRCh38_CMRG_SV_v1.00.bed
+	- url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/CMRG_v1.00/GRCh38/StructuralVariant/HG002_GRCh38_CMRG_SV_v1.00.bed
 	- md5: 1118a6b90f3f72dafa760cc53555f8e6
 
-- file: resources/NIST_MedicalGene_v1.00.01/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed 
-	- url:
+- file: CMRG_v1.00/GRCh37/StructuralVariant/HG002_GRCh38_CMRG_SV_v1.00.vcf.gz 
+	- url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/CMRG_v1.00/GRCh38/StructuralVariant/HG002_GRCh38_CMRG_SV_v1.00.vcf.gz
 	- md5: 9a36e9d67335dc9bb3979d070fac4c9d
 
 

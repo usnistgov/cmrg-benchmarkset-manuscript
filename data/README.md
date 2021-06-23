@@ -13,7 +13,7 @@
 Data file documentation split by subdirectory
 
 ## Benchmark Evaluations
-
+Benchmark evaluation process in query VCFs described in Wagner et al. (https://doi.org/10.1101/2021.06.07.444885)
 - file: benchmark_evaluation/combined curation responses from benchmarking with sm variant v0.02.03.xlsx
     - url: https://docs.google.com/spreadsheets/d/1Pn7WP78JfWKCO2Df31n_4gzDOwtP69flgDyyjeBS6JE/edit?usp=sharing
     - md5: 02b214c213cdcbb45b431037030d177
@@ -37,20 +37,22 @@ Data file documentation split by subdirectory
 
 
 ## GRCh38 False Duplications
+False duplication variant callsets and benchmarking described in Wagner et al. (https://doi.org/10.1101/2021.06.07.444885)
+
 - file: HG002-GRCh38-masking-comparison-stratifications.csv
     - description: benchmarking performance comparison when masking falsely duplicated genes on chromosome 21 in GRCh38
     - md5: edb2865d6e7c75e95b6d201d87de5767
 
 Variant callset comparisons when using masked GRCh38 and unmasked GRCh38 as reference genome. 
 VCFs used in false_dups IGV session file for panel A of the false duplication figure.
-md5s in `false/dups/chksum.md5`
+md5s in `false_dups/chksum.md5`
 
 - file: false_dups/Baylor_ILMN_GATK/HG002_38_nodecoy.vcf.gz
 - file: false_dups/Baylor_ILMN_GATK/HG002_38_nodecoy.vcf.gz.tbi
 - file: false_dups/Baylor_ILMN_GATK/HG002_38_nodecoy_mask.vcf.gz
 - file: false_dups/Baylor_ILMN_GATK/HG002_38_nodecoy_mask.vcf.gz.tbi
 - file: false_dups/Baylor_ILMN_GATK/HG002_38_nodecoy_mask_v2.vcf.gz
-- file: false_dups/Baylor_ILMN_GATK/HG002_38_nodecoy_mask_v2.vcf.gz.tbi- file: 
+- file: false_dups/Baylor_ILMN_GATK/HG002_38_nodecoy_mask_v2.vcf.gz.tbi
 - file: false_dups/ONT-minimap2-clair2/HG002.SNVs.minimap2.clair2.masked.GRCh38.vcf.gz
 - file: false_dups/ONT-minimap2-clair2/HG002.SNVs.minimap2.clair2.masked.GRCh38.vcf.gz.tbi
 - file: false_dups/ONT-minimap2-clair2/HG002.SNVs.minimap2.clair2.unmasked.GRCh38.vcf.gz
@@ -59,6 +61,8 @@ md5s in `false/dups/chksum.md5`
 
 ## Gene Coordinates
 Gene coordinates file source documented in `gene_coords/README.md`
+
+- `data/gene_coords/unsorted/GRCh{37,38}_mrg_bench_gene.bed` bed files with genes included in the CMRGv1.00 benchmarkset
 
 ## MRG Benchmarkset 
 Benchmarkset files from an early version of the bnechmark and dependencies for benchmark generation. 
