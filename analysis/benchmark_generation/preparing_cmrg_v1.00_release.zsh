@@ -78,7 +78,7 @@ cp fixed_sample_name/HG002v11-align2-CHM13v1.0.dip.vcf.gz* GRCh38/SmallVariant/
 ## Sorting bed files
 mkdir unsorted_beds sorted_beds
 cp {GRCh37,GRCh38}/*Variant/*bed unsorted_beds
-cp {GRCh37,GRCh38}/SupplementaryFiles/*CMRG_benchmark_gene_coordinates.bed
+cp {GRCh37,GRCh38}/SupplementaryFiles/*CMRG_benchmark_gene_coordinates.bed unsorted_beds
 cp CHM13v1.0/SupplementaryFiles/HG002_CHRM13_CMRG_smallvar_v1.00_GRCh38-equiv-regions_draft.bed  unsorted_beds
 
 for bed in unsorted_beds/*GRCh37*bed; do
@@ -92,7 +92,7 @@ for bed in unsorted_beds/*GRCh38*bed; do
 done
 
 ## Moving files back
-mv sorted_beds/HG002_CHRM13_CMRG_smallvar_v1.00_GRCh38-equiv-regions_draft.bed CHM13v1.00/SupplementaryFiles
+mv sorted_beds/HG002_CHRM13_CMRG_smallvar_v1.00_GRCh38-equiv-regions_draft.bed CHM13v1.00/SupplementaryFiles/
 mv sorted_beds/HG002_GRCh37_CMRG_SV_v1.00.bed GRCh37/StructuralVariant/
 mv sorted_beds/HG002_GRCh37_CMRG_smallvar_v1.00.bed GRCh37/SmallVariant/
 mv sorted_beds/HG002_GRCh38_CMRG_SV_v1.00.bed GRCh38/StructuralVariant/
