@@ -8,6 +8,7 @@
 scratch/*
 .snakemake
 workflow/data
+workflow/results
 resources/*
 data/gene_stat_tbls/*
 data/mrg_benchmarkset
