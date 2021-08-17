@@ -47,7 +47,9 @@ rule all:
         expand("workflow/results/mrg_diff_regions/HG002_{benchregion}_mrg-{region}-diff_cov.tsv", 
                 region = REGIONS, benchregion = BENCHREGIONS),
         expand("workflow/results/anno_vcf_tbls/HG002_{benchvar}_anno.tsv",
-                benchvar = BENCHVARS)
+                benchvar = BENCHVARS),
+        expand("workflow/results/cov_tbls/HG002_{ref}_asm-dip_full_gene-plus-flank_cov.tsv",
+        ref = REFS)
 
 ################################################################################
 ## Preparing input files
@@ -230,6 +232,14 @@ rule benchmark_diff_mrg_bases:
             > {output}
     """
 
+rule calc_gene_asm_coverage: 
+    input: 
+        a=ensembl_dir + "/{ref}_mrg_full_gene-plus-flank.bed",
+        b="resources/HG002v11-align2-{ref}.dip.bed"
+    output: "workflow/results/cov_tbls/HG002_{ref}_asm-dip_full_gene-plus-flank_cov.tsv"
+    threads: 2
+    wrapper: "0.74.0/bio/bedtools/coveragebed"
+    
 ############################ Annotating and Converting Benchmark VCFs to Tables
 
 rule make_hdr_file:
