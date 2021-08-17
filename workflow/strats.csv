@@ -1,0 +1,13 @@
+ref,strat,url
+GRCh37,allDiff,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed.gz
+GRCh37,cnv-elliptical,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_GIABv4.1_CNV_CCSandONT_elliptical_outlier.bed.gz
+GRCh37,cnv-assembly,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_GIABv4.1_CNV_gt2assemblycontigs_ONTCanu_ONTFlye_CCSCanu.bed.gz
+GRCh37,segdup-gt10kb,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/SegmentalDuplications/GRCh37_segdups_gt10kb.bed.gz
+GRCh37,v0.6SVs-expanded,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/GenomeSpecific/GRCh37_HG002_expanded_150_Tier1plusTier2_v0.6.1.bed.gz
+GRCh37,reference-gaps,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh37/OtherDifficult/GRCh37_gaps_slop15kb.bed.gz
+GRCh38,allDiff,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh38/GenomeSpecific/GRCh38_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed.gz
+GRCh38,cnv-elliptical,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh38/GenomeSpecific/GRCh38_HG002_GIABv4.1_CNV_gt2assemblycontigs_ONTCanu_ONTFlye_CCSCanu.bed.gz
+GRCh38,cnv-assembly,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh38/GenomeSpecific/GRCh38_HG002_GIABv4.1_CNV_CCSandONT_elliptical_outlier.bed.gz
+GRCh38,segdup-gt10kb,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh38/SegmentalDuplications/GRCh38_segdups_gt10kb.bed.gz
+GRCh38,v0.6SVs-expanded,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh38/GenomeSpecific/GRCh38_HG002_expanded_150__Tier1plusTier2_v0.6.1.bed.gz
+GRCh38,reference-gaps,https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh38/OtherDifficult/GRCh38_gaps_slop15kb.bed.gz

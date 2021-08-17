@@ -1,13 +1,19 @@
 ### Next Steps
-## Add strat coverage
-## Add var table count methods
 ## Look into adding other stats from main table
 
-
+import pandas as pd
 from snakemake.utils import min_version
+from snakemake.remote.FTP import RemoteProvider as FTPRemoteProvider
 
 ### set minimum snakemake version
 min_version("5.27.4")
+
+## File download
+FTP = FTPRemoteProvider()
+
+## Stratifications
+strat_tbl = pd.read_table("workflow/strats.csv", sep = ",").set_index(["ref","strat"], drop = False)
+STRATS = list(set(strat_tbl["strat"]))
 
 ## Variables for data paths
 mrg_dir = "resources/NIST_MedicalGene_v1.00.01"
@@ -16,7 +22,7 @@ ensembl_dir = "workflow/data/gene_coords"
 
 ## Defining Wildcards
 REFS = ["GRCh37","GRCh38"]
-REGIONS = ["gene","exon","intron"]
+REGIONS = ["gene","exon","intron", "gene-plus-flank"]
 BENCHTYPES = ["smallvar","SV", "union"]
 BENCHSETS = ["v4", "v0.6","mrg"]
 BENCHVARS = ["GRCh37_v4_smallvar", "GRCh37_v0.6_SV",
@@ -32,7 +38,8 @@ wildcard_constraints:
     ref="|".join(REFS),
     region="|".join(REGIONS),
     benchset="|".join(BENCHSETS),
-    benchtype="|".join(BENCHTYPES)
+    benchtype="|".join(BENCHTYPES),
+    strat="|".join(STRATS)
 
 ## Define target files for pipeline
 rule all:
@@ -42,12 +49,14 @@ rule all:
                 ref = REFS),
         expand("workflow/results/cov_tbls/HG002_{benchregion}_{region}_cov.tsv", 
                 region = REGIONS, benchregion = BENCHREGIONS),
-        expand("workflow/results/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv", 
-                ref = REFS, region = REGIONS),
+        expand("workflow/results/cov_tbls/{strat}_{ref}_mrg_{region}_cov.tsv", 
+                strat = STRATS, ref = REFS, region = REGIONS),
         expand("workflow/results/mrg_diff_regions/HG002_{benchregion}_mrg-{region}-diff_cov.tsv", 
                 region = REGIONS, benchregion = BENCHREGIONS),
         expand("workflow/results/anno_vcf_tbls/HG002_{benchvar}_anno.tsv",
-                benchvar = BENCHVARS)
+                benchvar = BENCHVARS),
+        expand("workflow/results/cov_tbls/HG002_{ref}_asm-dip_full_gene-plus-flank_cov.tsv",
+                ref = REFS)
 
 ################################################################################
 ## Preparing input files
@@ -158,6 +167,16 @@ rule sort_gene_list_beds:
     wrapper:
         "0.74.0/bio/bedtools/sort"
 
+def get_strat_url(wildcards):
+    path=strat_tbl.loc[(wildcards.ref, wildcards.strat), "url"]
+    return(path)
+
+rule get_strat:
+    output: "workflow/data/strats/{ref}_{strat}.bed.gz"
+    params: url=get_strat_url
+    shell: "wget -v -O {output} {params.url}"
+        
+
 ################################################################################
 ## Combined SM and SV bed file
 ################################################################################
@@ -210,14 +229,14 @@ rule calc_gene_coverage:
 rule calc_strat_coverage:
     input:
         a= ensembl_dir + "/{ref}_mrg_full_{region}.bed",
-        b= "resources/{ref}_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed.gz"
-    output: "workflow/results/cov_tbls/allDiff_{ref}_mrg_{region}_cov.tsv"
+        b= "workflow/data/strats/{ref}_{strat}.bed.gz"
+    output: "workflow/results/cov_tbls/{strat}_{ref}_mrg_{region}_cov.tsv"
     threads: 2
     wrapper: "0.74.0/bio/bedtools/coveragebed"
 
 rule benchmark_diff_mrg_bases:
     input: 
-        diff_strat = "resources/{ref}_HG002_GIABv4.1_complexandSVs_alldifficultregions.bed.gz",
+        diff_strat = "workflow/data/strats/{ref}_allDiff.bed.gz",
         mrg_genes  = ensembl_dir + "/{ref}_mrg_full_{region}.bed",
         benchmark_region = benchdir + "/HG002_{ref}_{benchmarkset}_{benchtype}.bed"
     output: "workflow/results/mrg_diff_regions/HG002_{ref}_{benchmarkset}_{benchtype}_mrg-{region}-diff_cov.tsv"
@@ -230,6 +249,14 @@ rule benchmark_diff_mrg_bases:
             > {output}
     """
 
+rule calc_gene_asm_coverage: 
+    input: 
+        a=ensembl_dir + "/{ref}_mrg_full_gene-plus-flank.bed",
+        b="resources/HG002v11-align2-{ref}.dip.bed"
+    output: "workflow/results/cov_tbls/HG002_{ref}_asm-dip_full_gene-plus-flank_cov.tsv"
+    threads: 2
+    wrapper: "0.74.0/bio/bedtools/coveragebed"
+    
 ############################ Annotating and Converting Benchmark VCFs to Tables
 
 rule make_hdr_file:
