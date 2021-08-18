@@ -32,11 +32,13 @@ mrg_gene_beds <- list(
   GRCh37 = here(
     "data",
     "gene_coords",
+    "unsorted",
     "GRCh37_mrg_bench_gene.bed"
   ),
   GRCh38 = here(
     "data",
     "gene_coords",
+    "unsorted",
     "GRCh38_mrg_bench_gene.bed"
   )
 )
@@ -216,6 +218,45 @@ exon_cov_df <- exon_cov_files %>%
 ```
 
 ```{r}
+gene_coords_df %>% filter(str_detect(gene, "SEP"))
+```
+
+```{r}
+exon_cov_df <- exon_cov_files %>%
+  map_dfr(
+    read_tsv,
+    ## ensembl colnames are assumed
+    col_names = c(
+      "chrom",
+      "start",
+      "end",
+      "gene",
+      "ensembl_gene_id",
+      "ensembl_exon_id",
+      "n_regions",
+      "bp_cov",
+      "exon_size",
+      "frac_cov"
+    ),
+    col_types = "ciiccciiid",
+    .id = "covset"
+  ) %>%
+  group_by(covset, chrom, gene, ensembl_gene_id) %>%
+  summarise(total_bp_cov = sum(bp_cov),
+            total_exon_size = sum(exon_size)) %>%
+  mutate(cov = total_bp_cov / total_exon_size) %>%
+  rename(bp_cov = total_bp_cov) %>% 
+  separate(
+    col = covset,
+    into = c("giab_id", "ref", "benchmark", "bench_type", "region"),
+    sep = "_",
+    remove = TRUE
+  ) %>%
+  left_join(gene_coords_df)
+```
+
+
+```{r}
 glimpse(exon_cov_df)
 ```
 
@@ -252,10 +293,6 @@ intron_cov_df <- intron_cov_files %>%
 
 ```{r}
 glimpse(intron_cov_df)
-```
-
-```{r}
-filter(exon_cov_df, is.na(coords))
 ```
 
 __QUESTION__ Different number of rows - assuming due to lack of coverage by some genes 
@@ -297,14 +334,11 @@ bench_cov_df  %>%
 ```
 
 
-__TODO__ Fix bug - Only 4 genes in MRG benchmark affected by bug - addressing with input gene list bed fix
-Genes with name fix are not in the full gene list.
+_DATA CHECK:_ All genes should have coordinates. Should return 0 rows
 ```{r}
 bench_cov_df %>% 
   filter(is.na(coords))
 ```
-
-
 
 ### Example Gene
 ```{r}
@@ -473,8 +507,7 @@ diff_bases_df  %>%
 ```
 
 
-__TODO__ Fix bug - Only 4 genes in MRG benchmark affected by bug - addressing with input gene list bed fix
-Genes with name fix are not in the full gene list.
+_DATA CHECK:_ All genes should have coordinates. Should return 0 rows
 ```{r}
 diff_bases_df %>% 
   filter(is.na(coords))
