@@ -1,15 +1,9 @@
-### Next Steps
-## Look into adding other stats from main table
-
+## Pipeline for generating pipeline analysis results
 import pandas as pd
 from snakemake.utils import min_version
-from snakemake.remote.FTP import RemoteProvider as FTPRemoteProvider
 
 ### set minimum snakemake version
 min_version("5.27.4")
-
-## File download
-FTP = FTPRemoteProvider()
 
 ## Stratifications
 strat_tbl = pd.read_table("workflow/strats.csv", sep = ",").set_index(["ref","strat"], drop = False)
