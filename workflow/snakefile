@@ -3,7 +3,7 @@ import pandas as pd
 from snakemake.utils import min_version
 
 ### set minimum snakemake version
-min_version("5.27.4")
+min_version("6.6.1")
 
 ## Stratifications
 strat_tbl = pd.read_table("workflow/strats.csv", sep = ",").set_index(["ref","strat"], drop = False)
@@ -61,8 +61,8 @@ rule prepare_genome:
         grch37_genome="resources/human.b37.genome",
         grch38_genome="resources/human.hg38.genome"
     output:
-        grch37_genome="data/refs/GRCh37.genome",
-        grch38_genome="data/refs/GRCh38.genome"
+        grch37_genome=temp("data/refs/GRCh37.genome"),
+        grch38_genome=temp("data/refs/GRCh38.genome")
     shell: """
         ## Copying and renaming reference index files
         cp {input.grch37_genome} {output.grch37_genome}
@@ -74,7 +74,7 @@ rule prepare_mrg_sv_beds:
         in_file= mrg_dir + "/HG002_{ref}_difficult_medical_gene_SV_benchmark_v1.00.01.bed",
         genome="data/refs/{ref}.genome"
     output:
-        benchdir + "/HG002_{ref}_mrg_SV.bed"
+        temp(benchdir + "/HG002_{ref}_mrg_SV.bed")
     wrapper:
         "0.74.0/bio/bedtools/sort"
 
@@ -83,7 +83,7 @@ rule prepare_mrg_sv:
         mrg_sv_vcf=mrg_dir + "/HG002_{ref}_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz",
         mrg_sv_bed=benchdir + "/HG002_{ref}_mrg_SV.bed"
     output:     
-        mrg_sv_vcf=benchdir + "/HG002_{ref}_mrg_SV.vcf.gz"
+        mrg_sv_vcf=temp(benchdir + "/HG002_{ref}_mrg_SV.vcf.gz")
     conda: "envs/mrgtools.yml"
     shell: """
         ## Filtering for variants in benchmark regions
@@ -100,10 +100,10 @@ rule prepare_mrg_smallvar:
         mrg_38_smallvar_vcf=mrg_dir + "/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz",
         mrg_38_smallvar_bed=mrg_dir + "/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed"
     output:     
-        mrg_37_smallvar_vcf=benchdir + "/HG002_GRCh37_mrg_smallvar.vcf.gz",
-        mrg_37_smallvar_bed=benchdir + "/HG002_GRCh37_mrg_smallvar.bed",
-        mrg_38_smallvar_vcf=benchdir + "/HG002_GRCh38_mrg_smallvar.vcf.gz",
-        mrg_38_smallvar_bed=benchdir + "/HG002_GRCh38_mrg_smallvar.bed"
+        mrg_37_smallvar_vcf=temp(benchdir + "/HG002_GRCh37_mrg_smallvar.vcf.gz"),
+        mrg_37_smallvar_bed=temp(benchdir + "/HG002_GRCh37_mrg_smallvar.bed"),
+        mrg_38_smallvar_vcf=temp(benchdir + "/HG002_GRCh38_mrg_smallvar.vcf.gz"),
+        mrg_38_smallvar_bed=temp(benchdir + "/HG002_GRCh38_mrg_smallvar.bed")
     shell: """
         ## Copying and renaming small variant vcf and bed files
         cp {input.mrg_37_smallvar_vcf} {output.mrg_37_smallvar_vcf}
@@ -119,10 +119,10 @@ rule prepare_v4:
         v4_38_smallvar_vcf = "resources/HG002_GRCh38_1_22_v4.2.1_benchmark.vcf.gz",
         v4_38_smallvar_bed = "resources/HG002_GRCh38_1_22_v4.2.1_benchmark_noinconsistent.bed"
     output:
-        v4_37_smallvar_vcf = benchdir + "/HG002_GRCh37_v4_smallvar.vcf.gz",
-        v4_37_smallvar_bed = benchdir + "/HG002_GRCh37_v4_smallvar.bed",
-        v4_38_smallvar_vcf = benchdir + "/HG002_GRCh38_v4_smallvar.vcf.gz",
-        v4_38_smallvar_bed = benchdir + "/HG002_GRCh38_v4_smallvar.bed"
+        v4_37_smallvar_vcf = temp(benchdir + "/HG002_GRCh37_v4_smallvar.vcf.gz"),
+        v4_37_smallvar_bed = temp(benchdir + "/HG002_GRCh37_v4_smallvar.bed"),
+        v4_38_smallvar_vcf = temp(benchdir + "/HG002_GRCh38_v4_smallvar.vcf.gz"),
+        v4_38_smallvar_bed = temp(benchdir + "/HG002_GRCh38_v4_smallvar.bed")
     shell: """
         cp {input.v4_37_smallvar_vcf} {output.v4_37_smallvar_vcf}
         cp {input.v4_37_smallvar_bed} {output.v4_37_smallvar_bed}
@@ -135,8 +135,8 @@ rule prepare_v06:
         vcf = "resources/HG002_Svs_Tier1_v0.6.vcf.gz",
         bed = "resources/HG002_SVs_Tier1_noVDJorXorY_v0.6.2.bed"
     output:
-        vcf = benchdir + "/HG002_GRCh37_v0.6_SV.vcf.gz",
-        bed = benchdir + "/HG002_GRCh37_v0.6_SV.bed"
+        vcf = temp(benchdir + "/HG002_GRCh37_v0.6_SV.vcf.gz"),
+        bed = temp(benchdir + "/HG002_GRCh37_v0.6_SV.bed")
     conda: "envs/mrgtools.yml"
     shell: """
         cp {input.bed} {output.bed}
@@ -157,7 +157,7 @@ rule sort_gene_list_beds:
         in_file= "data/gene_coords/unsorted/{ref}_{gene_list}.bed",
         genome="data/refs/{ref}.genome"
     output:
-        ensembl_dir + "/{ref}_{gene_list}.bed"
+        temp(ensembl_dir + "/{ref}_{gene_list}.bed")
     wrapper:
         "0.74.0/bio/bedtools/sort"
 
@@ -166,7 +166,7 @@ def get_strat_url(wildcards):
     return(path)
 
 rule get_strat:
-    output: "workflow/data/strats/{ref}_{strat}.bed.gz"
+    output: temp("workflow/data/strats/{ref}_{strat}.bed.gz")
     params: url=get_strat_url
     shell: "wget -v -O {output} {params.url}"
         
@@ -179,7 +179,7 @@ rule make_union_bed:
     input:
         sm = benchdir + "/HG002_{ref}_mrg_smallvar.bed",
         sv = benchdir + "/HG002_{ref}_mrg_SV.bed"
-    output: benchdir + "/HG002_{ref}_mrg_union.bed"
+    output: temp(benchdir + "/HG002_{ref}_mrg_union.bed")
     conda: "envs/mrgtools.yml"
     shell: """
         multiintersectbed \
