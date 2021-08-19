@@ -1,0 +1,181 @@
+---
+title: "Supplemental Gene Metrics Table"
+date: '`r Sys.Date()`'
+output: 
+    bookdown::html_document2:
+        toc: true
+        toc_float: true
+        df_print: paged
+        code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+```
+
+# Objective
+Generate summary table with gene stratification overlap and benchmark coverage information for genes in the CMRG benchmark and genes excluded from the benchmark due to incomplete assemblies.
+
+Table description
+- ref
+- gene
+- coords
+- start_coordinates_plus_segdups_plus_flanking
+- end_coordinates_plus_segdups_plus_flanking
+- in_mrg
+- v4_lt90
+- mandelker
+- cosmic
+- high_priority
+- gene+overlapping_segdup+flank coverage by the dip.bed
+    - bp_hifiasm_dip.bed
+    - fraction_hifiasm_dip.bed
+- gene+overlapping_segdup+flank coverage stratifications
+    - fraction_in_ccs_ont_elliptical_outlier_cnv_stratification
+    - fraction_in_assembly_cnv_stratification
+    - fraction_in_segmental_duplications_stratification
+    - fraction_in_Tier1andTier2_SV_0.6_slop150_stratification
+    - fraction_in_reference_gaps_stratification
+
+# Approach
+- Getting gene coordinates from full gene bed
+- Bind with coords + flank
+- Row match verification flank includes full gene coords
+- annotate with coverage and other information
+
+# Loading Input Data Files
+Gene Coordinates
+```{r}
+gene_coords_df <- read_tsv(here("data", "tidy", "asm_coverage.tsv.gz"))
+```
+
+
+# Annotations
+## V4 Coverage and MRG inclusion information
+```{r}
+v4_included_df <- here("data", "tidy", "bench_coverage.tsv.gz") %>% 
+    read_tsv(col_types = "ccccccddl") %>% 
+     filter(region == "gene", benchmark == "v4") %>% 
+    select(-benchmark, -bench_type, -region) %>% 
+    rename(v4_gene_bp = bp_cov, v4_gene_frac = cov)
+
+glimpse(v4_included_df)
+```
+
+## Assembly Coverage
+```{r}
+asm_gene_cov_df <- read_tsv(here("data","tidy","asm_coverage.tsv.gz"),
+                            col_types = "ccciiciiid"
+                            ) %>% 
+    select(-giab_id) %>%
+    filter(region == "gene-plus-flank") %>%
+    rename(start_flank = start, end_flank = end)
+```
+
+## Strat Overlap
+```{r}
+strat_overlap_df <- here("data", "tidy", "strat_overlap.tsv.gz") %>%
+    read_tsv() %>% 
+    filter(region == "gene-plus-flank") %>% 
+    rename(start_flank = start, end_flank = end) %>% 
+    select(ref, chrom, start_flank, end_flank, strat, overlap) %>% 
+    distinct() %>% 
+    mutate(strat = str_replace_all(strat, "-","_")) %>% 
+    pivot_wider(names_from = strat, names_prefix = "cov_", values_from = overlap)
+```
+
+```{r}
+glimpse(strat_overlap_df)
+```
+
+# Combined Table
+
+Table description
+X- ref
+X- gene
+X- coords
+X- start_coordinates_plus_segdups_plus_flanking
+X- end_coordinates_plus_segdups_plus_flanking
+X- in_mrg
+X- v4_lt90
+- mandelker
+- cosmic
+- high_priority
+X- gene+overlapping_segdup+flank coverage by the dip.bed
+X    - bp_hifiasm_dip.bed
+X    - fraction_hifiasm_dip.bed
+- gene+overlapping_segdup+flank coverage stratifications
+    - fraction_in_ccs_ont_elliptical_outlier_cnv_stratification
+    - fraction_in_assembly_cnv_stratification
+    - fraction_in_segmental_duplications_stratification
+    - fraction_in_Tier1andTier2_SV_0.6_slop150_stratification
+    - fraction_in_reference_gaps_stratification
+
+
+```{r}
+bench_inclusion_df <- gene_coords_df %>% 
+    left_join(v4_included_df)%>% 
+    mutate(v4_lt90 = v4_gene_frac <= 0.9)
+```
+
+```{r}
+glimpse(bench_inclusion_df)
+```
+
+```{r}
+gene_stats_tbl <- bench_inclusion_df %>% 
+    left_join(asm_gene_cov_df) %>% 
+    select(-region, -region_size) %>% 
+    rename(asm_cov_bp = bp_cov, 
+           asm_cov_frac = overlap)
+```
+
+```{r}
+glimpse(gene_stats_tbl)
+```
+
+```{r}
+gene_stats_tbl <- left_join(gene_stats_tbl, strat_overlap_df) %>% 
+    select(-chrom)
+```
+```{r}
+glimpse(gene_stats_tbl)
+```
+
+Supperset gene list
+```{r}
+challenging_genes <- bench_inclusion_df %>% 
+    filter(v4_lt90 == TRUE,
+           str_detect(coords, "X|Y|MT", negate = TRUE)) %>% 
+    .$gene %>% unique()
+
+length(challenging_genes)
+```
+
+
+```{r}
+challenging_genes_df <- gene_stats_tbl %>% 
+    filter(gene %in% challenging_genes)
+
+glimpse(challenging_genes_df)    
+```
+```{r}
+write_tsv(challenging_genes_df, file = here("data","challenging_genes_tbl.tsv.gz"))
+```
+
+# Session Information
+## System Information
+```{r}
+sessioninfo::platform_info()
+```
+
+
+## Package Versions
+```{r}
+sessioninfo::package_info() %>% 
+    filter(attached = TRUE) %>% 
+    select(package, loadedversion, date, source) %>%
+    knitr::kable(booktabs = TRUE, row.names = FALSE)
+```

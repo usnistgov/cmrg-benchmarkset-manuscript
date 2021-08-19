@@ -53,6 +53,80 @@ mrg_genes_df <- mrg_gene_beds %>%
   mutate(in_mrg = TRUE)
 ```
 
+## Gene Coordinates
+
+Gene Body and Gene plus Flank and Segdup Coordinates
+```{r}
+## Full CMRG Gene list gene body coordinates
+gene_df <-
+    list(
+        GRCh37 = here("workflow","data", "gene_coords", "GRCh37_mrg_full_gene.bed"),
+        GRCh38 = here("workflow","data", "gene_coords", "GRCh38_mrg_full_gene.bed")
+    ) %>%
+    map_dfr(
+        read_tsv,
+        col_names = c("chrom", "start", "end", "gene"),
+        col_types = "ciic",
+        .id = "ref"
+    )
+
+## Full CMRG Gene list gene body + flank including full overlapping segdups
+gene_plus_flank_df <- list(
+        GRCh37 = here("workflow","data", "gene_coords", "GRCh37_mrg_full_gene-plus-flank.bed"),
+        GRCh38 = here("workflow","data", "gene_coords", "GRCh38_mrg_full_gene-plus-flank.bed")
+    ) %>%
+    map_dfr(
+        read_tsv,
+        col_names = c("chrom", "start_flank", "end_flank"),
+        col_types = "cii",
+        .id = "ref"
+    )
+```
+
+```{r}
+gene_coords_df <- bind_cols(gene_df, gene_plus_flank_df)
+```
+
+__Data Checks__: Making sure the col bind command worked as expected and gene statistics are approriately assigned. Assume row numbers are 0 for all checks.
+```{r}
+gene_coords_df %>% 
+    filter(ref...1 != ref...6)
+```
+```{r}
+gene_coords_df %>% 
+    filter(chrom...2 != chrom...7)
+```
+```{r}
+gene_coords_df %>% 
+    mutate(start_diff = start - start_flank,
+           end_diff = end_flank - end) %>% 
+    filter(start_diff < 0)
+```
+```{r}
+gene_coords_df %>% 
+    mutate(start_diff = start - start_flank,
+           end_diff = end_flank - end) %>% 
+    filter(start_diff < 0)
+```
+
+__Cleaning up data frame__
+```{r}
+gene_coords_df <- bind_cols(gene_df, gene_plus_flank_df) %>% 
+    rename(ref = ref...1, chrom = chrom...2) %>% 
+    mutate(coords = str_c(chrom, ":", start, "-", end)) %>% 
+    select(gene, ref, coords, start_flank, end_flank) 
+    
+
+glimpse(gene_coords_df)
+```
+
+### Writing To File 
+```{r}
+write_tsv(gene_coords_df,
+          here("data","tidy","gene_coords.tsv.gz"))
+```
+
+
 
 ## Medical Gene List
 Using Gene Lists in `data/mrg_lists` directory to generate medically relevant genes list table.
@@ -133,7 +207,7 @@ write_tsv(tidy_mrg_info_tbl,
 ## Included Bases
 ```{r}
 ## Included Bases for Gene Body and Introns
-gene_cov_files <- list.files(path = here("workflow", "results", "cov_tbls"),
+gene_cov_files <- list.files(path = here("workflow", "results", "bench_cov_tbls"),
                              pattern = "HG002.*_gene_cov.tsv") %>%
   set_names(~ str_remove(., "_cov.tsv")) %>%
   map(~ here("workflow", "results", "cov_tbls", .))
@@ -178,7 +252,7 @@ glimpse(gene_cov_df)
 ```{r}
 ## Included Exon Bases
 exon_cov_files <-
-  list.files(path = here("workflow", "results", "cov_tbls"),
+  list.files(path = here("workflow", "results", "bench_cov_tbls"),
              pattern = "HG002.*_exon_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
@@ -263,7 +337,7 @@ glimpse(exon_cov_df)
 ```{r}
 ## Included Bases for Introns
 intron_cov_files <-
-  list.files(path = here("workflow", "results", "cov_tbls"),
+  list.files(path = here("workflow", "results", "bench_cov_tbls"),
              pattern = "HG002.*_intron_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
@@ -360,10 +434,10 @@ write_tsv(bench_cov_df, bench_cov_file)
 Copied and edited from included bases above
 ```{r}
 ## Included Bases for Gene Body and Introns
-gene_diff_files <- list.files(path = here("workflow", "results", "mrg_diff_regions"),
+gene_diff_files <- list.files(path = here("workflow", "results", "bench_diff_bases_tbls"),
                              pattern = "HG002.*_mrg-gene-diff_cov.tsv") %>%
   set_names(~ str_remove(., "_cov.tsv")) %>%
-  map(~ here("workflow", "results", "mrg_diff_regions", .))
+  map(~ here("workflow", "results", "bench_diff_bases_tbls", .))
 
 gene_diff_bases_df <- gene_diff_files %>%
   map_dfr(
@@ -405,11 +479,11 @@ glimpse(gene_diff_bases_df)
 ```{r}
 ## Included Exon Bases
 exon_diff_files <-
-  list.files(path = here("workflow", "results", "mrg_diff_regions"),
+  list.files(path = here("workflow", "results", "bench_diff_bases_tbls"),
              pattern = "HG002.*_mrg-exon-diff_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
-  map( ~ here("workflow", "results", "mrg_diff_regions", .))
+  map( ~ here("workflow", "results", "bench_diff_bases_tbls", .))
 
 exon_diff_bases_df <- exon_diff_files %>%
   map_dfr(
@@ -451,11 +525,11 @@ glimpse(exon_diff_bases_df)
 ```{r}
 ## Included Bases for Introns
 intron_diff_files <-
-  list.files(path = here("workflow", "results", "mrg_diff_regions"),
+  list.files(path = here("workflow", "results", "bench_diff_bases_tbls"),
              pattern = "HG002.*_mrg-intron-diff_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
-  map( ~ here("workflow", "results", "mrg_diff_regions", .))
+  map( ~ here("workflow", "results", "bench_diff_bases_tbls", .))
 
 cnames <- c("chrom", "start", "end", "gene", "n_regions", 
             "bp_cov", "intron_size", "cov")
@@ -660,37 +734,131 @@ write_tsv(var_df, var_file)
 ```
 
 
-## All Difficult Strat Coverage
+## Strat Overlap Coverage
+
 ```{r}
-diff_gene_overlap_df <- list.files(path = here("workflow","results","cov_tbls"),
-                                   pattern = "allDiff_.*gene_cov.tsv", 
-                                   full.names = TRUE) %>% 
-   {set_names(.,str_extract(., "(?<=allDiff_).*(?=_mrg)"))} %>% 
-   map_dfr(read_tsv, 
-       col_types = "cddcdddd", 
-       col_names = c("chrom", "start", "end", "gene", "n_regions", 
-                     "bp_cov", "gene_size", "overlap"),
-       .id = "ref") %>% 
-  add_column(strat = "allDiff",.before = 1)
+strat_overlap_df <-
+  list.files(
+    path = here("workflow", "results", "strat_cov_tbls"),
+    pattern = "_mrg_gene-plus-flank_cov.tsv",
+    full.names = TRUE
+  ) %>%
+  {
+    set_names(., str_extract(., "(?<=strat_cov_tbls/).*(?=_cov.tsv)"))
+  } %>%
+  map_dfr(
+    read_tsv,
+    col_types = "ciiiiid",
+    col_names = c(
+      "chrom",
+      "start",
+      "end",
+      "n_regions",
+      "bp_cov",
+      "region_size",
+      "overlap"
+    ),
+    .id = "id"
+  ) %>%
+  separate(
+    col = id,
+    into = c("strat", "ref", "mrg", "region"),
+    sep = "_"
+  ) %>%
+  select(-mrg)
+```
+
+
+```{r}
+glimpse(strat_overlap_df)
+```
+
+
+### Writing Strat Overlap Table to file 
+```{r}
+write_tsv(strat_overlap_df,
+          here("data","tidy","strat_overlap.tsv.gz"))
+```
+
+## Assembly Coverage
+```{r}
+asm_cov_df <-
+  list.files(
+    path = here("workflow", "results", "asm_cov_tbls"),
+    pattern = ".*_cov.tsv",
+    full.names = TRUE
+  ) %>%
+  {
+    set_names(., str_extract(., "(?<=asm_cov_tbls/).*(?=_cov.tsv)"))
+  } %>%
+  map_dfr(
+    read_tsv,
+    col_types = "ciiiiid",
+    col_names = c(
+      "chrom",
+      "start",
+      "end",
+      "n_contigs",
+      "bp_cov",
+      "region_size",
+      "overlap"
+    ),
+    .id = "id"
+  ) %>%
+  separate(
+    col = id,
+    into = c("giab_id", "ref", "asm","mrg", "region"),
+    sep = "_"
+  ) %>%
+  select(-asm, -mrg)
+
+asm_gene_cov_df <- gene_coords_df %>% 
+  mutate(chrom = str_remove(coords, ":.*")) %>% 
+  bind_cols(asm_cov_df)
+```
+
+__Data Check__: Making sure rows correctly bind
+ASM coverage and gene coordinates should have the same 
+```{r}
+nrow(asm_cov_df)== nrow(gene_coords_df)
+```
+Corresponding columns should agree
+```{r}
+all(asm_gene_cov_df$ref...2 == asm_gene_cov_df$ref...8)
 ```
 
 ```{r}
-glimpse(diff_gene_overlap_df)
+all(asm_gene_cov_df$chrom...6 == asm_gene_cov_df$chrom...10)
 ```
 
 ```{r}
-## Only displaying info for 1 gene to reduce html file size
-diff_gene_overlap_df %>% 
-    filter(gene == "OR4F5") %>% 
-    DT::datatable()
+all(asm_gene_cov_df$start_flank == asm_gene_cov_df$start)
 ```
 
-### Writing Gene List Table to file 
 ```{r}
-write_tsv(diff_gene_overlap_df,
-          here("data","tidy","diff_strat_overlap.tsv.gz"))
+all(asm_gene_cov_df$end_flank == asm_gene_cov_df$end)
 ```
 
+Removing redundant columns
+```{r}
+asm_gene_cov_df <- asm_gene_cov_df %>% 
+  rename(ref = ref...2 ) %>% 
+  select(giab_id, gene, ref, start, end, 
+         region, n_contigs, bp_cov, region_size, overlap)
+```
+
+
+### Table Structure
+```{r}
+glimpse(asm_gene_cov_df)
+```
+
+
+### Writing Assembly Coverage Table to file 
+```{r}
+write_tsv(asm_gene_cov_df,
+          here("data","tidy","asm_coverage.tsv.gz"))
+```
 
 ## Sanger Confirmation
 Summary table at https://docs.google.com/spreadsheets/d/1_29bJkQ1snrKb9TGeCWh2hRl6Rx7tPVd/edit#gid=985369016

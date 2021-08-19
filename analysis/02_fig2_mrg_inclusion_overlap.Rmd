@@ -33,9 +33,12 @@ mrg_info_tbl <- here("data", "tidy", "gene_list_info.tsv.gz") %>%
 bench_cov_df <- here("data","tidy","bench_coverage.tsv.gz") %>% 
     read_tsv(col_types = "ccccccdil")
 
-## Difficult Strat Overlap
-diff_gene_overlap_df <- here("data", "tidy", "diff_strat_overlap.tsv.gz") %>% 
-    read_tsv(col_types = "ccciiciiid")
+## Alll Difficult Strat Overlap
+diff_gene_overlap_df <- here("data", "tidy", "strat_overlap.tsv.gz") %>%
+    read_tsv(col_types = "cccciiciiid") %>%
+    filter(strat == "allDiff", region == "gene") %>%
+    rename(gene_size = region_size) %>%
+    select(-region)
 
 ## TODO - replace with new updated coverage data
 ## Benchmark and Asm Coverage information 

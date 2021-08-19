@@ -25,7 +25,7 @@ Coverage of GIAB benchmarks by difficult genomic context stratifications.
 - cov: coverage fraction - value between 1 and 0; double
 - bp_cov: number of base pairs covered; integer
 
-## diff_strat_overlap
+## strat_overlap
 Medically relevant genes overlap for difficult genomic context stratifications.
 
 - strat: genomic stratification; character string
