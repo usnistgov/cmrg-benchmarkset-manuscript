@@ -1,6 +1,7 @@
 ## Pipeline for generating pipeline analysis results
 import pandas as pd
 from snakemake.utils import min_version
+from snakemake.remote import AUTO
 
 ### set minimum snakemake version
 min_version("6.6.1")
@@ -9,8 +10,10 @@ min_version("6.6.1")
 strat_tbl = pd.read_table("workflow/strats.csv", sep = ",").set_index(["ref","strat"], drop = False)
 STRATS = list(set(strat_tbl["strat"]))
 
+## CMRG Benchmark Set
+cmrg_tbl = pd.read_table("workflow/cmrg_benchsets.csv", sep = ",").set_index(["ref","benchset","benchtype"], drop = False)
+
 ## Variables for data paths
-mrg_dir = "resources/NIST_MedicalGene_v1.00.01"
 benchdir = "workflow/data/benchmark_sets"
 ensembl_dir = "workflow/data/gene_coords"
 
@@ -18,15 +21,15 @@ ensembl_dir = "workflow/data/gene_coords"
 REFS = ["GRCh37","GRCh38"]
 REGIONS = ["gene","exon","intron", "gene-plus-flank"]
 BENCHTYPES = ["smallvar","SV", "union"]
-BENCHSETS = ["v4", "v0.6","mrg"]
+BENCHSETS = ["v4", "v0.6","cmrg"]
 BENCHVARS = ["GRCh37_v4_smallvar", "GRCh37_v0.6_SV",
-             "GRCh37_mrg_smallvar","GRCh37_mrg_SV",
+             "GRCh37_cmrg_smallvar","GRCh37_cmrg_SV",
              "GRCh38_v4_smallvar", 
-             "GRCh38_mrg_smallvar","GRCh38_mrg_SV"]
+             "GRCh38_cmrg_smallvar","GRCh38_cmrg_SV"]
 BENCHREGIONS = ["GRCh37_v4_smallvar", "GRCh37_v0.6_SV",
-             "GRCh37_mrg_smallvar","GRCh37_mrg_SV", "GRCh37_mrg_union",
+             "GRCh37_cmrg_smallvar","GRCh37_cmrg_SV", "GRCh37_cmrg_union",
              "GRCh38_v4_smallvar", 
-             "GRCh38_mrg_smallvar","GRCh38_mrg_SV", "GRCh38_mrg_union"]
+             "GRCh38_cmrg_smallvar","GRCh38_cmrg_SV", "GRCh38_cmrg_union"]
 
 wildcard_constraints:
     ref="|".join(REFS),
@@ -39,7 +42,7 @@ wildcard_constraints:
 rule all:
     input:
         expand(ensembl_dir + "/{ref}_mrg_bench_gene.bed", ref = REFS),
-        expand("workflow/data/benchmark_sets/HG002_{ref}_mrg_union.bed", 
+        expand("workflow/data/benchmark_sets/HG002_{ref}_cmrg_union.bed", 
                 ref = REFS),
         expand("workflow/results/bench_cov_tbls/HG002_{benchregion}_{region}_cov.tsv", 
                 region = REGIONS, benchregion = BENCHREGIONS),
@@ -69,48 +72,49 @@ rule prepare_genome:
         cp {input.grch38_genome} {output.grch38_genome}    
     """
 
-rule prepare_mrg_sv_beds:
+def get_cmrg_url(wildcards):
+    try:
+        print(wildcards.benchtype)
+        path=cmrg_tbl.loc[(wildcards.ref, 'cmrg', wildcards.benchtype),"url_root"] + wildcards.file_type
+    except AttributeError:
+        path=cmrg_tbl.loc[(wildcards.ref, 'cmrg', 'smallvar'),"url_root"] + wildcards.file_type
+    return(path)
+
+rule get_cmrg_sv_bench:
+    output: temp("data/raw_bench/HG002_{ref}_{benchset}_{benchtype}.{file_type}")
+    params: url=get_cmrg_url
+    shell: "wget -v -O {output} {params.url}"
+
+rule prepare_cmrg_sv_beds:
     input:
-        in_file= mrg_dir + "/HG002_{ref}_difficult_medical_gene_SV_benchmark_v1.00.01.bed",
+        in_file="data/raw_bench/HG002_{ref}_cmrg_SV.bed",
         genome="data/refs/{ref}.genome"
     output:
-        temp(benchdir + "/HG002_{ref}_mrg_SV.bed")
+        temp(benchdir + "/HG002_{ref}_cmrg_SV.bed")
     wrapper:
         "0.74.0/bio/bedtools/sort"
 
-rule prepare_mrg_sv:
+rule prepare_cmrg_sv:
     input:
-        mrg_sv_vcf=mrg_dir + "/HG002_{ref}_difficult_medical_gene_SV_benchmark_v1.00.01.vcf.gz",
-        mrg_sv_bed=benchdir + "/HG002_{ref}_mrg_SV.bed"
+         vcf="data/raw_bench/HG002_{ref}_cmrg_SV.vcf.gz",
+         vcfidx="data/raw_bench/HG002_{ref}_cmrg_SV.vcf.gz.tbi",
+         bed=benchdir + "/HG002_{ref}_cmrg_SV.bed"
     output:     
-        mrg_sv_vcf=temp(benchdir + "/HG002_{ref}_mrg_SV.vcf.gz")
+        vcf=temp(benchdir + "/HG002_{ref}_cmrg_SV.vcf.gz")
     conda: "envs/mrgtools.yml"
     shell: """
         ## Filtering for variants in benchmark regions
         bcftools view \
-            -O z -o {output.mrg_sv_vcf} \
-            -R {input.mrg_sv_bed} \
-            {input.mrg_sv_vcf}
+            -O z -o {output.vcf} \
+            -R {input.bed} \
+            {input.vcf}
     """
 
-rule prepare_mrg_smallvar:
-    input:
-        mrg_37_smallvar_vcf=mrg_dir + "/HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz",
-        mrg_37_smallvar_bed=mrg_dir + "/HG002_GRCh37_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed",
-        mrg_38_smallvar_vcf=mrg_dir + "/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.vcf.gz",
-        mrg_38_smallvar_bed=mrg_dir + "/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v1.00.01.bed"
-    output:     
-        mrg_37_smallvar_vcf=temp(benchdir + "/HG002_GRCh37_mrg_smallvar.vcf.gz"),
-        mrg_37_smallvar_bed=temp(benchdir + "/HG002_GRCh37_mrg_smallvar.bed"),
-        mrg_38_smallvar_vcf=temp(benchdir + "/HG002_GRCh38_mrg_smallvar.vcf.gz"),
-        mrg_38_smallvar_bed=temp(benchdir + "/HG002_GRCh38_mrg_smallvar.bed")
-    shell: """
-        ## Copying and renaming small variant vcf and bed files
-        cp {input.mrg_37_smallvar_vcf} {output.mrg_37_smallvar_vcf}
-        cp {input.mrg_37_smallvar_bed} {output.mrg_37_smallvar_bed}
-        cp {input.mrg_38_smallvar_vcf} {output.mrg_38_smallvar_vcf}
-        cp {input.mrg_38_smallvar_bed} {output.mrg_38_smallvar_bed}
-    """
+rule get_cmrg_smallvar:
+    output: temp(benchdir + "/HG002_{ref}_cmrg_smallvar.{file_type}")
+    params: url=get_cmrg_url
+    shell: "wget -v -O {output} {params.url}"
+
 
 rule prepare_v4:
     input:
@@ -176,9 +180,9 @@ rule get_strat:
 
 rule make_union_bed: 
     input:
-        sm = benchdir + "/HG002_{ref}_mrg_smallvar.bed",
-        sv = benchdir + "/HG002_{ref}_mrg_SV.bed"
-    output: temp(benchdir + "/HG002_{ref}_mrg_union.bed")
+        sm = benchdir + "/HG002_{ref}_cmrg_smallvar.bed",
+        sv = benchdir + "/HG002_{ref}_cmrg_SV.bed"
+    output: temp(benchdir + "/HG002_{ref}_cmrg_union.bed")
     conda: "envs/mrgtools.yml"
     shell: """
         multiintersectbed \

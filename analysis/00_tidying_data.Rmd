@@ -210,7 +210,7 @@ write_tsv(tidy_mrg_info_tbl,
 gene_cov_files <- list.files(path = here("workflow", "results", "bench_cov_tbls"),
                              pattern = "HG002.*_gene_cov.tsv") %>%
   set_names(~ str_remove(., "_cov.tsv")) %>%
-  map(~ here("workflow", "results", "cov_tbls", .))
+  map(~ here("workflow", "results", "bench_cov_tbls", .))
 
 gene_cov_df <- gene_cov_files %>%
   map_dfr(
@@ -256,7 +256,7 @@ exon_cov_files <-
              pattern = "HG002.*_exon_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
-  map( ~ here("workflow", "results", "cov_tbls", .))
+  map( ~ here("workflow", "results", "bench_cov_tbls", .))
 
 exon_cov_df <- exon_cov_files %>%
   map_dfr(
@@ -341,7 +341,7 @@ intron_cov_files <-
              pattern = "HG002.*_intron_cov.tsv",
   ) %>%
   set_names( ~ str_remove(., "_cov.tsv")) %>%
-  map( ~ here("workflow", "results", "cov_tbls", .))
+  map( ~ here("workflow", "results", "bench_cov_tbls", .))
 
 cnames <- c("chrom", "start", "end", "gene", "n_regions", 
             "bp_cov", "intron_size", "cov")
@@ -659,7 +659,7 @@ read_anno_tsv <- function(anno_tsv_file) {
   
   
   ## Parsers for different benchmark sets
-  if (str_detect(anno_tsv_file, "_mrg_")) {
+  if (str_detect(anno_tsv_file, "_cmrg_")) {
     var_df <-
       read_tsv(anno_tsv_file,
                col_names = cnames,
