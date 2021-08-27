@@ -1,7 +1,8 @@
 ## Pipeline for generating pipeline analysis results
 import pandas as pd
 from snakemake.utils import min_version
-from snakemake.remote import AUTO
+from snakemake.remote.HTTP import RemoteProvider as HTTPRemoteProvider
+HTTP = HTTPRemoteProvider()
 
 ### set minimum snakemake version
 min_version("6.6.1")
@@ -72,22 +73,9 @@ rule prepare_genome:
         cp {input.grch38_genome} {output.grch38_genome}    
     """
 
-def get_cmrg_url(wildcards):
-    try:
-        print(wildcards.benchtype)
-        path=cmrg_tbl.loc[(wildcards.ref, 'cmrg', wildcards.benchtype),"url_root"] + wildcards.file_type
-    except AttributeError:
-        path=cmrg_tbl.loc[(wildcards.ref, 'cmrg', 'smallvar'),"url_root"] + wildcards.file_type
-    return(path)
-
-rule get_cmrg_sv_bench:
-    output: temp("data/raw_bench/HG002_{ref}_{benchset}_{benchtype}.{file_type}")
-    params: url=get_cmrg_url
-    shell: "wget -v -O {output} {params.url}"
-
 rule prepare_cmrg_sv_beds:
     input:
-        in_file="data/raw_bench/HG002_{ref}_cmrg_SV.bed",
+        in_file=lambda wildcards: HTTP.remote(cmrg_tbl.loc[(wildcards.ref, 'cmrg', 'SV'),"url_root"] + "bed"),
         genome="data/refs/{ref}.genome"
     output:
         temp(benchdir + "/HG002_{ref}_cmrg_SV.bed")
@@ -96,8 +84,8 @@ rule prepare_cmrg_sv_beds:
 
 rule prepare_cmrg_sv:
     input:
-         vcf="data/raw_bench/HG002_{ref}_cmrg_SV.vcf.gz",
-         vcfidx="data/raw_bench/HG002_{ref}_cmrg_SV.vcf.gz.tbi",
+         vcf=lambda wildcards: HTTP.remote(cmrg_tbl.loc[(wildcards.ref, 'cmrg', 'SV'),"url_root"] + "vcf.gz"),
+         vcfidx=lambda wildcards: HTTP.remote(cmrg_tbl.loc[(wildcards.ref, 'cmrg', 'SV'),"url_root"] + "vcf.gz.tbi"),
          bed=benchdir + "/HG002_{ref}_cmrg_SV.bed"
     output:     
         vcf=temp(benchdir + "/HG002_{ref}_cmrg_SV.vcf.gz")
@@ -111,9 +99,9 @@ rule prepare_cmrg_sv:
     """
 
 rule get_cmrg_smallvar:
+    input: lambda wildcards: HTTP.remote(cmrg_tbl.loc[(wildcards.ref, 'cmrg', 'smallvar'),"url_root"] + wildcards.file_type)
     output: temp(benchdir + "/HG002_{ref}_cmrg_smallvar.{file_type}")
-    params: url=get_cmrg_url
-    shell: "wget -v -O {output} {params.url}"
+    shell: "mv {input} {output}"
 
 
 rule prepare_v4:
@@ -164,15 +152,11 @@ rule sort_gene_list_beds:
     wrapper:
         "0.74.0/bio/bedtools/sort"
 
-def get_strat_url(wildcards):
-    path=strat_tbl.loc[(wildcards.ref, wildcards.strat), "url"]
-    return(path)
-
 rule get_strat:
+    input: lambda wildcards: HTTP.remote(strat_tbl.loc[(wildcards.ref, wildcards.strat), "url"])
     output: temp("workflow/data/strats/{ref}_{strat}.bed.gz")
-    params: url=get_strat_url
-    shell: "wget -v -O {output} {params.url}"
-        
+    shell: "mv {input} {output}"
+
 
 ################################################################################
 ## Combined SM and SV bed file
