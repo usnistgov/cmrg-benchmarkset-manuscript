@@ -10,9 +10,8 @@ scratch/*
 workflow/data
 workflow/results
 resources/*
-data/gene_stat_tbls/*
+workflow/results
 data/mrg_benchmarkset
 docs/ASHG-2020-MRG-Poster-Complete.pptx
-data/gene_coords
-data/refs
+data/gene_coords/*
 data/false_dups
