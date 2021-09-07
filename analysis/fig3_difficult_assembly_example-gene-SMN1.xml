@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Session genome="hg38" hasGeneTrack="true" hasSequenceTrack="true" locus="chr5:70922941-70955012" nextAutoscaleGroup="8" version="8">
+    <Resources>
+        <Resource index="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/10XGenomics_ChromiumGenome_LongRanger2.2_Supernova2.0.1_04122018/GRCh38/NA24385_300G/NA24385.GRCh38.phased_possorted_bam.bam.bai" path="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/10XGenomics_ChromiumGenome_LongRanger2.2_Supernova2.0.1_04122018/GRCh38/NA24385_300G/NA24385.GRCh38.phased_possorted_bam.bam"/>
+        <Resource name="HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v0.03.00.bed" path="../resources/benchmark/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v0.03.00.bed"/>
+        <Resource index="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_medical_genes_benchmark_v0.02/GRCh38/hifiasm_v0.11/HG002v11-align2-GRCh38.hap1.bam.bai" path="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_medical_genes_benchmark_v0.02/GRCh38/hifiasm_v0.11/HG002v11-align2-GRCh38.hap1.bam"/>
+        <Resource index="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_medical_genes_benchmark_v0.02/GRCh38/hifiasm_v0.11/HG002v11-align2-GRCh38.hap2.bam.bai" path="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_medical_genes_benchmark_v0.02/GRCh38/hifiasm_v0.11/HG002v11-align2-GRCh38.hap2.bam"/>
+        <Resource index="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.4.5/HG002_GRCh38_ONT-UL_GIAB_20200204.bam.bai" path="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.4.5/HG002_GRCh38_ONT-UL_GIAB_20200204.bam"/>
+        <Resource index="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/PacBio_CCS_15kb_20kb_chemistry2/GRCh38/HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam.bai" path="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/PacBio_CCS_15kb_20kb_chemistry2/GRCh38/HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam"/>
+        <Resource path="https://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/release/AshkenazimTrio/HG002_NA24385_son/NISTv4.2.1/GRCh38/HG002_GRCh38_1_22_v4.2.1_benchmark_noinconsistent.bed"/>
+        <Resource index="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NISTv4.2.1/GRCh38/HG002_GRCh38_1_22_v4.2.1_benchmark.vcf.gz.tbi" path="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NISTv4.2.1/GRCh38/HG002_GRCh38_1_22_v4.2.1_benchmark.vcf.gz"/>
+        <Resource index="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/NIST_HiSeq_HG002_Homogeneity-10953946/NHGRI_Illumina300X_AJtrio_novoalign_bams/HG002.GRCh38.60x.1.bam.bai" path="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/NIST_HiSeq_HG002_Homogeneity-10953946/NHGRI_Illumina300X_AJtrio_novoalign_bams/HG002.GRCh38.60x.1.bam"/>
+        <Resource name="HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v0.03.00.vcf.gz" path="../resources/benchmark/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v0.03.00.vcf.gz"/>
+        <Resource path="KIR2DL1_for_v4_manuscript/hg38.segdups.bed.gz"/>
+    </Resources>
+    <Panel height="279" name="DataPanel" width="1903">
+        <Track altColor="0,0,178" attributeKey="HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v0.03.00.bed" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" colorScale="ContinuousColorScale;0.0;71.0;255,255,255;0,0,178" fontSize="23" id="/Users/jmcdani/Documents/GiaB/Benchmarking/mrg_benchmark_eval/resources/benchmark/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v0.03.00.bed" name="CMRG v1.00 SmallVar BED" visible="true"/>
+        <Track altColor="0,0,178" attributeKey="HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v0.03.00.vcf.gz" clazz="org.broad.igv.variant.VariantTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="100000" fontSize="23" id="/Users/jmcdani/Documents/GiaB/Benchmarking/mrg_benchmark_eval/resources/benchmark/HG002_GRCh38_difficult_medical_gene_smallvar_benchmark_v0.03.00.vcf.gz" name="CMRG SmallVar VCF" siteColorMode="ALLELE_FREQUENCY" squishedHeight="1" visible="true"/>
+        <Track altColor="0,0,178" attributeKey="HG002_GRCh38_1_22_v4.2.1_benchmark_noinconsistent.bed" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/release/AshkenazimTrio/HG002_NA24385_son/NISTv4.2.1/GRCh38/HG002_GRCh38_1_22_v4.2.1_benchmark_noinconsistent.bed" name="v4.2.1 SmallVar BED" visible="true"/>
+        <Track altColor="0,0,178" attributeKey="HG002_GRCh38_1_22_v4.2.1_benchmark.vcf.gz" clazz="org.broad.igv.variant.VariantTrack" color="0,0,178" displayMode="EXPANDED" featureVisibilityWindow="1998000" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NISTv4.2.1/GRCh38/HG002_GRCh38_1_22_v4.2.1_benchmark.vcf.gz" name="v4.2.1 SmallVar VCF" siteColorMode="ALLELE_FREQUENCY" squishedHeight="1" visible="true"/>
+    </Panel>
+    <Panel height="124" name="Panel1607369919275" width="1903">
+        <Track altColor="0,0,178" attributeKey="HG002_GRCh38_ONT-UL_GIAB_20200204.bam Junctions" clazz="org.broad.igv.sam.SpliceJunctionTrack" color="0,0,178" fontSize="24" height="60" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.4.5/HG002_GRCh38_ONT-UL_GIAB_20200204.bam_junctions" name="HG002_GRCh38_ONT-UL_GIAB_20200204.bam Junctions" visible="false"/>
+        <Track altColor="0,0,178" attributeKey="HG002v11-align2-GRCh38.hap1.bam" clazz="org.broad.igv.sam.AlignmentTrack" color="0,0,178" displayMode="EXPANDED" experimentType="THIRD_GEN" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_medical_genes_benchmark_v0.02/GRCh38/hifiasm_v0.11/HG002v11-align2-GRCh38.hap1.bam" name="Hifiasm-paternal" visible="true">
+            <RenderOptions/>
+        </Track>
+    </Panel>
+    <Panel height="102" name="Panel1607369964598" width="1903">
+        <Track altColor="0,0,178" attributeKey="HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam Junctions" clazz="org.broad.igv.sam.SpliceJunctionTrack" color="0,0,178" fontSize="24" height="60" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/PacBio_CCS_15kb_20kb_chemistry2/GRCh38/HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam_junctions" name="HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam Junctions" visible="false"/>
+        <Track altColor="0,0,178" attributeKey="HG002v11-align2-GRCh38.hap2.bam" clazz="org.broad.igv.sam.AlignmentTrack" color="0,0,178" displayMode="EXPANDED" experimentType="THIRD_GEN" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_medical_genes_benchmark_v0.02/GRCh38/hifiasm_v0.11/HG002v11-align2-GRCh38.hap2.bam" name="Hifiasm-maternal" visible="true">
+            <RenderOptions/>
+        </Track>
+    </Panel>
+    <Panel height="65" name="Panel1607370163851" width="1903">
+        <Track altColor="0,0,178" attributeKey="NA24385.GRCh38.phased_possorted_bam.bam Junctions" clazz="org.broad.igv.sam.SpliceJunctionTrack" color="0,0,178" fontSize="24" height="60" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/10XGenomics_ChromiumGenome_LongRanger2.2_Supernova2.0.1_04122018/GRCh38/NA24385_300G/NA24385.GRCh38.phased_possorted_bam.bam_junctions" name="NA24385.GRCh38.phased_possorted_bam.bam Junctions" visible="false"/>
+        <Track attributeKey="HG002.GRCh38.60x.1.bam Coverage" autoScale="true" clazz="org.broad.igv.sam.CoverageTrack" color="175,175,175" colorScale="ContinuousColorScale;0.0;99.0;255,255,255;175,175,175" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/NIST_HiSeq_HG002_Homogeneity-10953946/NHGRI_Illumina300X_AJtrio_novoalign_bams/HG002.GRCh38.60x.1.bam_coverage" name="Illumina-60x" snpThreshold="0.2" visible="true">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="147.0" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" attributeKey="HG002.GRCh38.60x.1.bam" clazz="org.broad.igv.sam.AlignmentTrack" color="0,0,178" displayMode="EXPANDED" experimentType="OTHER" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/NIST_HiSeq_HG002_Homogeneity-10953946/NHGRI_Illumina300X_AJtrio_novoalign_bams/HG002.GRCh38.60x.1.bam" name="HG002.GRCh38.60x.1.bam" visible="false">
+            <RenderOptions/>
+        </Track>
+    </Panel>
+    <Panel height="65" name="Panel1607370223403" width="1903">
+        <Track altColor="0,0,178" attributeKey="HG002.GRCh38.60x.1.bam Junctions" clazz="org.broad.igv.sam.SpliceJunctionTrack" color="0,0,178" fontSize="24" height="60" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/NIST_HiSeq_HG002_Homogeneity-10953946/NHGRI_Illumina300X_AJtrio_novoalign_bams/HG002.GRCh38.60x.1.bam_junctions" name="HG002.GRCh38.60x.1.bam Junctions" visible="false"/>
+        <Track attributeKey="NA24385.GRCh38.phased_possorted_bam.bam Coverage" autoScale="true" clazz="org.broad.igv.sam.CoverageTrack" color="175,175,175" colorScale="ContinuousColorScale;0.0;340.0;255,255,255;175,175,175" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/10XGenomics_ChromiumGenome_LongRanger2.2_Supernova2.0.1_04122018/GRCh38/NA24385_300G/NA24385.GRCh38.phased_possorted_bam.bam_coverage" name="10X Genomics" snpThreshold="0.2" visible="true">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="196.0" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" attributeKey="NA24385.GRCh38.phased_possorted_bam.bam" clazz="org.broad.igv.sam.AlignmentTrack" color="0,0,178" displayMode="EXPANDED" experimentType="OTHER" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/10XGenomics_ChromiumGenome_LongRanger2.2_Supernova2.0.1_04122018/GRCh38/NA24385_300G/NA24385.GRCh38.phased_possorted_bam.bam" name="NA24385.GRCh38.phased_possorted_bam.bam" visible="false">
+            <RenderOptions/>
+        </Track>
+    </Panel>
+    <Panel height="65" name="Panel1607370346689" width="1903">
+        <Track altColor="0,0,178" attributeKey="HG002v11-align2-GRCh38.hap1.bam Junctions" clazz="org.broad.igv.sam.SpliceJunctionTrack" color="0,0,178" fontSize="24" height="60" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_medical_genes_benchmark_v0.02/GRCh38/hifiasm_v0.11/HG002v11-align2-GRCh38.hap1.bam_junctions" name="HG002v11-align2-GRCh38.hap1.bam Junctions" visible="false"/>
+        <Track attributeKey="HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam Coverage" autoScale="true" clazz="org.broad.igv.sam.CoverageTrack" color="175,175,175" colorScale="ContinuousColorScale;0.0;72.0;255,255,255;175,175,175" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/PacBio_CCS_15kb_20kb_chemistry2/GRCh38/HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam_coverage" name="PacBio Hifi-50x" snpThreshold="0.2" visible="true">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="68.0" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" attributeKey="HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam" clazz="org.broad.igv.sam.AlignmentTrack" color="0,0,178" displayMode="EXPANDED" experimentType="THIRD_GEN" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/PacBio_CCS_15kb_20kb_chemistry2/GRCh38/HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam" name="HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam" visible="false">
+            <RenderOptions/>
+        </Track>
+    </Panel>
+    <Panel height="65" name="Panel1607370390938" width="1903">
+        <Track altColor="0,0,178" attributeKey="HG002v11-align2-GRCh38.hap2.bam Junctions" clazz="org.broad.igv.sam.SpliceJunctionTrack" color="0,0,178" fontSize="24" height="60" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_medical_genes_benchmark_v0.02/GRCh38/hifiasm_v0.11/HG002v11-align2-GRCh38.hap2.bam_junctions" name="HG002v11-align2-GRCh38.hap2.bam Junctions" visible="false"/>
+        <Track attributeKey="HG002_GRCh38_ONT-UL_GIAB_20200204.bam Coverage" autoScale="true" clazz="org.broad.igv.sam.CoverageTrack" color="175,175,175" colorScale="ContinuousColorScale;0.0;58.0;255,255,255;175,175,175" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.4.5/HG002_GRCh38_ONT-UL_GIAB_20200204.bam_coverage" name="ONT-UL-60x" snpThreshold="0.2" visible="true">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="63.0" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track altColor="0,0,178" attributeKey="HG002_GRCh38_ONT-UL_GIAB_20200204.bam" clazz="org.broad.igv.sam.AlignmentTrack" color="0,0,178" displayMode="EXPANDED" experimentType="THIRD_GEN" fontSize="24" id="https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.4.5/HG002_GRCh38_ONT-UL_GIAB_20200204.bam" name="HG002_GRCh38_ONT-UL_GIAB_20200204.bam" visible="false">
+            <RenderOptions/>
+        </Track>
+    </Panel>
+    <Panel height="208" name="FeaturePanel" width="1903">
+        <Track altColor="0,0,178" attributeKey="Reference sequence" clazz="org.broad.igv.track.SequenceTrack" color="0,0,178" fontSize="24" id="Reference sequence" name="Reference sequence" visible="true"/>
+        <Track altColor="0,0,178" attributeKey="Gene" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" colorScale="ContinuousColorScale;0.0;845.0;255,255,255;0,0,178" fontSize="24" height="35" id="hg38_genes" name="Gene" visible="true"/>
+        <Track attributeKey="hg38.segdups.bed.gz" clazz="org.broad.igv.track.FeatureTrack" color="0,0,178" featureVisibilityWindow="84607867" fontSize="24" id="/Users/jmcdani/Documents/GiaB/Benchmarking/mrg_benchmark_eval/igv/KIR2DL1_for_v4_manuscript/hg38.segdups.bed.gz" name="Segmental Duplications" visible="true"/>
+    </Panel>
+    <PanelLayout dividerFractions="0.27821782178217824,0.40594059405940597,0.5118811881188119,0.5811881188118811,0.6504950495049505,0.7198019801980198,0.7891089108910891"/>
+    <HiddenAttributes>
+        <Attribute name="DATA FILE"/>
+        <Attribute name="DATA TYPE"/>
+        <Attribute name="NAME"/>
+    </HiddenAttributes>
+</Session>
