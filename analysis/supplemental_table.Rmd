@@ -165,6 +165,10 @@ glimpse(challenging_genes_df)
 write_tsv(challenging_genes_df, file = here("data","challenging_genes_tbl.tsv.gz"))
 ```
 
+```{r}
+write_tsv(gene_stats_tbl, file = here("data","gene_stat_tbl.tsv.gz"))
+```
+
 # Session Information
 ## System Information
 ```{r}
