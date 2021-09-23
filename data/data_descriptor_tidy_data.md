@@ -1,6 +1,20 @@
 # Tidy Data Descriptors
 
-## bench_coverage
+## asm_coverage.tsv.gz
+hifiasm diploid assembly coverage of medically relevant genes
+
+- giab_id: GIAB sample id; character string
+- gene: Gene name; character string
+- ref: reference genome - either GRCh37 or GRCh38; character string
+- start: gene start position; integer
+- end: gene end position; integer
+- region: gene region - gene, exon, intron, or gene-plus-flank; character string
+- n_contigs: number of assembled contigs align to the gene; integer
+- bp_cov: number of base pairs covered; integer
+- region_size: number of base pairs in the genomic region; integer
+- overlap: overlap fraction - value between 1 and 0; double
+
+## bench_coverage.tsv.gz
 Number of bases and fraction of medically relevant genes by gene region included in GIAB benchmarks.
 
 - gene: Gene name; character string
@@ -8,12 +22,12 @@ Number of bases and fraction of medically relevant genes by gene region included
 - coords: gene coordinates - `CHROM:START-END`; character string
 - benchmark: benchmark set name - V4.2.1, V0.6, or CMRGv1.00; character string
 - bench_type: smallvar, SV, or union (combined small variant and SV); character string
-- region: gene region - exon, intron, or gene; character string
+- region: gene region - gene, exon, intron, or gene-plus-flank; character string
 - cov: coverage fraction - value between 1 and 0; double
 - bp_cov: number of base pairs covered; integer
 - in_mrg: whether the gene is in the CMRG benchmarkset; logical
 
-## bench_diff_bases
+## bench_diff_bases.tsv.gz
 Coverage of GIAB benchmarks by difficult genomic context stratifications.
 
 - gene: Gene name; character string
@@ -25,21 +39,8 @@ Coverage of GIAB benchmarks by difficult genomic context stratifications.
 - cov: coverage fraction - value between 1 and 0; double
 - bp_cov: number of base pairs covered; integer
 
-## strat_overlap
-Medically relevant genes overlap for difficult genomic context stratifications.
 
-- strat: genomic stratification; character string
-- ref: reference genome - either GRCh37 or GRCh38; character string
-- chrom: gene position chromosom; character string
-- start: gene start position; integer
-- end: gene end position; integer
-- gene: Gene name, character string
-- n_regions: Number of stratification regions overlapping gene; integer
-- bp_cov: number of base pairs covered; integer
-- gene_size: number of base pairs in the gene; integer
-- overlap: overlap fraction - value between 1 and 0; double
-
-## gene_list_info
+## gene_list_info.tsv.gz
 See `data/README.md` for gene list descriptions
 
 - gene: Gene name, character string
@@ -54,7 +55,7 @@ See `data/README.md` for gene list descriptions
 - NCCN: number of diagnostic tests/ variants of interest per gene; integer
 - ACOG: number of diagnostic tests/ variants of interest per gene; integer 
 
-## manual_curation
+## manual_curation.tsv
 Reformatted manual curation results for figure generation.
 
 - callset: name of call set (query) being compared to benchmark set (truth); character string
@@ -71,7 +72,22 @@ Reformatted manual curation results for figure generation.
 - benchmark_correct: curation notes as to whether the benchmark is correct - yes, no, or unsure; character string
 - query_correct: curation notes as to whether the benchmark is correct - yes, no, or unsure; character string
 
-## var_tbl
+## strat_overlap.tsv.gz
+Medically relevant genes overlap for difficult genomic context stratifications.
+
+- strat: genomic stratification; character string
+- ref: reference genome - either GRCh37 or GRCh38; character string
+- region: gene region - gene, exon, intron, or gene-plus-flank; character string
+- chrom: gene position chromosom; character string
+- start: gene start position; integer
+- end: gene end position; integer
+- gene: Gene name, character string
+- n_regions: Number of stratification regions overlapping gene; integer
+- bp_cov: number of base pairs covered; integer
+- region_size: number of base pairs in the genomic region; integer
+- overlap: overlap fraction - value between 1 and 0; double
+
+## var_tbl.tsv.gz
 Table with benchmark variant sizes, positions, along with gene and exon annotations.
 
 
