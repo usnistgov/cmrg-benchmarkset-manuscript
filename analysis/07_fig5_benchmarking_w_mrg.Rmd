@@ -118,7 +118,10 @@ gatk_plt_df <- tidy_gatk_bench_df %>%
 
 
 ```{r}
-ggsave(filename = here("figures", "fig4_benchmarking_w_mrg.png"), 
+ggsave(filename = here("figures", "fig5_benchmarking_w_mrg.png"), 
+       plot = bench_scatter_plt, width = 6, height = 4, dpi = 300) 
+
+ggsave(filename = here("figures", "fig5_benchmarking_w_mrg.pdf"), 
        plot = bench_scatter_plt, width = 6, height = 4, dpi = 300) 
 ```
 

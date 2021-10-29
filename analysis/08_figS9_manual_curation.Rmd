@@ -157,6 +157,9 @@ full_fig
 ggsave(filename = here("figures", "manual_curation.png"), 
        full_fig, width = 6, height = 6)
 
+ggsave(filename = here("figures", "manual_curation.pdf"), 
+       full_fig, width = 6, height = 6)
+
 ```
 
 
