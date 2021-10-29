@@ -154,10 +154,10 @@ full_fig
 
 ## Saving to file
 ```{r}
-ggsave(filename = here("figures", "manual_curation.png"), 
+ggsave(filename = here("figures", "figS9_manual_curation.png"), 
        full_fig, width = 6, height = 6)
 
-ggsave(filename = here("figures", "manual_curation.pdf"), 
+ggsave(filename = here("figures", "figS9_manual_curation.pdf"), 
        full_fig, width = 6, height = 6)
 
 ```
